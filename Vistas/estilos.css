@@ -30,7 +30,6 @@ nav {
     font-size: 16px;
 }
 
-
 footer {
     background-color: #f1f1f1;
     text-align: center;
@@ -126,7 +125,6 @@ h1 {
     background-color: #246b6b;
 }
 
-
 @media (max-width: 480px) {
     .navbar a {
         font-size: 16px;
@@ -143,3 +141,41 @@ h1 {
         padding: 10px;
     }
 }
+
+.form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.form-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.form-button {
+    padding: 0.6rem 1.2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    align-self: start;
+}
+
+    .form-button:hover {
+        background-color: #0056b3;
+    }
+
+    .form-button:active {
+        transform: scale(0.98);
+    }
