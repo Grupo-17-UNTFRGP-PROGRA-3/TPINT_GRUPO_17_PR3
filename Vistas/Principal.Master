@@ -20,6 +20,7 @@
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/HOME.aspx">HOME</asp:HyperLink>
             <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Administracion.aspx">Administrador</asp:HyperLink>
             <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Medicos.aspx">Gestion Medicos</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Pacientes/Listado.aspx">Gestion Pacientes</asp:HyperLink>
         </div>
         <div class="navbar-right">
             <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="usuario-label"></asp:Label>
