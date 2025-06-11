@@ -68,9 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administracion.aspx" />
-    <Content Include="AltaMedico.aspx" />
+    <Content Include="Médicos\AltaMedico.aspx" />
     <Content Include="estilos.css" />
     <Content Include="Home.aspx" />
+    <Content Include="Médicos\ListadoMedico.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Medicos.aspx" />
     <Content Include="Pacientes\Listado.aspx" />
@@ -85,11 +86,11 @@
     <Compile Include="Administracion.aspx.designer.cs">
       <DependentUpon>Administracion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AltaMedico.aspx.cs">
+    <Compile Include="Médicos\AltaMedico.aspx.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AltaMedico.aspx.designer.cs">
+    <Compile Include="Médicos\AltaMedico.aspx.designer.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
@@ -98,6 +99,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Médicos\ListadoMedico.aspx.cs">
+      <DependentUpon>ListadoMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Médicos\ListadoMedico.aspx.designer.cs">
+      <DependentUpon>ListadoMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
