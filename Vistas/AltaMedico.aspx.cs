@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Vistas
 {
-	public partial class Site1 : System.Web.UI.MasterPage
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class AltaMedico : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-		}
+        }
     }
 }
-

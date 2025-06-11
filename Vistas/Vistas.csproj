@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administracion.aspx" />
+    <Content Include="AltaMedico.aspx" />
     <Content Include="estilos.css" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
@@ -83,6 +84,13 @@
     </Compile>
     <Compile Include="Administracion.aspx.designer.cs">
       <DependentUpon>Administracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaMedico.aspx.cs">
+      <DependentUpon>AltaMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaMedico.aspx.designer.cs">
+      <DependentUpon>AltaMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
