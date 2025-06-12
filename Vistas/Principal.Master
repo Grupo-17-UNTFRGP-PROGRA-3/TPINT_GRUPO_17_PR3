@@ -18,7 +18,7 @@
     <div class="navbar">
         <div class="navbar-left">
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/HOME.aspx">HOME</asp:HyperLink>
-            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Administracion.aspx">Administrador</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Administrador/listaTurnos.aspx">Gestion Turnos</asp:HyperLink>
             <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Medicos.aspx">Gestion Medicos</asp:HyperLink>
             <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Pacientes/Listado.aspx">Gestion Pacientes</asp:HyperLink>
         </div>

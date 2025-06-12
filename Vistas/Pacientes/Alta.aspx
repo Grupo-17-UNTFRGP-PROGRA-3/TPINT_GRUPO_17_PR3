@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="Alta.aspx.cs" Inherits="Vistas.WebForm1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -100,9 +101,9 @@
 
         <!--botones-->
         <div>
-            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar paciente" CssClass="form-button"/>
-            <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button"/>
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click"/>
+            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar paciente" CssClass="form-button" />
+            <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click" />
         </div>
     </div>
 
