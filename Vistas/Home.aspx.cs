@@ -13,5 +13,33 @@ namespace Vistas
 		{
 
 		}
-	}
+
+        protected void lkbPaciente_Click(object sender, EventArgs e)
+        {
+            if (!lkbMP_AltaPaciente.Visible == true)
+            {
+                lkbMP_AltaPaciente.Visible = true;
+                lkbMP_ListadoPaciente.Visible=true;
+            }
+            else
+            {
+                lkbMP_AltaPaciente.Visible = false;
+                lkbMP_ListadoPaciente.Visible = false;
+            }
+        }
+
+        protected void lkbMedico_Click(object sender, EventArgs e)
+        {
+            if (!lkbMP_AltaMedicos.Visible == true)
+            {
+                lkbMP_AltaMedicos.Visible = true;
+                lkbMP_ListadoMedicos.Visible = true;
+            }
+            else
+            {
+                lkbMP_AltaMedicos.Visible = false;
+                lkbMP_ListadoMedicos.Visible = false;
+            }
+        }
+    }
 }
