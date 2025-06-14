@@ -7,20 +7,26 @@
         <div>
             <h1>Asignacion de Turnos</h1>
         </div>
-        <!-- Fecha del turno -->
+        <!-- Especialidad -->
         <div class="form-group">
-            <asp:Label ID="lblFecha" runat="server" Text="Fecha del Turno" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtFecha" runat="server" CssClass="form-input" TextMode="Date"></asp:TextBox>
+            <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
+            <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input">
+                <asp:ListItem Text="Seleccione especialidad" Value="" />
+            </asp:DropDownList>
         </div>
-
-        <div class="form-group">
-        </div>
-
         <!-- Médico -->
         <div class="form-group">
             <asp:Label ID="lblMedico" runat="server" Text="Médico" CssClass="form-label"></asp:Label>
             <asp:DropDownList ID="ddlMedico" runat="server" CssClass="form-input">
                 <asp:ListItem Text="Seleccione médico" Value="" />
+            </asp:DropDownList>
+        </div>
+
+        <!-- Día -->
+        <div class="form-group">
+            <asp:Label ID="lblDia" runat="server" Text="Día del Turno" CssClass="form-label"></asp:Label>
+            <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input">
+                <asp:ListItem Text="Seleccione día" Value="" />
             </asp:DropDownList>
         </div>
 
@@ -38,6 +44,11 @@
             <asp:DropDownList ID="ddlPaciente" runat="server" CssClass="form-input">
                 <asp:ListItem Text="Seleccione paciente" Value="" />
             </asp:DropDownList>
+        </div>
+        <!-- Fecha -->
+        <div class="form-group">
+            <asp:Label ID="lblFecha" runat="server" Text="Fecha" CssClass="form-label"></asp:Label>
+            <asp:Label ID="lblFechaTurno" runat="server" Text="dd/mm/yyyy"></asp:Label>
         </div>
 
         <!-- Botones -->

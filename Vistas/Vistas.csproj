@@ -67,38 +67,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Administrador\ListaTurnos.aspx" />
-    <Content Include="Administrador\AltaTurnos.aspx" />
-    <Content Include="Médicos\AltaMedico.aspx" />
+    <Content Include="Administrador\Turnos\ListaTurnos.aspx" />
+    <Content Include="Administrador\Turnos\AltaTurnos.aspx" />
+    <Content Include="Administrador\Médicos\AltaMedico.aspx" />
     <Content Include="estilos.css" />
     <Content Include="Home.aspx" />
-    <Content Include="Médicos\ListadoMedico.aspx" />
+    <Content Include="Administrador\Médicos\ListadoMedico.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Medicos.aspx" />
-    <Content Include="Pacientes\Listado.aspx" />
+    <Content Include="Administrador\Pacientes\Listado.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Pacientes\Alta.aspx" />
+    <Content Include="Administrador\Pacientes\Alta.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador\ListaTurnos.aspx.cs">
+    <Compile Include="Administrador\Turnos\ListaTurnos.aspx.cs">
       <DependentUpon>ListaTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\ListaTurnos.aspx.designer.cs">
+    <Compile Include="Administrador\Turnos\ListaTurnos.aspx.designer.cs">
       <DependentUpon>ListaTurnos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\AltaTurnos.aspx.cs">
+    <Compile Include="Administrador\Turnos\AltaTurnos.aspx.cs">
       <DependentUpon>AltaTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\AltaTurnos.aspx.designer.cs">
+    <Compile Include="Administrador\Turnos\AltaTurnos.aspx.designer.cs">
       <DependentUpon>AltaTurnos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Médicos\AltaMedico.aspx.cs">
+    <Compile Include="Administrador\Médicos\AltaMedico.aspx.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Médicos\AltaMedico.aspx.designer.cs">
+    <Compile Include="Administrador\Médicos\AltaMedico.aspx.designer.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
@@ -108,11 +108,11 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Médicos\ListadoMedico.aspx.cs">
+    <Compile Include="Administrador\Médicos\ListadoMedico.aspx.cs">
       <DependentUpon>ListadoMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Médicos\ListadoMedico.aspx.designer.cs">
+    <Compile Include="Administrador\Médicos\ListadoMedico.aspx.designer.cs">
       <DependentUpon>ListadoMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
@@ -129,11 +129,11 @@
     <Compile Include="Medicos.aspx.designer.cs">
       <DependentUpon>Medicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pacientes\Listado.aspx.cs">
+    <Compile Include="Administrador\Pacientes\Listado.aspx.cs">
       <DependentUpon>Listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pacientes\Listado.aspx.designer.cs">
+    <Compile Include="Administrador\Pacientes\Listado.aspx.designer.cs">
       <DependentUpon>Listado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,11 +144,11 @@
     <Compile Include="Principal.Master.designer.cs">
       <DependentUpon>Principal.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pacientes\Alta.aspx.cs">
+    <Compile Include="Administrador\Pacientes\Alta.aspx.cs">
       <DependentUpon>Alta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pacientes\Alta.aspx.designer.cs">
+    <Compile Include="Administrador\Pacientes\Alta.aspx.designer.cs">
       <DependentUpon>Alta.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
