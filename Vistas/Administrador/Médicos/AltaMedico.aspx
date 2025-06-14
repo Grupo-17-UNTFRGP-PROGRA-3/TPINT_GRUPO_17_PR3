@@ -122,13 +122,13 @@
          <div class="form-group">
               <asp:Label ID="lblHorarios" runat="server" Text="Dias de atencion" CssClass="form-label"></asp:Label>
 
-              <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal">
-                  <asp:ListItem Value="0">Lunes</asp:ListItem>
-                  <asp:ListItem Value="1">Martes</asp:ListItem>
-                  <asp:ListItem Value="2">Miercoles</asp:ListItem>
-                  <asp:ListItem Value="3">Jueves</asp:ListItem>
-                  <asp:ListItem Value="4">Viernes</asp:ListItem>
-              </asp:RadioButtonList>
+             <asp:CheckBoxList ID="cbl" runat="server" RepeatDirection="Horizontal">
+                 <asp:ListItem Value="0">Lunes</asp:ListItem>
+                 <asp:ListItem Value="1">Martes</asp:ListItem>
+                 <asp:ListItem Value="2">Miercoles</asp:ListItem>
+                 <asp:ListItem Value="3">Jueves</asp:ListItem>
+                 <asp:ListItem Value="4">Viernes</asp:ListItem>
+             </asp:CheckBoxList>
              
               <div class="form-group">
                   <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
