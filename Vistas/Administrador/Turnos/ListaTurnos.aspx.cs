@@ -22,13 +22,13 @@ namespace Vistas.Administrador
         private List<Turno> ObtenerTurnosPrueba()
         {
             return new List<Turno>
- {
- new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "09:00", Especialidad = "Cardiología", Medico = "Dr. Juan Pérez", Paciente = "Ana García", Estado = "Confirmado" },
- new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "10:00", Especialidad = "Dermatología", Medico = "Dra. María López", Paciente = "Carlos Sánchez", Estado = "Pendiente" },
- new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "11:00", Especialidad = "Neurología", Medico = "Dr. Pedro Gómez", Paciente = "Laura Martínez", Estado = "Confirmado" },
- new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "09:00", Especialidad = "Pediatría", Medico = "Dra. Ana Torres", Paciente = "Miguel Fernández", Estado = "Cancelado" },
- new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "10:00", Especialidad = "Ginecología", Medico = "Dra. Laura Ruiz", Paciente = "Sofía Díaz", Estado = "Confirmado" }
- };
+             {
+                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "09:00", Especialidad = "Cardiología", Medico = "Dr. Juan Pérez", Paciente = "Ana García", Estado = "Confirmado" },
+                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "10:00", Especialidad = "Dermatología", Medico = "Dra. María López", Paciente = "Carlos Sánchez", Estado = "Pendiente" },
+                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "11:00", Especialidad = "Neurología", Medico = "Dr. Pedro Gómez", Paciente = "Laura Martínez", Estado = "Confirmado" },
+                new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "09:00", Especialidad = "Pediatría", Medico = "Dra. Ana Torres", Paciente = "Miguel Fernández", Estado = "Cancelado" },
+                new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "10:00", Especialidad = "Ginecología", Medico = "Dra. Laura Ruiz", Paciente = "Sofía Díaz", Estado = "Confirmado" }
+             };
         }
 
         public class Turno
