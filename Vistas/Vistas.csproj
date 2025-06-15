@@ -71,6 +71,7 @@
     <Content Include="Administrador\Turnos\AltaTurnos.aspx" />
     <Content Include="Administrador\Médicos\AltaMedico.aspx" />
     <Content Include="estilos.css" />
+    <Content Include="file_00000000e90c622f83423ce541a897b4 %281%29.png" />
     <Content Include="Home.aspx" />
     <Content Include="Administrador\Médicos\ListadoMedico.aspx" />
     <Content Include="Login.aspx" />

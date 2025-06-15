@@ -1,12 +1,13 @@
 ﻿body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0px;
 }
 
 nav {
-    background-color: dimgray;
-    padding: 10px 0;
+    background-color: darkgray;
+    padding: 10px 10px;
+    align-content:center;
 }
 .linkbutton {
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -17,26 +18,26 @@ nav {
     border-color: black;
     border-radius: 10px;
     display: inline-block;
-    padding: 10px 15px;
+    padding: 10px;
     font-size: 16px;
 }
 .linkbutton-submenu {
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     color: black;
+    text-align: right;
     text-decoration: none;
-    font-weight: bold;
+    block-size: auto;
+    font-weight: 100;
     background-color: white;
-    display: inline-block;
-    padding: 10px 15px;
+    padding: 2px 5px;
     font-size: 16px;
-    float:right;
+
 }
 
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 30px
 }
 
 .navbar-left {
@@ -202,7 +203,4 @@ h1 {
     .form-button:active {
         transform: scale(0.98);
     }
-
-
-
 
