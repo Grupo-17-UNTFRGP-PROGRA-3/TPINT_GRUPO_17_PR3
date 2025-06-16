@@ -151,7 +151,7 @@
          </div>
          <!--botones-->
          <div>
-             <asp:Button ID="btnIngresar" runat="server" Text="Ingresar paciente" CssClass="form-button"/>
+             <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CssClass="form-button"/>
              <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button"/>
              <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button"/>
          </div>

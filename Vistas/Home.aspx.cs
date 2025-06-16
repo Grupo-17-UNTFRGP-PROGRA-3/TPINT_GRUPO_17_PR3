@@ -55,5 +55,18 @@ namespace Vistas
                 lkbMP_ListadoMedicos.Visible = false;
             }
         }
+
+        /*redireccion a Alta Medicos*/
+        protected void lkbMP_AltaMedicos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Médicos/AltaMedico.aspx");
+
+        }
+
+        /*redireccion a Listado Medicos*/
+        protected void lkbMP_ListadoMedicos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Médicos/ListadoMedico.aspx");
+        }
     }
 }
