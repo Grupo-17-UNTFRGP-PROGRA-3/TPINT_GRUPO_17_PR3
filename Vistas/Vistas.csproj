@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrador\Médicos\CreacionLogin.aspx" />
     <Content Include="Administrador\Turnos\ListaTurnos.aspx" />
     <Content Include="Administrador\Turnos\AltaTurnos.aspx" />
     <Content Include="Administrador\Médicos\AltaMedico.aspx" />
@@ -83,6 +84,13 @@
     <Content Include="Administrador\Pacientes\Alta.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrador\Médicos\CreacionLogin.aspx.cs">
+      <DependentUpon>CreacionLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\Médicos\CreacionLogin.aspx.designer.cs">
+      <DependentUpon>CreacionLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\Turnos\ListaTurnos.aspx.cs">
       <DependentUpon>ListaTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -11,7 +11,8 @@ namespace Vistas
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			lblUsuario.Text = Session["Usuario"].ToString();
+			HyperLink1.NavigateUrl = Session["Home"].ToString();
 		}
     }
 }

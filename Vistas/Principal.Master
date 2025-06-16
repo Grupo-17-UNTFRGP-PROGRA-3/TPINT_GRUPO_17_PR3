@@ -11,16 +11,13 @@
     <link rel="stylesheet" type="text/css" href="estilos.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-
-        
+    <form id="form1" runat="server">   
 <nav>
     <div class="navbar">
         <div class="navbar-left">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/HOME.aspx">HOME</asp:HyperLink>
-            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Administrador/Turnos/ListaTurnos.aspx">Gestion Turnos</asp:HyperLink>
-            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Administrador/Médicos/AltaMedico.aspx">Gestion Medicos</asp:HyperLink>
-            <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Administrador/Pacientes/Listado.aspx">Gestion Pacientes</asp:HyperLink>
+           <asp:Image ID="Image1" runat="server" Height="80px" ImageUrl="~/file_00000000e90c622f83423ce541a897b4 (1).png" />
+        <asp:HyperLink style="text-decoration:none;" ID="HyperLink1" runat="server">HOME</asp:HyperLink>
+        <asp:HyperLink style="text-decoration:none;" ID="hlSalir" runat="server" NavigateUrl="~/Login.aspx">Salir</asp:HyperLink>
         </div>
         <div class="navbar-right">
             <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="usuario-label"></asp:Label>

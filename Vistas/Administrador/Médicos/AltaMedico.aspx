@@ -122,7 +122,7 @@
          <div class="form-group">
               <asp:Label ID="lblHorarios" runat="server" Text="Dias de atencion" CssClass="form-label"></asp:Label>
 
-             <asp:CheckBoxList ID="cbl" runat="server" RepeatDirection="Horizontal">
+             <asp:CheckBoxList ID="cblDiasAtencion" runat="server" RepeatDirection="Horizontal">
                  <asp:ListItem Value="0">Lunes</asp:ListItem>
                  <asp:ListItem Value="1">Martes</asp:ListItem>
                  <asp:ListItem Value="2">Miercoles</asp:ListItem>

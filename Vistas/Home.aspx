@@ -16,7 +16,7 @@
             <asp:LinkButton ID="lkbMP_AltaMedicos" runat="server" CssClass="linkbutton-submenu" Visible="False">Alta medicos</asp:LinkButton>
             <asp:LinkButton ID="lkbMP_ListadoMedicos" runat="server" CssClass="linkbutton-submenu" Visible="False">Gestion medicos</asp:LinkButton>
         </div>
-        <asp:LinkButton ID="lkbLoginMedico" runat="server" CssClass="linkbutton">Creacion Login Medico</asp:LinkButton>
+        <asp:LinkButton ID="lkbLoginMedico" runat="server" CssClass="linkbutton" PostBackUrl="~/Administrador/Médicos/CreacionLogin.aspx">Creacion Login Medico</asp:LinkButton>
         &nbsp;<asp:LinkButton ID="lkbTurnos" runat="server" CssClass="linkbutton">Asignacion de turnos</asp:LinkButton>
         &nbsp;<asp:LinkButton ID="lkbInformes" runat="server" CssClass="linkbutton">Informes</asp:LinkButton>
 
