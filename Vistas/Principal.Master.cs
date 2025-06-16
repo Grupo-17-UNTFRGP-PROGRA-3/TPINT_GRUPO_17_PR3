@@ -11,7 +11,7 @@ namespace Vistas
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			if (Session["Usuario"].ToString() != null && Session["Home"].ToString() != null)
+			if (Session["Usuario"] != null && Session["Home"] != null)
 			{
 				lblUsuario.Text = Session["Usuario"].ToString();
 				HyperLink1.NavigateUrl = Session["Home"].ToString();
