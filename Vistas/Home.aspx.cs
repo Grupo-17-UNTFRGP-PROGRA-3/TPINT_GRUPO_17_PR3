@@ -14,12 +14,13 @@ namespace Vistas
 
 		}
 
+        /*revela botones alta/gestion paciente*/
         protected void lkbPaciente_Click(object sender, EventArgs e)
         {
             if (!lkbMP_AltaPaciente.Visible == true)
             {
                 lkbMP_AltaPaciente.Visible = true;
-                lkbMP_ListadoPaciente.Visible=true;
+                lkbMP_ListadoPaciente.Visible = true;
             }
             else
             {
@@ -28,6 +29,19 @@ namespace Vistas
             }
         }
 
+        /*redireccion a Alta Paciente*/
+        protected void lkbMP_AltaPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Pacientes/AltaPaciente.aspx");
+        }
+
+        /*redireccion a Listado Paciente*/
+        protected void lkbMP_ListadoPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Pacientes/Listado.aspx");
+        }
+
+        /*revela botones alta/gestion medico*/
         protected void lkbMedico_Click(object sender, EventArgs e)
         {
             if (!lkbMP_AltaMedicos.Visible == true)

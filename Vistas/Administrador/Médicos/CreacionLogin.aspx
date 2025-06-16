@@ -23,7 +23,7 @@
     <br />
     <div>
     <asp:Button ID="btnCrear" runat="server" CssClass="form-button" Text="Crear" />
-    <asp:Button ID="btnLimpiar" runat="server" CssClass="form-button" Text="Reset" />
+    <asp:Button ID="btnLimpiar" runat="server" CssClass="form-button" Text="Limpiar campos" />
     <br />
     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
 

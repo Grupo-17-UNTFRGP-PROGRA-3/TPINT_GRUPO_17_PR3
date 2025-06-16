@@ -5,11 +5,10 @@
     <h1>MENU ADMINISTRADOR</h1>
     <div class="form-group">
 
-
         <asp:LinkButton ID ="lkbPaciente" runat="server" CssClass="linkbutton" OnClick="lkbPaciente_Click">Paciente</asp:LinkButton>
         <div ID="menuPaciente" class="form-group">
-            <asp:LinkButton ID="lkbMP_AltaPaciente" runat="server" CssClass="linkbutton-submenu" Visible="False">Alta pacientes</asp:LinkButton>
-            <asp:LinkButton ID="lkbMP_ListadoPaciente" runat="server" CssClass="linkbutton-submenu" Visible="False">Gestion pacientes</asp:LinkButton>
+            <asp:LinkButton ID="lkbMP_AltaPaciente" runat="server" CssClass="linkbutton-submenu" Visible="False" OnClick="lkbMP_AltaPaciente_Click">Alta pacientes</asp:LinkButton>
+            <asp:LinkButton ID="lkbMP_ListadoPaciente" runat="server" CssClass="linkbutton-submenu" Visible="False" OnClick="lkbMP_ListadoPaciente_Click">Gestion pacientes</asp:LinkButton>
         </div>
         <asp:LinkButton ID="lkbMedico" runat="server" CssClass="linkbutton" OnClick="lkbMedico_Click">Medico</asp:LinkButton>
         <div ID="menuMedico" class="form-group">
