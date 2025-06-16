@@ -9,6 +9,7 @@
     
 &nbsp;<asp:Label ID="lblLegajo" runat="server" Text="Legajo Medico" CssClass="form-label"></asp:Label>
     <asp:TextBox ID="txtLegajo" runat="server" Width="145px" CssClass="form-input"></asp:TextBox>
+    <asp:Label ID="lblNombreMedico" runat="server" Text="-- Nombre Medico --"></asp:Label>
     <br />
     <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="form-label"></asp:Label>
     <asp:TextBox ID="txtUsuario" runat="server" Width="145px" CssClass="form-input"></asp:TextBox>

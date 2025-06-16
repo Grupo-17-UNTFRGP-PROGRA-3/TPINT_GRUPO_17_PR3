@@ -11,8 +11,16 @@ namespace Vistas
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			lblUsuario.Text = Session["Usuario"].ToString();
-			HyperLink1.NavigateUrl = Session["Home"].ToString();
+			if (Session["Usuario"].ToString() != null && Session["Home"].ToString() != null)
+			{
+				lblUsuario.Text = Session["Usuario"].ToString();
+				HyperLink1.NavigateUrl = Session["Home"].ToString();
+			}
+			else
+			{
+				lblUsuario.Text = "Nadie esta logueado";
+				HyperLink1.NavigateUrl = "";
+			}
 		}
     }
 }
