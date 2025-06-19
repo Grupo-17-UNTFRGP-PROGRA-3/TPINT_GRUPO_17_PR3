@@ -21,17 +21,16 @@ namespace Vistas
         protected void btnLogin_Click(object sender, EventArgs e)
 		{
 			LoginUsuario log = new LoginUsuario(txtUsuario.Text, txtClave.Text);
-
 			
-			string tipoUsuario = txtUsuario.Text.Split('-')[0].Trim();
-			if (!string.IsNullOrEmpty(tipoUsuario) && tipoUsuario == "M")
+			
+			if (log.EsLoginValido() && log.EsAdmin())
 			{
 				
 				Session["Usuario"] = txtUsuario.Text;
 				Session["Home"] = "~/Home.aspx";
 				Response.Redirect("~/Home.aspx");
 			}
-			else
+			else if (log.EsLoginValido())
 			{
 				Session["Usuario"] = txtUsuario.Text;
 				Session["Home"] = "~/Medico/ListadoTurnos.aspx";

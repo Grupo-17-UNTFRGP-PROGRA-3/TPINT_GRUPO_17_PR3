@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades;
 
 namespace Datos
 {
@@ -30,6 +32,38 @@ namespace Datos
             SqlDataReader cmd = consulta.ExecuteReader();
             _conexion.Close();
             return cmd;
+        }
+        public Usuario ConsultaLecturaUsuario(string consutalSql)
+        {
+            _conexion.Open();
+            SqlCommand consulta = new SqlCommand(consutalSql, _conexion);
+            SqlDataReader sqlDR = consulta.ExecuteReader();
+            sqlDR.Read();
+            Usuario user = new Usuario(sqlDR["Usuario"].ToString(), sqlDR["Password"].ToString(), sqlDR["Legajo"].ToString());
+            _conexion.Close();
+
+            return user;
+        }
+        public bool Existe(string tablaId, string atributoId, string registroId)
+        {
+            _conexion.Open();
+            
+            string traer = $"select * from " + tablaId + " where " + atributoId + " = '" + registroId + "'";
+            SqlCommand consulta = new SqlCommand(traer, _conexion);
+            SqlDataReader cmd = consulta.ExecuteReader();
+
+            if (cmd.Read())
+            {
+                _conexion.Close();
+
+                return true;
+            }
+            else
+            {
+                _conexion.Close();
+
+                return false;
+            }
         }
     }
 }

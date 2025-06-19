@@ -14,7 +14,6 @@ namespace Entidades
         private string _legajo;
 
         public Usuario() { }
-
         public Usuario(string usuario, string pass, string legajo)
         {
             try
@@ -28,7 +27,11 @@ namespace Entidades
             setUsuario(usuario);
             setPass(pass);
         }
-
+        public Usuario(string usuario, string pass)
+        {
+            setUsuario(usuario);
+            setPass(pass);
+        }
         public void setLegajo(string leg)
         {
             if (legajoValido(leg))
@@ -37,13 +40,14 @@ namespace Entidades
             }
             else
             {
-                throw new ArgumentException("Formato de legajo inválido. Debe ser 'A-1234' o 'M-5678'");
+                throw new ArgumentException("Formato de legajo inválido. Deben ser 4 caracteres alfanuméricos");
             }
         }
-
+        public string getLegajo()
+        {  return _legajo; }
         private bool legajoValido(string leg)
         {
-            string patron = @"^[AM]-\d{4}$";
+            string patron = @"[A-Z0-9]{4}";
             return Regex.IsMatch(leg, patron);
         }
 

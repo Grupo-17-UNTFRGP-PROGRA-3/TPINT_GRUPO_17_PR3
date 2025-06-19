@@ -16,15 +16,21 @@ namespace Datos
 
         public Usuario traerRegistro(string usuario)
         {
-            SqlDataReader sqlDR;
-            string usuarioTraer = $"select * from Usuario where Usuario = '{usuario}'";
-            sqlDR = _datos.ConsultaLectura(usuarioTraer);
-            if (sqlDR.Read())
+            if (usuarioExiste(usuario))
             {
-                Usuario user = new Usuario(sqlDR["Usuario"].ToString(), sqlDR["Password"].ToString(), sqlDR["Legajo"].ToString());
-                _usuario = user;
+                string usuarioTraer = $"select * from Usuarios where Usuario = '{usuario}'";
+                _usuario = _datos.ConsultaLecturaUsuario(usuarioTraer);
+                
             }
             return _usuario;
+        }
+
+        public bool usuarioExiste(string usuario)
+        {
+        
+            if (_datos.Existe("Usuarios", "Usuario", usuario)) return true;
+
+            return false;
         }
     }
 }
