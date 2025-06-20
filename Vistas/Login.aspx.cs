@@ -13,29 +13,42 @@ namespace Vistas
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			Session["Usuario"] = string.Empty;
-            Session["Home"] = string.Empty;
-
+			if (Session["Usuario"] != null)
+                Response.Redirect(Session["Home"].ToString());
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
 		{
 			LoginUsuario log = new LoginUsuario(txtUsuario.Text, txtClave.Text);
-			
-			
-			if (log.EsLoginValido() && log.EsAdmin())
+
+            int resultado = log.EsLoginValido();
+
+			if(resultado == -1)
 			{
-				
-				Session["Usuario"] = txtUsuario.Text;
-				Session["Home"] = "~/Home.aspx";
-				Response.Redirect("~/Home.aspx");
-			}
-			else if (log.EsLoginValido())
+				lblMensaje.Text = "El usuario no existe.";
+				return;
+            }
+
+			if(resultado == 0)
 			{
-				Session["Usuario"] = txtUsuario.Text;
-				Session["Home"] = "~/Medico/ListadoTurnos.aspx";
-				Response.Redirect("~/Medico/ListadoTurnos.aspx");
+                lblMensaje.Text = "Usuario o contraseña incorrectos.";
+                return;
+            }
+
+			Session["Usuario"] = txtUsuario.Text;
+            
+			if (log.EsAdmin())
+			{
+				Session["UsuarioRol"] = "Administrador";
+                Session["Home"] = "Administrador/Home.aspx";
 			}
+			else
+			{
+				Session["UsuarioRol"] = "Medico";
+                Session["Home"] = "Medico/ListadoTurnos.aspx";
+			}
+
+			Response.Redirect(Session["Home"].ToString());
         }
     }
 }

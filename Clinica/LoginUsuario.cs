@@ -21,17 +21,17 @@ namespace Clinica
            _password = pass;
         }
 
-        public bool EsLoginValido()
+        public int EsLoginValido()
         {
 
-            if (!(_daoU.usuarioExiste(_usuario))) return false;
+            if (!(_daoU.usuarioExiste(_usuario))) return -1; //SI NO EXISTE EL USUARIO, DEVUELVE -1
 
             Usuario usuario = _daoU.traerRegistro(_usuario);
             Usuario usuarioIngresado = new Usuario(_usuario,_password);
 
-            if (usuario == usuarioIngresado) return true;
+            if (usuario == usuarioIngresado) return 1; //SI LAS CREDENCIALES SON CORRECTAS, DEVUELVE 1
 
-            return false; 
+            return 0; //SI LAS CREDENCIALES SON INCORRECTAS, DEVUELVE 0
         }
 
         public bool EsAdmin()

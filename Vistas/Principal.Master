@@ -4,36 +4,36 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>¨TPI Programacion 3</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="stylesheet" type="text/css" href="estilos.css" />
 </head>
 <body>
-    <form id="form1" runat="server">   
-<nav>
-    <div class="navbar">
-        <div class="navbar-left">
-           <asp:Image ID="Image1" runat="server" Height="80px" ImageUrl="~/file_00000000e90c622f83423ce541a897b4 (1).png" />
-        <asp:HyperLink style="text-decoration:none;" ID="HyperLink1" runat="server">HOME</asp:HyperLink>
-        <asp:HyperLink style="text-decoration:none;" ID="hlSalir" runat="server" NavigateUrl="~/Login.aspx">Salir</asp:HyperLink>
-        </div>
-        <div class="navbar-right">
-            <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="usuario-label"></asp:Label>
-        </div>
-    </div>
-</nav>
+    <form id="form1" runat="server">
+        <nav>
+            <div class="navbar">
+                <div class="navbar-left">
+                    <asp:Image ID="Image1" runat="server" Height="80px" ImageUrl="~/file_00000000e90c622f83423ce541a897b4 (1).png" />
+                    <asp:HyperLink Style="text-decoration: none;" ID="HyperLink1" runat="server">HOME</asp:HyperLink>
+                    <asp:LinkButton Style="margin-right: 40px;" ID="btnLogout" runat="server" OnClick="btnLogout_Click">Salir</asp:LinkButton>
+                </div>
+                <div class="navbar-right">
+                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="usuario-label"></asp:Label>
+                </div>
+            </div>
+        </nav>
 
 
-        <div class="content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
-        </div>
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+        </div>
 
-      
-        <footer>
-            <h2>   Programación 3 2025 |  Grupo 17 | TPI </h2>
-        </footer>
-    </form>
+
+        <footer>
+            <h2>Programación 3 2025 |  Grupo 17 | TPI </h2>
+        </footer>
+    </form>
 </body>
 </html>
