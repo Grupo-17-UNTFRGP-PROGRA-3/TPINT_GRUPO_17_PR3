@@ -1,33 +1,140 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Clinica;
 
 namespace Vistas
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        NegocioNacionalidad negocioNacionalidad = new NegocioNacionalidad();
+        NegocioProvincia negocioProvincia = new NegocioProvincia();
+        NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+            lblMensaje.Text = string.Empty;
             if (!IsPostBack)
             {
-                ddlNacionalidad.Items.Clear();
 
-                ddlNacionalidad.Items.Add(new ListItem("Seleccione una nacionalidad...", "") { Enabled = false, Selected = true });
-                ddlNacionalidad.Items.Add(new ListItem("Nacionalidad1"));
-                ddlNacionalidad.Items.Add(new ListItem("Nacionalidad2"));
-                ddlNacionalidad.Items.Add(new ListItem("Nacionalidad3"));
-                ddlNacionalidad.Items.Add(new ListItem("etc"));
+                DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
+                ddlNacionalidad.DataTextField = "Descripcion";
+                ddlNacionalidad.DataValueField = "Id";
+                ddlNacionalidad.DataSource = tablaNacionalidades;
+                ddlNacionalidad.DataBind();
+                ddlNacionalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
+
+                DataTable tablaProvincias = negocioProvincia.GetTable();
+                ddlProvincia.DataTextField = "Descripcion";
+                ddlProvincia.DataValueField = "Id";
+                ddlProvincia.DataSource = tablaProvincias;
+                ddlProvincia.DataBind();
+                ddlProvincia.Items.Insert(0, new ListItem("--Seleccionar--", ""));
+
             }
-            */
+
         }
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string idProvincia = ddlProvincia.SelectedValue;
+
+            if (!string.IsNullOrEmpty(idProvincia))
+            {
+                DataTable tablaLocalidades = negocioLocalidad.GetTable(Convert.ToInt32(idProvincia));
+                ddlLocalidad.DataTextField = "Descripcion";
+                ddlLocalidad.DataValueField = "Id";
+                ddlLocalidad.DataSource = tablaLocalidades;
+                ddlLocalidad.DataBind();
+                ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
+            }
+            else
+            {
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
+            }
+        }
+
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Listado.aspx");
+        }
+        public void LimpiarCampos()
+        {
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtDNI.Text = string.Empty;
+            txtAnio.Text = string.Empty;
+            txtMes.Text = string.Empty;
+            txtDia.Text = string.Empty;
+            txtCalle.Text = string.Empty;
+            txtAltura.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            ddlNacionalidad.SelectedIndex = 0;
+            ddlProvincia.SelectedIndex = 0;
+            ddlLocalidad.SelectedIndex = 0;
+        }
+        protected void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            bool sexo= false;
+            if (RadioButtonList1.SelectedValue == "masculino")
+            {
+                sexo = true;
+            }
+           
+            string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
+            string direccion = txtCalle.Text + " " + txtAltura.Text;
+            int idNac = int.Parse(ddlNacionalidad.SelectedValue);
+            int idProv = int.Parse(ddlProvincia.SelectedValue);
+            int idLoc = int.Parse(ddlLocalidad.SelectedValue);
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            if (negocioPaciente.AgregarPaciente(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo,idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text,idProv ,idLoc, false))
+            {
+                lblMensaje.Text = "El paciente se ha agregado con éxito";
+                lblMensaje.ForeColor = Color.Green;
+                LimpiarCampos();
+            }
+
+        }
+
+        protected void BtnBuscarDni_Click(object sender, EventArgs e)
+        {
+
+            int dni;
+            if (!int.TryParse(txtDNI.Text, out dni))
+            {
+                lblInicio.Text = "Ingrese un DNI válido.";
+                pnlDatosPaciente.Visible = false;
+                return;
+            }
+
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            bool existe = negocioPaciente.ExisteDNI(dni);
+
+            if (existe)
+            {
+                lblInicio.Text = "El DNI ya se encuentra registrado.";
+                pnlDatosPaciente.Visible = false;
+            }
+            else
+            {
+                lblInicio.Text = "";
+                pnlDatosPaciente.Visible = true;
+                BtnBuscarDni.Visible = false;
+            }
+
         }
     }
 }

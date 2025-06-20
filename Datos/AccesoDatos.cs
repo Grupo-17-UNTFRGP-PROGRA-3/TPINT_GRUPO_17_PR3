@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -65,5 +66,42 @@ namespace Datos
                 return false;
             }
         }
+
+        public SqlDataReader ObtenerTabla(string nombreTabla)
+        {
+            _conexion.Open();
+            string consulta = $"SELECT * FROM {nombreTabla}";
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            return reader;
+        }
+
+        public DataTable ObtenerTabla(string consultaSQL, string nombreTabla)
+        {
+            _conexion.Open();
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(consultaSQL, _conexion);
+            DataSet dataSet = new DataSet();
+
+            dataAdapter.Fill(dataSet, nombreTabla);
+
+            _conexion.Close();
+
+            return dataSet.Tables[nombreTabla];
+        }
+
+
+        public bool ExisteDNI(int dni)
+        {
+            string consulta = "SELECT COUNT(*) FROM Pacientes WHERE DNI = @dni";
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            cmd.Parameters.AddWithValue("@dni", dni);
+            _conexion.Open();
+            int cantidad = (int)cmd.ExecuteScalar();
+            _conexion.Close();
+            return cantidad > 0;
+        }
+
+
     }
 }

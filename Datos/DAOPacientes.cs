@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using Entidades;
+
+namespace Datos
+{
+
+
+    public class DAOPacientes
+    {
+        AccesoDatos datos = new AccesoDatos();
+        Paciente paciente = new Paciente();
+
+        public DAOPacientes() { }
+
+        public int AgregarPaciente(Paciente paciente)
+        {
+
+            string consulta = "INSERT INTO Pacientes(DNI, Nombre, Apellido, Sexo, IdNacionalidad, FechaNacimiento, Direccion, Email," +
+                " Telefono, IdProvincia,IdLocalidad, Eliminado) VALUES('" +
+             paciente._DNI + "', '" +
+             paciente._Nombre + "', '" +
+             paciente._Apellido + "', '" +
+             paciente._Sexo + "', '" +
+             paciente._IdNacionalidad + "', '" +
+             paciente._FechaNacimiento + "', '" +
+             paciente._Direccion + "', '" +
+             paciente._Email + "', '" +
+             paciente._Telefono + "', '" +
+             paciente._IdProvincia + "', '" +
+             paciente._IdLocalidad + "', '" +
+             paciente._Eliminado + "')";
+
+            return datos.EjecutarConsulta(consulta);
+        }
+    }
+}
