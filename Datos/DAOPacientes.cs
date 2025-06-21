@@ -8,6 +8,8 @@ using Entidades;
 
 namespace Datos
 {
+
+
     public class DAOPacientes
     {
         AccesoDatos datos = new AccesoDatos();
@@ -17,6 +19,7 @@ namespace Datos
 
         public int AgregarPaciente(Paciente paciente)
         {
+
             string consulta = "INSERT INTO Pacientes(DNI, Nombre, Apellido, Sexo, IdNacionalidad, FechaNacimiento, Direccion, Email," +
                 " Telefono, IdProvincia,IdLocalidad, Eliminado) VALUES('" +
              paciente._DNI + "', '" +

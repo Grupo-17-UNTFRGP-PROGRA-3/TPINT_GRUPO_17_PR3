@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Vistas
+namespace Vistas.Pacientes
 {
 
 
-    public partial class ListadoMedico
+    public partial class WebForm1
     {
 
         /// <summary>
@@ -33,13 +33,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control gvMedicos.
+        /// Control gvPacientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMedicos;
+        protected global::System.Web.UI.WebControls.GridView gvPacientes;
 
         /// <summary>
         /// Control btnAgregar.

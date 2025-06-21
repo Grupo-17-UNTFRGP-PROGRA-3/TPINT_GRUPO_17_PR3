@@ -52,10 +52,5 @@ namespace Vistas
         {
             Response.Redirect("AltaMedico.aspx");
         }
-
-        protected void btnVolver_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Administrador/Home.aspx");
-        }
     }
 }

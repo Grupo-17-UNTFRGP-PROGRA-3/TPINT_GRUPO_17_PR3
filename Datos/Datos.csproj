@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
-    <Compile Include="DAOMedicos.cs" />
     <Compile Include="DAOLocalidades.cs" />
     <Compile Include="DaoNacionalidades.cs" />
     <Compile Include="DAOPacientes.cs" />
