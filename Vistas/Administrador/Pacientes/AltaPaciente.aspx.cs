@@ -67,7 +67,6 @@ namespace Vistas
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
             rblSexo.ClearSelection();
-            txtDNI.Text = string.Empty;
             txtAnio.Text = string.Empty;
             txtMes.Text = string.Empty;
             txtDia.Text = string.Empty;

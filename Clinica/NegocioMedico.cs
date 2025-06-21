@@ -9,15 +9,7 @@ namespace Clinica
 {
     public class NegocioMedico
     {
-        public bool AgregarMedico ()
-        {
-            /*no me dio el tiempo para armar este, perdon :( 
-            
-            - Pablo
-             */
-        }
-
-        public bool ExisteLegajo(int legajo)
+        public bool ExisteLegajo(string legajo)
         {
             AccesoDatos datos = new AccesoDatos();
 

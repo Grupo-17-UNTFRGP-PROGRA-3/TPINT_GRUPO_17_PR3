@@ -78,15 +78,6 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Button BtnVolver2;
 
         /// <summary>
-        /// pnlDatosMedico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDatosMedico;
-
-        /// <summary>
         /// lblInicio control.
         /// </summary>
         /// <remarks>
@@ -94,6 +85,15 @@ namespace Vistas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblInicio;
+
+        /// <summary>
+        /// pnlDatosMedico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDatosMedico;
 
         /// <summary>
         /// lblNombre control.
@@ -591,15 +591,6 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.CheckBoxList cblDiasAtencion;
 
         /// <summary>
-        /// cvDiasAtencion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvDiasAtencion;
-
-        /// <summary>
         /// lblRangoHorario control.
         /// </summary>
         /// <remarks>
@@ -625,24 +616,6 @@ namespace Vistas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHoraFin;
-
-        /// <summary>
-        /// rfvHoraInicio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraInicio;
-
-        /// <summary>
-        /// rfvHoraFin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraFin;
 
         /// <summary>
         /// btnIngresar control.

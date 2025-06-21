@@ -17,20 +17,10 @@ namespace Vistas
 
         protected void BtnBuscarLegajo_Click(object sender, EventArgs e)
         {
-            int legajo;
-
-            if (!int.TryParse(txtLegajo.Text, out legajo))
-            {
-                lblInicio.Text = "Ingrese un legajo válido.";
-                pnlDatosMedico.Visible = false;
-                return;
-            }
-
-            
             NegocioMedico negocioMedico = new NegocioMedico();
-            bool existe = negocioMedico.ExisteLegajo(legajo);
-            
-            if (existe)
+            string legajo = txtLegajo.Text.ToString();
+
+            if (negocioMedico.ExisteLegajo(legajo))
             {
                 lblInicio.Text = "El Legajo ya se encuentra registrado.";
                 pnlDatosMedico.Visible = false;
@@ -44,9 +34,8 @@ namespace Vistas
             }
         }
 
-        protected void btnLimpiarCampos_Click(object sender, EventArgs e)
+        public void LimpiarCampos()
         {
-            txtLegajo.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
             txtDNI.Text = string.Empty;
@@ -67,14 +56,14 @@ namespace Vistas
             ddlHoraFin.SelectedIndex = 0;
         }
 
+        protected void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Home.aspx");
-        }
-
-        protected void cvDiasAtencion_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            args.IsValid = cblDiasAtencion.Items.Cast<ListItem>().Any(item => item.Selected);
         }
     }
 }

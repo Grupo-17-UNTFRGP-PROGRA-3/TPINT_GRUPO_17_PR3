@@ -23,11 +23,12 @@
 
             <asp:Button ID="BtnBuscarLegajo" runat="server" Text="Buscar medico" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarLegajo_Click" />
             <asp:Button ID="BtnVolver2" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
+            <br />
+            <asp:Label ID="lblInicio" runat="server"></asp:Label>
         </asp:Panel>
 
         <asp:Panel ID="pnlDatosMedico" runat="server" Visible="false">
             <!--nombre-->
-            <asp:Label ID="lblInicio" runat="server"></asp:Label>
             <div class="form-group">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-input"></asp:TextBox>
@@ -179,7 +180,6 @@
                 </asp:CheckBoxList>
 
                 <div class="form-group">
-                    <asp:CustomValidator ID="cvDiasAtencion" runat="server" Display="Dynamic" ErrorMessage="Debe seleccionar al menos un dia" ForeColor="Red" OnServerValidate="cvDiasAtencion_ServerValidate"></asp:CustomValidator>
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input">
                         <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
@@ -195,17 +195,15 @@
                         <asp:ListItem>17:00</asp:ListItem>
                         <asp:ListItem>18:00</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvHoraInicio" runat="server" ControlToValidate="ddlHoraInicio" Display="Dynamic" ErrorMessage="Ingrese horario de inicio" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:RequiredFieldValidator ID="rfvHoraFin" runat="server" ControlToValidate="ddlHoraFin" Display="Dynamic" ErrorMessage="Ingrese horario de fin" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
 
             </div>
 
             <!--botones-->
             <div>
-                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CssClass="form-button" />
-                <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" OnClick="btnLimpiarCampos_Click" />
-                <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click" />
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true" CssClass="form-button" />
+                <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
+                <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
             </div>
         </asp:Panel>
     </div>
