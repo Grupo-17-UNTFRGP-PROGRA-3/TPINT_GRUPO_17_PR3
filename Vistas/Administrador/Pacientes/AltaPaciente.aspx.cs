@@ -15,9 +15,11 @@ namespace Vistas
         NegocioNacionalidad negocioNacionalidad = new NegocioNacionalidad();
         NegocioProvincia negocioProvincia = new NegocioProvincia();
         NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
             lblMensaje.Text = string.Empty;
             if (!IsPostBack)
             {
@@ -39,6 +41,7 @@ namespace Vistas
             }
 
         }
+
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -59,16 +62,11 @@ namespace Vistas
                 ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
             }
         }
-
-
-        protected void btnVolver_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Listado.aspx");
-        }
-        public void LimpiarCampos()
+        protected void LimpiarCampos()
         {
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
+            rblSexo.ClearSelection();
             txtDNI.Text = string.Empty;
             txtAnio.Text = string.Empty;
             txtMes.Text = string.Empty;
@@ -81,38 +79,11 @@ namespace Vistas
             ddlProvincia.SelectedIndex = 0;
             ddlLocalidad.SelectedIndex = 0;
         }
-        protected void btnLimpiarCampos_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
-
-        protected void btnIngresar_Click(object sender, EventArgs e)
-        {
-            bool sexo= false;
-            if (RadioButtonList1.SelectedValue == "masculino")
-            {
-                sexo = true;
-            }
-           
-            string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
-            string direccion = txtCalle.Text + " " + txtAltura.Text;
-            int idNac = int.Parse(ddlNacionalidad.SelectedValue);
-            int idProv = int.Parse(ddlProvincia.SelectedValue);
-            int idLoc = int.Parse(ddlLocalidad.SelectedValue);
-            NegocioPaciente negocioPaciente = new NegocioPaciente();
-            if (negocioPaciente.AgregarPaciente(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo,idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text,idProv ,idLoc, false))
-            {
-                lblMensaje.Text = "El paciente se ha agregado con éxito";
-                lblMensaje.ForeColor = Color.Green;
-                LimpiarCampos();
-            }
-
-        }
 
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
         {
-
             int dni;
+
             if (!int.TryParse(txtDNI.Text, out dni))
             {
                 lblInicio.Text = "Ingrese un DNI válido.";
@@ -133,14 +104,52 @@ namespace Vistas
                 lblInicio.Text = "";
                 pnlDatosPaciente.Visible = true;
                 BtnBuscarDni.Visible = false;
+                BtnVolver2.Visible = false;
             }
-
         }
 
-        protected void BtnVolver2_Click(object sender, EventArgs e)
+        protected void btnVolver_Click(object sender, EventArgs e)
         {
+            Response.Redirect("~/Administrador/Home.aspx");
+        }
+
+        protected void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            rblSexo.ClearSelection();
+            txtDNI.Text = string.Empty;
+            txtAnio.Text = string.Empty;
+            txtMes.Text = string.Empty;
+            txtDia.Text = string.Empty;
+            txtCalle.Text = string.Empty;
+            txtAltura.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            ddlNacionalidad.SelectedIndex = 0;
+            ddlProvincia.SelectedIndex = 0;
+            ddlLocalidad.SelectedIndex = 0;
+        }
+
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            bool sexo= false;
+            if (rblSexo.SelectedValue == "masculino")
             {
-                Response.Redirect("~/Administrador/Home.aspx");
+                sexo = true;
+            }
+           
+            string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
+            string direccion = txtCalle.Text + " " + txtAltura.Text;
+            int idNac = int.Parse(ddlNacionalidad.SelectedValue);
+            int idProv = int.Parse(ddlProvincia.SelectedValue);
+            int idLoc = int.Parse(ddlLocalidad.SelectedValue);
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            if (negocioPaciente.AgregarPaciente(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo,idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text,idProv ,idLoc, false))
+            {
+                lblMensaje.Text = "El paciente se ha agregado con éxito";
+                lblMensaje.ForeColor = Color.Green;
+                LimpiarCampos();
             }
         }
     }

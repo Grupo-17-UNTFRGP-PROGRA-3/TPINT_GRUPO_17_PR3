@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,69 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+        }
 
+        protected void BtnBuscarLegajo_Click(object sender, EventArgs e)
+        {
+            int legajo;
+
+            if (!int.TryParse(txtLegajo.Text, out legajo))
+            {
+                lblInicio.Text = "Ingrese un legajo válido.";
+                pnlDatosMedico.Visible = false;
+                return;
+            }
+
+            
+            NegocioMedico negocioMedico = new NegocioMedico();
+            bool existe = negocioMedico.ExisteLegajo(legajo);
+            
+            if (existe)
+            {
+                lblInicio.Text = "El Legajo ya se encuentra registrado.";
+                pnlDatosMedico.Visible = false;
+            }
+            else
+            {
+                lblInicio.Text = "";
+                pnlDatosMedico.Visible = true;
+                BtnBuscarLegajo.Visible = false;
+                BtnVolver2.Visible = false;
+            }
+        }
+
+        protected void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            txtLegajo.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtDNI.Text = string.Empty;
+            rblSexo.ClearSelection();
+            ddlNacionalidad.SelectedIndex = 0;
+            txtAnio.Text = string.Empty;
+            txtMes.Text = string.Empty;
+            txtDia.Text = string.Empty;
+            txtCalle.Text = string.Empty;
+            txtAltura.Text = string.Empty;
+            ddlProvincia.SelectedIndex = 0;
+            ddlLocalidad.SelectedIndex = 0;
+            txtEmail.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            ddlEspecialidad.SelectedIndex = 0;
+            cblDiasAtencion.ClearSelection();
+            ddlHoraInicio.SelectedIndex = 0;
+            ddlHoraFin.SelectedIndex = 0;
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Home.aspx");
+        }
+
+        protected void cvDiasAtencion_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = cblDiasAtencion.Items.Cast<ListItem>().Any(item => item.Selected);
         }
     }
 }
