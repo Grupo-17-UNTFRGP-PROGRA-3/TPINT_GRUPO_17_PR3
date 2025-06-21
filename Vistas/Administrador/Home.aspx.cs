@@ -38,7 +38,7 @@ namespace Vistas
         /*redireccion a Listado Paciente*/
         protected void lkbMP_ListadoPaciente_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Administrador/Pacientes/Listado.aspx");
+            Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
         }
 
         /*revela botones alta/gestion medico*/

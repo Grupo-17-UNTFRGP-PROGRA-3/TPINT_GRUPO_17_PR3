@@ -46,7 +46,5 @@ namespace Clinica
             AccesoDatos datos = new AccesoDatos();
             return datos.ExisteDNI(dni);
         }
-
-
     }
 }

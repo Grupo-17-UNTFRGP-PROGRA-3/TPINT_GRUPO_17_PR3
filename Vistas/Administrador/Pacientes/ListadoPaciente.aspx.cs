@@ -51,5 +51,10 @@ namespace Vistas.Pacientes
         {
             Response.Redirect("Alta.aspx");
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Home.aspx");
+        }
     }
 }

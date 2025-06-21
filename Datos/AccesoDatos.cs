@@ -102,6 +102,23 @@ namespace Datos
             return cantidad > 0;
         }
 
+        public bool ExisteLegajo(string legajo)
+        {
+            string consulta = "SELECT COUNT(*) FROM Medicos WHERE Legajo = @legajo";
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            cmd.Parameters.AddWithValue("@legajo", legajo);
+            _conexion.Open();
+            int cantFilas = (int)cmd.ExecuteScalar();
+            _conexion.Close();
 
+            bool existe = false;
+
+            if (cantFilas == 1)
+            {
+                existe = true;
+            }
+
+            return existe;
+        }
     }
 }
