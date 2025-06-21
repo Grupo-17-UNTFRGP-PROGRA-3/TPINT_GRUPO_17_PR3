@@ -102,6 +102,15 @@ namespace Datos
             return cantidad > 0;
         }
 
-
+        public bool ExisteLegajo(int legajo)
+        {
+            string consulta = "SELECT * FROM Medicos WHERE Legajo = @legajo";
+            cmd.Parameters.AddWithValue("@legajo", legajo);
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            _conexion.Open();
+            int cantidad = (int)cmd.ExecuteScalar();
+            _conexion.Close();
+            return cantidad > 0;
+        }
     }
 }
