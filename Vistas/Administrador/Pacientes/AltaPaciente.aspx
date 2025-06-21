@@ -24,6 +24,7 @@
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{7,8}$" ErrorMessage="DNI inválido (7-8 dígitos)" ForeColor="Red" Display="Dynamic" />
                 </div>
                  <asp:Button ID="BtnBuscarDni" runat="server" Text="Buscar paciente" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarDni_Click"/>
+                 <asp:Button ID="BtnVolver2" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="BtnVolver2_Click"/>
             <br />
             <asp:Label ID="lblInicio" runat="server"></asp:Label>
         </asp:Panel>

@@ -15,6 +15,7 @@ namespace Clinica
         string _password;
 
         public LoginUsuario() { }
+        
         public LoginUsuario(string usuario, string pass)
         {
            _usuario = usuario;

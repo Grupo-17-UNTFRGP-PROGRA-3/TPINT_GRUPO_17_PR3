@@ -136,5 +136,12 @@ namespace Vistas
             }
 
         }
+
+        protected void BtnVolver2_Click(object sender, EventArgs e)
+        {
+            {
+                Response.Redirect("~/Administrador/Home.aspx");
+            }
+        }
     }
 }
