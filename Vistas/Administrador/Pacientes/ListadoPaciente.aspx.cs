@@ -49,7 +49,7 @@ namespace Vistas.Pacientes
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Alta.aspx");
+            Response.Redirect("~/Administrador/Pacientes/AltaPaciente.aspx");
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)

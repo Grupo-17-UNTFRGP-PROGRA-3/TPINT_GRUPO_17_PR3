@@ -17,7 +17,7 @@
                 <div class="navbar-left">
                     <asp:Image ID="Image1" runat="server" Height="80px" ImageUrl="~/file_00000000e90c622f83423ce541a897b4 (1).png" />
                     <asp:HyperLink Style="text-decoration: none;" ID="HyperLink1" runat="server">HOME</asp:HyperLink>
-                    <asp:LinkButton Style="margin-right: 40px;" ID="btnLogout" runat="server" OnClick="btnLogout_Click">Salir</asp:LinkButton>
+                    <asp:LinkButton Style="margin-right: 40px;" ID="btnLogout" runat="server" CausesValidation="false" OnClick ="btnLogout_Click" OnDataBinding="btnLogout_Click">Salir</asp:LinkButton>
                 </div>
                 <div class="navbar-right">
                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="usuario-label"></asp:Label>

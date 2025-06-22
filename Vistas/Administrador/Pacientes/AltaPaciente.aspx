@@ -18,7 +18,7 @@
         <asp:Panel ID="pnlDNI" runat="server">
             <div class="form-group">
                 <asp:Label ID="lblDNI" runat="server" Text="D.N.I." CssClass="form-label"></asp:Label>
-                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input"></asp:TextBox>
+                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input" OnTextChanged="txtDNI_TextChanged" AutoPostBack="True"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" Display="Dynamic" />
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{7,8}$" ErrorMessage="DNI inválido (7-8 dígitos)" ForeColor="Red" Display="Dynamic" />
                 </div>
@@ -120,7 +120,7 @@
                 <asp:Label ID="lblEmail" runat="server" Text="Correo Electronico" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Ingrese un correo electrónico" ForeColor="Red" Display="Dynamic" />
-                <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" ErrorMessage="Correo electronico inválido" ForeColor="Red" Display="Dynamic" />
+                <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ErrorMessage="Correo electronico inválido" ForeColor="Red" Display="Dynamic" />
             </div>
 
             <!--telefono-->

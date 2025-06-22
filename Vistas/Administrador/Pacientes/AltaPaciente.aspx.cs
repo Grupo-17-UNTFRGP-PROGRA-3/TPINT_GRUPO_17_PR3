@@ -23,7 +23,6 @@ namespace Vistas
             lblMensaje.Text = string.Empty;
             if (!IsPostBack)
             {
-
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
                 ddlNacionalidad.DataTextField = "Descripcion";
                 ddlNacionalidad.DataValueField = "Id";
@@ -38,29 +37,15 @@ namespace Vistas
                 ddlProvincia.DataBind();
                 ddlProvincia.Items.Insert(0, new ListItem("--Seleccionar--", ""));
 
+                cargarLocalidades();
+
             }
 
         }
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            string idProvincia = ddlProvincia.SelectedValue;
-
-            if (!string.IsNullOrEmpty(idProvincia))
-            {
-                DataTable tablaLocalidades = negocioLocalidad.GetTable(Convert.ToInt32(idProvincia));
-                ddlLocalidad.DataTextField = "Descripcion";
-                ddlLocalidad.DataValueField = "Id";
-                ddlLocalidad.DataSource = tablaLocalidades;
-                ddlLocalidad.DataBind();
-                ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
-            }
-            else
-            {
-                ddlLocalidad.Items.Clear();
-                ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
-            }
+            cargarLocalidades();
         }
         protected void LimpiarCampos()
         {
@@ -104,6 +89,7 @@ namespace Vistas
                 pnlDatosPaciente.Visible = true;
                 BtnBuscarDni.Visible = false;
                 BtnVolver2.Visible = false;
+                LimpiarCampos();
             }
         }
 
@@ -114,20 +100,8 @@ namespace Vistas
 
         protected void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
-            txtNombre.Text = string.Empty;
-            txtApellido.Text = string.Empty;
-            rblSexo.ClearSelection();
             txtDNI.Text = string.Empty;
-            txtAnio.Text = string.Empty;
-            txtMes.Text = string.Empty;
-            txtDia.Text = string.Empty;
-            txtCalle.Text = string.Empty;
-            txtAltura.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            txtTelefono.Text = string.Empty;
-            ddlNacionalidad.SelectedIndex = 0;
-            ddlProvincia.SelectedIndex = 0;
-            ddlLocalidad.SelectedIndex = 0;
+            LimpiarCampos();          
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -149,6 +123,34 @@ namespace Vistas
                 lblMensaje.Text = "El paciente se ha agregado con éxito";
                 lblMensaje.ForeColor = Color.Green;
                 LimpiarCampos();
+            }
+        }
+
+        protected void txtDNI_TextChanged(object sender, EventArgs e)
+        {
+            this.Page_Load(sender, e);
+            pnlDatosPaciente.Visible = false;
+            BtnBuscarDni.Visible = true;
+            BtnVolver2.Visible = true;
+        }
+
+        protected void cargarLocalidades()
+        {
+            string idProvincia = ddlProvincia.SelectedValue;
+
+            if (!string.IsNullOrEmpty(idProvincia))
+            {
+                DataTable tablaLocalidades = negocioLocalidad.GetTable(Convert.ToInt32(idProvincia));
+                ddlLocalidad.DataTextField = "Descripcion";
+                ddlLocalidad.DataValueField = "Id";
+                ddlLocalidad.DataSource = tablaLocalidades;
+                ddlLocalidad.DataBind();
+                ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
+            }
+            else
+            {
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
             }
         }
     }
