@@ -10,45 +10,20 @@ namespace Vistas.Pacientes
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        private NegocioPaciente _negocioPaciente = new NegocioPaciente();
         protected void Page_Load(object sender, EventArgs e)
         {
-            NegocioPaciente Neg = new NegocioPaciente();
 
             if (!IsPostBack)
             {
-                //gvPacientes.DataSource = ObtenerPacientesPrueba();
-                gvPacientes.DataSource = Neg.ListadoPacientes();
-                gvPacientes.DataBind();
+                CargarPacientes();
             }
         }
 
-        private List<Paciente> ObtenerPacientesPrueba()
+        private void CargarPacientes()
         {
-            return new List<Paciente>
-            {
-                new Paciente {Nombre = "Juan", Apellido = "Pérez", Dni = "12345678", Sexo = "Masculino", Nacionalidad = "Argentina", FechaNacimiento = new DateTime(1998, 12, 21), Calle = "Belgrano", Altura = "201", Provincia = "Buenos Aires", Localidad = "Gral. Pacheco", Email = "juan@email.com", Telefono = "+5411291828" },
-                new Paciente {Nombre = "María", Apellido = "Gómez", Dni = "23456789", Sexo = "Femenino", Nacionalidad = "Argentina", FechaNacimiento = new DateTime(1985, 5, 10), Calle = "Rivadavia", Altura = "452", Provincia = "Córdoba", Localidad = "Córdoba", Email = "maria.gomez@example.com", Telefono = "+543514457899" },
-                new Paciente {Nombre = "Carlos", Apellido = "Fernández", Dni = "34567890", Sexo = "Masculino", Nacionalidad = "Uruguaya", FechaNacimiento = new DateTime(1972, 11, 30), Calle = "San Martín", Altura = "889", Provincia = "Santa Fe", Localidad = "Rosario", Email = "cfernandez@mail.com", Telefono = "+549341223344" },
-                new Paciente {Nombre = "Lucía", Apellido = "Martínez", Dni = "45678901", Sexo = "Femenino", Nacionalidad = "Argentina", FechaNacimiento = new DateTime(1990, 3, 14), Calle = "Alsina", Altura = "1023", Provincia = "Mendoza", Localidad = "Mendoza", Email = "lucia.martinez@dominio.com", Telefono = "+549261445566" },
-                new Paciente {Nombre = "Pedro", Apellido = "Suárez", Dni = "56789012", Sexo = "Masculino", Nacionalidad = "Paraguaya", FechaNacimiento = new DateTime(2000, 7, 7), Calle = "Mitre", Altura = "77", Provincia = "Buenos Aires", Localidad = "La Plata", Email = "psuarez@correo.com", Telefono = "+549221334455" },
-                new Paciente {Nombre = "Florencia", Apellido = "Rivas", Dni = "67890123", Sexo = "Femenino", Nacionalidad = "Chilena", FechaNacimiento = new DateTime(1995, 9, 25), Calle = "Urquiza", Altura = "313", Provincia = "Tucumán", Localidad = "San Miguel de Tucumán", Email = "flor.rivas@example.cl", Telefono = "+549381445566" }
-            };
-        }
-
-        public class Paciente
-        {
-            public string Nombre { get; set; }
-            public string Apellido { get; set; }
-            public string Dni { get; set; }
-            public string Sexo { get; set; }
-            public string Nacionalidad { get; set; }
-            public DateTime FechaNacimiento { get; set; }
-            public string Calle { get; set; }
-            public string Altura { get; set; }
-            public string Provincia { get; set; }
-            public string Localidad { get; set; }
-            public string Email { get; set; }
-            public string Telefono { get; set; }
+            gvPacientes.DataSource = _negocioPaciente.ListadoPacientes();
+            gvPacientes.DataBind();
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -59,6 +34,25 @@ namespace Vistas.Pacientes
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Home.aspx");
+        }
+
+        protected void gvPacientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EliminarPaciente")
+            {
+                string dni = e.CommandArgument.ToString();
+                if (_negocioPaciente.ExisteDNI(int.Parse(dni))){
+                    _negocioPaciente.EliminarPaciente(int.Parse(dni));
+                }
+
+                CargarPacientes();
+            }
+        }
+
+        protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvPacientes.PageIndex = e.NewPageIndex;
+            CargarPacientes();
         }
     }
 }

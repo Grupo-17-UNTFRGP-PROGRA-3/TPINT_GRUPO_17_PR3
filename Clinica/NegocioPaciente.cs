@@ -55,6 +55,12 @@ namespace Clinica
             return dt;
         }
 
+        public bool EliminarPaciente(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            return datos.EliminarPaciente(dni);
+        }
+
 
     }
 }

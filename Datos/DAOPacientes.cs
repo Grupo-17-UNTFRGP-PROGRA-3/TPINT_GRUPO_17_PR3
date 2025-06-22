@@ -39,7 +39,7 @@ namespace Datos
 
         public DataTable ListadoPacientes()
         {
-            string consulta = "SELECT * FROM Pacientes";
+            string consulta = "SELECT * FROM Pacientes WHERE Eliminado = 0";
             DataTable dt = new DataTable();
             dt = datos.ObtenerTabla(consulta, "Pacientes");
             return dt;

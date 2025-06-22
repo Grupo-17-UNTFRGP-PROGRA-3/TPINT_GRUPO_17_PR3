@@ -13,7 +13,10 @@
     </div>
 
     <div>
-       <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None">
+       <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" 
+           CellPadding="4" ForeColor="#333333" GridLines="None" 
+           OnRowCommand="gvPacientes_RowCommand"
+           AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPacientes_PageIndexChanging">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:TemplateField HeaderText="D.N.I.">
@@ -73,7 +76,10 @@
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" />
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" 
+                        CommandName="EliminarPaciente"
+                        CommandArgument='<%# Eval("DNI") %>'
+                        OnClientClick="return confirm('¿Está seguro de que desea eliminar este paciente?');" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
