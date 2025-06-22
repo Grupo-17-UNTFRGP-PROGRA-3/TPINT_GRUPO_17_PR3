@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Clinica;
 
 namespace Vistas.Pacientes
 {
@@ -11,9 +12,12 @@ namespace Vistas.Pacientes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            NegocioPaciente Neg = new NegocioPaciente();
+
             if (!IsPostBack)
             {
-                gvPacientes.DataSource = ObtenerPacientesPrueba();
+                //gvPacientes.DataSource = ObtenerPacientesPrueba();
+                gvPacientes.DataSource = Neg.ListadoPacientes();
                 gvPacientes.DataBind();
             }
         }

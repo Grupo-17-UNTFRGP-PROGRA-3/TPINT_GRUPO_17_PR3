@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -33,6 +35,14 @@ namespace Datos
              paciente._Eliminado + "')";
 
             return datos.EjecutarConsulta(consulta);
+        }
+
+        public DataTable ListadoPacientes()
+        {
+            string consulta = "SELECT * FROM Pacientes";
+            DataTable dt = new DataTable();
+            dt = datos.ObtenerTabla(consulta, "Pacientes");
+            return dt;
         }
     }
 }

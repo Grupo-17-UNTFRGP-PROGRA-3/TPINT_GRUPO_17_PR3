@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Clinica
 {
     public class NegocioPaciente
     {
+        DAOPacientes dAO = new DAOPacientes();
         public bool AgregarPaciente(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, string FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido)
         {
             int cantFilas = 0;
@@ -28,7 +30,6 @@ namespace Clinica
             paciente._IdLocalidad = IdLoc;
             paciente._Eliminado = Eliminido;
 
-            DAOPacientes dAO = new DAOPacientes();
             cantFilas = dAO.AgregarPaciente(paciente);
 
             if (cantFilas == 1)
@@ -45,6 +46,13 @@ namespace Clinica
         {
             AccesoDatos datos = new AccesoDatos();
             return datos.ExisteDNI(dni);
+        }
+
+        public DataTable ListadoPacientes()
+        {
+            DataTable dt = new DataTable();
+            dt = dAO.ListadoPacientes();
+            return dt;
         }
 
 
