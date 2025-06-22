@@ -15,6 +15,7 @@ namespace Datos
         AccesoDatos datos = new AccesoDatos();
         Paciente paciente = new Paciente();
 
+
         public DAOPacientes() { }
 
         public int AgregarPaciente(Paciente paciente)
@@ -43,6 +44,12 @@ namespace Datos
             DataTable dt = new DataTable();
             dt = datos.ObtenerTabla(consulta, "Pacientes");
             return dt;
+        }
+
+        public bool EliminarPaciente(int dni)
+        {
+            string consulta = "UPDATE Pacientes SET Eliminado = 1 WHERE DNI = " + dni;
+            return datos.EjecutarConsulta(consulta) > 0;
         }
     }
 }

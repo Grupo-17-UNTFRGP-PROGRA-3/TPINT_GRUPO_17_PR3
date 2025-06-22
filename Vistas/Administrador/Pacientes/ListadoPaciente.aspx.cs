@@ -41,7 +41,8 @@ namespace Vistas.Pacientes
             if (e.CommandName == "EliminarPaciente")
             {
                 string dni = e.CommandArgument.ToString();
-                if (_negocioPaciente.ExisteDNI(int.Parse(dni))){
+                if (_negocioPaciente.ExisteDNI(int.Parse(dni)))
+                {
                     _negocioPaciente.EliminarPaciente(int.Parse(dni));
                 }
 

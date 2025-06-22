@@ -120,17 +120,5 @@ namespace Datos
 
             return existe;
         }
-
-        public bool EliminarPaciente(int dni)
-        {
-            string consulta = "UPDATE Pacientes SET Eliminado = 1 WHERE DNI = @dni";
-            SqlCommand cmd = new SqlCommand(consulta, _conexion);
-            cmd.Parameters.AddWithValue("@dni", dni);
-            _conexion.Open();
-            int filasAfectadas = cmd.ExecuteNonQuery();
-            _conexion.Close();
-
-            return filasAfectadas > 0;
-        }
     }
 }

@@ -11,21 +11,60 @@
         <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" />
     </div>
     <div>
-    <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None"
+        OnRowCommand="gvMedicos_RowCommand"
+        AllowPaging="true" PageSize="10" OnPageIndexChanging="gvMedicos_PageIndexChanging">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
-            <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
-            <asp:BoundField DataField="DNI" HeaderText="D.N.I." />
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-            <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-            <asp:BoundField DataField="Sexo" HeaderText="Sexo" />
-            <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
-            <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" DataFormatString="{0:dd/MM/yyyy}" />
-            <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
+            <asp:TemplateField HeaderText="Legajo">
+                <ItemTemplate>
+                    <%# Eval("Legajo") %>
+                    <asp:Label ID="lblLegajo" runat="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="DNI">
+                <ItemTemplate>
+                    <%# Eval("DNI") %>
+                    <asp:Label ID="lblDNI" runat="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Nombre">
+                <ItemTemplate>
+                    <%# Eval("Nombre") %>
+                    <asp:Label ID="lblNombre" runat="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Apellido">
+                <ItemTemplate>
+                    <%# Eval("Apellido") %>
+                    <asp:Label ID="lblApellido" runat="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Especialidad">
+                <ItemTemplate>
+                    <%# Eval("Especialidad") %>
+                    <asp:Label ID="lblEspecialidad" runat="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Fecha de Nacimiento">
+                <ItemTemplate>
+                    <%# Eval("FechaNacimiento", "{0:dd/MM/yyyy}") %>
+                    <asp:Label ID="lblFechaNacimiento" runat="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Sexo">
+                <ItemTemplate>
+                    <%# Eval("Sexo") %>
+                    <asp:Label ID="lblSexo" runat="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" />
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar"
+                        CommandName="EliminarMedico"
+                        CommandArgument='<%# Eval("Legajo") %>'
+                        OnClientClick="return confirm('¿Está seguro de que desea eliminar este médico?');" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

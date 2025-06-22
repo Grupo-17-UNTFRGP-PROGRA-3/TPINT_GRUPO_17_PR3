@@ -58,7 +58,7 @@ namespace Clinica
         public bool EliminarPaciente(int dni)
         {
             AccesoDatos datos = new AccesoDatos();
-            return datos.EliminarPaciente(dni);
+            return dAO.EliminarPaciente(dni);
         }
 
 
