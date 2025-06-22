@@ -22,7 +22,7 @@ namespace Vistas.Pacientes
 
         private void CargarPacientes()
         {
-            gvPacientes.DataSource = _negocioPaciente.ListadoPacientes();
+            gvPacientes.DataSource = _negocioPaciente.ListadoPacientesJoined();
             gvPacientes.DataBind();
         }
 

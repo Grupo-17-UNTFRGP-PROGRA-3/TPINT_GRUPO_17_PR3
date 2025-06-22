@@ -57,7 +57,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Nacionalidad">
                 <ItemTemplate>
-                    <%# Eval("IdNacionalidad") %>
+                    <%# Eval("Nacionalidad") %>
                     <asp:Label ID="lblNacionalidad" runat="server"></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>

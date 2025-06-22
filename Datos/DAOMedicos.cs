@@ -52,7 +52,7 @@ namespace Datos
         {
             string consulta = "SELECT M.Legajo, M.Dni, M.Nombre, M.Apellido, E.Descripcion AS 'Especialidad', M.FechaNacimiento, " +
                 "CASE WHEN Sexo = 0 THEN 'Masculino' ELSE 'Femenino' END AS 'Sexo' " +
-                "from Medicos M " +
+                "FROM Medicos M " +
                 "INNER JOIN Especialidades E ON M.IdEspecialidad = E.Id " +
                 "WHERE M.Eliminado = 0 AND M.Legajo != '0000'";
             DataTable dt = new DataTable();

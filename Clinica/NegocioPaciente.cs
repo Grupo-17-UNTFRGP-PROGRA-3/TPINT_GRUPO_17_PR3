@@ -54,6 +54,12 @@ namespace Clinica
             dt = dAO.ListadoPacientes();
             return dt;
         }
+        public DataTable ListadoPacientesJoined()
+        {
+            DataTable dt = new DataTable();
+            dt = dAO.ListadoPacientesJoined();
+            return dt;
+        }
 
         public bool EliminarPaciente(int dni)
         {
