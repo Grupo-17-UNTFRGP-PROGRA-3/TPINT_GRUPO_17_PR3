@@ -67,7 +67,7 @@ namespace Datos
             string legajo = leg.ToString();
             string consulta = @"UPDATE [dbo].[Medicos] SET [Legajo] = @Legajo, [Dni] = @Dni, [Nombre] = @Nombre, [Apellido] = @Apellido, [Sexo] = @Sexo, " +
                 " [IdNacionalidad] = @IdNacionalidad, [FechaNacimiento] = @FechaNacimiento, [Direccion] = @Direccion, [Email] = @Email," +
-                " [Telefono] = @Telefono, [IdEspecialidad] = @IdEspecialidad, [IdProvincia] = @IdProvincia, [IdLocalidad] = @IdLocalidad" +
+                " [Telefono] = @Telefono, [IdEspecialidad] = @IdEspecialidad, [IdProvincia] = @IdProvincia, [IdLocalidad] = @IdLocalidad " +
                 "WHERE [Legajo] = @Legajo";
 
             List<SqlParameter> parametros = new List<SqlParameter>

@@ -100,15 +100,8 @@
             <!--direccion-->
             <div>
                 <div class="form-group">
-                    <asp:Label ID="lblCalle" runat="server" Text="Calle" CssClass="form-label"></asp:Label>
-                    <asp:TextBox ID="txtCalle" runat="server" CssClass="form-input"></asp:TextBox>
-
-                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtCalle" Display="Dynamic" ErrorMessage="Debe ingresar una calle" ForeColor="Red"></asp:RequiredFieldValidator>
-
-                    <asp:Label ID="lblAltura" runat="server" Text="Altura" CssClass="form-label"></asp:Label>
-                    <asp:TextBox ID="txtAltura" runat="server" CssClass="form-input"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvAltura" runat="server" ControlToValidate="txtAltura" Display="Dynamic" ErrorMessage="Debe ingresar una altura" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revAltura" runat="server" ControlToValidate="txtAltura" Display="Dynamic" ErrorMessage="Altura invalida: solo digitos" ForeColor="Red" ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
+                    Direccion<asp:TextBox ID="txtDireccion" runat="server" CssClass="form-input"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtDireccion" Display="Dynamic" ErrorMessage="Debe ingresar una direccion" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -167,23 +160,33 @@
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input">
                         <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
-                        <asp:ListItem>7:00</asp:ListItem>
-                        <asp:ListItem>08:00</asp:ListItem>
-                        <asp:ListItem>9:00</asp:ListItem>
-                        <asp:ListItem>10:00</asp:ListItem>
-                        <asp:ListItem>11:00</asp:ListItem>
-                        <asp:ListItem>12:00</asp:ListItem>
-                        <asp:ListItem>13:00</asp:ListItem>
+                        <asp:ListItem Value="07:00:00">07:00</asp:ListItem>
+                        <asp:ListItem Value="08:00:00">08:00</asp:ListItem>
+                        <asp:ListItem Value="09:00:00">09:00</asp:ListItem>
+                        <asp:ListItem Value="10:00:00">10:00</asp:ListItem>
+                        <asp:ListItem Value="11:00:00">11:00</asp:ListItem>
+                        <asp:ListItem Value="12:00:00">12:00</asp:ListItem>
+                        <asp:ListItem Value="13:00:00">13:00</asp:ListItem>
+                        <asp:ListItem Value="14:00:00">14:00</asp:ListItem>
+                        <asp:ListItem Value="15:00:00">15:00</asp:ListItem>
+                        <asp:ListItem Value="16:00:00">16:00</asp:ListItem>
+                        <asp:ListItem Value="17:00:00">17:00</asp:ListItem>
+                        <asp:ListItem Value="18:00:00">18:00</asp:ListItem>
                     </asp:DropDownList>
                     <asp:DropDownList ID="ddlHoraFin" runat="server" CssClass="form-input">
                         <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
-                        <asp:ListItem>13:00</asp:ListItem>
-                        <asp:ListItem>14:00</asp:ListItem>
-                        <asp:ListItem>15:00</asp:ListItem>
-                        <asp:ListItem>16:00</asp:ListItem>
-                        <asp:ListItem>17:00</asp:ListItem>
-                        <asp:ListItem>18:00</asp:ListItem>
-                        <asp:ListItem>19:00</asp:ListItem>
+                        <asp:ListItem Value="8:00:00">8:00</asp:ListItem>
+                        <asp:ListItem Value="9:00:00">9:00</asp:ListItem>
+                        <asp:ListItem Value="10:00:00">10:00</asp:ListItem>
+                        <asp:ListItem Value="11:00:00">11:00</asp:ListItem>
+                        <asp:ListItem Value="12:00:00">12:00</asp:ListItem>
+                        <asp:ListItem Value="13:00:00">13:00</asp:ListItem>
+                        <asp:ListItem Value="14:00:00">14:00</asp:ListItem>
+                        <asp:ListItem Value="15:00:00">15:00</asp:ListItem>
+                        <asp:ListItem Value="16:00:00">16:00</asp:ListItem>
+                        <asp:ListItem Value="17:00:00">17:00</asp:ListItem>
+                        <asp:ListItem Value="18:00:00">18:00</asp:ListItem>
+                        <asp:ListItem Value="19:00:00">19:00</asp:ListItem>
                     </asp:DropDownList>
                 </div>
 

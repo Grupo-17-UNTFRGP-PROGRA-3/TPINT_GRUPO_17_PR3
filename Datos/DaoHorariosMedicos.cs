@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,19 @@ namespace Datos
                 horariosMedicos._HoraFin + "', 0)";
 
             return datos.EjecutarConsulta(consulta);
+        }
+        public HorarioMedico traerHorariosMedico (int legajo)
+        {
+            horariosMedicos = datos.TraerHorarioMedicoPorLegajo(legajo);
+            return horariosMedicos;
+        }
+
+        public int ModificarHorarioMedicos(HorarioMedico horarioMedico)
+        {
+            string consulta1 = "Delete From[HorariosMedicos] where Legajo =" + horarioMedico._Legajo.ToString() ;
+            datos.EjecutarConsulta(consulta1);
+
+            return this.AgregarHorarioMedico(horarioMedico);
         }
     }
     

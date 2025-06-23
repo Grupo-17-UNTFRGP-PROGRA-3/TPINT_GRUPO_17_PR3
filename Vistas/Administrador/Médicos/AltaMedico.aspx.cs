@@ -38,6 +38,7 @@ namespace Vistas
                     int legajo = int.Parse(Request.QueryString["legajo"]);
                     txtLegajo.Text = legajo.ToString();
                     CargarDatosMedico(legajo);
+                    btnIngresar.Text = "MODIFICAR";
                 }
 
 
@@ -80,8 +81,7 @@ namespace Vistas
             txtAnio.Text = string.Empty;
             txtMes.Text = string.Empty;
             txtDia.Text = string.Empty;
-            txtCalle.Text = string.Empty;
-            txtAltura.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
             ddlProvincia.SelectedIndex = 0;
             ddlLocalidad.SelectedIndex = 0;
             txtEmail.Text = string.Empty;
@@ -120,6 +120,7 @@ namespace Vistas
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            
             bool sexo = false;
             if (rblSexo.SelectedValue == "femenino")
             {
@@ -127,7 +128,7 @@ namespace Vistas
             }
 
             string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
-            string direccion = txtCalle.Text + " " + txtAltura.Text;
+            string direccion = txtDireccion.Text;
             int idNac = int.Parse(ddlNacionalidad.SelectedValue);
             int idProv = int.Parse(ddlProvincia.SelectedValue);
             int idLoc = int.Parse(ddlLocalidad.SelectedValue);
@@ -135,26 +136,54 @@ namespace Vistas
             NegocioMedico negocioMedico = new NegocioMedico();
             NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
 
-            if (negocioMedico.AgregarMedico(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false, int.Parse(txtLegajo.Text), idEsp))
+            if (Request.QueryString["legajo"] == null)
             {
-                lblMensaje.Text = "El médico se ha agregado con éxito";
-                lblMensaje.ForeColor = Color.Green;
+                if (negocioMedico.AgregarMedico(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false, int.Parse(txtLegajo.Text), idEsp))
+                {
+                    lblMensaje.Text = "El médico se ha agregado con éxito";
+                    lblMensaje.ForeColor = Color.Green;
                 
 
+                    foreach (ListItem item in cblDiasAtencion.Items)
+                    {               
+                        if (item.Selected)
+                        {
+                            int idDia = int.Parse(item.Value);
+                            int Legajo = int.Parse(txtLegajo.Text);
+                            string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
+                            string HoraFin = ddlHoraFin.SelectedValue.ToString();
+                        
+                            negocioHorarioMedico.AgregarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
+                        }
+                    }
+                    LimpiarCampos();
+                    txtLegajo.Text = string.Empty;  
+                }
+            }
+            else
+            {
+                bool exitoMed = false;
+                bool exitoHor = false;
+
+                exitoMed = negocioMedico.ModificarMedico(int.Parse(txtLegajo.Text), int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
                 foreach (ListItem item in cblDiasAtencion.Items)
-                {               
+                {
                     if (item.Selected)
                     {
                         int idDia = int.Parse(item.Value);
                         int Legajo = int.Parse(txtLegajo.Text);
                         string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
                         string HoraFin = ddlHoraFin.SelectedValue.ToString();
-                        
-                        negocioHorarioMedico.AgregarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
+
+                        exitoHor = negocioHorarioMedico.ModificarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
                     }
                 }
                 LimpiarCampos();
-                txtLegajo.Text = string.Empty;  
+                txtLegajo.Text = string.Empty;
+                if (exitoMed && exitoHor)
+                {
+                    lblMensaje.Text = "Registro medico modificado con exito";
+                }
             }
         }
         protected void txtLegajo_TextChanged(object sender, EventArgs e)
@@ -186,9 +215,12 @@ namespace Vistas
 
         protected void CargarDatosMedico(int legajo)
         {
-            NegocioMedico negMed = new NegocioMedico();
-            Medico medico = negMed.ObtenerMedicoPorLegajo(legajo);
 
+            NegocioMedico negMed = new NegocioMedico();
+            Entidades.Medico medico = negMed.ObtenerMedicoPorLegajo(legajo);
+            NegocioHorarioMedico hor = new NegocioHorarioMedico();
+            HorarioMedico horario = hor.ObtenerHorarioMedicoPorLegajo(legajo);
+            
             if (medico != null)
             {
                 txtLegajo.Text = legajo.ToString();
@@ -202,6 +234,7 @@ namespace Vistas
                 {
                     rblSexo.SelectedValue = "masculino";
                 }
+                txtDNI.Text = medico._DNI.ToString();
                 string FechaNac = medico._FechaNacimiento;
                 DateTime fecha;
                 DateTime.TryParse(FechaNac, out fecha);
@@ -214,6 +247,11 @@ namespace Vistas
                 ddlNacionalidad.SelectedIndex = medico._IdNacionalidad - 1;
                 ddlProvincia.SelectedValue = medico._IdProvincia.ToString();
                 ddlLocalidad.SelectedValue = medico._IdLocalidad.ToString();
+                ddlEspecialidad.SelectedValue = medico._IdEspecialidad.ToString();
+
+                cblDiasAtencion.SelectedValue = horario._IdDia.ToString();
+                ddlHoraInicio.SelectedValue = horario._HoraInicio;
+                ddlHoraFin.SelectedValue = horario._HoraFin;
 
             }
         }

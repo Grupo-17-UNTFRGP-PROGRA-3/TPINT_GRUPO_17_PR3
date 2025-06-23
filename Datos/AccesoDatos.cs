@@ -227,5 +227,25 @@ namespace Datos
             return medico;
         }
 
+        public HorarioMedico TraerHorarioMedicoPorLegajo(int legajo)
+        {
+            HorarioMedico horMed = new HorarioMedico();
+            string consulta = "SELECT * FROM HorariosMedicos WHERE Eliminado != 1 AND Legajo =" + legajo.ToString();
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            _conexion.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                horMed._IdDia = Convert.ToInt32(reader["IdDia"]);
+                horMed._HoraInicio = reader["HoraInicio"].ToString();
+                horMed._HoraFin = reader["HoraFin"].ToString();
+            }
+            horMed._Legajo = legajo;
+            horMed._Eliminado = false;
+
+            return horMed;
+        }
+
     }
 }

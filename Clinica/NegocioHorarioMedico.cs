@@ -3,6 +3,7 @@ using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,34 @@ namespace Clinica
             {
                 return false;
             }
+        }
+
+        public bool ModificarHorarioMedico(int IdDia, int Legajo, string HoraInicio, string HoraFin)
+        {
+           HorarioMedico horMed = new HorarioMedico();
+            horMed._IdDia = IdDia;
+            horMed._Legajo = Legajo;
+            horMed._HoraInicio = HoraInicio;
+            horMed._HoraFin = HoraFin;
+
+            int filasAfectadas = dao.ModificarHorarioMedicos(horMed);
+
+            if (filasAfectadas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public HorarioMedico ObtenerHorarioMedicoPorLegajo(int legajo)
+        {
+            HorarioMedico horMed = null;
+            horMed = dao.traerHorariosMedico(legajo);
+
+            return horMed;
         }
     }
 }
