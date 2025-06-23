@@ -76,9 +76,7 @@
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="ModificarPaciente" CommandArgument='<%# Eval("DNI") %>'/>
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" 
-                        CommandName="EliminarPaciente"
-                        CommandArgument='<%# Eval("DNI") %>'
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="EliminarPaciente" CommandArgument='<%# Eval("DNI") %>'
                         OnClientClick="return confirm('¿Está seguro de que desea eliminar este paciente?');" />
                 </ItemTemplate>
             </asp:TemplateField>

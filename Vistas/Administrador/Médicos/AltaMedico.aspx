@@ -9,7 +9,9 @@
 
         <!--Titulo de pagina-->
         <div>
-            <h1>Alta de Medico</h1>
+            <h1>
+                <asp:Label ID="lblTitulo" runat="server" Text="Alta de Medico"></asp:Label>
+            </h1>
         </div>
 
         <!--Legajo-->
@@ -84,13 +86,13 @@
                 <asp:RequiredFieldValidator ID="rfvAnio" runat="server" ControlToValidate="txtAnio" Display="Dynamic" ErrorMessage="El año es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RangeValidator ID="rvAnio" runat="server" ControlToValidate="txtAnio" Display="Dynamic" ErrorMessage="Año invalido" ForeColor="Red" MaximumValue="2100" MinimumValue="1900" Type="Integer"></asp:RangeValidator>
                 <asp:Label ID="lblMes" runat="server" Text="Mes"></asp:Label>
-                <asp:TextBox ID="txtMes" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtMes" runat="server" CssClass="form-input"></asp:TextBox>
 
                 <!--dia-->
                 <asp:RequiredFieldValidator ID="rfvMes" runat="server" ControlToValidate="txtMes" Display="Dynamic" ErrorMessage="El mes es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RangeValidator ID="rvMes" runat="server" ControlToValidate="txtMes" Display="Dynamic" ErrorMessage="Mes invalido" ForeColor="Red" MaximumValue="12" MinimumValue="1" Type="Integer"></asp:RangeValidator>
                 <asp:Label ID="lblDia" runat="server" Text="Dia"></asp:Label>
-                <asp:TextBox ID="txtDia" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtDia" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="txtDia" Display="Dynamic" ErrorMessage="El dia es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RangeValidator ID="rvDia" runat="server" ControlToValidate="txtDia" Display="Dynamic" ErrorMessage="El dia es invalido" ForeColor="Red" MaximumValue="31" MinimumValue="1" Type="Integer"></asp:RangeValidator>
             </div>
@@ -165,17 +167,23 @@
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input">
                         <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
+                        <asp:ListItem>7:00</asp:ListItem>
                         <asp:ListItem>08:00</asp:ListItem>
+                        <asp:ListItem>9:00</asp:ListItem>
                         <asp:ListItem>10:00</asp:ListItem>
                         <asp:ListItem>11:00</asp:ListItem>
+                        <asp:ListItem>12:00</asp:ListItem>
                         <asp:ListItem>13:00</asp:ListItem>
                     </asp:DropDownList>
                     <asp:DropDownList ID="ddlHoraFin" runat="server" CssClass="form-input">
                         <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
-                        <asp:ListItem>12:00</asp:ListItem>
+                        <asp:ListItem>13:00</asp:ListItem>
+                        <asp:ListItem>14:00</asp:ListItem>
                         <asp:ListItem>15:00</asp:ListItem>
+                        <asp:ListItem>16:00</asp:ListItem>
                         <asp:ListItem>17:00</asp:ListItem>
                         <asp:ListItem>18:00</asp:ListItem>
+                        <asp:ListItem>19:00</asp:ListItem>
                     </asp:DropDownList>
                 </div>
 
@@ -189,6 +197,7 @@
                 <br />
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 <br />
+                 <br /> <br /> <br />
             </div>
         </asp:Panel>
     </div>

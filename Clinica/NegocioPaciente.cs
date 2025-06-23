@@ -102,7 +102,5 @@ namespace Clinica
             return datos.TraerPacientePorDNI(dni);
         }
 
-
-
     }
 }

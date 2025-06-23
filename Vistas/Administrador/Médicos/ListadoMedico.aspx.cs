@@ -47,6 +47,12 @@ namespace Vistas
 
                 CargarMedicos();
             }
+
+            if (e.CommandName == "ModificarMedico")
+            {
+                string legajo = e.CommandArgument.ToString();
+                Response.Redirect($"~/Administrador/Médicos/AltaMedico.aspx?legajo={legajo}");
+            }
         }
 
         protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)

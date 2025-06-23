@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Clinica;
+using Entidades;
 
 namespace Vistas
 {
@@ -18,6 +19,7 @@ namespace Vistas
         NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
         NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
         NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+        NegocioMedico negocioMedico = new NegocioMedico();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -27,6 +29,18 @@ namespace Vistas
 
             if (!IsPostBack)
             {
+                if (Request.QueryString["legajo"] != null)
+                {
+                    lblTitulo.Text = "Modificar Medico";
+                    pnlDatosMedico.Visible = true;
+                    BtnBuscarLegajo.Visible = false;
+                    BtnVolver2.Visible = false;
+                    int legajo = int.Parse(Request.QueryString["legajo"]);
+                    txtLegajo.Text = legajo.ToString();
+                    CargarDatosMedico(legajo);
+                }
+
+
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
                 ddlNacionalidad.DataTextField = "Descripcion";
                 ddlNacionalidad.DataValueField = "Id";
@@ -139,8 +153,8 @@ namespace Vistas
                         negocioHorarioMedico.AgregarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
                     }
                 }
-
                 LimpiarCampos();
+                txtLegajo.Text = string.Empty;  
             }
         }
         protected void txtLegajo_TextChanged(object sender, EventArgs e)
@@ -167,6 +181,40 @@ namespace Vistas
             {
                 ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
+            }
+        }
+
+        protected void CargarDatosMedico(int legajo)
+        {
+            NegocioMedico negMed = new NegocioMedico();
+            Medico medico = negMed.ObtenerMedicoPorLegajo(legajo);
+
+            if (medico != null)
+            {
+                txtLegajo.Text = legajo.ToString();
+                txtNombre.Text = medico._Nombre;
+                txtApellido.Text = medico._Apellido;
+                if (medico._Sexo)
+                {
+                    rblSexo.SelectedValue = "femenino";
+                }
+                else
+                {
+                    rblSexo.SelectedValue = "masculino";
+                }
+                string FechaNac = medico._FechaNacimiento;
+                DateTime fecha;
+                DateTime.TryParse(FechaNac, out fecha);
+                txtAnio.Text = fecha.Year.ToString();
+                txtMes.Text = fecha.Month.ToString();
+                txtDia.Text = fecha.Day.ToString();
+                txtDireccion.Text = medico._Direccion.ToString();
+                txtEmail.Text = medico._Email;
+                txtTelefono.Text = medico._Telefono;
+                ddlNacionalidad.SelectedIndex = medico._IdNacionalidad - 1;
+                ddlProvincia.SelectedValue = medico._IdProvincia.ToString();
+                ddlLocalidad.SelectedValue = medico._IdLocalidad.ToString();
+
             }
         }
     }

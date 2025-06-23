@@ -96,7 +96,7 @@ namespace Vistas
                 txtAnio.Text = fecha.Year.ToString();
                 txtMes.Text = fecha.Month.ToString();
                 txtDia.Text = fecha.Day.ToString();
-                txtDireccion.Text = paciente._Direccion;
+                txtDireccion.Text = paciente._Direccion.ToString();
                 txtEmail.Text = paciente._Email;
                 txtTelefono.Text = paciente._Telefono;
                 ddlNacionalidad.SelectedIndex = paciente._IdNacionalidad-1;

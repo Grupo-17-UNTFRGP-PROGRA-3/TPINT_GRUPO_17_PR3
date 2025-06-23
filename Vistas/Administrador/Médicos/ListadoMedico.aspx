@@ -60,10 +60,8 @@
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" />
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar"
-                        CommandName="EliminarMedico"
-                        CommandArgument='<%# Eval("Legajo") %>'
+                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="ModificarMedico" CommandArgument='<%# Eval("Legajo") %>' />
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="EliminarMedico" CommandArgument='<%# Eval("Legajo") %>'
                         OnClientClick="return confirm('¿Está seguro de que desea eliminar este médico?');" />
                 </ItemTemplate>
             </asp:TemplateField>
@@ -82,7 +80,6 @@
     </div>
     <div>
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-        <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
         <asp:Button ID="btnVolver" runat="server" OnClick="btnVolver_Click" Text="Volver" />
     </div>
 </asp:Content>

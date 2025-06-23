@@ -145,10 +145,8 @@ namespace Datos
 
             if (reader.Read())
             {
-
                 paciente = new Paciente
                 {
-
                     _DNI = Convert.ToInt32(reader["DNI"]),
                     _Nombre = reader["Nombre"].ToString(),
                     _Apellido = reader["Apellido"].ToString(),
@@ -159,32 +157,75 @@ namespace Datos
                     _Telefono = reader["Telefono"].ToString(),
                     _IdProvincia = Convert.ToInt32(reader["IdProvincia"]),
                     _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
-                    
                 };
-                 if (reader["Sexo"].ToString() == "False")
+                if (reader["Sexo"].ToString() == "False")
                 {
                     paciente._Sexo = false;
                 }
-                else { paciente._Sexo = true;}
+                else { paciente._Sexo = true; }
 
-                if(Convert.ToInt32(reader["Eliminado"])== 0)
+                if (Convert.ToInt32(reader["Eliminado"]) == 0)
                 {
                     paciente._Eliminado = false;
                 }
                 else
                 {
-                    paciente._Eliminado= true;
+                    paciente._Eliminado = true;
                 }
-
-            
             }
-
             reader.Close();
             _conexion.Close();
-
             return paciente;
         }
 
+        public Medico TraerMedicoPorLegajo(int legajo)
+        {
+            Medico medico = null;
+            string consulta = "SELECT * FROM Medicos WHERE Legajo = @legajo";
+
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            cmd.Parameters.AddWithValue("@Legajo", legajo);
+
+            _conexion.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                medico = new Medico
+                {
+                     _DNI = Convert.ToInt32(reader["DNI"]),
+                     _Nombre = reader["Nombre"].ToString(),
+                     _Apellido = reader["Apellido"].ToString(),
+                     _IdNacionalidad = Convert.ToInt32(reader["IdNacionalidad"]),
+                     _FechaNacimiento = reader["FechaNacimiento"].ToString(),
+                     _Direccion = reader["Direccion"].ToString(),
+                     _Email = reader["Email"].ToString(),
+                     _Telefono = reader["Telefono"].ToString(),
+                     _IdProvincia = Convert.ToInt32(reader["IdProvincia"]),
+                     _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
+                     _Legajo = Convert.ToInt32(reader["Legajo"]),
+                     _IdEspecialidad = Convert.ToInt32(reader["IdEspecialidad"])
+                };
+
+                if (reader["Sexo"].ToString() == "False")
+                {
+                    medico._Sexo = false;
+                }
+                else { medico._Sexo = true; }
+
+                if (Convert.ToInt32(reader["Eliminado"]) == 0)
+                {
+                    medico._Eliminado = false;
+                }
+                else
+                {
+                    medico._Eliminado = true;
+                }
+            }
+            reader.Close();
+            _conexion.Close();
+            return medico;
+        }
 
     }
 }
