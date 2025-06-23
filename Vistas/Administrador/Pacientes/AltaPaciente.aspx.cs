@@ -86,7 +86,7 @@ namespace Vistas
                 {
                     rblSexo.SelectedValue = "femenino";
                 }
-                if (!paciente._Sexo) 
+                else
                 {
                     rblSexo.SelectedValue = "masculino";
                 }

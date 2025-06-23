@@ -161,7 +161,7 @@ namespace Datos
                     _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
                     
                 };
-                 if (reader["Sexo"].ToString() == "Masculino")
+                 if (reader["Sexo"].ToString() == "False")
                 {
                     paciente._Sexo = false;
                 }
