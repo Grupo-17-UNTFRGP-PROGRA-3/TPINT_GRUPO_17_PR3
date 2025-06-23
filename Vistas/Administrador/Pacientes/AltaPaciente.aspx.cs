@@ -100,8 +100,8 @@ namespace Vistas
                 txtEmail.Text = paciente._Email;
                 txtTelefono.Text = paciente._Telefono;
                 ddlNacionalidad.SelectedIndex = paciente._IdNacionalidad-1;
-                ddlProvincia.SelectedIndex = paciente._IdProvincia-1;
-                ddlLocalidad.SelectedIndex = paciente._IdLocalidad - 1;
+                ddlProvincia.SelectedValue = paciente._IdProvincia.ToString();
+                ddlLocalidad.SelectedValue = paciente._IdLocalidad.ToString();
 
             }
         }

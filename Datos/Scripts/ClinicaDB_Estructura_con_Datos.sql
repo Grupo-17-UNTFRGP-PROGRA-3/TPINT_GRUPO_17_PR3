@@ -254,20 +254,20 @@ INSERT INTO Medicos (Legajo, Dni, Nombre, Apellido,
 					 Email, Telefono, IdEspecialidad, IdProvincia, IdLocalidad)
 VALUES ('0000',	'00000000',	'0', '0', 0, 1, '1-1-2000', '0', '0', '0', 1, 1, 1),
 	   ('0001', '12345678', 'Lucía', 'Fernández', 1, 1, '1980-03-15', 'Calle Falsa 123', 'lucia.fernandez@example.com', '1112345678', 2, 1, 1),
-	   ('0002', '87654321', 'Martín', 'Gómez', 0, 1, '1975-07-22', 'Av. Siempreviva 742', 'martin.gomez@example.com', '1123456789', 3, 12, 6),
-	   ('0003', '11223344', 'Camila', 'López', 1, 1, '1990-01-10', 'Ruta 5 Km 12', 'camila.lopez@example.com', '1134567890', 4, 13, 11),
-	   ('0004', '44332211', 'Javier', 'Pereyra', 0, 1, '1982-05-09', 'San Martín 1000', 'javier.pereyra@example.com', '1145678901', 5, 13, 11),
-	   ('0005', '55667788', 'Natalia', 'Ramos', 1, 1, '1988-11-03', 'Alsina 334', 'natalia.ramos@example.com', '1156789012', 6, 13, 12),
-	   ('0006', '99887766', 'Diego', 'Sosa', 0, 1, '1972-04-14', 'Belgrano 98', 'diego.sosa@example.com', '1167890123', 7, 21, 16),
-	   ('0007', '33445566', 'Florencia', 'Acosta', 1, 1, '1993-06-29', 'Libertad 23', 'flor.acosta@example.com', '1178901234', 8, 21, 17),
-	   ('0008', '66778899', 'Facundo', 'Medina', 0, 1, '1985-12-18', 'Mitre 56', 'facundo.medina@example.com', '1189012345', 9, 22, 19),
-	   ('0009', '11224488', 'Brenda', 'Suárez', 1, 1, '1991-09-05', 'Independencia 75', 'brenda.suarez@example.com', '1190123456', 10, 22, 20),
-	   ('0010', '77889900', 'Agustín', 'Ibarra', 0, 1, '1986-02-21', 'Rivadavia 45', 'agustin.ibarra@example.com', '1101234567', 11, 13, 12),
-	   ('0011', '99001122', 'Julieta', 'Benítez', 1, 1, '1994-08-30', 'Moreno 200', 'julieta.benitez@example.com', '1123451234', 12, 12, 9),
+	   ('0002', '87654321', 'Martín', 'Gómez', 0, 1, '1975-07-22', 'Av. Siempreviva 742', 'martin.gomez@example.com', '1123456789', 3, 1, 1),
+	   ('0003', '11223344', 'Camila', 'López', 1, 1, '1990-01-10', 'Ruta 5 Km 12', 'camila.lopez@example.com', '1134567890', 4, 1, 1),
+	   ('0004', '44332211', 'Javier', 'Pereyra', 0, 1, '1982-05-09', 'San Martín 1000', 'javier.pereyra@example.com', '1145678901', 5, 1, 1),
+	   ('0005', '55667788', 'Natalia', 'Ramos', 1, 1, '1988-11-03', 'Alsina 334', 'natalia.ramos@example.com', '1156789012', 6, 1, 1),
+	   ('0006', '99887766', 'Diego', 'Sosa', 0, 1, '1972-04-14', 'Belgrano 98', 'diego.sosa@example.com', '1167890123', 7, 1, 1),
+	   ('0007', '33445566', 'Florencia', 'Acosta', 1, 1, '1993-06-29', 'Libertad 23', 'flor.acosta@example.com', '1178901234', 8, 1, 1),
+	   ('0008', '66778899', 'Facundo', 'Medina', 0, 1, '1985-12-18', 'Mitre 56', 'facundo.medina@example.com', '1189012345', 9, 1, 1),
+	   ('0009', '11224488', 'Brenda', 'Suárez', 1, 1, '1991-09-05', 'Independencia 75', 'brenda.suarez@example.com', '1190123456', 10, 1, 1),
+	   ('0010', '77889900', 'Agustín', 'Ibarra', 0, 1, '1986-02-21', 'Rivadavia 45', 'agustin.ibarra@example.com', '1101234567', 11, 1, 1),
+	   ('0011', '99001122', 'Julieta', 'Benítez', 1, 1, '1994-08-30', 'Moreno 200', 'julieta.benitez@example.com', '1123451234', 12, 1, 1),
 	   ('0012', '22334455', 'Lucas', 'Vega', 0, 1, '1983-10-17', 'Dorrego 19', 'lucas.vega@example.com', '1134562345', 13, 1, 5),
-	   ('0013', '44556677', 'Micaela', 'Castro', 1, 1, '1979-03-02', 'Pellegrini 678', 'micaela.castro@example.com', '1145673456', 14, 1, 3),
-	   ('0014', '55664433', 'Tomás', 'Luna', 0, 1, '1981-06-11', 'San Juan 99', 'tomas.luna@example.com', '1156784567', 15, 21, 17),
-	   ('0015', '66775544', 'Sol', 'Herrera', 1, 1, '1992-12-25', 'Laprida 321', 'sol.herrera@example.com', '1167895678', 16, 21, 18);
+	   ('0013', '44556677', 'Micaela', 'Castro', 1, 1, '1979-03-02', 'Pellegrini 678', 'micaela.castro@example.com', '1145673456', 14, 1, 1),
+	   ('0014', '55664433', 'Tomás', 'Luna', 0, 1, '1981-06-11', 'San Juan 99', 'tomas.luna@example.com', '1156784567', 15, 1, 1),
+	   ('0015', '66775544', 'Sol', 'Herrera', 1, 1, '1992-12-25', 'Laprida 321', 'sol.herrera@example.com', '1167895678', 16, 1, 1);
 GO
 
 -- Tabla 6 Pacientes
@@ -297,17 +297,17 @@ VALUES ('10000001', 'María', 'Alvarez', 1, 1, '1992-04-15', 'Calle 123', 'maria.
 	   ('10000002', 'Juan', 'Pérez', 0, 1, '1985-10-22', 'Av. Siempreviva 555', 'juan.perez@example.com', '1123456789', 1, 5),
 	   ('10000003', 'Sofía', 'Rodríguez', 1, 1, '1990-07-30', 'Libertad 74', 'sofia.rod@example.com', '1145678901', 1, 4),
 	   ('10000004', 'Carlos', 'Fernández', 0, 1, '1978-02-11', 'Mitre 1089', 'carlos.fernandez@example.com', '1156789012', 1, 3),
-	   ('10000005', 'Luciana', 'Ramírez', 1, 1, '2000-06-05', 'San Martín 234', 'luciana.ramirez@example.com', '1167890123', 12, 8),
-	   ('10000006', 'Diego', 'Gómez', 0, 1, '1995-03-28', 'Rivadavia 44', 'diego.gomez@example.com', '1178901234', 12, 10),
-	   ('10000007', 'Camila', 'Sánchez', 1, 1, '1998-08-13', 'Moreno 321', 'camila.sanchez@example.com', '1189012345', 13, 11),
-	   ('10000008', 'Martín', 'Torres', 0, 1, '1980-11-19', 'Belgrano 50', 'martin.torres@example.com', '1190123456', 13, 15),
-	   ('10000009', 'Julieta', 'López', 1, 1, '1983-01-25', 'Independencia 9', 'julieta.lopez@example.com', '1101234567', 21, 16),
-	   ('10000010', 'Federico', 'Díaz', 0, 1, '1991-09-09', 'Alsina 222', 'federico.diaz@example.com', '1112345678', 22, 19),
-	   ('10000011', 'Valentina', 'Vega', 1, 1, '1993-12-17', 'Laprida 543', 'valen.vega@example.com', '1123451234', 22, 20),
-	   ('10000012', 'Leandro', 'Aguirre', 0, 1, '1975-06-03', 'Ruta 3 KM 88', 'leandro.aguirre@example.com', '1134562345', 21, 17),
-	   ('10000013', 'Florencia', 'Molina', 1, 1, '1987-05-11', 'Pellegrini 777', 'flor.molina@example.com', '1145673456', 21, 18),
-	   ('10000014', 'Tomás', 'Cruz', 0, 1, '1996-02-02', 'San Juan 66', 'tomas.cruz@example.com', '1156784567', 12, 7),
-	   ('10000015', 'Milagros', 'Paz', 1, 1, '2001-10-20', 'Dorrego 14', 'milagros.paz@example.com', '1167895678', 12, 6);
+	   ('10000005', 'Luciana', 'Ramírez', 1, 1, '2000-06-05', 'San Martín 234', 'luciana.ramirez@example.com', '1167890123', 1, 4),
+	   ('10000006', 'Diego', 'Gómez', 0, 1, '1995-03-28', 'Rivadavia 44', 'diego.gomez@example.com', '1178901234', 1, 1),
+	   ('10000007', 'Camila', 'Sánchez', 1, 1, '1998-08-13', 'Moreno 321', 'camila.sanchez@example.com', '1189012345', 1, 1),
+	   ('10000008', 'Martín', 'Torres', 0, 1, '1980-11-19', 'Belgrano 50', 'martin.torres@example.com', '1190123456', 1, 1),
+	   ('10000009', 'Julieta', 'López', 1, 1, '1983-01-25', 'Independencia 9', 'julieta.lopez@example.com', '1101234567', 1, 1),
+	   ('10000010', 'Federico', 'Díaz', 0, 1, '1991-09-09', 'Alsina 222', 'federico.diaz@example.com', '1112345678', 1, 1),
+	   ('10000011', 'Valentina', 'Vega', 1, 1, '1993-12-17', 'Laprida 543', 'valen.vega@example.com', '1123451234', 2, 6),
+	   ('10000012', 'Leandro', 'Aguirre', 0, 1, '1975-06-03', 'Ruta 3 KM 88', 'leandro.aguirre@example.com', '1134562345', 2, 7),
+	   ('10000013', 'Florencia', 'Molina', 1, 1, '1987-05-11', 'Pellegrini 777', 'flor.molina@example.com', '1145673456', 2, 8),
+	   ('10000014', 'Tomás', 'Cruz', 0, 1, '1996-02-02', 'San Juan 66', 'tomas.cruz@example.com', '1156784567', 2, 7),
+	   ('10000015', 'Milagros', 'Paz', 1, 1, '2001-10-20', 'Dorrego 14', 'milagros.paz@example.com', '1167895678', 2, 6);
 GO
 
 -- Tabla 7 Usuarios
