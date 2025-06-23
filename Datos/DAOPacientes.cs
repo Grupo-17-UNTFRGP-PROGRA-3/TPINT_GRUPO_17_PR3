@@ -38,6 +38,34 @@ namespace Datos
             return datos.EjecutarConsulta(consulta);
         }
 
+        public int ModificarPaciente(int dni, Paciente paciente)
+        {
+            string consulta = "UPDATE Pacientes SET " +
+            "Nombre = @Nombre, Apellido = @Apellido, Sexo = @Sexo, IdNacionalidad = @IdNacionalidad, " +
+            "FechaNacimiento = @FechaNacimiento, Direccion = @Direccion, Email = @Email, " +
+            "Telefono = @Telefono, IdProvincia = @IdProvincia, IdLocalidad = @IdLocalidad " +
+            "WHERE DNI = @DNI";
+          
+            
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+            new SqlParameter("@Nombre", paciente._Nombre),
+            new SqlParameter("@Apellido", paciente._Apellido),
+            new SqlParameter("@Sexo", paciente._Sexo),
+            new SqlParameter("@IdNacionalidad", paciente._IdNacionalidad),
+            new SqlParameter("@FechaNacimiento", paciente._FechaNacimiento),
+            new SqlParameter("@Direccion", paciente._Direccion),
+            new SqlParameter("@Email", paciente._Email),
+            new SqlParameter("@Telefono", paciente._Telefono),
+            new SqlParameter("@IdProvincia", paciente._IdProvincia),
+            new SqlParameter("@IdLocalidad", paciente._IdLocalidad),
+            new SqlParameter("@DNI", dni)
+            };
+
+            return datos.EjecutarConsultaConParametros(consulta, parametros);
+        }
+
+
         public DataTable ListadoPacientes()
         {
             string consulta = "SELECT * FROM Pacientes WHERE Eliminado = 0";
@@ -63,5 +91,6 @@ namespace Datos
             dt = datos.ObtenerTabla(consulta, "Pacientes");
             return dt;
         }
+
     }
 }

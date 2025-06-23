@@ -48,6 +48,13 @@ namespace Vistas.Pacientes
 
                 CargarPacientes();
             }
+
+            if (e.CommandName == "ModificarPaciente")
+            {
+                string dni = e.CommandArgument.ToString();
+                Response.Redirect($"~/Administrador/Pacientes/AltaPaciente.aspx?dni={dni}");
+            }
+
         }
 
         protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -42,6 +42,34 @@ namespace Clinica
             }
         }
 
+        public bool ModificarPaciente(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, string FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido)
+        {
+            int cantFilas = 0;
+            Paciente paciente = new Paciente();
+            paciente._Nombre = Nombre;
+            paciente._Apellido = Apellido;
+            paciente._Sexo = Sexo;
+            paciente._IdNacionalidad = IDNac;
+            paciente._FechaNacimiento = FechaNac;
+            paciente._Direccion = Direccion;
+            paciente._Email = Email;
+            paciente._Telefono = Telefono;
+            paciente._IdProvincia = IdProv;
+            paciente._IdLocalidad = IdLoc;
+            paciente._Eliminado = Eliminido;
+
+            cantFilas = dAO.ModificarPaciente(DNI,paciente);
+
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool ExisteDNI(int dni)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -66,6 +94,14 @@ namespace Clinica
             AccesoDatos datos = new AccesoDatos();
             return dAO.EliminarPaciente(dni);
         }
+
+
+        public Paciente ObtenerPacientePorDNI(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            return datos.TraerPacientePorDNI(dni);
+        }
+
 
 
     }

@@ -75,7 +75,7 @@
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" />
+                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="ModificarPaciente" CommandArgument='<%# Eval("DNI") %>'/>
                     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" 
                         CommandName="EliminarPaciente"
                         CommandArgument='<%# Eval("DNI") %>'
@@ -98,7 +98,7 @@
 
     <div>
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-        <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
+       
         <asp:Button ID="btnVolver" runat="server" OnClick="btnVolver_Click" Text="Volver" />
     </div>
 </asp:Content>

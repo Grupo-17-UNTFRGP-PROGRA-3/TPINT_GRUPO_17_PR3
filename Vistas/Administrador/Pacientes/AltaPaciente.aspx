@@ -11,7 +11,7 @@
 
         <!--Titulo de pagina-->
         <div>
-            <h1>Alta de Paciente</h1>
+            <h1> Pacientes</h1>
         </div>
 
         <!--dni-->
@@ -89,14 +89,11 @@
             <!--direccion-->
             <div>
                 <div class="form-group">
-                    <asp:Label ID="lblCalle" runat="server" Text="Calle" CssClass="form-label"></asp:Label>
-                    <asp:TextBox ID="txtCalle" runat="server" CssClass="form-input"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtCalle" ErrorMessage="Debe ingresar una calle" ForeColor="Red" Display="Dynamic" />
-                    <asp:Label ID="lblAltura" runat="server" Text="Altura" CssClass="form-label"></asp:Label>
-                    <asp:TextBox ID="txtAltura" runat="server" CssClass="form-input"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvAltura" runat="server" ControlToValidate="txtAltura" ErrorMessage="Debe ingresar una altura" ForeColor="Red" Display="Dynamic" />
-                    <asp:RegularExpressionValidator ID="revAltura" runat="server" ControlToValidate="txtAltura" ValidationExpression="^\d+$" ErrorMessage="Altura inválida: solo digitos" ForeColor="Red" Display="Dynamic" />
-                </div>
+                    <asp:Label ID="lblDireccion" runat="server" Text="Direccion" CssClass="form-label"></asp:Label>
+                    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-input"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtDireccion" ErrorMessage="Debe ingresar una Direccion" ForeColor="Red" Display="Dynamic" />
+                    </div>
+
             </div>
 
             <!--provincia-->
@@ -134,7 +131,7 @@
 
             <!--botones-->
             <div>
-                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar paciente" CssClass="form-button" CausesValidation="true" OnClick="btnIngresar_Click" />
+                <asp:Button ID="btnIngresar" runat="server" Text="Aceptar" CssClass="form-button" CausesValidation="true" OnClick="btnIngresar_Click" />
                 <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
                 <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
                 <br />

@@ -26,6 +26,16 @@ namespace Datos
             return filasAfectadas;
         }
 
+        public int EjecutarConsultaConParametros(string consultaSql, List<SqlParameter> parametros)
+        {            
+            {
+                SqlCommand cmd = new SqlCommand(consultaSql, _conexion);
+                cmd.Parameters.AddRange(parametros.ToArray());
+                _conexion.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public SqlDataReader ConsultaLectura(string consutalSql)
         {
             _conexion.Open();
@@ -120,5 +130,61 @@ namespace Datos
 
             return existe;
         }
+
+
+        public Paciente TraerPacientePorDNI(int dni)
+        {
+            Paciente paciente = null;
+            string consulta = "SELECT * FROM Pacientes WHERE DNI = @dni";
+
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            cmd.Parameters.AddWithValue("@dni", dni);
+
+            _conexion.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                paciente = new Paciente
+                {
+
+                    _DNI = Convert.ToInt32(reader["DNI"]),
+                    _Nombre = reader["Nombre"].ToString(),
+                    _Apellido = reader["Apellido"].ToString(),
+                    _IdNacionalidad = Convert.ToInt32(reader["IdNacionalidad"]),
+                    _FechaNacimiento = reader["FechaNacimiento"].ToString(),
+                    _Direccion = reader["Direccion"].ToString(),
+                    _Email = reader["Email"].ToString(),
+                    _Telefono = reader["Telefono"].ToString(),
+                    _IdProvincia = Convert.ToInt32(reader["IdProvincia"]),
+                    _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
+                    
+                };
+                 if (reader["Sexo"].ToString() == "Masculino")
+                {
+                    paciente._Sexo = false;
+                }
+                else { paciente._Sexo = true;}
+
+                if(Convert.ToInt32(reader["Eliminado"])== 0)
+                {
+                    paciente._Eliminado = false;
+                }
+                else
+                {
+                    paciente._Eliminado= true;
+                }
+
+            
+            }
+
+            reader.Close();
+            _conexion.Close();
+
+            return paciente;
+        }
+
+
     }
 }

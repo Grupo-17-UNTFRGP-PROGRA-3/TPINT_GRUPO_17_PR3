@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Clinica;
+using Entidades;
 
 namespace Vistas
 {
@@ -23,6 +24,16 @@ namespace Vistas
 
             if (!IsPostBack)
             {
+
+                if (Request.QueryString["dni"] != null)
+                {
+                    BtnBuscarDni.Visible = false;
+                    BtnVolver2.Visible = false;
+                    pnlDatosPaciente.Visible = true;
+                    int dni = int.Parse(Request.QueryString["dni"]);
+                    CargarDatosPaciente(dni);
+                }
+
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
                 ddlNacionalidad.DataTextField = "Descripcion";
                 ddlNacionalidad.DataValueField = "Id";
@@ -53,14 +64,48 @@ namespace Vistas
             txtAnio.Text = string.Empty;
             txtMes.Text = string.Empty;
             txtDia.Text = string.Empty;
-            txtCalle.Text = string.Empty;
-            txtAltura.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtTelefono.Text = string.Empty;
             ddlNacionalidad.SelectedIndex = 0;
             ddlProvincia.SelectedIndex = 0;
             ddlLocalidad.SelectedIndex = 0;
         }
+
+        private void CargarDatosPaciente(int dni)
+        {
+            NegocioPaciente negocio = new NegocioPaciente();
+            Paciente paciente = negocio.ObtenerPacientePorDNI(dni);
+
+            if (paciente != null)
+            {
+                txtDNI.Text = dni.ToString();
+                txtNombre.Text = paciente._Nombre;
+                txtApellido.Text = paciente._Apellido;
+                if (!paciente._Sexo)
+                {
+                    rblSexo.SelectedValue = "femenino";
+                }
+                else
+                {
+                    rblSexo.SelectedValue = "masculino";
+                }
+                string FechaNac = paciente._FechaNacimiento;
+                DateTime fecha;
+                DateTime.TryParse(FechaNac, out fecha);
+                txtAnio.Text = fecha.Year.ToString();
+                txtMes.Text = fecha.Month.ToString();
+                txtDia.Text = fecha.Day.ToString();
+                txtDireccion.Text = paciente._Direccion;
+                txtEmail.Text = paciente._Email;
+                txtTelefono.Text = paciente._Telefono;
+                ddlNacionalidad.SelectedIndex = paciente._IdNacionalidad-1;
+                ddlProvincia.SelectedIndex = paciente._IdProvincia-1;
+                ddlLocalidad.SelectedIndex = paciente._IdLocalidad - 1;
+
+            }
+        }
+
 
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
         {
@@ -99,30 +144,44 @@ namespace Vistas
         protected void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
             txtDNI.Text = string.Empty;
-            LimpiarCampos();          
+            LimpiarCampos();
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            bool sexo= false;
-            if (rblSexo.SelectedValue == "femenino")
-            {
-                sexo = true;
-            }
            
-            string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
-            string direccion = txtCalle.Text + " " + txtAltura.Text;
-            int idNac = int.Parse(ddlNacionalidad.SelectedValue);
-            int idProv = int.Parse(ddlProvincia.SelectedValue);
-            int idLoc = int.Parse(ddlLocalidad.SelectedValue);
-            NegocioPaciente negocioPaciente = new NegocioPaciente();
-            if (negocioPaciente.AgregarPaciente(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo,idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text,idProv ,idLoc, false))
+                bool sexo = false;
+                if (rblSexo.SelectedValue == "femenino")
+                {
+                    sexo = true;
+                }
+
+                string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
+                string direccion = txtDireccion.Text;
+                int idNac = int.Parse(ddlNacionalidad.SelectedValue);
+                int idProv = int.Parse(ddlProvincia.SelectedValue);
+                int idLoc = int.Parse(ddlLocalidad.SelectedValue);
+                NegocioPaciente negocioPaciente = new NegocioPaciente();
+            if ((Request.QueryString["dni"] == null))
             {
-                lblMensaje.Text = "El paciente se ha agregado con éxito";
+                if (negocioPaciente.AgregarPaciente(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false))
+                {
+                    lblMensaje.Text = "El paciente se ha agregado con éxito";
+                    lblMensaje.ForeColor = Color.Green;
+                    LimpiarCampos();
+                    Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
+                }
+            }
+            else {
+                int dni = int.Parse(Request.QueryString["dni"]);
+                negocioPaciente.ModificarPaciente(dni, txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false);
+                lblMensaje.Text = "El paciente se ha Modificado con éxito";
                 lblMensaje.ForeColor = Color.Green;
                 LimpiarCampos();
+                Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
             }
-        }
+
+        } 
 
         protected void txtDNI_TextChanged(object sender, EventArgs e)
         {
@@ -150,6 +209,9 @@ namespace Vistas
                 ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
             }
+
         }
+
+
     }
 }
