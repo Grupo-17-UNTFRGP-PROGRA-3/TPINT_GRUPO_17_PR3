@@ -16,7 +16,7 @@
         <asp:Panel ID="pnlLegajo" runat="server">
             <div class="form-group">
                 <asp:Label ID="lblLegajo" runat="server" Text="Legajo" CssClass="form-label"></asp:Label>
-                <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-input"></asp:TextBox>
+                <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-input" OnTextChanged="txtLegajo_TextChanged"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajo" Display="Dynamic" ErrorMessage="Debe ingresar un numero de legajo" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajo" Display="Dynamic" ErrorMessage="Legajo invalido (4 digitos requeridos)" ForeColor="Red" ValidationExpression="^\d{4}$"></asp:RegularExpressionValidator>
             </div>
@@ -113,25 +113,17 @@
             <!--provincia-->
             <div class="form-group">
                 <asp:Label ID="lblProvincia" runat="server" Text="Provincia" CssClass="form-label"></asp:Label>
-                <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-input">
-                    <asp:ListItem Selected="True">Seleccione provincia</asp:ListItem>
-                    <asp:ListItem>Provincia1</asp:ListItem>
-                    <asp:ListItem>Provincia2</asp:ListItem>
-                    <asp:ListItem>etc</asp:ListItem>
+                <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" CssClass="form-input" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" Display="Dynamic" ErrorMessage="Seleccione una provincia" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" InitialValue="Seleccione provincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" Display="Dynamic" />
             </div>
 
             <!--localidad-->
             <div class="form-group">
                 <asp:Label ID="lblLocalidad" runat="server" Text="Localidad" CssClass="form-label"></asp:Label>
                 <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-input">
-                    <asp:ListItem Selected="True">Seleccione localidad</asp:ListItem>
-                    <asp:ListItem>Localidad1</asp:ListItem>
-                    <asp:ListItem>Localidad2</asp:ListItem>
-                    <asp:ListItem>etc</asp:ListItem>
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" Display="Dynamic" ErrorMessage="Seleccione una localidad" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" InitialValue="Seleccione localidad" ErrorMessage="Seleccione una localidad" ForeColor="Red" Display="Dynamic" />
             </div>
 
             <!--correo electronico-->
@@ -152,18 +144,7 @@
             <!--Especialidad-->
             <div class="form-group">
                 <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
-                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input">
-                    <asp:ListItem Selected="True">--Seleccione especialidad--</asp:ListItem>
-                    <asp:ListItem>Cardiología  </asp:ListItem>
-                    <asp:ListItem> Neurología </asp:ListItem>
-                    <asp:ListItem> Dermatología </asp:ListItem>
-                    <asp:ListItem> Pediatría </asp:ListItem>
-                    <asp:ListItem> Gastroenterología </asp:ListItem>
-                    <asp:ListItem> Oncología </asp:ListItem>
-                    <asp:ListItem> Endocrinología </asp:ListItem>
-                    <asp:ListItem> Oftalmología </asp:ListItem>
-                    <asp:ListItem> Psiquiatría </asp:ListItem>
-                    <asp:ListItem> Traumatología </asp:ListItem>
+                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input">                  
                 </asp:DropDownList>
                 <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidad" Display="Dynamic" ErrorMessage="Seleccione una especialidad" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
@@ -172,18 +153,19 @@
             <div class="form-group">
                 <asp:Label ID="lblHorarios" runat="server" Text="Dias de atencion" CssClass="form-label"></asp:Label>
                 <asp:CheckBoxList ID="cblDiasAtencion" runat="server" RepeatDirection="Horizontal">
-                    <asp:ListItem Value="0">Lunes</asp:ListItem>
-                    <asp:ListItem Value="1">Martes</asp:ListItem>
-                    <asp:ListItem Value="2">Miercoles</asp:ListItem>
-                    <asp:ListItem Value="3">Jueves</asp:ListItem>
-                    <asp:ListItem Value="4">Viernes</asp:ListItem>
+                    <asp:ListItem Value="1">Lunes</asp:ListItem>
+                    <asp:ListItem Value="2">Martes</asp:ListItem>
+                    <asp:ListItem Value="3">Miercoles</asp:ListItem>
+                    <asp:ListItem Value="4">Jueves</asp:ListItem>
+                    <asp:ListItem Value="5">Viernes</asp:ListItem>
+                    <asp:ListItem Value="6">Sábado</asp:ListItem>
                 </asp:CheckBoxList>
 
                 <div class="form-group">
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input">
                         <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
-                        <asp:ListItem>8:00</asp:ListItem>
+                        <asp:ListItem>08:00</asp:ListItem>
                         <asp:ListItem>10:00</asp:ListItem>
                         <asp:ListItem>11:00</asp:ListItem>
                         <asp:ListItem>13:00</asp:ListItem>
@@ -201,9 +183,12 @@
 
             <!--botones-->
             <div>
-                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true" CssClass="form-button" />
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true" CssClass="form-button" OnClick="btnIngresar_Click" />
                 <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
                 <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
+                <br />
+                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                <br />
             </div>
         </asp:Panel>
     </div>

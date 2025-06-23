@@ -21,7 +21,7 @@ namespace Datos
         public int AgregarPaciente(Paciente paciente)
         {
             string consulta = "INSERT INTO Pacientes(DNI, Nombre, Apellido, Sexo, IdNacionalidad, FechaNacimiento, Direccion, Email," +
-                " Telefono, IdProvincia,IdLocalidad, Eliminado) VALUES('" +
+                " Telefono, IdProvincia, IdLocalidad, Eliminado) VALUES('" +
              paciente._DNI + "', '" +
              paciente._Nombre + "', '" +
              paciente._Apellido + "', '" +

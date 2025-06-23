@@ -15,12 +15,12 @@ namespace Vistas
         NegocioNacionalidad negocioNacionalidad = new NegocioNacionalidad();
         NegocioProvincia negocioProvincia = new NegocioProvincia();
         NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
             lblMensaje.Text = string.Empty;
+
             if (!IsPostBack)
             {
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
@@ -40,9 +40,7 @@ namespace Vistas
                 cargarLocalidades();
 
             }
-
         }
-
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarLocalidades();
@@ -107,7 +105,7 @@ namespace Vistas
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             bool sexo= false;
-            if (rblSexo.SelectedValue == "masculino")
+            if (rblSexo.SelectedValue == "femenino")
             {
                 sexo = true;
             }
