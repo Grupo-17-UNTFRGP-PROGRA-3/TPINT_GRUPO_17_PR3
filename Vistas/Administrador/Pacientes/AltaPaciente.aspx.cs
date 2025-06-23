@@ -82,11 +82,11 @@ namespace Vistas
                 txtDNI.Text = dni.ToString();
                 txtNombre.Text = paciente._Nombre;
                 txtApellido.Text = paciente._Apellido;
-                if (!paciente._Sexo)
+                if (paciente._Sexo)
                 {
                     rblSexo.SelectedValue = "femenino";
                 }
-                else
+                if (!paciente._Sexo) 
                 {
                     rblSexo.SelectedValue = "masculino";
                 }
