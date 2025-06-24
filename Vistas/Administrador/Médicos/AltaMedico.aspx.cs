@@ -120,7 +120,7 @@ namespace Vistas
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            
+
             bool sexo = false;
             if (rblSexo.SelectedValue == "femenino")
             {
@@ -142,22 +142,22 @@ namespace Vistas
                 {
                     lblMensaje.Text = "El médico se ha agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
-                
+
 
                     foreach (ListItem item in cblDiasAtencion.Items)
-                    {               
+                    {
                         if (item.Selected)
                         {
                             int idDia = int.Parse(item.Value);
                             string Legajo = txtLegajo.Text.ToString();
                             string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
                             string HoraFin = ddlHoraFin.SelectedValue.ToString();
-                        
+
                             negocioHorarioMedico.AgregarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
                         }
                     }
                     LimpiarCampos();
-                    txtLegajo.Text = string.Empty;  
+                    txtLegajo.Text = string.Empty;
                 }
             }
             else
@@ -220,7 +220,7 @@ namespace Vistas
             Entidades.Medico medico = negMed.ObtenerMedicoPorLegajo(legajo);
             NegocioHorarioMedico hor = new NegocioHorarioMedico();
             HorarioMedico horario = hor.ObtenerHorarioMedicoPorLegajo(legajo);
-            
+
             if (medico != null)
             {
                 txtLegajo.Text = legajo.ToString();
@@ -253,6 +253,19 @@ namespace Vistas
                 ddlHoraInicio.SelectedValue = horario._HoraInicio;
                 ddlHoraFin.SelectedValue = horario._HoraFin;
 
+            }
+        }
+
+        protected void txtDNI_TextChanged(object sender, EventArgs e)
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+            if (negocioMedico.ExisteDNI(Convert.ToInt32(txtDNI.Text)))
+            {
+                lblDNIMedico.Text = "El medico ya se encuentra registrado con otro legajo";
+            }
+            else
+            {
+                lblDNIMedico.Text = "";
             }
         }
     }

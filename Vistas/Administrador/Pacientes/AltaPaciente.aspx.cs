@@ -109,17 +109,9 @@ namespace Vistas
 
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
         {
-            int dni;
-
-            if (!int.TryParse(txtDNI.Text, out dni))
-            {
-                lblInicio.Text = "Ingrese un DNI válido.";
-                pnlDatosPaciente.Visible = false;
-                return;
-            }
-
+             
             NegocioPaciente negocioPaciente = new NegocioPaciente();
-            bool existe = negocioPaciente.ExisteDNI(dni);
+            bool existe = negocioPaciente.ExisteDNI(Convert.ToInt32(txtDNI.Text));
 
             if (existe)
             {

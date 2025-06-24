@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <!--ingreso de datos medico-->
     <div>
 
@@ -30,6 +30,15 @@
         </asp:Panel>
 
         <asp:Panel ID="pnlDatosMedico" runat="server" Visible="false">
+            <!--dni-->
+            <div class="form-group">
+                <asp:Label ID="lblDNI" runat="server" Text="D.N.I." CssClass="form-label"></asp:Label>
+                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input" AutoPostBack="True" OnTextChanged="txtDNI_TextChanged"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="Debe ingresar un DNI" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="DNI inválido (7-8 dígitos)" ForeColor="Red" ValidationExpression="^\d{7,8}$"></asp:RegularExpressionValidator>
+                <br />
+                <asp:Label ID="lblDNIMedico" runat="server"></asp:Label>
+            </div>
             <!--nombre-->
             <div class="form-group">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label"></asp:Label>
@@ -42,14 +51,6 @@
                 <asp:Label ID="lblApellido" runat="server" Text="Apellido" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtApellido" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Debe ingresar un apellido" ForeColor="Red"></asp:RequiredFieldValidator>
-            </div>
-
-            <!--dni-->
-            <div class="form-group">
-                <asp:Label ID="lblDNI" runat="server" Text="D.N.I." CssClass="form-label"></asp:Label>
-                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="Debe ingresar un DNI" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="DNI inválido (7-8 dígitos)" ForeColor="Red" ValidationExpression="^\d{7,8}$"></asp:RegularExpressionValidator>
             </div>
 
             <!--sexo-->
@@ -139,7 +140,7 @@
             <!--Especialidad-->
             <div class="form-group">
                 <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
-                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input">                  
+                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input">
                 </asp:DropDownList>
                 <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidad" Display="Dynamic" ErrorMessage="Seleccione una especialidad" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
@@ -198,9 +199,11 @@
                 <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
                 <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
                 <br />
-                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 <br />
-                 <br /> <br /> <br />
+                <br />
+                <br />
+                <br />
             </div>
         </asp:Panel>
     </div>

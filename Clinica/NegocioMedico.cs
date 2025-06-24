@@ -111,5 +111,11 @@ namespace Clinica
             AccesoDatos datos = new AccesoDatos();
             return datos.TraerMedicoPorLegajo(legajo);
         }
+
+        public bool ExisteDNI(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            return datos.ExisteDNI(dni);
+        }
     }
 }
