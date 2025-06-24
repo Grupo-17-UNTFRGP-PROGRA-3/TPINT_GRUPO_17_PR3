@@ -13,7 +13,7 @@ namespace Clinica
     public class NegocioHorarioMedico
     {
         DaoHorarioMedico dao = new DaoHorarioMedico();
-        public bool AgregarHorarioMedico(int IdDia, int Legajo, string HoraInicio, string HoraFin)
+        public bool AgregarHorarioMedico(int IdDia, string Legajo, string HoraInicio, string HoraFin)
         {
             int cantFilas = 0;
             HorarioMedico horarioMedico = new HorarioMedico();
@@ -34,7 +34,7 @@ namespace Clinica
             }
         }
 
-        public bool ModificarHorarioMedico(int IdDia, int Legajo, string HoraInicio, string HoraFin)
+        public bool ModificarHorarioMedico(int IdDia, string Legajo, string HoraInicio, string HoraFin)
         {
            HorarioMedico horMed = new HorarioMedico();
             horMed._IdDia = IdDia;
@@ -54,7 +54,7 @@ namespace Clinica
             }
         }
 
-        public HorarioMedico ObtenerHorarioMedicoPorLegajo(int legajo)
+        public HorarioMedico ObtenerHorarioMedicoPorLegajo(string legajo)
         {
             HorarioMedico horMed = null;
             horMed = dao.traerHorariosMedico(legajo);

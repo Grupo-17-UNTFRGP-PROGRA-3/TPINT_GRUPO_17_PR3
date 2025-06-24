@@ -9,7 +9,7 @@ namespace Entidades
     public class HorarioMedico
     {
         public int _IdDia { get; set; }
-        public int _Legajo { get; set; }
+        public string _Legajo { get; set; }
         public string _HoraInicio { get; set; }
         public string _HoraFin { get; set; }
         public bool _Eliminado { get; set; }

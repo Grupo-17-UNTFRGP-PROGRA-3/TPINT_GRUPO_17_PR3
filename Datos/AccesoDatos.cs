@@ -178,7 +178,7 @@ namespace Datos
             return paciente;
         }
 
-        public Medico TraerMedicoPorLegajo(int legajo)
+        public Medico TraerMedicoPorLegajo(string legajo)
         {
             Medico medico = null;
             string consulta = "SELECT * FROM Medicos WHERE Legajo = @legajo";
@@ -203,7 +203,7 @@ namespace Datos
                      _Telefono = reader["Telefono"].ToString(),
                      _IdProvincia = Convert.ToInt32(reader["IdProvincia"]),
                      _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
-                     _Legajo = Convert.ToInt32(reader["Legajo"]),
+                     _Legajo = reader["Legajo"].ToString(),
                      _IdEspecialidad = Convert.ToInt32(reader["IdEspecialidad"])
                 };
 
@@ -227,7 +227,7 @@ namespace Datos
             return medico;
         }
 
-        public HorarioMedico TraerHorarioMedicoPorLegajo(int legajo)
+        public HorarioMedico TraerHorarioMedicoPorLegajo(string legajo)
         {
             HorarioMedico horMed = new HorarioMedico();
             string consulta = "SELECT * FROM HorariosMedicos WHERE Eliminado != 1 AND Legajo =" + legajo.ToString();

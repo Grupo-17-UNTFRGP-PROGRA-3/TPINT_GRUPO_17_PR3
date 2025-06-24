@@ -24,7 +24,7 @@ namespace Datos
 
             return datos.EjecutarConsulta(consulta);
         }
-        public HorarioMedico traerHorariosMedico (int legajo)
+        public HorarioMedico traerHorariosMedico (string legajo)
         {
             horariosMedicos = datos.TraerHorarioMedicoPorLegajo(legajo);
             return horariosMedicos;

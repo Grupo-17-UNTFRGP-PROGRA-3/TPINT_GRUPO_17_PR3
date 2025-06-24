@@ -62,9 +62,8 @@ namespace Datos
             return dt;
         }
 
-        public int ModificarMedico(int leg, Medico medico)
+        public int ModificarMedico(string leg, Medico medico)
         {
-            string legajo = leg.ToString();
             string consulta = @"UPDATE [dbo].[Medicos] SET [Legajo] = @Legajo, [Dni] = @Dni, [Nombre] = @Nombre, [Apellido] = @Apellido, [Sexo] = @Sexo, " +
                 " [IdNacionalidad] = @IdNacionalidad, [FechaNacimiento] = @FechaNacimiento, [Direccion] = @Direccion, [Email] = @Email," +
                 " [Telefono] = @Telefono, [IdEspecialidad] = @IdEspecialidad, [IdProvincia] = @IdProvincia, [IdLocalidad] = @IdLocalidad " +
@@ -72,7 +71,7 @@ namespace Datos
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-            new SqlParameter("@Legajo", legajo),
+            new SqlParameter("@Legajo", leg),
             new SqlParameter("@Dni", medico._DNI ),
             new SqlParameter("@Nombre", medico._Nombre ),
             new SqlParameter("@Apellido", medico._Apellido),

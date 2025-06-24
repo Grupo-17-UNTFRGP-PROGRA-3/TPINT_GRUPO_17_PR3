@@ -35,7 +35,7 @@ namespace Vistas
                     pnlDatosMedico.Visible = true;
                     BtnBuscarLegajo.Visible = false;
                     BtnVolver2.Visible = false;
-                    int legajo = int.Parse(Request.QueryString["legajo"]);
+                    string legajo = Request.QueryString["legajo"].ToString();
                     txtLegajo.Text = legajo.ToString();
                     CargarDatosMedico(legajo);
                     btnIngresar.Text = "MODIFICAR";
@@ -138,7 +138,7 @@ namespace Vistas
 
             if (Request.QueryString["legajo"] == null)
             {
-                if (negocioMedico.AgregarMedico(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false, int.Parse(txtLegajo.Text), idEsp))
+                if (negocioMedico.AgregarMedico(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false, txtLegajo.Text, idEsp))
                 {
                     lblMensaje.Text = "El médico se ha agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
@@ -149,7 +149,7 @@ namespace Vistas
                         if (item.Selected)
                         {
                             int idDia = int.Parse(item.Value);
-                            int Legajo = int.Parse(txtLegajo.Text);
+                            string Legajo = txtLegajo.Text.ToString();
                             string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
                             string HoraFin = ddlHoraFin.SelectedValue.ToString();
                         
@@ -165,13 +165,13 @@ namespace Vistas
                 bool exitoMed = false;
                 bool exitoHor = false;
 
-                exitoMed = negocioMedico.ModificarMedico(int.Parse(txtLegajo.Text), int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
+                exitoMed = negocioMedico.ModificarMedico(txtLegajo.Text, int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
                 foreach (ListItem item in cblDiasAtencion.Items)
                 {
                     if (item.Selected)
                     {
                         int idDia = int.Parse(item.Value);
-                        int Legajo = int.Parse(txtLegajo.Text);
+                        string Legajo = txtLegajo.Text.ToString();
                         string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
                         string HoraFin = ddlHoraFin.SelectedValue.ToString();
 
@@ -213,7 +213,7 @@ namespace Vistas
             }
         }
 
-        protected void CargarDatosMedico(int legajo)
+        protected void CargarDatosMedico(string legajo)
         {
 
             NegocioMedico negMed = new NegocioMedico();
