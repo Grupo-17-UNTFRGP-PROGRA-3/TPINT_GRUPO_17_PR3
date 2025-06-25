@@ -1,8 +1,9 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AltaMedico.aspx.cs" Inherits="Vistas.AltaMedico" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AltaMedico.aspx.cs" Inherits="Vistas.AltaMedico" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
 
     <!--ingreso de datos medico-->
     <div>
@@ -111,21 +112,26 @@
                 </div>
             </div>
 
-            <!--provincia-->
-            <div class="form-group">
-                <asp:Label ID="lblProvincia" runat="server" Text="Provincia" CssClass="form-label"></asp:Label>
-                <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" CssClass="form-input" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
-                </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" InitialValue="Seleccione provincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" Display="Dynamic" />
-            </div>
+            <asp:UpdatePanel ID="updatePanelProvinciaLocalidad" runat="server">
+                <ContentTemplate>
+                    <!--provincia-->
+                    <div class="form-group">
+                        <asp:Label ID="lblProvincia" runat="server" Text="Provincia" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" CssClass="form-input" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" InitialValue="Seleccione provincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" Display="Dynamic" />
+                    </div>
+                    <!--localidad-->
+                    <div class="form-group">
+                        <asp:Label ID="lblLocalidad" runat="server" Text="Localidad" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-input">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" InitialValue="Seleccione localidad" ErrorMessage="Seleccione una localidad" ForeColor="Red" Display="Dynamic" />
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
-            <!--localidad-->
-            <div class="form-group">
-                <asp:Label ID="lblLocalidad" runat="server" Text="Localidad" CssClass="form-label"></asp:Label>
-                <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-input">
-                </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" InitialValue="Seleccione localidad" ErrorMessage="Seleccione una localidad" ForeColor="Red" Display="Dynamic" />
-            </div>
+
 
             <!--correo electronico-->
             <div class="form-group">
