@@ -13,7 +13,7 @@ namespace Entidades
         public string _Apellido { get; set; }
         public bool _Sexo { get; set; }
         public int _IdNacionalidad { get; set; }
-        public string _FechaNacimiento { get; set; }
+        public DateTime _FechaNacimiento { get; set; }
         public string _Direccion { get; set; }
         public string _Email { get; set; }
         public string _Telefono { get; set; }
@@ -25,7 +25,7 @@ namespace Entidades
         
         public Medico() { }
 
-        public Medico (int dni, string nombre, string apellido, bool sexo, int idNacionalidad, string fechaNacimiento,
+        public Medico (int dni, string nombre, string apellido, bool sexo, int idNacionalidad, DateTime fechaNacimiento,
                   string direccion, string email, string telefono, int idProvincia, int idLocalidad, bool eliminado,
                   string legajo, int idEspecialidad)
         {

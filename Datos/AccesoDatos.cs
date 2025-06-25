@@ -197,7 +197,7 @@ namespace Datos
                      _Nombre = reader["Nombre"].ToString(),
                      _Apellido = reader["Apellido"].ToString(),
                      _IdNacionalidad = Convert.ToInt32(reader["IdNacionalidad"]),
-                     _FechaNacimiento = reader["FechaNacimiento"].ToString(),
+                     _FechaNacimiento = DateTime.Parse(reader["FechaNacimiento"].ToString()),
                      _Direccion = reader["Direccion"].ToString(),
                      _Email = reader["Email"].ToString(),
                      _Telefono = reader["Telefono"].ToString(),

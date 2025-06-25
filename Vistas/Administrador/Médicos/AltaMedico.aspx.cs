@@ -78,9 +78,10 @@ namespace Vistas
             txtDNI.Text = string.Empty;
             rblSexo.ClearSelection();
             ddlNacionalidad.SelectedIndex = 0;
-            txtAnio.Text = string.Empty;
-            txtMes.Text = string.Empty;
-            txtDia.Text = string.Empty;
+            //txtAnio.Text = string.Empty;
+            //txtMes.Text = string.Empty;
+            //txtDia.Text = string.Empty;
+            txtFechaNacimiento.Text = string.Empty;
             txtDireccion.Text = string.Empty;
             ddlProvincia.SelectedIndex = 0;
             ddlLocalidad.SelectedIndex = 0;
@@ -127,7 +128,8 @@ namespace Vistas
                 sexo = true;
             }
 
-            string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
+            //string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
+            DateTime fechaNac = DateTime.Parse(txtFechaNacimiento.Text);
             string direccion = txtDireccion.Text;
             int idNac = int.Parse(ddlNacionalidad.SelectedValue);
             int idProv = int.Parse(ddlProvincia.SelectedValue);
@@ -138,7 +140,7 @@ namespace Vistas
 
             if (Request.QueryString["legajo"] == null)
             {
-                if (negocioMedico.AgregarMedico(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false, txtLegajo.Text, idEsp))
+                if (negocioMedico.AgregarMedico(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechaNac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false, txtLegajo.Text, idEsp))
                 {
                     lblMensaje.Text = "El médico se ha agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
@@ -165,7 +167,7 @@ namespace Vistas
                 bool exitoMed = false;
                 bool exitoHor = false;
 
-                exitoMed = negocioMedico.ModificarMedico(txtLegajo.Text, int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
+                exitoMed = negocioMedico.ModificarMedico(txtLegajo.Text, int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechaNac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
                 foreach (ListItem item in cblDiasAtencion.Items)
                 {
                     if (item.Selected)
@@ -235,12 +237,13 @@ namespace Vistas
                     rblSexo.SelectedValue = "masculino";
                 }
                 txtDNI.Text = medico._DNI.ToString();
-                string FechaNac = medico._FechaNacimiento;
-                DateTime fecha;
-                DateTime.TryParse(FechaNac, out fecha);
-                txtAnio.Text = fecha.Year.ToString();
-                txtMes.Text = fecha.Month.ToString();
-                txtDia.Text = fecha.Day.ToString();
+                //string FechaNac = medico._FechaNacimiento;
+                //DateTime fecha;
+                //DateTime.TryParse(FechaNac, out fecha);
+                //txtAnio.Text = fecha.Year.ToString();
+                //txtMes.Text = fecha.Month.ToString();
+                //txtDia.Text = fecha.Day.ToString();
+                txtFechaNacimiento.Text = medico._FechaNacimiento.ToString("yyyy-MM-dd");
                 txtDireccion.Text = medico._Direccion.ToString();
                 txtEmail.Text = medico._Email;
                 txtTelefono.Text = medico._Telefono;

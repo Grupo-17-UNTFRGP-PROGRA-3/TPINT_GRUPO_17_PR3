@@ -12,7 +12,7 @@ namespace Clinica
     public class NegocioMedico
     {
         DAOMedicos dAO = new DAOMedicos();
-        public bool AgregarMedico(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, string FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido, string Legajo, int Especialidad)
+        public bool AgregarMedico(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, DateTime FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido, string Legajo, int Especialidad)
         {
             int cantFilas = 0;
             Medico medico = new Medico();
@@ -44,7 +44,7 @@ namespace Clinica
         }
 
         public bool ModificarMedico(string Legajo, int Dni, string Nombre, string Apellido, bool Sexo, int IdNacionalidad,
-                            string FechaNacimiento, string Direccion, string Email, string Telefono, int IdEspecialidad,
+                            DateTime FechaNacimiento, string Direccion, string Email, string Telefono, int IdEspecialidad,
                             int IdProvincia, int IdLocalidad, bool Eliminado)
         {
             int cantFilas = 0;

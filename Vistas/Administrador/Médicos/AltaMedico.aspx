@@ -78,8 +78,12 @@
             <!--nacimiento-->
             <div class="form-group">
                 <asp:Label ID="lblNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="form-label"></asp:Label>
-
-                <!--año-->
+                <asp:TextBox TextMode="Date" ID="txtFechaNacimiento" runat="server" CssClass="form-input" ></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ControlToValidate="txtFechaNacimiento" Display="Dynamic" ErrorMessage="Seleccione una fecha" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator id="regExV"  ControlToValidate="txtFechaNacimiento" ValidationExpression="\d{4}[-]\d{2}[-]\d{2}"  
+                    Display="Dynamic" ForeColor="Red"
+                    ErrorMessage="Fecha inválida" runat="server"/>
+                <%--<!--año-->
                 <asp:Label ID="lblAnio" runat="server" Text="Año"></asp:Label>
                 <asp:TextBox ID="txtAnio" runat="server" CssClass="form-input"></asp:TextBox>
 
@@ -95,8 +99,9 @@
                 <asp:Label ID="lblDia" runat="server" Text="Dia"></asp:Label>
                 <asp:TextBox ID="txtDia" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="txtDia" Display="Dynamic" ErrorMessage="El dia es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RangeValidator ID="rvDia" runat="server" ControlToValidate="txtDia" Display="Dynamic" ErrorMessage="El dia es invalido" ForeColor="Red" MaximumValue="31" MinimumValue="1" Type="Integer"></asp:RangeValidator>
+                <asp:RangeValidator ID="rvDia" runat="server" ControlToValidate="txtDia" Display="Dynamic" ErrorMessage="El dia es invalido" ForeColor="Red" MaximumValue="31" MinimumValue="1" Type="Integer"></asp:RangeValidator>--%>
             </div>
+
 
             <!--direccion-->
             <div>
