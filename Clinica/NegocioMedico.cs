@@ -11,36 +11,22 @@ namespace Clinica
 {
     public class NegocioMedico
     {
-        DAOMedicos dAO = new DAOMedicos();
-        public bool AgregarMedico(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, DateTime FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido, string Legajo, int Especialidad)
+        private readonly DAOMedicos dAOMedico = new DAOMedicos();
+        private readonly DaoHorarioMedico dAOHorario = new DaoHorarioMedico();
+        public bool AgregarMedico(Medico medico)
         {
-            int cantFilas = 0;
-            Medico medico = new Medico();
-            medico._DNI = DNI;
-            medico._Nombre = Nombre;
-            medico._Apellido = Apellido;
-            medico._Sexo = Sexo;
-            medico._IdNacionalidad = IDNac;
-            medico._FechaNacimiento = FechaNac;
-            medico._Direccion = Direccion;
-            medico._Email = Email;
-            medico._Telefono = Telefono;
-            medico._IdProvincia = IdProv;
-            medico._IdLocalidad = IdLoc;
-            medico._Eliminado = Eliminido;
-            medico._Legajo = Legajo;
-            medico._IdEspecialidad = Especialidad;
+            int cantFilasMedico = 0;
+            int cantFilasHorarios = 0;
 
-            cantFilas = dAO.AgregarMedico(medico);
+            cantFilasMedico = dAOMedico.AgregarMedico(medico);
 
-            if (cantFilas == 1)
+            if (cantFilasMedico > 0)
             {
-                return true;
+                cantFilasHorarios = dAOHorario.AgregarHorariosMedico(medico._Horarios);
+                return cantFilasHorarios > 0;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public bool ModificarMedico(string Legajo, int Dni, string Nombre, string Apellido, bool Sexo, int IdNacionalidad,
@@ -65,7 +51,7 @@ namespace Clinica
             medico._IdLocalidad = IdLocalidad;
             medico._Eliminado = Eliminado;
 
-            cantFilas = dAO.ModificarMedico(Legajo, medico);
+            cantFilas = dAOMedico.ModificarMedico(Legajo, medico);
 
             if (cantFilas == 1)
             {
@@ -89,20 +75,20 @@ namespace Clinica
         public bool EliminarMedico(string legajo)
         {
             AccesoDatos datos = new AccesoDatos();
-            return dAO.EliminarMedico(legajo);
+            return dAOMedico.EliminarMedico(legajo);
         }
 
         public DataTable ListadoMedicosJoined()
         {
             DataTable dt = new DataTable();
-            dt = dAO.ListadoMedicosJoined();
+            dt = dAOMedico.ListadoMedicosJoined();
             return dt;
         }
 
         public DataTable ListadoMedicos()
         {
             DataTable dt = new DataTable();
-            dt = dAO.ListadoMedicos();
+            dt = dAOMedico.ListadoMedicos();
             return dt;
         }
 

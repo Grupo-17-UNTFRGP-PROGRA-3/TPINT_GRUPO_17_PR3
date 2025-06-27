@@ -17,9 +17,9 @@ namespace Vistas
         NegocioNacionalidad negocioNacionalidad = new NegocioNacionalidad();
         NegocioProvincia negocioProvincia = new NegocioProvincia();
         NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
-        NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
         NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-        NegocioMedico negocioMedico = new NegocioMedico();
+        private readonly NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
+        private readonly NegocioMedico negocioMedico = new NegocioMedico();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -121,72 +121,73 @@ namespace Vistas
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-
-            bool sexo = false;
-            if (rblSexo.SelectedValue == "femenino")
+            Entidades.Medico medico = new Entidades.Medico()
             {
-                sexo = true;
-            }
+                _DNI = int.Parse(txtDNI.Text),
+                _Nombre = txtNombre.Text,
+                _Apellido = txtApellido.Text,
+                _Sexo = rblSexo.SelectedValue == "femenino", //SI ESTÁ SELECCIONADO FEMENINO, TRUE, SINO FALSE
+                _IdNacionalidad = int.Parse(ddlNacionalidad.SelectedValue),
+                _FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text),
+                _Direccion = txtDireccion.Text,
+                _Email = txtEmail.Text,
+                _Telefono = txtTelefono.Text,
+                _IdProvincia = int.Parse(ddlProvincia.SelectedValue),
+                _IdLocalidad = int.Parse(ddlLocalidad.SelectedValue),
+                _Eliminado = false,
+                _Legajo = txtLegajo.Text,
+                _IdEspecialidad = int.Parse(ddlEspecialidad.SelectedValue),
+                _Horarios = new List<HorarioMedico>()
+            };
 
-            //string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
-            DateTime fechaNac = DateTime.Parse(txtFechaNacimiento.Text);
-            string direccion = txtDireccion.Text;
-            int idNac = int.Parse(ddlNacionalidad.SelectedValue);
-            int idProv = int.Parse(ddlProvincia.SelectedValue);
-            int idLoc = int.Parse(ddlLocalidad.SelectedValue);
-            int idEsp = int.Parse(ddlEspecialidad.SelectedValue);
-            NegocioMedico negocioMedico = new NegocioMedico();
-            NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
+            foreach (ListItem dia in cblDiasAtencion.Items)
+            {
+                medico._Horarios.Add(new HorarioMedico
+                {
+                    _IdDia = int.Parse(dia.Value),
+                    _Legajo = txtLegajo.Text,
+                    _HoraInicio = ddlHoraInicio.SelectedValue,
+                    _HoraFin = ddlHoraFin.SelectedValue,
+                    _Eliminado = dia.Selected ? false : true
+                });
+            }
 
             if (Request.QueryString["legajo"] == null)
             {
-                if (negocioMedico.AgregarMedico(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechaNac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false, txtLegajo.Text, idEsp))
+                if (negocioMedico.AgregarMedico(medico))
                 {
                     lblMensaje.Text = "El médico se ha agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
 
-
-                    foreach (ListItem item in cblDiasAtencion.Items)
-                    {
-                        if (item.Selected)
-                        {
-                            int idDia = int.Parse(item.Value);
-                            string Legajo = txtLegajo.Text.ToString();
-                            string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
-                            string HoraFin = ddlHoraFin.SelectedValue.ToString();
-
-                            negocioHorarioMedico.AgregarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
-                        }
-                    }
                     LimpiarCampos();
                     txtLegajo.Text = string.Empty;
                 }
             }
-            else
-            {
-                bool exitoMed = false;
-                bool exitoHor = false;
+            //else
+            //{
+            //    bool exitoMed = false;
+            //    bool exitoHor = false;
 
-                exitoMed = negocioMedico.ModificarMedico(txtLegajo.Text, int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechaNac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
-                foreach (ListItem item in cblDiasAtencion.Items)
-                {
-                    if (item.Selected)
-                    {
-                        int idDia = int.Parse(item.Value);
-                        string Legajo = txtLegajo.Text.ToString();
-                        string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
-                        string HoraFin = ddlHoraFin.SelectedValue.ToString();
+            //    exitoMed = negocioMedico.ModificarMedico(txtLegajo.Text, int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechaNac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
+            //    foreach (ListItem item in cblDiasAtencion.Items)
+            //    {
+            //        if (item.Selected)
+            //        {
+            //            int idDia = int.Parse(item.Value);
+            //            string Legajo = txtLegajo.Text.ToString();
+            //            string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
+            //            string HoraFin = ddlHoraFin.SelectedValue.ToString();
 
-                        exitoHor = negocioHorarioMedico.ModificarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
-                    }
-                }
-                LimpiarCampos();
-                txtLegajo.Text = string.Empty;
-                if (exitoMed && exitoHor)
-                {
-                    lblMensaje.Text = "Registro medico modificado con exito";
-                }
-            }
+            //            exitoHor = negocioHorarioMedico.ModificarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
+            //        }
+            //    }
+            //    LimpiarCampos();
+            //    txtLegajo.Text = string.Empty;
+            //    if (exitoMed && exitoHor)
+            //    {
+            //        lblMensaje.Text = "Registro medico modificado con exito";
+            //    }
+            //}
         }
         protected void txtLegajo_TextChanged(object sender, EventArgs e)
         {

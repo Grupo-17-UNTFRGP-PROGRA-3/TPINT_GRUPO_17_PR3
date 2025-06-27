@@ -22,7 +22,8 @@ namespace Entidades
         public bool _Eliminado { get; set; }
         public string _Legajo { get; set; }
         public int _IdEspecialidad { get; set; }
-        
+        public List<HorarioMedico> _Horarios { get; set; }
+
         public Medico() { }
 
         public Medico (int dni, string nombre, string apellido, bool sexo, int idNacionalidad, DateTime fechaNacimiento,

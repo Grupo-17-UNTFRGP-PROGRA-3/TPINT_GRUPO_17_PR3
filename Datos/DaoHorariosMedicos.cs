@@ -14,13 +14,19 @@ namespace Datos
         AccesoDatos datos = new AccesoDatos();
         HorarioMedico horariosMedicos = new HorarioMedico();
 
-        public int AgregarHorarioMedico(HorarioMedico horariosMedicos)
+        public int AgregarHorariosMedico(List<HorarioMedico> listaHorarios)
         {
-            string consulta = "INSERT INTO HorariosMedicos(IdDia, Legajo, HoraInicio, HoraFin, Eliminado) VALUES('" +
-                horariosMedicos._IdDia + "', '" +
-                horariosMedicos._Legajo + "', '" +
-                horariosMedicos._HoraInicio + "', '" +
-                horariosMedicos._HoraFin + "', 0)";
+            string consulta = "";
+
+            foreach (HorarioMedico horario in listaHorarios)
+            {
+                consulta += "INSERT INTO HorariosMedicos(IdDia, Legajo, HoraInicio, HoraFin, Eliminado) VALUES('" +
+                    horario._IdDia + "', '" +
+                    horario._Legajo + "', '" +
+                    horario._HoraInicio + "', '" +
+                    horario._HoraFin + "', '" +
+                    horario._Eliminado + "'); ";
+            }
 
             return datos.EjecutarConsulta(consulta);
         }
@@ -30,13 +36,13 @@ namespace Datos
             return horariosMedicos;
         }
 
-        public int ModificarHorarioMedicos(HorarioMedico horarioMedico)
-        {
-            string consulta1 = "Delete From[HorariosMedicos] where Legajo =" + horarioMedico._Legajo.ToString() ;
-            datos.EjecutarConsulta(consulta1);
+        //public int ModificarHorarioMedicos(HorarioMedico horarioMedico)
+        //{
+        //    string consulta1 = "Delete From[HorariosMedicos] where Legajo =" + horarioMedico._Legajo.ToString() ;
+        //    datos.EjecutarConsulta(consulta1);
 
-            return this.AgregarHorarioMedico(horarioMedico);
-        }
+        //    return this.AgregarHorarioMedico(horarioMedico);
+        //}
     }
     
 }
