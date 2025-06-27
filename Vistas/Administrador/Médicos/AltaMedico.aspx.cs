@@ -142,13 +142,14 @@ namespace Vistas
 
             foreach (ListItem dia in cblDiasAtencion.Items)
             {
+                //RECORRE TODOS LOS DÍAS DE LA SEMANA
                 medico._Horarios.Add(new HorarioMedico
                 {
                     _IdDia = int.Parse(dia.Value),
                     _Legajo = txtLegajo.Text,
                     _HoraInicio = ddlHoraInicio.SelectedValue,
                     _HoraFin = ddlHoraFin.SelectedValue,
-                    _Eliminado = dia.Selected ? false : true
+                    _Eliminado = dia.Selected ? false : true //SI ESTÁ SELECCIONADO, ELIMINADO = FALSE, SINO TRUE
                 });
             }
 
@@ -163,31 +164,14 @@ namespace Vistas
                     txtLegajo.Text = string.Empty;
                 }
             }
-            //else
-            //{
-            //    bool exitoMed = false;
-            //    bool exitoHor = false;
-
-            //    exitoMed = negocioMedico.ModificarMedico(txtLegajo.Text, int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechaNac, direccion, txtEmail.Text, txtTelefono.Text, idEsp, idProv, idLoc, false);
-            //    foreach (ListItem item in cblDiasAtencion.Items)
-            //    {
-            //        if (item.Selected)
-            //        {
-            //            int idDia = int.Parse(item.Value);
-            //            string Legajo = txtLegajo.Text.ToString();
-            //            string HoraInicio = ddlHoraInicio.SelectedValue.ToString();
-            //            string HoraFin = ddlHoraFin.SelectedValue.ToString();
-
-            //            exitoHor = negocioHorarioMedico.ModificarHorarioMedico(idDia, Legajo, HoraInicio, HoraFin);
-            //        }
-            //    }
-            //    LimpiarCampos();
-            //    txtLegajo.Text = string.Empty;
-            //    if (exitoMed && exitoHor)
-            //    {
-            //        lblMensaje.Text = "Registro medico modificado con exito";
-            //    }
-            //}
+            else
+            {
+                if (negocioMedico.ModificarMedico(medico))
+                {
+                    lblMensaje.Text = "Registro médico modificado con éxito";
+                    lblMensaje.ForeColor = Color.Green;
+                }
+            }
         }
         protected void txtLegajo_TextChanged(object sender, EventArgs e)
         {
@@ -218,11 +202,8 @@ namespace Vistas
 
         protected void CargarDatosMedico(string legajo)
         {
-
-            NegocioMedico negMed = new NegocioMedico();
-            Entidades.Medico medico = negMed.ObtenerMedicoPorLegajo(legajo);
-            NegocioHorarioMedico hor = new NegocioHorarioMedico();
-            HorarioMedico horario = hor.ObtenerHorarioMedicoPorLegajo(legajo);
+            Entidades.Medico medico = negocioMedico.ObtenerMedicoPorLegajo(legajo);
+            List<HorarioMedico> listaHorarios = negocioMedico.ObtenerHorariosMedicoPorLegajo(legajo);
 
             if (medico != null)
             {
@@ -238,12 +219,6 @@ namespace Vistas
                     rblSexo.SelectedValue = "masculino";
                 }
                 txtDNI.Text = medico._DNI.ToString();
-                //string FechaNac = medico._FechaNacimiento;
-                //DateTime fecha;
-                //DateTime.TryParse(FechaNac, out fecha);
-                //txtAnio.Text = fecha.Year.ToString();
-                //txtMes.Text = fecha.Month.ToString();
-                //txtDia.Text = fecha.Day.ToString();
                 txtFechaNacimiento.Text = medico._FechaNacimiento.ToString("yyyy-MM-dd");
                 txtDireccion.Text = medico._Direccion.ToString();
                 txtEmail.Text = medico._Email;
@@ -253,10 +228,20 @@ namespace Vistas
                 ddlLocalidad.SelectedValue = medico._IdLocalidad.ToString();
                 ddlEspecialidad.SelectedValue = medico._IdEspecialidad.ToString();
 
-                cblDiasAtencion.SelectedValue = horario._IdDia.ToString();
-                ddlHoraInicio.SelectedValue = horario._HoraInicio;
-                ddlHoraFin.SelectedValue = horario._HoraFin;
+                foreach (ListItem dia in cblDiasAtencion.Items)
+                {
+                    int idDia = int.Parse(dia.Value); //VALUE DEL CHECKBOX (1: Lunes, 2: Martes, etc.)
 
+                    HorarioMedico horario = listaHorarios.FirstOrDefault(h => h._IdDia == idDia); //BUSCAR EL HORARIO DEL MEDICO PARA ESE DÍA
+
+                    if (horario != null)
+                    {
+                        dia.Selected = horario._Eliminado == false; //SI EL HORARIO NO ESTÁ ELIMINADO, SELECCIONAR EL CHECKBOX
+                    }
+                }
+
+                ddlHoraInicio.SelectedValue = listaHorarios[0]._HoraInicio; //HASTA MANEJAR DISTINTOS HORARIOS POR DÍA, SE ASIGNA EL HORARIO DEL PRIMER DÍA
+                ddlHoraFin.SelectedValue = listaHorarios[0]._HoraFin;
             }
         }
 

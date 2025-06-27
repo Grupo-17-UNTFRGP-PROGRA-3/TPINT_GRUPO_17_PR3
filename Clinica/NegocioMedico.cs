@@ -29,38 +29,20 @@ namespace Clinica
             return false;
         }
 
-        public bool ModificarMedico(string Legajo, int Dni, string Nombre, string Apellido, bool Sexo, int IdNacionalidad,
-                            DateTime FechaNacimiento, string Direccion, string Email, string Telefono, int IdEspecialidad,
-                            int IdProvincia, int IdLocalidad, bool Eliminado)
+        public bool ModificarMedico(Medico medico)
         {
-            int cantFilas = 0;
-            Medico medico = new Medico();
+            int cantFilasMedico = 0;
+            int cantFilasHorarios = 0;
 
-            medico._Legajo = Legajo;
-            medico._DNI = Dni;
-            medico._Nombre = Nombre;
-            medico._Apellido = Apellido;
-            medico._Sexo = Sexo;
-            medico._IdNacionalidad = IdNacionalidad;
-            medico._FechaNacimiento = FechaNacimiento;
-            medico._Direccion = Direccion;
-            medico._Email = Email;
-            medico._Telefono = Telefono;
-            medico._IdEspecialidad = IdEspecialidad;
-            medico._IdProvincia = IdProvincia;
-            medico._IdLocalidad = IdLocalidad;
-            medico._Eliminado = Eliminado;
+            cantFilasMedico = dAOMedico.ModificarMedico(medico);
 
-            cantFilas = dAOMedico.ModificarMedico(Legajo, medico);
-
-            if (cantFilas == 1)
+            if (cantFilasMedico == 1)
             {
-                return true;
+                cantFilasHorarios = dAOHorario.ModificarHorariosMedico(medico._Legajo, medico._Horarios);
+                return cantFilasHorarios > 0;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
 
@@ -96,6 +78,12 @@ namespace Clinica
         {
             AccesoDatos datos = new AccesoDatos();
             return datos.TraerMedicoPorLegajo(legajo);
+        }
+
+        public List<HorarioMedico> ObtenerHorariosMedicoPorLegajo(string legajo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            return datos.TraerListaHorariosMedicoPorLegajo(legajo);
         }
 
         public bool ExisteDNI(int dni)

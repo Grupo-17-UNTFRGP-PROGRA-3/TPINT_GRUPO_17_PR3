@@ -84,23 +84,6 @@
                 <asp:RegularExpressionValidator id="regExV"  ControlToValidate="txtFechaNacimiento" ValidationExpression="\d{4}[-]\d{2}[-]\d{2}"  
                     Display="Dynamic" ForeColor="Red"
                     ErrorMessage="Fecha inválida" runat="server"/>
-                <%--<!--año-->
-                <asp:Label ID="lblAnio" runat="server" Text="Año"></asp:Label>
-                <asp:TextBox ID="txtAnio" runat="server" CssClass="form-input"></asp:TextBox>
-
-                <!--mes-->
-                <asp:RequiredFieldValidator ID="rfvAnio" runat="server" ControlToValidate="txtAnio" Display="Dynamic" ErrorMessage="El año es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RangeValidator ID="rvAnio" runat="server" ControlToValidate="txtAnio" Display="Dynamic" ErrorMessage="Año invalido" ForeColor="Red" MaximumValue="2100" MinimumValue="1900" Type="Integer"></asp:RangeValidator>
-                <asp:Label ID="lblMes" runat="server" Text="Mes"></asp:Label>
-                <asp:TextBox ID="txtMes" runat="server" CssClass="form-input"></asp:TextBox>
-
-                <!--dia-->
-                <asp:RequiredFieldValidator ID="rfvMes" runat="server" ControlToValidate="txtMes" Display="Dynamic" ErrorMessage="El mes es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RangeValidator ID="rvMes" runat="server" ControlToValidate="txtMes" Display="Dynamic" ErrorMessage="Mes invalido" ForeColor="Red" MaximumValue="12" MinimumValue="1" Type="Integer"></asp:RangeValidator>
-                <asp:Label ID="lblDia" runat="server" Text="Dia"></asp:Label>
-                <asp:TextBox ID="txtDia" runat="server" CssClass="form-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="txtDia" Display="Dynamic" ErrorMessage="El dia es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RangeValidator ID="rvDia" runat="server" ControlToValidate="txtDia" Display="Dynamic" ErrorMessage="El dia es invalido" ForeColor="Red" MaximumValue="31" MinimumValue="1" Type="Integer"></asp:RangeValidator>--%>
             </div>
 
 

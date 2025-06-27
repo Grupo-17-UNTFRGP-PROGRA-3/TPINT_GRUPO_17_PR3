@@ -62,17 +62,16 @@ namespace Datos
             return dt;
         }
 
-        public int ModificarMedico(string leg, Medico medico)
+        public int ModificarMedico(Medico medico)
         {
-            string consulta = @"UPDATE [dbo].[Medicos] SET [Legajo] = @Legajo, [Dni] = @Dni, [Nombre] = @Nombre, [Apellido] = @Apellido, [Sexo] = @Sexo, " +
+            string consulta = @"UPDATE [dbo].[Medicos] SET [Nombre] = @Nombre, [Apellido] = @Apellido, [Sexo] = @Sexo, " +
                 " [IdNacionalidad] = @IdNacionalidad, [FechaNacimiento] = @FechaNacimiento, [Direccion] = @Direccion, [Email] = @Email," +
                 " [Telefono] = @Telefono, [IdEspecialidad] = @IdEspecialidad, [IdProvincia] = @IdProvincia, [IdLocalidad] = @IdLocalidad " +
                 "WHERE [Legajo] = @Legajo";
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-            new SqlParameter("@Legajo", leg),
-            new SqlParameter("@Dni", medico._DNI ),
+            new SqlParameter("@Legajo", medico._Legajo),
             new SqlParameter("@Nombre", medico._Nombre ),
             new SqlParameter("@Apellido", medico._Apellido),
             new SqlParameter("@Sexo", medico._Sexo ),
