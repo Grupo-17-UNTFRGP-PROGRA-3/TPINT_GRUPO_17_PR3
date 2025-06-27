@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -49,7 +50,6 @@ namespace Vistas
                 ddlProvincia.Items.Insert(0, new ListItem("--Seleccionar--", ""));
 
                 cargarLocalidades();
-
             }
         }
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,6 +82,7 @@ namespace Vistas
                 txtDNI.Text = dni.ToString();
                 txtNombre.Text = paciente._Nombre;
                 txtApellido.Text = paciente._Apellido;
+
                 if (paciente._Sexo)
                 {
                     rblSexo.SelectedValue = "femenino";
@@ -90,6 +91,7 @@ namespace Vistas
                 {
                     rblSexo.SelectedValue = "masculino";
                 }
+
                 string FechaNac = paciente._FechaNacimiento;
                 DateTime fecha;
                 DateTime.TryParse(FechaNac, out fecha);
@@ -124,6 +126,9 @@ namespace Vistas
                 pnlDatosPaciente.Visible = true;
                 BtnBuscarDni.Visible = false;
                 BtnVolver2.Visible = false;
+                txtDNI.Enabled = false;
+                btnModificarDNI.Visible = true;
+                btnModificarDNI.Enabled = true;
                 LimpiarCampos();
             }
         }
@@ -173,8 +178,9 @@ namespace Vistas
                 Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
             }
 
-        } 
+        }
 
+        /*
         protected void txtDNI_TextChanged(object sender, EventArgs e)
         {
             this.Page_Load(sender, e);
@@ -182,6 +188,7 @@ namespace Vistas
             BtnBuscarDni.Visible = true;
             BtnVolver2.Visible = true;
         }
+        */
 
         protected void cargarLocalidades()
         {
@@ -204,6 +211,47 @@ namespace Vistas
 
         }
 
+        protected void btnModificarDNI_Click(object sender, EventArgs e)
+        {
+            Session["dniPreModificacion"] = txtDNI.Text;
 
+            txtDNI.Enabled = true;
+            pnlDatosPaciente.Enabled = false;
+            btnModificarDNI.Visible = false;
+            btnModificarDNI.Enabled = false;
+            btnAceptarDNI.Visible = true;
+            btnAceptarDNI.Enabled = true;
+            btnCancelarDNI.Visible = true;
+            btnCancelarDNI.Enabled = true;
+        }
+
+        protected void btnAceptarDNI_Click(object sender, EventArgs e)
+        {
+            txtDNI.Enabled = false;
+            btnAceptarDNI.Visible = false;
+            btnAceptarDNI.Enabled = false;
+            btnCancelarDNI.Visible = false;
+            btnCancelarDNI.Enabled = false;
+
+            BtnBuscarDni_Click(sender, e);
+        }
+
+        protected void btnCancelarDNI_Click(object sender, EventArgs e)
+        {
+            if (Session["dniPreModificacion"] != null)
+            {
+                txtDNI.Text = Session["dniPreModificacion"].ToString();
+            }
+
+            txtDNI.Enabled = false;
+            BtnBuscarDni.Visible = false;
+            BtnBuscarDni.Enabled = false;
+            btnAceptarDNI.Visible = false;
+            btnAceptarDNI.Enabled = false;
+            btnCancelarDNI.Visible = false;
+            btnModificarDNI.Visible = true;
+            btnModificarDNI.Enabled = true;
+            pnlDatosPaciente.Enabled = true;
+        }
     }
 }
