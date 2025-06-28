@@ -28,13 +28,21 @@ namespace Vistas.Administrador.Médicos
         {
             NegocioMedico negocioMedico = new NegocioMedico();
             string legajo = txtLegajo.Text.ToString();
+            LoginUsuario loginUsuario = new LoginUsuario(legajo);
 
-            if (legajo != "0000" && negocioMedico.ExisteLegajo(legajo))
+            if (legajo != "0000" && negocioMedico.ExisteLegajo(legajo)&& !loginUsuario.ExisteCuenta())
             {
                 lblNombreMedico.Text = negocioMedico.ObtenerMedicoPorLegajo(legajo)._Nombre.ToString() + " " + negocioMedico.ObtenerMedicoPorLegajo(legajo)._Apellido.ToString();
                 pnlUsuarioMedico.Visible = true;
                 BtnBuscarLegajo.Visible = false;
                 BtnVolver2.Visible = false;
+            }
+            else if (legajo != "0000" && negocioMedico.ExisteLegajo(legajo))
+            {
+                lblNombreMedico.Text = "El médico ya tiene cuenta";
+                pnlUsuarioMedico.Visible = false;
+                BtnBuscarLegajo.Visible = true;
+                BtnVolver2.Visible = true;
             }
             else
             {

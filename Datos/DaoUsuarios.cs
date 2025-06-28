@@ -32,5 +32,12 @@ namespace Datos
 
             return false;
         }
+        public bool cuentaExiste(string legajo)
+        {
+
+            if (_datos.Existe("Usuarios", "Legajo", legajo)) return true;
+
+            return false;
+        }
     }
 }

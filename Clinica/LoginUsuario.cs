@@ -13,6 +13,7 @@ namespace Clinica
         DaoUsuarios _daoU = new DaoUsuarios();
         string _usuario;
         string _password;
+        string _legajo;
 
         public LoginUsuario() { }
         
@@ -20,6 +21,17 @@ namespace Clinica
         {
            _usuario = usuario;
            _password = pass;
+        }
+        public LoginUsuario(string legajo)
+        {
+            _legajo = legajo;
+        }
+
+        public bool ExisteCuenta()
+        {
+            if (_daoU.cuentaExiste(_legajo)) return true;
+
+            return false;
         }
 
         public int EsLoginValido()
