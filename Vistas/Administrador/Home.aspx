@@ -17,7 +17,7 @@
         </div>
         <asp:LinkButton ID="lkbLoginMedico" runat="server" CssClass="linkbutton" PostBackUrl="~/Administrador/Médicos/CreacionLogin.aspx">Creacion Login Medico</asp:LinkButton>
         &nbsp;<asp:LinkButton ID="lkbTurnos" runat="server" CssClass="linkbutton" PostBackUrl="~/Administrador/Turnos/AltaTurnos.aspx">Asignacion de turnos</asp:LinkButton>
-        &nbsp;<asp:LinkButton ID="lkbInformes" runat="server" CssClass="linkbutton">Informes</asp:LinkButton>
+        &nbsp;<asp:LinkButton ID="lkbInformes" runat="server" CssClass="linkbutton" PostBackUrl="~/Administrador/Informes/Informes.aspx">Informes</asp:LinkButton>
 
 
     </div>

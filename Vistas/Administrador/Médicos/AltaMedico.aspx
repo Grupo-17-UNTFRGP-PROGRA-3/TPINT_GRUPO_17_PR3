@@ -34,9 +34,9 @@
             <!--dni-->
             <div class="form-group">
                 <asp:Label ID="lblDNI" runat="server" Text="D.N.I." CssClass="form-label"></asp:Label>
-                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input" AutoPostBack="True" OnTextChanged="txtDNI_TextChanged"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="Debe ingresar un DNI" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="DNI inválido (7-8 dígitos)" ForeColor="Red" ValidationExpression="^\d{7,8}$"></asp:RegularExpressionValidator>
+                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input" AutoPostBack="True" OnTextChanged="txtDNI_TextChanged" TextMode="Number"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="DNI inválido (7-8 dígitos)" ForeColor="Red" ValidationExpression="^\d{7,8}$" SetFocusOnError="True"></asp:RegularExpressionValidator>
                 <br />
                 <asp:Label ID="lblDNIMedico" runat="server"></asp:Label>
             </div>
