@@ -23,8 +23,6 @@ namespace Vistas
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-
-
             lblMensaje.Text = string.Empty;
 
             if (!IsPostBack)
@@ -64,13 +62,14 @@ namespace Vistas
                 ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
 
                 cargarLocalidades();
-
             }
         }
+
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarLocalidades();
         }
+
         public void LimpiarCampos()
         {
             txtNombre.Text = string.Empty;
@@ -78,9 +77,6 @@ namespace Vistas
             txtDNI.Text = string.Empty;
             rblSexo.ClearSelection();
             ddlNacionalidad.SelectedIndex = 0;
-            //txtAnio.Text = string.Empty;
-            //txtMes.Text = string.Empty;
-            //txtDia.Text = string.Empty;
             txtFechaNacimiento.Text = string.Empty;
             txtDireccion.Text = string.Empty;
             ddlProvincia.SelectedIndex = 0;
@@ -105,6 +101,8 @@ namespace Vistas
             else
             {
                 lblInicio.Text = "";
+                btnModificarLegajo.Visible = true;
+                btnModificarLegajo.Enabled = true;
                 pnlDatosMedico.Visible = true;
                 BtnBuscarLegajo.Visible = false;
                 BtnVolver2.Visible = false;
@@ -173,6 +171,8 @@ namespace Vistas
                 }
             }
         }
+
+        /*
         protected void txtLegajo_TextChanged(object sender, EventArgs e)
         {
             this.Page_Load(sender, e);
@@ -180,6 +180,8 @@ namespace Vistas
             BtnBuscarLegajo.Visible = true;
             BtnVolver2.Visible = true;
         }
+        */
+
         protected void cargarLocalidades()
         {
             string idProvincia = ddlProvincia.SelectedValue;
@@ -256,6 +258,52 @@ namespace Vistas
             {
                 lblDNIMedico.Text = "";
             }
+        }
+
+        protected void btnModificarLegajo_Click(object sender, EventArgs e)
+        {
+            Session["legajoPreModificacion"] = txtLegajo.Text;
+
+            txtDNI.Enabled = true;
+
+            pnlDatosMedico.Enabled = false;
+            btnModificarLegajo.Visible = false;
+            btnModificarLegajo.Enabled = false;
+            btnAceptarLegajo.Visible = true;
+            btnAceptarLegajo.Enabled = true;
+            btnCancelarLegajo.Visible = true;
+            btnCancelarLegajo.Enabled = true;
+        }
+
+        protected void btnAceptarLegajo_Click(object sender, EventArgs e)
+        {
+            txtDNI.Enabled = false;
+
+            btnAceptarLegajo.Visible = false;
+            btnAceptarLegajo.Enabled = false;
+
+            btnCancelarLegajo.Visible = false;
+            btnCancelarLegajo.Enabled = false;
+
+            BtnBuscarLegajo_Click(sender, e);
+        }
+
+        protected void btnCancelarLegajo_Click(object sender, EventArgs e)
+        {
+            if (Session["legajoPreModificacion"] != null)
+            {
+                txtLegajo.Text = Session["legajoPreModificacion"].ToString();
+            }
+
+            txtDNI.Enabled = false;
+            BtnBuscarLegajo.Visible = false;
+            BtnBuscarLegajo.Enabled = false;
+            btnAceptarLegajo.Visible = false;
+            btnAceptarLegajo.Enabled = false;
+            btnCancelarLegajo.Visible = false;
+            btnModificarLegajo.Visible = true;
+            btnModificarLegajo.Enabled = true;
+            pnlDatosMedico.Enabled = true;
         }
     }
 }

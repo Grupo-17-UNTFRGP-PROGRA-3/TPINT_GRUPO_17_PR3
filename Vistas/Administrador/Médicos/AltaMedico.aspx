@@ -19,9 +19,12 @@
         <asp:Panel ID="pnlLegajo" runat="server">
             <div class="form-group">
                 <asp:Label ID="lblLegajo" runat="server" Text="Legajo" CssClass="form-label"></asp:Label>
-                <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-input" OnTextChanged="txtLegajo_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajo" Display="Dynamic" ErrorMessage="Debe ingresar un numero de legajo" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajo" Display="Dynamic" ErrorMessage="Legajo invalido (4 digitos requeridos)" ForeColor="Red" ValidationExpression="^\d{4}$"></asp:RegularExpressionValidator>
+                <asp:Button ID="btnModificarLegajo" runat="server" Text="Modificar legajo" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnModificarLegajo_Click"/>
+                <asp:Button ID="btnAceptarLegajo" runat="server" Text="Aceptar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnAceptarLegajo_Click" />
+                <asp:Button ID="btnCancelarLegajo" runat="server" Text="Cancelar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnCancelarLegajo_Click"/>
             </div>
 
             <asp:Button ID="BtnBuscarLegajo" runat="server" Text="Buscar medico" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarLegajo_Click" />

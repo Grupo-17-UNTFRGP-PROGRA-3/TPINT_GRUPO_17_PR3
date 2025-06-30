@@ -109,7 +109,6 @@ namespace Vistas
             }
         }
 
-
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
         {
              
