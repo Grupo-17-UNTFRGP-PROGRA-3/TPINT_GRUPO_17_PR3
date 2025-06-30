@@ -36,6 +36,32 @@ namespace Datos
             return datos.EjecutarConsulta(consulta);
         }
 
+        public int ModificarMedico(Medico medico)
+        {
+            string consulta = @"UPDATE [dbo].[Medicos] SET [Nombre] = @Nombre, [Apellido] = @Apellido, [Sexo] = @Sexo, " +
+                " [IdNacionalidad] = @IdNacionalidad, [FechaNacimiento] = @FechaNacimiento, [Direccion] = @Direccion, [Email] = @Email," +
+                " [Telefono] = @Telefono, [IdEspecialidad] = @IdEspecialidad, [IdProvincia] = @IdProvincia, [IdLocalidad] = @IdLocalidad " +
+                "WHERE [Legajo] = @Legajo";
+
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+            new SqlParameter("@Legajo", medico._Legajo),
+            new SqlParameter("@Nombre", medico._Nombre ),
+            new SqlParameter("@Apellido", medico._Apellido),
+            new SqlParameter("@Sexo", medico._Sexo ),
+            new SqlParameter("@IdNacionalidad", medico._IdNacionalidad ),
+            new SqlParameter("@FechaNacimiento", medico._FechaNacimiento ),
+            new SqlParameter("@Direccion", medico._Direccion),
+            new SqlParameter("@Email", medico._Email),
+            new SqlParameter("@Telefono", medico._Telefono),
+            new SqlParameter("@IdEspecialidad", medico._IdEspecialidad),
+            new SqlParameter("@IdProvincia", medico._IdProvincia),
+            new SqlParameter("@IdLocalidad", medico._IdLocalidad)
+            };
+
+            return datos.EjecutarConsultaConParametros(consulta, parametros);
+        }
+
         public bool EliminarMedico(string legajo)
         {
             string consulta = "UPDATE Medicos SET Eliminado = 1 WHERE Legajo = " + legajo;
@@ -61,31 +87,23 @@ namespace Datos
             dt = datos.ObtenerTabla(consulta, "Medicos");
             return dt;
         }
-
-        public int ModificarMedico(Medico medico)
+    
+        public int ChequearEliminado(string legajo)
         {
-            string consulta = @"UPDATE [dbo].[Medicos] SET [Nombre] = @Nombre, [Apellido] = @Apellido, [Sexo] = @Sexo, " +
-                " [IdNacionalidad] = @IdNacionalidad, [FechaNacimiento] = @FechaNacimiento, [Direccion] = @Direccion, [Email] = @Email," +
-                " [Telefono] = @Telefono, [IdEspecialidad] = @IdEspecialidad, [IdProvincia] = @IdProvincia, [IdLocalidad] = @IdLocalidad " +
-                "WHERE [Legajo] = @Legajo";
+            string consulta = "SELECT COUNT(*) FROM Medicos WHERE (Legajo = @Legajo) AND (Eliminado = 1)";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
 
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-            new SqlParameter("@Legajo", medico._Legajo),
-            new SqlParameter("@Nombre", medico._Nombre ),
-            new SqlParameter("@Apellido", medico._Apellido),
-            new SqlParameter("@Sexo", medico._Sexo ),
-            new SqlParameter("@IdNacionalidad", medico._IdNacionalidad ),
-            new SqlParameter("@FechaNacimiento", medico._FechaNacimiento ),
-            new SqlParameter("@Direccion", medico._Direccion),
-            new SqlParameter("@Email", medico._Email),
-            new SqlParameter("@Telefono", medico._Telefono),
-            new SqlParameter("@IdEspecialidad", medico._IdEspecialidad),
-            new SqlParameter("@IdProvincia", medico._IdProvincia),
-            new SqlParameter("@IdLocalidad", medico._IdLocalidad)
-            };
-      
-            return datos.EjecutarConsultaConParametros(consulta, parametros);
+            sqlcmd.Parameters.AddWithValue("@Legajo", legajo);
+            return datos.EjecutarConsultaEscalar(sqlcmd);
+        }
+
+        public bool RestaurarMedicoEliminado(string legajo)
+        {
+            string consulta = "UPDATE Medicos SET Eliminado = 0 WHERE (Legajo = @LEGAJO)";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
+
+            sqlcmd.Parameters.AddWithValue("@Legajo", legajo);
+            return datos.EjecutarConsulta(sqlcmd) > 0;
         }
     }
 }

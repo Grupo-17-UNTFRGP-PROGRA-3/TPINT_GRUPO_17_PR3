@@ -25,12 +25,14 @@
                 <asp:Button ID="btnModificarLegajo" runat="server" Text="Modificar legajo" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnModificarLegajo_Click"/>
                 <asp:Button ID="btnAceptarLegajo" runat="server" Text="Aceptar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnAceptarLegajo_Click" />
                 <asp:Button ID="btnCancelarLegajo" runat="server" Text="Cancelar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnCancelarLegajo_Click"/>
+                <asp:Button ID="btnConfirmarRestaurar" runat="server" Text="Restaurar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnConfirmarRestaurar_Click"/>
+                <asp:Button ID="btnCancelarRestaurar" runat="server" Text="Cancelar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnCancelarRestaurar_Click"/>
             </div>
 
             <asp:Button ID="BtnBuscarLegajo" runat="server" Text="Buscar medico" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarLegajo_Click" />
             <asp:Button ID="BtnVolver2" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
             <br />
-            <asp:Label ID="lblInicio" runat="server"></asp:Label>
+            <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
         </asp:Panel>
 
         <asp:Panel ID="pnlDatosMedico" runat="server" Visible="false">

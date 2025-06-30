@@ -88,15 +88,38 @@ namespace Vistas
             ddlHoraInicio.SelectedIndex = 0;
             ddlHoraFin.SelectedIndex = 0;
         }
+        
         protected void BtnBuscarLegajo_Click(object sender, EventArgs e)
         {
             NegocioMedico negocioMedico = new NegocioMedico();
             string legajo = txtLegajo.Text.ToString();
+            int eliminado = negocioMedico.ChequearEliminado(legajo);
 
             if (negocioMedico.ExisteLegajo(legajo))
             {
-                lblInicio.Text = "El Legajo ya se encuentra registrado.";
-                pnlDatosMedico.Visible = false;
+                if (eliminado == 1)
+                {
+                    lblInicio.Text = "El médico se encuentra eliminado. ¿Desea restaurarlo?";
+
+                    pnlDatosMedico.Visible = false;
+                    BtnBuscarLegajo.Visible = false;
+                    BtnBuscarLegajo.Enabled = false;
+                    BtnVolver2.Visible = false;
+                    BtnVolver2.Enabled = false;
+                    btnConfirmarRestaurar.Visible = true;
+                    btnConfirmarRestaurar.Enabled = true;
+                    btnCancelarRestaurar.Visible = true;
+                    btnCancelarRestaurar.Enabled = true;
+                }
+                else
+                {
+                    lblInicio.Text = "El legajo ya se encuentra registrado.";
+                    pnlDatosMedico.Visible = false;
+                    btnConfirmarRestaurar.Visible = false;
+                    btnConfirmarRestaurar.Enabled = false;
+                    btnCancelarRestaurar.Visible = false;
+                    btnCancelarRestaurar.Enabled = false;
+                }
             }
             else
             {
@@ -108,15 +131,18 @@ namespace Vistas
                 BtnVolver2.Visible = false;
             }
         }
+        
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Home.aspx");
         }
+        
         protected void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
             txtLegajo.Text = string.Empty;
             LimpiarCampos();
         }
+        
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             Entidades.Medico medico = new Entidades.Medico()
@@ -171,16 +197,6 @@ namespace Vistas
                 }
             }
         }
-
-        /*
-        protected void txtLegajo_TextChanged(object sender, EventArgs e)
-        {
-            this.Page_Load(sender, e);
-            pnlDatosMedico.Visible = false;
-            BtnBuscarLegajo.Visible = true;
-            BtnVolver2.Visible = true;
-        }
-        */
 
         protected void cargarLocalidades()
         {
@@ -304,6 +320,37 @@ namespace Vistas
             btnModificarLegajo.Visible = true;
             btnModificarLegajo.Enabled = true;
             pnlDatosMedico.Enabled = true;
+        }
+
+        protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            string legajo = txtLegajo.Text;
+
+            bool resultado = negocioMedico.RestaurarMedicoEliminado(legajo);
+
+            lblInicio.Text = "Médico restaurado.";
+            pnlDatosMedico.Visible = false;
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
+        }
+
+        protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
+        {
+            txtDNI.Text = string.Empty;
+            lblInicio.Text = string.Empty;
+
+            BtnBuscarLegajo.Visible = true;
+            BtnBuscarLegajo.Enabled = true;
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
         }
     }
 }

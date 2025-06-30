@@ -45,8 +45,6 @@ namespace Clinica
             return false;
         }
 
-
-
         public bool ExisteLegajo(string legajo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -91,5 +89,18 @@ namespace Clinica
             AccesoDatos datos = new AccesoDatos();
             return datos.ExisteDNI(dni);
         }
+
+        public int ChequearEliminado(string legajo)
+        {
+            DAOMedicos daoMedico = new DAOMedicos();
+            return daoMedico.ChequearEliminado(legajo);
+        }
+
+        public bool RestaurarMedicoEliminado(string legajo)
+        {
+            DAOMedicos daoMedico = new DAOMedicos();
+            return daoMedico.RestaurarMedicoEliminado(legajo);
+        }
+
     }
 }

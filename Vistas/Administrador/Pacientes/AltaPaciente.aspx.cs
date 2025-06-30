@@ -53,10 +53,12 @@ namespace Vistas
                 cargarLocalidades();
             }
         }
+
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarLocalidades();
         }
+
         protected void LimpiarCampos()
         {
             txtNombre.Text = string.Empty;

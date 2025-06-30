@@ -105,6 +105,24 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Button btnCancelarLegajo;
 
         /// <summary>
+        /// btnConfirmarRestaurar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmarRestaurar;
+
+        /// <summary>
+        /// btnCancelarRestaurar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarRestaurar;
+
+        /// <summary>
         /// BtnBuscarLegajo control.
         /// </summary>
         /// <remarks>
