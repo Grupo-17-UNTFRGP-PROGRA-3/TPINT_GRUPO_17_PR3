@@ -13,7 +13,6 @@ namespace Vistas.Pacientes
         private NegocioPaciente _negocioPaciente = new NegocioPaciente();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 CargarPacientes();
@@ -59,6 +58,38 @@ namespace Vistas.Pacientes
         protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPacientes.PageIndex = e.NewPageIndex;
+            CargarPacientes();
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            int dniABuscar = Convert.ToInt32(txtBuscar.Text);
+
+            if (!negocioPaciente.ExisteDNI(dniABuscar))
+            {
+                lblMensaje.Text = "El DNI ingresado no existe.";
+            }
+            else if (txtBuscar.Text.ToString() == "")
+            {
+                lblMensaje.Text = "Debe ingresar un DNI para buscar.";
+            }
+            else
+            {
+                gvPacientes.DataSource = negocioPaciente.PacienteFiltradoPorDNI(dniABuscar);
+                gvPacientes.DataBind();
+
+                lblMensaje.Text = string.Empty;
+                btnEliminarFiltro.Visible = true;
+                btnEliminarFiltro.Enabled = true;
+            }
+        }
+
+        protected void btnEliminarFiltro_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Text = string.Empty;
+            lblMensaje.Text = string.Empty;
+
             CargarPacientes();
         }
     }

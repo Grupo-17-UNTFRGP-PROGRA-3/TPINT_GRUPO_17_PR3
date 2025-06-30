@@ -44,6 +44,7 @@ namespace Datos
             _conexion.Close();
             return cmd;
         }
+        
         public Usuario ConsultaLecturaUsuario(string consutalSql)
         {
             _conexion.Open();
@@ -55,6 +56,7 @@ namespace Datos
 
             return user;
         }
+        
         public bool Existe(string tablaId, string atributoId, string registroId)
         {
             _conexion.Open();
@@ -100,6 +102,19 @@ namespace Datos
             return dataSet.Tables[nombreTabla];
         }
 
+        public DataTable ObtenerTabla(SqlCommand sqlcmd, string nombreTabla)
+        {
+            sqlcmd.Connection = _conexion;
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlcmd);
+            DataSet dataSet = new DataSet();
+
+            _conexion.Open();
+            dataAdapter.Fill(dataSet, nombreTabla);
+            _conexion.Close();
+
+            return dataSet.Tables[nombreTabla];
+        }
 
         public bool ExisteDNI(int dni)
         {
@@ -130,7 +145,6 @@ namespace Datos
 
             return existe;
         }
-
 
         public Paciente TraerPacientePorDNI(int dni)
         {
@@ -272,6 +286,5 @@ namespace Datos
 
             return horMed;
         }
-
     }
 }

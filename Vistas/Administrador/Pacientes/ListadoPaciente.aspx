@@ -7,9 +7,15 @@
     </div>
 
     <div style="text-align: left;">
-        <label>Buscar pacientes: </label>
+        <label>Buscar pacientes por DNI: </label>
         <asp:TextBox runat="server" ID="txtBuscar"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnEliminarFiltro" runat="server" Text="Eliminar filtro" Visible="False" Enabled="false" OnClick="btnEliminarFiltro_Click" />
+    </div>
+
+    <div>
+        <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
+        <br />
     </div>
 
     <div>
@@ -98,5 +104,10 @@
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
        
         <asp:Button ID="btnVolver" runat="server" OnClick="btnVolver_Click" Text="Volver" />
+
+        <br />
+        <br />
+
+        <asp:Button ID="btnVerEliminados" runat="server" Text="Ver eliminados" />
     </div>
 </asp:Content>

@@ -20,6 +20,7 @@ namespace Vistas
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+            Page.MaintainScrollPositionOnPostBack = true;
 
             lblMensaje.Text = string.Empty;
 
@@ -179,16 +180,6 @@ namespace Vistas
             }
 
         }
-
-        /*
-        protected void txtDNI_TextChanged(object sender, EventArgs e)
-        {
-            this.Page_Load(sender, e);
-            pnlDatosPaciente.Visible = false;
-            BtnBuscarDni.Visible = true;
-            BtnVolver2.Visible = true;
-        }
-        */
 
         protected void cargarLocalidades()
         {

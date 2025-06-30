@@ -13,6 +13,7 @@ namespace Clinica
     public class NegocioPaciente
     {
         DAOPacientes dAO = new DAOPacientes();
+
         public bool AgregarPaciente(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, string FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido)
         {
             int cantFilas = 0;
@@ -70,6 +71,12 @@ namespace Clinica
             }
         }
 
+        public bool EliminarPaciente(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            return dAO.EliminarPaciente(dni);
+        }
+
         public bool ExisteDNI(int dni)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -82,6 +89,7 @@ namespace Clinica
             dt = dAO.ListadoPacientes();
             return dt;
         }
+
         public DataTable ListadoPacientesJoined()
         {
             DataTable dt = new DataTable();
@@ -89,18 +97,17 @@ namespace Clinica
             return dt;
         }
 
-        public bool EliminarPaciente(int dni)
+        public DataTable PacienteFiltradoPorDNI(int dni)
         {
-            AccesoDatos datos = new AccesoDatos();
-            return dAO.EliminarPaciente(dni);
+            DataTable dt = new DataTable();
+            dt = dAO.PacienteFiltradoPorDNI(dni);
+            return dt;
         }
-
 
         public Paciente ObtenerPacientePorDNI(int dni)
         {
             AccesoDatos datos = new AccesoDatos();
             return datos.TraerPacientePorDNI(dni);
         }
-
     }
 }

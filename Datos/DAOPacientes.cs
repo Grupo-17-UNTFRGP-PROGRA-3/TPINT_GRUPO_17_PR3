@@ -15,7 +15,6 @@ namespace Datos
         AccesoDatos datos = new AccesoDatos();
         Paciente paciente = new Paciente();
 
-
         public DAOPacientes() { }
 
         public int AgregarPaciente(Paciente paciente)
@@ -65,6 +64,11 @@ namespace Datos
             return datos.EjecutarConsultaConParametros(consulta, parametros);
         }
 
+        public bool EliminarPaciente(int dni)
+        {
+            string consulta = "UPDATE Pacientes SET Eliminado = 1 WHERE DNI = " + dni;
+            return datos.EjecutarConsulta(consulta) > 0;
+        }
 
         public DataTable ListadoPacientes()
         {
@@ -72,12 +76,6 @@ namespace Datos
             DataTable dt = new DataTable();
             dt = datos.ObtenerTabla(consulta, "Pacientes");
             return dt;
-        }
-
-        public bool EliminarPaciente(int dni)
-        {
-            string consulta = "UPDATE Pacientes SET Eliminado = 1 WHERE DNI = " + dni;
-            return datos.EjecutarConsulta(consulta) > 0;
         }
 
         public DataTable ListadoPacientesJoined()
@@ -91,6 +89,19 @@ namespace Datos
             dt = datos.ObtenerTabla(consulta, "Pacientes");
             return dt;
         }
-
+    
+        public DataTable PacienteFiltradoPorDNI(int dni)
+        {
+            string consulta = "SELECT P.Dni, P.Nombre, P.Apellido, N.Descripcion AS 'Nacionalidad', P.FechaNacimiento, " +
+                "CASE WHEN Sexo = 0 THEN 'Masculino' ELSE 'Femenino' END AS 'Sexo' " +
+                "FROM Pacientes P " +
+                "INNER JOIN Nacionalidades N ON P.IdNacionalidad = N.Id " +
+                "WHERE P.Eliminado = 0" +
+                "AND Dni = @DNI";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
+            
+            sqlcmd.Parameters.AddWithValue("@DNI", dni);
+            return datos.ObtenerTabla(sqlcmd, "Pacientes");
+        }
     }
 }
