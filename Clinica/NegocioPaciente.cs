@@ -109,5 +109,18 @@ namespace Clinica
             AccesoDatos datos = new AccesoDatos();
             return datos.TraerPacientePorDNI(dni);
         }
+
+        public int ChequearEliminado(int dni)
+        {
+            DAOPacientes daoPaciente = new DAOPacientes();
+
+            return daoPaciente.ChequearEliminado(dni);
+        }
+
+        public bool RestaurarPacienteEliminado (int dni)
+        {             
+            DAOPacientes daoPaciente = new DAOPacientes();
+            return daoPaciente.RestaurarPacienteEliminado(dni);
+        }
     }
 }

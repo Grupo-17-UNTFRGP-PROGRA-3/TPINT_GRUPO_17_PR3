@@ -102,12 +102,9 @@
 
     <div>
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-       
         <asp:Button ID="btnVolver" runat="server" OnClick="btnVolver_Click" Text="Volver" />
 
         <br />
         <br />
-
-        <asp:Button ID="btnVerEliminados" runat="server" Text="Ver eliminados" />
     </div>
 </asp:Content>

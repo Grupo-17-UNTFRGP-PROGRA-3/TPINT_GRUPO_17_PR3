@@ -26,6 +26,28 @@ namespace Datos
             return filasAfectadas;
         }
 
+        public int EjecutarConsulta(SqlCommand sqlcmd)
+        {
+            sqlcmd.Connection = _conexion;
+            sqlcmd.Connection.Open();
+
+            int filasAfectadas = sqlcmd.ExecuteNonQuery();
+
+            sqlcmd.Connection.Close();
+            return filasAfectadas;
+        }
+
+        public int EjecutarConsultaEscalar(SqlCommand sqlcmd)
+        {
+            sqlcmd.Connection = _conexion;
+            sqlcmd.Connection.Open();
+
+            int filasAfectadas = (int)sqlcmd.ExecuteScalar();
+
+            sqlcmd.Connection.Close();
+            return filasAfectadas;
+        }
+
         public int EjecutarConsultaConParametros(string consultaSql, List<SqlParameter> parametros)
         {            
             {
@@ -109,9 +131,9 @@ namespace Datos
             SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlcmd);
             DataSet dataSet = new DataSet();
 
-            _conexion.Open();
+            sqlcmd.Connection.Open();
             dataAdapter.Fill(dataSet, nombreTabla);
-            _conexion.Close();
+            sqlcmd.Connection.Close();
 
             return dataSet.Tables[nombreTabla];
         }

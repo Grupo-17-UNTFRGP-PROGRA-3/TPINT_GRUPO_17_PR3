@@ -103,5 +103,25 @@ namespace Datos
             sqlcmd.Parameters.AddWithValue("@DNI", dni);
             return datos.ObtenerTabla(sqlcmd, "Pacientes");
         }
+    
+        public int ChequearEliminado (int dni)
+        {
+            string consulta = "SELECT COUNT(*) FROM Pacientes WHERE (Dni = @DNI) AND (Eliminado = 1)";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
+
+            sqlcmd.Parameters.AddWithValue("@DNI", dni);
+
+            return datos.EjecutarConsultaEscalar(sqlcmd);
+        }
+
+        public bool RestaurarPacienteEliminado(int dni)
+        {
+            string consulta = "UPDATE Pacientes SET Eliminado = 0 WHERE (Dni = @DNI)";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
+
+            sqlcmd.Parameters.AddWithValue("@DNI", dni);
+
+            return datos.EjecutarConsulta(sqlcmd) > 0;
+        }
     }
 }

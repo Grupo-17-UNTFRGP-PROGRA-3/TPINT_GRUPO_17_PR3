@@ -114,11 +114,33 @@ namespace Vistas
              
             NegocioPaciente negocioPaciente = new NegocioPaciente();
             bool existe = negocioPaciente.ExisteDNI(Convert.ToInt32(txtDNI.Text));
+            int eliminado = negocioPaciente.ChequearEliminado(Convert.ToInt32(txtDNI.Text));
 
             if (existe)
             {
-                lblInicio.Text = "El DNI ya se encuentra registrado.";
-                pnlDatosPaciente.Visible = false;
+                if (eliminado == 1)
+                {
+                    lblInicio.Text = "El paciente se encuentra eliminado. ¿Desea restaurarlo?";
+
+                    pnlDatosPaciente.Visible = false;
+                    BtnBuscarDni.Visible = false;
+                    BtnBuscarDni.Enabled = false;
+                    BtnVolver2.Visible = false;
+                    BtnVolver2.Enabled = false;
+                    btnConfirmarRestaurar.Visible = true;
+                    btnConfirmarRestaurar.Enabled = true;
+                    btnCancelarRestaurar.Visible = true;
+                    btnCancelarRestaurar.Enabled = true;
+                }
+                else
+                {
+                    lblInicio.Text = "El DNI ya se encuentra registrado.";
+                    pnlDatosPaciente.Visible = false;
+                    btnConfirmarRestaurar.Visible = false;
+                    btnConfirmarRestaurar.Enabled = false;
+                    btnCancelarRestaurar.Visible = false;
+                    btnCancelarRestaurar.Enabled = false;
+                }
             }
             else
             {
@@ -242,6 +264,36 @@ namespace Vistas
             btnModificarDNI.Visible = true;
             btnModificarDNI.Enabled = true;
             pnlDatosPaciente.Enabled = true;
+        }
+
+        protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
+        {
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            int dni = int.Parse(txtDNI.Text);
+
+            bool resultado = negocioPaciente.RestaurarPacienteEliminado(dni);
+
+            lblInicio.Text = "Paciente restaurado.";
+            pnlDatosPaciente.Visible = false;
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
+        }
+
+        protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
+        {
+            txtDNI.Text = string.Empty;
+            lblInicio.Text = string.Empty;
+
+            BtnBuscarDni.Visible = true;
+            BtnBuscarDni.Enabled = true;
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
         }
     }
 }
