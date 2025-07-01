@@ -12,7 +12,7 @@
     <asp:Panel ID="pnlLegajoUsuarioMedico" runat="server">
         <div  class="form-group">
             <asp:Label ID="lblLegajo" runat="server" Text="Legajo Medico" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtLegajo" runat="server" Width="145px" CssClass="form-input" OnTextChanged="txtLegajo_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="txtLegajo" runat="server" Width="145px" CssClass="form-input" OnTextChanged="txtLegajo_TextChanged" AutoPostBack="true"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajo" Display="Dynamic" ErrorMessage="Debe ingresar un numero de legajo" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajo" Display="Dynamic" ErrorMessage="Legajo inválido (4 digitos requeridos)" ForeColor="Red" ValidationExpression="^\d{4}$"></asp:RegularExpressionValidator>
             
