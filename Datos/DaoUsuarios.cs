@@ -39,5 +39,14 @@ namespace Datos
 
             return false;
         }
+        public int agregarCuenta(Usuario usuario)
+        {
+            string consulta = "INSERT INTO Usuarios(Usuario, Password, Legajo, Eliminado) VALUES ('" +
+                usuario._usuario.ToString() + "', '" +
+                usuario._pass.ToString() + "', '" +
+                usuario._legajo.ToString() + "', 0)";
+
+            return _datos.EjecutarConsulta(consulta);
+        }
     }
 }

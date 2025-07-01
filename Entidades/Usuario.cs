@@ -9,11 +9,15 @@ namespace Entidades
 {
     public class Usuario
     {
-        private string _usuario;
-        private string _pass;
-        private string _legajo;
+        public string _usuario;
+        public string _pass;
+        public string _legajo;
 
         public Usuario() { }
+        public Usuario(string usuario)
+        {
+            _usuario = usuario;
+        }
         public Usuario(string usuario, string pass, string legajo)
         {
             try
@@ -53,6 +57,8 @@ namespace Entidades
 
         private void setUsuario(string usuario) { _usuario = usuario; }
         private void setPass(string pass) { _pass = pass; }
+        public string getUsuario() { return _usuario; }
+        public string getPass() { return _pass; }
 
         public static bool operator ==(Usuario a, Usuario b)
         { 

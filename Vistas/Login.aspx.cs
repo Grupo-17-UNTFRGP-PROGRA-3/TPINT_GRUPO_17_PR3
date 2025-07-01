@@ -19,7 +19,8 @@ namespace Vistas
 
         protected void btnLogin_Click(object sender, EventArgs e)
 		{
-			LoginUsuario log = new LoginUsuario(txtUsuario.Text, txtClave.Text);
+			Usuario usuario = new Usuario(txtUsuario.Text, txtClave.Text);
+			LoginUsuario log = new LoginUsuario(usuario);
 
             int resultado = log.EsLoginValido();
 
