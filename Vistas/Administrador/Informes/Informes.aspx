@@ -18,16 +18,17 @@
         <asp:Button CssClass="linkbutton" ID="btnPacXMed" runat="server" Text="Pacientes / Medico" OnClick="btnPacXMed_Click" />
         <br />
         <br/>
-        <asp:Button CssClass="linkbutton" ID="btnPacXEsp" runat="server"  Text="Pacientes / Especialidad" />
+        <asp:Button CssClass="linkbutton" ID="btnPacXEsp" runat="server"  Text="Pacientes / Especialidad" OnClick="btnPacXEsp_Click" />
         <br />
         <br/>
-        <asp:Button CssClass="linkbutton" ID="btnHorasPico" runat="server" Text="Horas Pico" />
+        <asp:Button CssClass="linkbutton" ID="btnHorasPico" runat="server" Text="Horas Pico" OnClick="btnHorasPico_Click" />
         <br />
         <br/>
         <asp:Button CssClass="linkbutton" ID="btnPorcentajeAusencias" runat="server" Text="Porcentaje de ausencias" />
         <br />
         <br />
         <asp:GridView ID="gvResultados" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
+            <RowStyle HorizontalAlign="Center" />
             <AlternatingRowStyle BackColor="#F7F7F7" />
             <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
             <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
