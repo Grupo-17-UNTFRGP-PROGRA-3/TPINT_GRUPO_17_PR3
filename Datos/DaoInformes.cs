@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
@@ -19,14 +20,15 @@ namespace Datos
         {
             DataTable dt = new DataTable(); 
             _datos = new AccesoDatos();
-            string consulta = "SELECT LegajoMedico, COUNT ( Id) AS 'Turnos por Medico'  FROM Turnos " + 
-                "WHERE LegajoMedico in (SELECT DISTINCT LegajoMedico)" + 
+            string consulta = "SELECT LegajoMedico AS 'Legajo', m.Nombre, m.Apellido, e.Descripcion, COUNT ( t.Id) AS 'Turnos'  FROM Turnos t " + 
+                "INNER JOIN Medicos m ON t.LegajoMedico = m.Legajo " +
+                "Inner Join Especialidades e ON m.IdEspecialidad = e.Id " +
+                "WHERE LegajoMedico in (SELECT DISTINCT LegajoMedico) " +
                 "AND Fecha between '" + fechaInicio + "' and '" + fechaFin + "' " +
-                "group by LegajoMedico Order by LegajoMedico;";
+                "group by LegajoMedico, m.Nombre, m.Apellido, e.Descripcion Order by LegajoMedico;";
             string tabla = "Turnos";
            dt = _datos.ObtenerTabla(consulta, tabla);
             return dt;
         }
-
     }
 }
