@@ -20,6 +20,48 @@ namespace Vistas
         NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
         private readonly NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
         private readonly NegocioMedico negocioMedico = new NegocioMedico();
+
+        protected void BuscarLegajoDuranteModificacion()
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            bool existe = negocioMedico.ExisteLegajo(txtLegajo.Text);
+
+            if (existe)
+            {
+                lblInicio.Text = "El legajo ya se encuentra registrado.";
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = false;
+            }
+            else
+            {
+                lblInicio.Text = "";
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = true;
+            }
+        }
+
+        public void LimpiarCampos()
+        {
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtDNI.Text = string.Empty;
+            rblSexo.ClearSelection();
+            ddlNacionalidad.SelectedIndex = 0;
+            txtFechaNacimiento.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            ddlProvincia.SelectedIndex = 0;
+            ddlLocalidad.SelectedIndex = 0;
+            txtEmail.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            ddlEspecialidad.SelectedIndex = 0;
+            cblDiasAtencion.ClearSelection();
+            ddlHoraInicio.SelectedIndex = 0;
+            ddlHoraFin.SelectedIndex = 0;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -75,25 +117,6 @@ namespace Vistas
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarLocalidades();
-        }
-
-        public void LimpiarCampos()
-        {
-            txtNombre.Text = string.Empty;
-            txtApellido.Text = string.Empty;
-            txtDNI.Text = string.Empty;
-            rblSexo.ClearSelection();
-            ddlNacionalidad.SelectedIndex = 0;
-            txtFechaNacimiento.Text = string.Empty;
-            txtDireccion.Text = string.Empty;
-            ddlProvincia.SelectedIndex = 0;
-            ddlLocalidad.SelectedIndex = 0;
-            txtEmail.Text = string.Empty;
-            txtTelefono.Text = string.Empty;
-            ddlEspecialidad.SelectedIndex = 0;
-            cblDiasAtencion.ClearSelection();
-            ddlHoraInicio.SelectedIndex = 0;
-            ddlHoraFin.SelectedIndex = 0;
         }
         
         protected void BtnBuscarLegajo_Click(object sender, EventArgs e)
@@ -336,24 +359,7 @@ namespace Vistas
             btnModificarLegajo.Visible = true;
             btnModificarLegajo.Enabled = true;
 
-            NegocioMedico negocioMedico = new NegocioMedico();
-
-            bool existe = negocioMedico.ExisteLegajo(txtLegajo.Text);
-
-            if (existe)
-            {
-                lblInicio.Text = "El legajo ya se encuentra registrado.";
-
-                pnlDatosMedico.Visible = true;
-                pnlDatosMedico.Enabled = false;
-            }
-            else
-            {
-                lblInicio.Text = "";
-                
-                pnlDatosMedico.Visible = true;
-                pnlDatosMedico.Enabled = true;
-            }
+            BuscarLegajoDuranteModificacion();
         }
 
         protected void btnCancelarLegajo_Click(object sender, EventArgs e)
@@ -372,11 +378,14 @@ namespace Vistas
             btnAceptarLegajo.Enabled = false;
 
             btnCancelarLegajo.Visible = false;
+            btnCancelarLegajo.Enabled = false;
 
             btnModificarLegajo.Visible = true;
             btnModificarLegajo.Enabled = true;
 
             pnlDatosMedico.Enabled = true;
+
+            BuscarLegajoDuranteModificacion();
         }
 
         protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
@@ -388,6 +397,10 @@ namespace Vistas
             bool resultado = negocioMedico.RestaurarMedicoEliminado(legajo);
 
             lblInicio.Text = "Médico restaurado.";
+
+            txtLegajo.Visible = true;
+            txtLegajo.Enabled = false;
+
             pnlDatosMedico.Visible = false;
 
             btnConfirmarRestaurar.Visible = false;
@@ -395,6 +408,9 @@ namespace Vistas
 
             btnCancelarRestaurar.Visible = false;
             btnCancelarRestaurar.Enabled = false;
+
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
         }
 
         protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
