@@ -13,16 +13,19 @@ namespace Datos
     {
         AccesoDatos _datos = new AccesoDatos();
         Informe _informe = new Informe();
-        DaoInformes() { }
+        public DaoInformes() { }
 
-        public Informe PacientesPorMedico (DateTime fechaInicio, DateTime fechaFin)
+        public DataTable PacientesPorMedico (string fechaInicio, string fechaFin)
         {
             DataTable dt = new DataTable(); 
             _datos = new AccesoDatos();
-            string consulta = "";
-            string tabla = "";
-            _informe._dt = _datos.ObtenerTabla(consulta, tabla);
-            return _informe;
+            string consulta = "SELECT LegajoMedico, COUNT ( Id) AS 'Turnos por Medico'  FROM Turnos " + 
+                "WHERE LegajoMedico in (SELECT DISTINCT LegajoMedico)" + 
+                "AND Fecha between '" + fechaInicio + "' and '" + fechaFin + "' " +
+                "group by LegajoMedico Order by LegajoMedico;";
+            string tabla = "Turnos";
+           dt = _datos.ObtenerTabla(consulta, tabla);
+            return dt;
         }
 
     }

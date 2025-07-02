@@ -4,19 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Entidades;
+using Clinica;
+using System.Data;
 
 namespace Vistas.Administrador.Informes
 {
     public partial class Informes : System.Web.UI.Page
     {
+        public NegocioInformes negInf = new NegocioInformes();
+        public Informe inf = new Informe();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            gvResultados.Visible = false;
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        public void btnPacXMed_Click(object sender, EventArgs e)
         {
-
+            
+            gvResultados.Visible=true;
+            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text);
+            gvResultados.DataBind();
         }
     }
 }

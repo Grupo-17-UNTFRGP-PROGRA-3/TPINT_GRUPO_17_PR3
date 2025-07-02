@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
-<asp:Content style="align-items:first baseline" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content style="align-items:baseline" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Informes</h1>
     <div >
         <asp:Label CssClass="form-label" ID="lblRangoFechas" runat="server" Text="Rango de fechas"></asp:Label>
@@ -15,10 +15,10 @@
         <asp:TextBox CssClass="form-input" ID="txtFechaFinal" runat="server" TextMode="Date"></asp:TextBox>
         <br />
         <br />
-        <asp:Button CssClass="linkbutton" ID="btnPacXMed" runat="server" Text="Pacientes / Medico" />
+        <asp:Button CssClass="linkbutton" ID="btnPacXMed" runat="server" Text="Pacientes / Medico" OnClick="btnPacXMed_Click" />
         <br />
         <br/>
-        <asp:Button CssClass="linkbutton" ID="btnPacXEsp" runat="server" OnClick="Button2_Click" Text="Pacientes / Especialidad" />
+        <asp:Button CssClass="linkbutton" ID="btnPacXEsp" runat="server"  Text="Pacientes / Especialidad" />
         <br />
         <br/>
         <asp:Button CssClass="linkbutton" ID="btnHorasPico" runat="server" Text="Horas Pico" />
@@ -26,7 +26,18 @@
         <br/>
         <asp:Button CssClass="linkbutton" ID="btnPorcentajeAusencias" runat="server" Text="Porcentaje de ausencias" />
         <br />
-        <asp:GridView ID="gvResultados" runat="server">
+        <br />
+        <asp:GridView ID="gvResultados" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
+            <AlternatingRowStyle BackColor="#F7F7F7" />
+            <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+            <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+            <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+            <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+            <SortedAscendingCellStyle BackColor="#F4F4FD" />
+            <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
+            <SortedDescendingCellStyle BackColor="#D8D8F0" />
+            <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
     </div>
 
