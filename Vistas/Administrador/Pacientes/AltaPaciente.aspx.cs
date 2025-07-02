@@ -17,6 +17,46 @@ namespace Vistas
         NegocioNacionalidad negocioNacionalidad = new NegocioNacionalidad();
         NegocioProvincia negocioProvincia = new NegocioProvincia();
         NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
+        
+        protected void BuscarDNIDuranteModificacion()
+        {
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+
+            bool existe = negocioPaciente.ExisteDNI(Convert.ToInt32(txtDNI.Text));
+
+            if (existe)
+            {
+                lblInicio.Text = "El DNI ya se encuentra registrado.";
+
+                pnlDatosPaciente.Visible = true;
+                pnlDatosPaciente.Enabled = false;
+
+            }
+            else
+            {
+                lblInicio.Text = "";
+
+                pnlDatosPaciente.Visible = true;
+                pnlDatosPaciente.Enabled = true;
+            }
+        }
+
+        protected void LimpiarCampos()
+        {
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            rblSexo.ClearSelection();
+            txtAnio.Text = string.Empty;
+            txtMes.Text = string.Empty;
+            txtDia.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            ddlNacionalidad.SelectedIndex = 0;
+            ddlProvincia.SelectedIndex = 0;
+            ddlLocalidad.SelectedIndex = 0;
+        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -57,22 +97,6 @@ namespace Vistas
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarLocalidades();
-        }
-
-        protected void LimpiarCampos()
-        {
-            txtNombre.Text = string.Empty;
-            txtApellido.Text = string.Empty;
-            rblSexo.ClearSelection();
-            txtAnio.Text = string.Empty;
-            txtMes.Text = string.Empty;
-            txtDia.Text = string.Empty;
-            txtDireccion.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            txtTelefono.Text = string.Empty;
-            ddlNacionalidad.SelectedIndex = 0;
-            ddlProvincia.SelectedIndex = 0;
-            ddlLocalidad.SelectedIndex = 0;
         }
 
         private void CargarDatosPaciente(int dni)
@@ -120,40 +144,57 @@ namespace Vistas
 
             if (existe)
             {
-                if (eliminado == 1)
+                if (eliminado == 1) // EXISTE Y ESTA ELIMINADO
                 {
                     lblInicio.Text = "El paciente se encuentra eliminado. ¿Desea restaurarlo?";
 
+                    txtDNI.Visible = true;
+                    txtDNI.Enabled = false;
+
                     pnlDatosPaciente.Visible = false;
+                    pnlDatosPaciente.Enabled = false;
+
                     BtnBuscarDni.Visible = false;
                     BtnBuscarDni.Enabled = false;
+
                     BtnVolver2.Visible = false;
                     BtnVolver2.Enabled = false;
+
                     btnConfirmarRestaurar.Visible = true;
                     btnConfirmarRestaurar.Enabled = true;
+
                     btnCancelarRestaurar.Visible = true;
                     btnCancelarRestaurar.Enabled = true;
                 }
-                else
+                else // EXISTE Y NO ESTA ELIMINADO
                 {
                     lblInicio.Text = "El DNI ya se encuentra registrado.";
                     pnlDatosPaciente.Visible = false;
+
                     btnConfirmarRestaurar.Visible = false;
                     btnConfirmarRestaurar.Enabled = false;
+
                     btnCancelarRestaurar.Visible = false;
                     btnCancelarRestaurar.Enabled = false;
                 }
             }
-            else
+            else // NO EXISTE
             {
                 lblInicio.Text = "";
+
                 pnlDatosPaciente.Visible = true;
+                pnlDatosPaciente.Enabled = true;
+
                 BtnBuscarDni.Visible = false;
+                BtnBuscarDni.Enabled = false;
+
                 BtnVolver2.Visible = false;
+                BtnVolver2.Enabled = false;
+
                 txtDNI.Enabled = false;
+
                 btnModificarDNI.Visible = true;
                 btnModificarDNI.Enabled = true;
-                LimpiarCampos();
             }
         }
 
@@ -164,14 +205,13 @@ namespace Vistas
 
         protected void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
-            txtDNI.Text = string.Empty;
             LimpiarCampos();
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-           
                 bool sexo = false;
+
                 if (rblSexo.SelectedValue == "femenino")
                 {
                     sexo = true;
@@ -183,6 +223,7 @@ namespace Vistas
                 int idProv = int.Parse(ddlProvincia.SelectedValue);
                 int idLoc = int.Parse(ddlLocalidad.SelectedValue);
                 NegocioPaciente negocioPaciente = new NegocioPaciente();
+
             if ((Request.QueryString["dni"] == null))
             {
                 if (negocioPaciente.AgregarPaciente(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false))
@@ -201,7 +242,6 @@ namespace Vistas
                 LimpiarCampos();
                 Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
             }
-
         }
 
         protected void cargarLocalidades()
@@ -230,24 +270,34 @@ namespace Vistas
             Session["dniPreModificacion"] = txtDNI.Text;
 
             txtDNI.Enabled = true;
+
             pnlDatosPaciente.Enabled = false;
+
             btnModificarDNI.Visible = false;
             btnModificarDNI.Enabled = false;
+
             btnAceptarDNI.Visible = true;
             btnAceptarDNI.Enabled = true;
+
             btnCancelarDNI.Visible = true;
             btnCancelarDNI.Enabled = true;
         }
 
         protected void btnAceptarDNI_Click(object sender, EventArgs e)
         {
+            txtDNI.Visible = true;
             txtDNI.Enabled = false;
+
             btnAceptarDNI.Visible = false;
             btnAceptarDNI.Enabled = false;
+
             btnCancelarDNI.Visible = false;
             btnCancelarDNI.Enabled = false;
 
-            BtnBuscarDni_Click(sender, e);
+            btnModificarDNI.Visible = true;
+            btnModificarDNI.Enabled = true;
+
+            BuscarDNIDuranteModificacion();
         }
 
         protected void btnCancelarDNI_Click(object sender, EventArgs e)
@@ -258,14 +308,20 @@ namespace Vistas
             }
 
             txtDNI.Enabled = false;
+
             BtnBuscarDni.Visible = false;
             BtnBuscarDni.Enabled = false;
+
             btnAceptarDNI.Visible = false;
             btnAceptarDNI.Enabled = false;
+
             btnCancelarDNI.Visible = false;
+            btnCancelarDNI.Enabled = false;
+
             btnModificarDNI.Visible = true;
             btnModificarDNI.Enabled = true;
-            pnlDatosPaciente.Enabled = true;
+
+            BuscarDNIDuranteModificacion();
         }
 
         protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
@@ -276,11 +332,21 @@ namespace Vistas
             bool resultado = negocioPaciente.RestaurarPacienteEliminado(dni);
 
             lblInicio.Text = "Paciente restaurado.";
+
+            txtDNI.Visible = true;
+            txtDNI.Enabled = false;
+
             pnlDatosPaciente.Visible = false;
+            pnlDatosPaciente.Enabled = false;
+
             btnConfirmarRestaurar.Visible = false;
             btnConfirmarRestaurar.Enabled = false;
+
             btnCancelarRestaurar.Visible = false;
             btnCancelarRestaurar.Enabled = false;
+
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
         }
 
         protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
@@ -288,14 +354,20 @@ namespace Vistas
             txtDNI.Text = string.Empty;
             lblInicio.Text = string.Empty;
 
-            BtnBuscarDni.Visible = true;
-            BtnBuscarDni.Enabled = true;
-            BtnVolver2.Visible = true;
-            BtnVolver2.Enabled = true;
+            txtDNI.Visible = true;
+            txtDNI.Enabled = true;
+
             btnConfirmarRestaurar.Visible = false;
             btnConfirmarRestaurar.Enabled = false;
+
             btnCancelarRestaurar.Visible = false;
             btnCancelarRestaurar.Enabled = false;
+
+            BtnBuscarDni.Visible = true;
+            BtnBuscarDni.Enabled = true;
+
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
         }
     }
 }

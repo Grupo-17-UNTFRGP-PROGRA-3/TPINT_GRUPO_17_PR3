@@ -324,6 +324,7 @@ namespace Vistas
 
         protected void btnAceptarLegajo_Click(object sender, EventArgs e)
         {
+            txtLegajo.Visible = true;
             txtLegajo.Enabled = false;
 
             btnAceptarLegajo.Visible = false;
@@ -332,11 +333,8 @@ namespace Vistas
             btnCancelarLegajo.Visible = false;
             btnCancelarLegajo.Enabled = false;
 
-            /*
-            tengo que armar otra funcion distinta
-            
-            BtnBuscarLegajo_Click(sender, e); 
-            */
+            btnModificarLegajo.Visible = true;
+            btnModificarLegajo.Enabled = true;
 
             NegocioMedico negocioMedico = new NegocioMedico();
 
@@ -346,39 +344,15 @@ namespace Vistas
             {
                 lblInicio.Text = "El legajo ya se encuentra registrado.";
 
-                txtLegajo.Visible = true;
-                txtLegajo.Enabled = false;
-
                 pnlDatosMedico.Visible = true;
                 pnlDatosMedico.Enabled = false;
-
-                btnAceptarLegajo.Visible = false;
-                btnAceptarLegajo.Enabled = false;
-
-                btnCancelarLegajo.Visible = false;
-                btnCancelarLegajo.Enabled = false;
-
-                btnModificarLegajo.Visible = true;
-                btnModificarLegajo.Enabled = true;
             }
             else
             {
                 lblInicio.Text = "";
                 
-                txtLegajo.Visible = true;
-                txtLegajo.Enabled = false;
-
                 pnlDatosMedico.Visible = true;
                 pnlDatosMedico.Enabled = true;
-
-                btnAceptarLegajo.Visible = false;
-                btnAceptarLegajo.Enabled = false;
-
-                btnCancelarLegajo.Visible = false;
-                btnCancelarLegajo.Enabled = false;
-
-                btnModificarLegajo.Visible = true;
-                btnModificarLegajo.Enabled = true;
             }
         }
 
@@ -415,8 +389,10 @@ namespace Vistas
 
             lblInicio.Text = "Médico restaurado.";
             pnlDatosMedico.Visible = false;
+
             btnConfirmarRestaurar.Visible = false;
             btnConfirmarRestaurar.Enabled = false;
+
             btnCancelarRestaurar.Visible = false;
             btnCancelarRestaurar.Enabled = false;
         }
@@ -428,10 +404,13 @@ namespace Vistas
 
             BtnBuscarLegajo.Visible = true;
             BtnBuscarLegajo.Enabled = true;
+
             BtnVolver2.Visible = true;
             BtnVolver2.Enabled = true;
+
             btnConfirmarRestaurar.Visible = false;
             btnConfirmarRestaurar.Enabled = false;
+
             btnCancelarRestaurar.Visible = false;
             btnCancelarRestaurar.Enabled = false;
         }

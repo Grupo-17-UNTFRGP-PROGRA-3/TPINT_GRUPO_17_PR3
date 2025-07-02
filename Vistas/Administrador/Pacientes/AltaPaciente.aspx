@@ -30,7 +30,7 @@
                  <asp:Button ID="BtnBuscarDni" runat="server" Text="Buscar paciente" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarDni_Click"/>
                  <asp:Button ID="BtnVolver2" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click"/>
             <br />
-            <asp:Label ID="lblInicio" runat="server"></asp:Label>
+            <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
         </asp:Panel>
 
         <asp:Panel ID="pnlDatosPaciente" runat="server" Visible="false">
