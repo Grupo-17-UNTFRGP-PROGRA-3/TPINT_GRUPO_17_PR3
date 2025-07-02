@@ -47,6 +47,20 @@ namespace Datos
             return dt;
         }
 
+        public DataTable HorasPico(string fechaInicio, string fechaFin)
+        {
+            DataTable dt = new DataTable();
+            _datos = new AccesoDatos();
+            string consulta = "Select h.Descripcion, Count (t.Id) AS 'Cantidad de pacientes'"+
+                "  From Turnos t"+
+                "  Inner join Horarios h ON t.IdHorario = h.Id"+
+                "  WHERE Fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin +"'"+
+                "  group by h.Id, h.Descripcion" +
+                "  Order By h.Id;";
+            string tabla = "Turnos";
+            dt = _datos.ObtenerTabla(consulta, tabla);
+            return dt;
+        }
+
     }
 }
-

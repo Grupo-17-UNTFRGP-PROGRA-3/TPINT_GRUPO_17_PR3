@@ -4,6 +4,10 @@
     padding: 0px;
 }
 
+column {
+    ItemStyle-HorizontalAlign ="Center";
+}
+
 nav {
     text-decoration: none;
     background-color: darkgray;

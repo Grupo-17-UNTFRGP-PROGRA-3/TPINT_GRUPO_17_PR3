@@ -33,5 +33,12 @@ namespace Vistas.Administrador.Informes
             gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 2);
             gvResultados.DataBind();
         }
+
+        protected void btnHorasPico_Click(object sender, EventArgs e)
+        {
+            gvResultados.Visible = true;
+            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 3);
+            gvResultados.DataBind();
+        }
     }
 }

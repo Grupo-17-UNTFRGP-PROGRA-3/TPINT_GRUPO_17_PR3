@@ -30,7 +30,10 @@ namespace Clinica
                     _inf._dt = _DaoInf.PacientesPorEspecialidad(fechaInicio, fechaFin);
                 }
                     break;
-                case 3: { }
+                case 3: 
+                {
+                    _inf._dt = _DaoInf.HorasPico(fechaInicio, fechaFin);
+                    }
                     break;
                 case 4: { }
                     break;
