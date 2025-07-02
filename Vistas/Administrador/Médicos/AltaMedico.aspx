@@ -32,8 +32,10 @@
             <asp:Button ID="BtnBuscarLegajo" runat="server" Text="Buscar medico" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarLegajo_Click" />
             <asp:Button ID="BtnVolver2" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
             <br />
+            <br />
             <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
         </asp:Panel>
+
 
         <asp:Panel ID="pnlDatosMedico" runat="server" Visible="false">
             <!--dni-->
@@ -45,6 +47,7 @@
                 <br />
                 <asp:Label ID="lblDNIMedico" runat="server"></asp:Label>
             </div>
+
             <!--nombre-->
             <div class="form-group">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label"></asp:Label>
@@ -197,6 +200,7 @@
                 <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true" CssClass="form-button" OnClick="btnIngresar_Click" />
                 <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
                 <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
+                <br />
                 <br />
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 <br />

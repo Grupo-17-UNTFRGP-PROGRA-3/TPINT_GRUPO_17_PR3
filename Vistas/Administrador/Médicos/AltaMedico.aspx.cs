@@ -30,15 +30,22 @@ namespace Vistas
                 if (Request.QueryString["legajo"] != null)
                 {
                     lblTitulo.Text = "Modificar Medico";
+
                     pnlDatosMedico.Visible = true;
+                    pnlDatosMedico.Enabled = true;
+
                     BtnBuscarLegajo.Visible = false;
+                    
                     BtnVolver2.Visible = false;
+                    
                     string legajo = Request.QueryString["legajo"].ToString();
+                    
                     txtLegajo.Text = legajo.ToString();
+                    
                     CargarDatosMedico(legajo);
+                    
                     btnIngresar.Text = "MODIFICAR";
                 }
-
 
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
                 ddlNacionalidad.DataTextField = "Descripcion";
@@ -97,38 +104,56 @@ namespace Vistas
 
             if (negocioMedico.ExisteLegajo(legajo))
             {
-                if (eliminado == 1)
+                if (eliminado == 1) // EXISTE Y ESTA ELIMINADO
                 {
                     lblInicio.Text = "El médico se encuentra eliminado. ¿Desea restaurarlo?";
 
                     pnlDatosMedico.Visible = false;
+                    pnlDatosMedico.Enabled = false;
+
                     BtnBuscarLegajo.Visible = false;
                     BtnBuscarLegajo.Enabled = false;
+
                     BtnVolver2.Visible = false;
                     BtnVolver2.Enabled = false;
+
                     btnConfirmarRestaurar.Visible = true;
                     btnConfirmarRestaurar.Enabled = true;
+
                     btnCancelarRestaurar.Visible = true;
                     btnCancelarRestaurar.Enabled = true;
                 }
-                else
+                else // EXISTE Y NO ESTA ELIMINADO
                 {
                     lblInicio.Text = "El legajo ya se encuentra registrado.";
+
                     pnlDatosMedico.Visible = false;
+                    pnlDatosMedico.Enabled = false;
+
                     btnConfirmarRestaurar.Visible = false;
                     btnConfirmarRestaurar.Enabled = false;
+
                     btnCancelarRestaurar.Visible = false;
                     btnCancelarRestaurar.Enabled = false;
                 }
             }
-            else
+            else // NO EXISTE 
             {
-                lblInicio.Text = "";
+                lblInicio.Text = string.Empty;
+
+                txtLegajo.Enabled = false;
+
+                BtnBuscarLegajo.Visible = false;
+                BtnBuscarLegajo.Enabled = false;
+
+                BtnVolver2.Visible = false;
+                BtnVolver2.Enabled = false;
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = true;
+
                 btnModificarLegajo.Visible = true;
                 btnModificarLegajo.Enabled = true;
-                pnlDatosMedico.Visible = true;
-                BtnBuscarLegajo.Visible = false;
-                BtnVolver2.Visible = false;
             }
         }
         
@@ -196,6 +221,8 @@ namespace Vistas
                     lblMensaje.ForeColor = Color.Green;
                 }
             }
+
+            LimpiarCampos();
         }
 
         protected void cargarLocalidades()
@@ -266,6 +293,7 @@ namespace Vistas
         protected void txtDNI_TextChanged(object sender, EventArgs e)
         {
             NegocioMedico negocioMedico = new NegocioMedico();
+
             if (negocioMedico.ExisteDNI(Convert.ToInt32(txtDNI.Text)))
             {
                 lblDNIMedico.Text = "El medico ya se encuentra registrado con otro legajo";
@@ -280,20 +308,23 @@ namespace Vistas
         {
             Session["legajoPreModificacion"] = txtLegajo.Text;
 
-            txtDNI.Enabled = true;
+            txtLegajo.Enabled = true;
 
             pnlDatosMedico.Enabled = false;
+
             btnModificarLegajo.Visible = false;
             btnModificarLegajo.Enabled = false;
+
             btnAceptarLegajo.Visible = true;
             btnAceptarLegajo.Enabled = true;
+
             btnCancelarLegajo.Visible = true;
             btnCancelarLegajo.Enabled = true;
         }
 
         protected void btnAceptarLegajo_Click(object sender, EventArgs e)
         {
-            txtDNI.Enabled = false;
+            txtLegajo.Enabled = false;
 
             btnAceptarLegajo.Visible = false;
             btnAceptarLegajo.Enabled = false;
@@ -301,7 +332,54 @@ namespace Vistas
             btnCancelarLegajo.Visible = false;
             btnCancelarLegajo.Enabled = false;
 
-            BtnBuscarLegajo_Click(sender, e);
+            /*
+            tengo que armar otra funcion distinta
+            
+            BtnBuscarLegajo_Click(sender, e); 
+            */
+
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            bool existe = negocioMedico.ExisteLegajo(txtLegajo.Text);
+
+            if (existe)
+            {
+                lblInicio.Text = "El legajo ya se encuentra registrado.";
+
+                txtLegajo.Visible = true;
+                txtLegajo.Enabled = false;
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = false;
+
+                btnAceptarLegajo.Visible = false;
+                btnAceptarLegajo.Enabled = false;
+
+                btnCancelarLegajo.Visible = false;
+                btnCancelarLegajo.Enabled = false;
+
+                btnModificarLegajo.Visible = true;
+                btnModificarLegajo.Enabled = true;
+            }
+            else
+            {
+                lblInicio.Text = "";
+                
+                txtLegajo.Visible = true;
+                txtLegajo.Enabled = false;
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = true;
+
+                btnAceptarLegajo.Visible = false;
+                btnAceptarLegajo.Enabled = false;
+
+                btnCancelarLegajo.Visible = false;
+                btnCancelarLegajo.Enabled = false;
+
+                btnModificarLegajo.Visible = true;
+                btnModificarLegajo.Enabled = true;
+            }
         }
 
         protected void btnCancelarLegajo_Click(object sender, EventArgs e)
@@ -311,14 +389,19 @@ namespace Vistas
                 txtLegajo.Text = Session["legajoPreModificacion"].ToString();
             }
 
-            txtDNI.Enabled = false;
+            txtLegajo.Enabled = false;
+
             BtnBuscarLegajo.Visible = false;
             BtnBuscarLegajo.Enabled = false;
+
             btnAceptarLegajo.Visible = false;
             btnAceptarLegajo.Enabled = false;
+
             btnCancelarLegajo.Visible = false;
+
             btnModificarLegajo.Visible = true;
             btnModificarLegajo.Enabled = true;
+
             pnlDatosMedico.Enabled = true;
         }
 
