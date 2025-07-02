@@ -12,11 +12,11 @@ nav {
 }
 
 .linkbutton {
+    border: 1px solid black;
     text-decoration: none;
     color: white;
     background-color: #007bff;
     padding: 0.6rem 1.2rem;
-    border: none;
     border-radius: 6px;
     font-size: 1rem;
     font-weight: bold;

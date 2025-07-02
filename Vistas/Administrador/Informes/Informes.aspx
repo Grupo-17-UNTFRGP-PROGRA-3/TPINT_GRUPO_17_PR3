@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content style="align-items:first baseline" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Informes</h1>
     <div >
         <asp:Label CssClass="form-label" ID="lblRangoFechas" runat="server" Text="Rango de fechas"></asp:Label>
@@ -17,14 +17,17 @@
         <br />
         <asp:Button CssClass="linkbutton" ID="btnPacXMed" runat="server" Text="Pacientes / Medico" />
         <br />
-        <br />
+        <br/>
         <asp:Button CssClass="linkbutton" ID="btnPacXEsp" runat="server" OnClick="Button2_Click" Text="Pacientes / Especialidad" />
         <br />
-        <br />
+        <br/>
         <asp:Button CssClass="linkbutton" ID="btnHorasPico" runat="server" Text="Horas Pico" />
         <br />
-        <br />
+        <br/>
         <asp:Button CssClass="linkbutton" ID="btnPorcentajeAusencias" runat="server" Text="Porcentaje de ausencias" />
+        <br />
+        <asp:GridView ID="gvResultados" runat="server">
+        </asp:GridView>
     </div>
 
 
