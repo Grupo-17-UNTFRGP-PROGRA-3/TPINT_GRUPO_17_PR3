@@ -23,7 +23,14 @@ namespace Vistas.Administrador.Informes
         {
             
             gvResultados.Visible=true;
-            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text);
+            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 1);
+            gvResultados.DataBind();
+        }
+
+        protected void btnPacXEsp_Click(object sender, EventArgs e)
+        {
+            gvResultados.Visible = true;
+            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 2);
             gvResultados.DataBind();
         }
     }

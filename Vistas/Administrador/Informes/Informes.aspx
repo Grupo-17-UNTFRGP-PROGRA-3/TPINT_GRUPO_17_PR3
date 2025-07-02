@@ -18,7 +18,7 @@
         <asp:Button CssClass="linkbutton" ID="btnPacXMed" runat="server" Text="Pacientes / Medico" OnClick="btnPacXMed_Click" />
         <br />
         <br/>
-        <asp:Button CssClass="linkbutton" ID="btnPacXEsp" runat="server"  Text="Pacientes / Especialidad" />
+        <asp:Button CssClass="linkbutton" ID="btnPacXEsp" runat="server"  Text="Pacientes / Especialidad" OnClick="btnPacXEsp_Click" />
         <br />
         <br/>
         <asp:Button CssClass="linkbutton" ID="btnHorasPico" runat="server" Text="Horas Pico" />

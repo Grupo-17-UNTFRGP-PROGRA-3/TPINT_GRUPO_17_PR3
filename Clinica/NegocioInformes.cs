@@ -16,9 +16,27 @@ namespace Clinica
 
         public NegocioInformes() { }
 
-        public DataTable TraerInforme (string fechaInicio, string fechaFin)
+        public DataTable TraerInforme (string fechaInicio, string fechaFin, int tipoInf)
         {
-            _inf._dt= _DaoInf.PacientesPorMedico(fechaInicio, fechaFin);
+            switch (tipoInf)
+            {
+                case 1:
+                {
+                    _inf._dt= _DaoInf.PacientesPorMedico(fechaInicio, fechaFin);
+                }
+                    break;
+                case 2:
+                {
+                    _inf._dt = _DaoInf.PacientesPorEspecialidad(fechaInicio, fechaFin);
+                }
+                    break;
+                case 3: { }
+                    break;
+                case 4: { }
+                    break;
+                default: _inf._dt = null;
+                    break;
+            }
             return _inf._dt; 
         }
 

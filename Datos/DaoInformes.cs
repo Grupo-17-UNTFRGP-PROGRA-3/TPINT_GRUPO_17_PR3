@@ -30,5 +30,23 @@ namespace Datos
            dt = _datos.ObtenerTabla(consulta, tabla);
             return dt;
         }
+
+        public DataTable PacientesPorEspecialidad(string fechaInicio, string fechaFin)
+        {
+            DataTable dt = new DataTable();
+            _datos = new AccesoDatos();
+            string consulta = "SELECT e.Descripcion, COUNT (t.Id) AS 'Pacientes' "+
+                "FROM Turnos t " +
+                "INNER JOIN Medicos m ON t.LegajoMedico = m.Legajo " +
+                "INNER JOIN Especialidades e ON m.IdEspecialidad = e.Id " +
+                "Where t.Fecha between '"+ fechaInicio +"' and '"+ fechaFin +"' "+
+                "GROUP BY e.Descripcion "+
+                "ORDER BY Pacientes DESC;";
+            string tabla = "Turnos";
+            dt = _datos.ObtenerTabla(consulta, tabla);
+            return dt;
+        }
+
     }
 }
+
