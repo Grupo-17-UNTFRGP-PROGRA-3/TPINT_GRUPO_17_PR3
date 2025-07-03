@@ -138,9 +138,20 @@ namespace Datos
             return dataSet.Tables[nombreTabla];
         }
 
-        public bool ExisteDNI(int dni)
+        public bool ExisteDNIPaciente(int dni)
         {
             string consulta = "SELECT COUNT(*) FROM Pacientes WHERE DNI = @dni";
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            cmd.Parameters.AddWithValue("@dni", dni);
+            _conexion.Open();
+            int cantidad = (int)cmd.ExecuteScalar();
+            _conexion.Close();
+            return cantidad > 0;
+        }
+
+        public bool ExisteDNIMedico(int dni)
+        {
+            string consulta = "SELECT COUNT(*) FROM Medicos WHERE DNI = @dni";
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
             cmd.Parameters.AddWithValue("@dni", dni);
             _conexion.Open();

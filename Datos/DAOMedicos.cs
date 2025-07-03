@@ -68,6 +68,13 @@ namespace Datos
             return datos.EjecutarConsulta(consulta) > 0;
         }
 
+        public bool ExisteDNIMedico(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            return datos.ExisteDNIMedico(dni);
+        }
+
         public DataTable ListadoMedicos()
         {
             string consulta = "SELECT * FROM Medicos WHERE Eliminado = 0";

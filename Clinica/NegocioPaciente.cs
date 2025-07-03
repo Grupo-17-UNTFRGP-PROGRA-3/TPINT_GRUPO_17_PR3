@@ -79,8 +79,9 @@ namespace Clinica
 
         public bool ExisteDNI(int dni)
         {
-            AccesoDatos datos = new AccesoDatos();
-            return datos.ExisteDNI(dni);
+            DAOPacientes daoPacientes = new DAOPacientes();
+
+            return daoPacientes.ExisteDNI(dni);
         }
 
         public DataTable ListadoPacientes()

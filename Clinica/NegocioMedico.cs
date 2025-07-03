@@ -84,10 +84,11 @@ namespace Clinica
             return datos.TraerListaHorariosMedicoPorLegajo(legajo);
         }
 
-        public bool ExisteDNI(int dni)
+        public bool ExisteDNIMedico(int dni)
         {
-            AccesoDatos datos = new AccesoDatos();
-            return datos.ExisteDNI(dni);
+            DAOMedicos daoMedico = new DAOMedicos();
+
+            return daoMedico.ExisteDNIMedico(dni);
         }
 
         public int ChequearEliminado(string legajo)

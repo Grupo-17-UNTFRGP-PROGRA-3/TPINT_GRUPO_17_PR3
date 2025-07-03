@@ -317,7 +317,7 @@ namespace Vistas
         {
             NegocioMedico negocioMedico = new NegocioMedico();
 
-            if (negocioMedico.ExisteDNI(Convert.ToInt32(txtDNI.Text)))
+            if (negocioMedico.ExisteDNIMedico(Convert.ToInt32(txtDNI.Text)))
             {
                 lblDNIMedico.Text = "El medico ya se encuentra registrado con otro legajo";
             }
