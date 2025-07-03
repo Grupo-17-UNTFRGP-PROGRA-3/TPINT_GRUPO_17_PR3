@@ -20,7 +20,7 @@ namespace Vistas.Administrador.Médicos
             if (!IsPostBack)
             {
                 cargarUsuario(legajo);
-                pnlUsuarioMedico.Visible = false;
+
             }
             
         }
@@ -31,6 +31,8 @@ namespace Vistas.Administrador.Médicos
             NegocioUsuario negocioUsuario = new NegocioUsuario();
             Usuario Nuevousuario = negocioUsuario.ObtenerUsuarioPorLegajo(legajo);
             txtUsuario.Text = Nuevousuario.getUsuario();
+            txtPass1.Text = Nuevousuario.getPass();
+            txtPass2.Text = Nuevousuario.getPass();
 
         }
         public void LimpiarCampos()

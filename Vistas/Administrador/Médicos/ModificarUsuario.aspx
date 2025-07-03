@@ -21,7 +21,8 @@
             <br />
             <asp:Label ID="LabelUsuario" runat="server"></asp:Label>
             <br />
-            <asp:Button ID="BtnBuscarUsuario" runat="server"  CssClass="form-button" OnClick="BtnBuscarUsuario_Click" Text="Buscar Usuario" CausesValidation="False" />
+            <asp:Button ID="BtnBuscarUsuario" runat="server"  CssClass="form-button" OnClick="BtnBuscarUsuario_Click" Text="Buscar Usuario" />
+            <br />
         </div>
        <asp:Panel ID="pnlUsuarioMedico" runat="server">
         <div class="form-group">
