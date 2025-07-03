@@ -20,7 +20,7 @@ namespace Vistas
         protected void btnLogin_Click(object sender, EventArgs e)
 		{
 			Usuario usuario = new Usuario(txtUsuario.Text, txtClave.Text);
-			LoginUsuario log = new LoginUsuario(usuario);
+			NegocioUsuario log = new NegocioUsuario(usuario);
 
             int resultado = log.EsLoginValido();
 
@@ -46,7 +46,7 @@ namespace Vistas
 			else
 			{
 				Session["UsuarioRol"] = "Medico";
-                Session["Home"] = "Medico/ListadoTurnos.aspx";
+                Session["Home"] = "Medico/HomeMED.aspx";
 			}
 
 			Response.Redirect(Session["Home"].ToString());

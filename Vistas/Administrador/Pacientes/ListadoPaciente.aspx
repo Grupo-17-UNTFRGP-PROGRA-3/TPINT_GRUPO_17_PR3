@@ -15,14 +15,11 @@
 
     <div>
         <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
-        <br />
-    </div>
 
-    <div>
        <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" 
            CellPadding="4" ForeColor="#333333" GridLines="None" 
            OnRowCommand="gvPacientes_RowCommand"
-           AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPacientes_PageIndexChanging">
+           AllowPaging="True" OnPageIndexChanging="gvPacientes_PageIndexChanging">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:TemplateField HeaderText="D.N.I.">
@@ -98,6 +95,10 @@
         <SortedDescendingCellStyle BackColor="#FFFDF8" />
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
+        <br />
+    </div>
+
+    <div>
     </div>
 
     <div>

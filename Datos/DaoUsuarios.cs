@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,7 @@ namespace Datos
         public bool usuarioExiste(string usuario)
         {
         
-            if (_datos.Existe("Usuarios", "Usuario", usuario)) return true;
+            if (_datos.ExisteUsuario(usuario)) return true;
 
             return false;
         }
@@ -47,6 +48,25 @@ namespace Datos
                 usuario._legajo.ToString() + "', 0)";
 
             return _datos.EjecutarConsulta(consulta);
+        }
+        public int ModificarUsuario(string usuario, string Pass, int legajo)
+        {
+            string consulta = "UPDATE Usuarios SET " +
+            "Usuario = @usuario, Password = @password " + "WHERE Legajo = @legajo";
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+            new SqlParameter("@usuario", usuario),
+            new SqlParameter("@password",Pass),
+            new SqlParameter("@legajo",legajo) };
+            return _datos.EjecutarConsultaConParametros(consulta, parametros);
+        }
+
+        public DataTable ListadoUsuarios()
+        {
+            string consulta = "SELECT Usuario,Password,Legajo FROM Usuarios WHERE Eliminado = 0";
+            DataTable dt = new DataTable();
+            dt = _datos.ObtenerTabla(consulta, "Usuarios");
+            return dt;
         }
     }
 }

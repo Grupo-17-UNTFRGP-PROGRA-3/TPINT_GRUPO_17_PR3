@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +9,14 @@ using Entidades;
 
 namespace Clinica
 {
-    public class LoginUsuario
+    public class NegocioUsuario
     {
         DaoUsuarios _daoU = new DaoUsuarios();
         Usuario _usuario = new Usuario();
 
-        public LoginUsuario() { }
+        public NegocioUsuario() { }
         
-        public LoginUsuario(Usuario usuario)
+        public NegocioUsuario(Usuario usuario)
         {
            _usuario = usuario;
         }
@@ -54,6 +55,27 @@ namespace Clinica
             if (_daoU.agregarCuenta(usuario) == 1) return true;
 
             return false;
+        }
+        public bool ModificarUsuario(string usuario,string Pass,int legajo)
+        {
+            if(_daoU.ModificarUsuario(usuario,Pass,legajo) == 1) return true;
+            return false;
+        }
+        public bool existeUsuario(string usuario)
+        {
+           return _daoU.usuarioExiste(usuario);
+        }
+
+        public DataTable ListadoUsuarios()
+        {
+            DataTable dt = new DataTable();
+            dt = _daoU.ListadoUsuarios();
+            return dt;
+        }
+
+        public Usuario ObtenerUsuarioPorLegajo(int legajo) { 
+            AccesoDatos datos = new AccesoDatos();
+            return datos.traerUsuarioPorNombreUsuario(legajo);
         }
     }
 }

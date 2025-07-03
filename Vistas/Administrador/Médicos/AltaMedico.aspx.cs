@@ -193,6 +193,13 @@ namespace Vistas
         
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            Usuario usuario = new Usuario()
+            {
+                _legajo = txtLegajo.Text,
+                _usuario = txtLegajo.Text + txtApellido.Text,
+                _pass = "1234"
+
+            };
             Entidades.Medico medico = new Entidades.Medico()
             {
                 _DNI = int.Parse(txtDNI.Text),
@@ -229,7 +236,9 @@ namespace Vistas
             {
                 if (negocioMedico.AgregarMedico(medico))
                 {
-                    lblMensaje.Text = "El médico se ha agregado con éxito";
+                    NegocioUsuario negocioUsuario = new NegocioUsuario();
+                    negocioUsuario.AgregarCuenta(usuario);
+                    lblMensaje.Text = "El médico y usuario se han agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
 
                     LimpiarCampos();
