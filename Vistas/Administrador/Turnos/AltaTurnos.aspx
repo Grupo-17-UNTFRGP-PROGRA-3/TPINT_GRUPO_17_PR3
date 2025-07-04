@@ -23,15 +23,14 @@
         <!-- Día -->
         <div class="form-group">
             <asp:Label ID="lblDia" runat="server" Text="Día" CssClass="form-label"></asp:Label>
-            <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input">
+            <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged">
             </asp:DropDownList>
         </div>
 
         <!-- Horario -->
         <div class="form-group">
             <asp:Label ID="lblHorario" runat="server" Text="Horario" CssClass="form-label"></asp:Label>
-            <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-input">
-                <asp:ListItem Text="Seleccione horario" Value="" />
+            <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-input" AutoPostBack="true">
             </asp:DropDownList>
         </div>
 

@@ -10,20 +10,20 @@ namespace Vistas.Administrador.Usuarios
 {
 	public partial class ListadoUsuarios : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
+        public void cargarUsuarios()
+        {
+            NegocioUsuario us = new NegocioUsuario();
+            gvUsuarios.DataSource = us.ListadoUsuarios();
+            gvUsuarios.DataBind();
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
 		{
 			if (!IsPostBack)
 			{
 				cargarUsuarios();
 			}
 		}
-
-		public void cargarUsuarios()
-		{
-            NegocioUsuario us = new NegocioUsuario();
-            gvUsuarios.DataSource = us.ListadoUsuarios();
-			gvUsuarios.DataBind();
-        }
 
         protected void gvUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -38,6 +38,11 @@ namespace Vistas.Administrador.Usuarios
                 int legajo = int.Parse( e.CommandArgument.ToString());
                 Response.Redirect($"~/Administrador/Médicos/ModificarUsuario.aspx?legajo={legajo}");
             }
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Home.aspx");
         }
     }
 }

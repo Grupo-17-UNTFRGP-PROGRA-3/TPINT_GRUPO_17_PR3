@@ -91,6 +91,13 @@ namespace Clinica
             return dt;
         }
 
+        public DataTable ListadoPacientesNombreConDNI()
+        {
+            DAOPacientes daoPacientes = new DAOPacientes();
+
+            return daoPacientes.ListadoPacientesNombreConDNI();
+        }
+
         public DataTable ListadoPacientesJoined()
         {
             DataTable dt = new DataTable();

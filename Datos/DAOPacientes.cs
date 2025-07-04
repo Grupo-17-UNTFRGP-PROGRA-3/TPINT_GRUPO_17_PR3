@@ -85,6 +85,15 @@ namespace Datos
             return dt;
         }
 
+        public DataTable ListadoPacientesNombreConDNI()
+        {
+            string consulta = "SELECT Dni, Nombre + ' ' + Apellido + ', ' + Dni AS Descripcion FROM Pacientes";
+
+            SqlCommand sqlcmd = new SqlCommand(consulta);
+
+            return datos.ObtenerTabla(sqlcmd, "Pacientes");
+        }
+
         public DataTable ListadoPacientesJoined()
         {
             string consulta = "SELECT P.Dni, P.Nombre, P.Apellido, N.Descripcion AS 'Nacionalidad', P.FechaNacimiento, " +

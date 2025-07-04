@@ -49,7 +49,7 @@ namespace Vistas.Administrador.Médicos
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Administrador/Home.aspx");
+            Response.Redirect("~/Administrador/Usuarios/ListadoUsuarios.aspx");
         }
 
         protected void BtnBuscarUsuario_Click(object sender, EventArgs e)

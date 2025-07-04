@@ -68,9 +68,9 @@
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
             <br />
+            <div>
+                <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click"/>
+            </div>
         </div>
     </div>
-
-
 </asp:Content>
-

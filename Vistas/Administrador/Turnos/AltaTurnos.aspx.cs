@@ -50,6 +50,7 @@ namespace Vistas.Administrador
         {
             if (!IsPostBack)
             {
+                // CARGA ESPECIALIDADES
                 NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
                 DataTable tablaEspecialidades = new DataTable();
 
@@ -60,6 +61,18 @@ namespace Vistas.Administrador
                 ddlEspecialidad.DataValueField = "Id";
                 ddlEspecialidad.DataBind();
                 ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", "0"));
+
+                // CARGA PACIENTES
+                NegocioPaciente negocioPaciente = new NegocioPaciente();
+                DataTable tablaPacientes = new DataTable();
+
+                tablaPacientes = negocioPaciente.ListadoPacientesNombreConDNI();
+
+                ddlPaciente.DataSource = tablaPacientes;
+                ddlPaciente.DataTextField = "Descripcion";
+                ddlPaciente.DataValueField = "Dni";
+                ddlPaciente.DataBind();
+                ddlPaciente.Items.Insert(0, new ListItem("-- Seleccione Paciente --", "0"));
             }
         }
 
@@ -75,6 +88,11 @@ namespace Vistas.Administrador
             string legajo = ddlMedico.SelectedValue;
 
             CargarDias(legajo);
+        }
+
+        protected void ddlDia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // logica para cambiar los horarios en funcion del dia
         }
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)
