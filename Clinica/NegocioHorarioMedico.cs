@@ -41,7 +41,7 @@ namespace Clinica
             }
         }
 
-        public HorarioMedico ObtenerHorarioMedicoPorLegajoDia(int legajo, int dia)
+        public HorarioMedico ObtenerHorarioMedicoPorLegajoDia(string legajo, int dia)
         {
             HorarioMedico horMed = null;
             horMed = dao.traerHorarioMedico(legajo, dia);

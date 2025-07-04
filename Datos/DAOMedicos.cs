@@ -94,7 +94,6 @@ namespace Datos
             return dt;
         }
     
-        public int ChequearEliminado(string dni)
         public DataTable ListadoMedicosPorEspecialidad(int idEspecialidad)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -121,7 +120,7 @@ namespace Datos
             return datos.ObtenerTabla(sqlcmd, "HorariosMedicos");
         }
 
-        public int ChequearEliminado(string legajo)
+        public int ChequearEliminado(string dni)
         {
             string consulta = "SELECT COUNT(*) FROM Medicos WHERE (Dni = @Dni) AND (Eliminado = 1)";
             SqlCommand sqlcmd = new SqlCommand(consulta);

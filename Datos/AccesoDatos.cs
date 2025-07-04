@@ -246,9 +246,10 @@ namespace Datos
             _conexion.Close();
             return paciente;
         }
-        public int TraerLegajoMedicoPorDNI(string dni)
+        
+        public string TraerLegajoMedicoPorDNI(string dni)
         {
-            int legajo = -1;
+            string legajo = "-1";
             string consulta = "SELECT Legajo FROM Medicos WHERE Dni = '" + dni + "'";
 
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
@@ -258,14 +259,15 @@ namespace Datos
 
             if (reader.Read())
             {
-                legajo = Convert.ToInt32(reader["Legajo"]);
+                legajo = reader["Legajo"].ToString();
             }
 
             _conexion.Close();
 
             return legajo;
         }
-        public Medico TraerMedicoPorLegajo(int legajo)
+        
+        public Medico TraerMedicoPorLegajo(string legajo)
         {
             Medico medico = null;
             string consulta = "SELECT * FROM Medicos WHERE Legajo = @legajo";
@@ -290,7 +292,7 @@ namespace Datos
                      _Telefono = reader["Telefono"].ToString(),
                      _IdProvincia = Convert.ToInt32(reader["IdProvincia"]),
                      _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
-                     _Legajo = int.Parse(reader["Legajo"].ToString()),
+                     _Legajo = reader["Legajo"].ToString(),
                      _IdEspecialidad = Convert.ToInt32(reader["IdEspecialidad"])
                 };
 
@@ -365,7 +367,7 @@ namespace Datos
             return horariosMedico;
         }
 
-        public HorarioMedico TraerHorarioMedico(int legajo, int dia)
+        public HorarioMedico TraerHorarioMedico(string legajo, int dia)
         {
             HorarioMedico horMed = new HorarioMedico();
             string consulta = "SELECT * FROM HorariosMedicos WHERE Legajo = " + legajo.ToString() + " AND IdDia = " + dia.ToString();
@@ -378,7 +380,7 @@ namespace Datos
                 horMed._IdDia = Convert.ToInt32(reader["IdDia"]);
                 horMed._HoraInicio = reader["HoraInicio"].ToString();
                 horMed._HoraFin = reader["HoraFin"].ToString();
-                horMed._Legajo = Convert.ToInt32(reader["Legajo"]);
+                horMed._Legajo = reader["Legajo"].ToString();
                 horMed._Eliminado = Convert.ToBoolean(reader["Eliminado"]);
             }
 

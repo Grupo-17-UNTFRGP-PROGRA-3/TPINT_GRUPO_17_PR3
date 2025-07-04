@@ -20,7 +20,7 @@ namespace Entidades
         public int _IdProvincia { get; set; }
         public int _IdLocalidad { get; set; }
         public bool _Eliminado { get; set; }
-        public int _Legajo { get; set; }
+        public string _Legajo { get; set; }
         public int _IdEspecialidad { get; set; }
 
         public Medico() { }
