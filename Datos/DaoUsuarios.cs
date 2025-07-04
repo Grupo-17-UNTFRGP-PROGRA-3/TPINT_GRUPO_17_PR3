@@ -44,8 +44,8 @@ namespace Datos
         {
             string consulta = "INSERT INTO Usuarios(Usuario, Password, Legajo, Eliminado) VALUES ('" +
                 usuario._usuario.ToString() + "', '" +
-                usuario._pass.ToString() + "', '" +
-                usuario._legajo.ToString() + "', 0)";
+                usuario._pass.ToString() + "', " +
+                usuario._legajo.ToString() + ", 0)";
 
             return _datos.EjecutarConsulta(consulta);
         }

@@ -11,23 +11,16 @@ namespace Entidades
     {
         public string _usuario;
         public string _pass;
-        public string _legajo;
+        public int _legajo;
 
         public Usuario() { }
         public Usuario(string usuario)
         {
             _usuario = usuario;
         }
-        public Usuario(string usuario, string pass, string legajo)
+        public Usuario(string usuario, string pass, int legajo)
         {
-            try
-            {
-                setLegajo(legajo);
-            }
-            catch (ArgumentException ex)
-            {
-                string error = ex.Message;
-            }
+            setLegajo(legajo);
             setUsuario(usuario);
             setPass(pass);
         }
@@ -36,25 +29,9 @@ namespace Entidades
             setUsuario(usuario);
             setPass(pass);
         }
-        public void setLegajo(string leg)
-        {
-            if (legajoValido(leg))
-            {
-                _legajo = leg;
-            }
-            else
-            {
-                throw new ArgumentException("Formato de legajo inválido. Deben ser 4 caracteres alfanuméricos");
-            }
-        }
-        public string getLegajo()
+        public void setLegajo(int leg) { _legajo = leg; }
+        public int getLegajo()
         {  return _legajo; }
-        private bool legajoValido(string leg)
-        {
-            string patron = @"[A-Z0-9]{4}";
-            return Regex.IsMatch(leg, patron);
-        }
-
         private void setUsuario(string usuario) { _usuario = usuario; }
         private void setPass(string pass) { _pass = pass; }
         public string getUsuario() { return _usuario; }
