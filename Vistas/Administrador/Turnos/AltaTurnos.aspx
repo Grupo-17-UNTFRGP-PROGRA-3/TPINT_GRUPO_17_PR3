@@ -10,7 +10,7 @@
         <!-- Especialidad -->
         <div class="form-group">
             <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
-            <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input">
+            <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input" AutoPostBack="true">
                 <asp:ListItem Text="Seleccione especialidad" Value="" />
             </asp:DropDownList>
         </div>
@@ -24,7 +24,7 @@
 
         <!-- Día -->
         <div class="form-group">
-            <asp:Label ID="lblDia" runat="server" Text="Día del Turno" CssClass="form-label"></asp:Label>
+            <asp:Label ID="lblDia" runat="server" Text="Día" CssClass="form-label"></asp:Label>
             <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input">
                 <asp:ListItem Text="Seleccione día" Value="" />
             </asp:DropDownList>
@@ -54,8 +54,8 @@
         <!-- Botones -->
         <div>
             <asp:Button ID="btnAsignarTurno" runat="server" Text="Asignar Turno" CssClass="form-button" OnClick="btnAsignarTurno_Click1" />
-            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos" CssClass="form-button" />
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" />
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos" CssClass="form-button" OnClick="btnLimpiar_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>

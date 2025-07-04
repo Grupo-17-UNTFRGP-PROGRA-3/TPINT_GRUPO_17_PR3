@@ -14,6 +14,7 @@ namespace Clinica
         public DataTable GetTable()
         {
             DaoEspecialidades dao = new DaoEspecialidades();
+
             return dao.ListadoEspecialidades();
         }
     }

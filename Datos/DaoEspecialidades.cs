@@ -17,7 +17,9 @@ namespace Datos
         {
             string consulta = "SELECT * FROM Especialidades WHERE Eliminado = 0";
             DataTable dt = new DataTable();
+
             dt = datos.ObtenerTabla(consulta, "Especialidades");
+
             return dt;
         }
     }

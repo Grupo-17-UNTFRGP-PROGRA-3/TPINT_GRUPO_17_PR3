@@ -104,9 +104,12 @@ namespace Datos
         public SqlDataReader ObtenerTabla(string nombreTabla)
         {
             _conexion.Open();
+
             string consulta = $"SELECT * FROM {nombreTabla}";
+
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
             SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
             return reader;
         }
 
@@ -178,6 +181,7 @@ namespace Datos
 
             return existe;
         }
+        
         public bool ExisteUsuario(string Nusuario)
         {
             string consulta = "SELECT COUNT(*) FROM Usuarios WHERE usuario = @usuario";
@@ -291,6 +295,7 @@ namespace Datos
             _conexion.Close();
             return medico;
         }
+        
         public Usuario traerUsuarioPorNombreUsuario(int legajo)
         {
             Usuario usuario = new Usuario();
@@ -313,6 +318,7 @@ namespace Datos
             _conexion.Close();
             return usuario;
         }
+        
         public List<HorarioMedico> TraerListaHorariosMedicoPorLegajo(string legajo)
         {
             List<HorarioMedico> horariosMedico = new List<HorarioMedico>();

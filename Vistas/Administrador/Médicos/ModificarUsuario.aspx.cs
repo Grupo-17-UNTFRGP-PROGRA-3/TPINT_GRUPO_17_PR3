@@ -17,43 +17,45 @@ namespace Vistas.Administrador.Médicos
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
             int legajo = int.Parse(Request.QueryString["legajo"]);
+
             if (!IsPostBack)
             {
                 cargarUsuario(legajo);
-
             }
-            
         }
 
         public void cargarUsuario(int legajo)
         {
-
             NegocioUsuario negocioUsuario = new NegocioUsuario();
+
             Usuario Nuevousuario = negocioUsuario.ObtenerUsuarioPorLegajo(legajo);
+
             txtUsuario.Text = Nuevousuario.getUsuario();
             txtPass1.Text = Nuevousuario.getPass();
             txtPass2.Text = Nuevousuario.getPass();
-
         }
+        
         public void LimpiarCampos()
         {
             txtUsuario.Text = string.Empty;
             txtPass1.Text = string.Empty;
             txtPass2.Text = string.Empty;
         }
+
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
 
-
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Home.aspx");
         }
+
         protected void BtnBuscarUsuario_Click(object sender, EventArgs e)
         {
             NegocioUsuario neg = new NegocioUsuario();
+
             if (neg.existeUsuario(txtUsuario.Text))
             {
                 LabelUsuario.Text = "Usuario no disponible, elija otro";
@@ -70,14 +72,12 @@ namespace Vistas.Administrador.Médicos
           
             if (txtPass1.Text == txtPass2.Text)
             {               
-               
                 NegocioUsuario log = new NegocioUsuario();
+
                 log.ModificarUsuario(txtUsuario.Text,txtPass1.Text,legajo);
+
                 lblMensaje.Text = "EXITO";
-
             }
-
-
         }
     }
 }

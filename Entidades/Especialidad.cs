@@ -10,6 +10,7 @@ namespace Entidades
     {
         public int _Id { get; set; }
         public string _Descripcion { get; set; }
+        public bool _Eliminado { get; set; }
         public Especialidad() { }
     }
 }
