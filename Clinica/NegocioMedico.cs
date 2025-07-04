@@ -109,10 +109,11 @@ namespace Clinica
             return daoMedico.ChequearEliminado(legajo);
         }
         
-        public bool RestaurarMedicoEliminado(string legajo)
+        public bool RestaurarMedicoEliminado(int dni)
         {
             DAOMedicos daoMedico = new DAOMedicos();
-            return daoMedico.RestaurarMedicoEliminado(legajo);
+
+            return daoMedico.RestaurarMedicoEliminado(dni);
         }
     }
 }

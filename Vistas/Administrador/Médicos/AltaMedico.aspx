@@ -25,6 +25,8 @@
                 <asp:Button ID="btnModificarDNI" runat="server" Text="Modificar DNI" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnModificarDNI_Click"/>
                 <asp:Button ID="btnAceptarDNI" runat="server" Text="Aceptar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnAceptarDNI_Click"/>
                 <asp:Button ID="btnCancelarDNI" runat="server" Text="Cancelar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnCancelarDNI_Click"/>
+                <asp:Button ID="btnConfirmarRestaurar" runat="server" Text="Restaurar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnConfirmarRestaurar_Click"/>
+                <asp:Button ID="btnCancelarRestaurar" runat="server" Text="Cancelar" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnCancelarRestaurar_Click"/>
             </div>
 
             <asp:Button ID="BtnBuscarDNI" runat="server" Text="Buscar DNI" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarDNI_Click" />

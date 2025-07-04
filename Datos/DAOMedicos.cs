@@ -14,6 +14,7 @@ namespace Datos
     {
         AccesoDatos datos = new AccesoDatos();
         Medico medico = new Medico();
+
         public int AgregarMedico(Medico medico)
         {
             string consulta = "INSERT INTO Medicos(DNI, Nombre, Apellido, Sexo, IdNacionalidad, FechaNacimiento, Direccion, Email," +
@@ -129,12 +130,12 @@ namespace Datos
             return datos.EjecutarConsultaEscalar(sqlcmd);
         }
 
-        public bool RestaurarMedicoEliminado(string dni)
+        public bool RestaurarMedicoEliminado(int dni)
         {
-            string consulta = "UPDATE Medicos SET Eliminado = 0 WHERE (Dni = @Dni)";
+            string consulta = "UPDATE Medicos SET Eliminado = 0 WHERE (Dni = @DNI)";
             SqlCommand sqlcmd = new SqlCommand(consulta);
 
-            sqlcmd.Parameters.AddWithValue("@Dni", dni);
+            sqlcmd.Parameters.AddWithValue("@DNI", dni);
             return datos.EjecutarConsulta(sqlcmd) > 0;
         }
     }

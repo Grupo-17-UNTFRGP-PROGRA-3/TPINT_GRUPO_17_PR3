@@ -140,6 +140,11 @@ namespace Vistas
                     BtnVolver2.Visible = false;
                     BtnVolver2.Enabled = false;
 
+                    btnConfirmarRestaurar.Visible = true;
+                    btnConfirmarRestaurar.Enabled = true;
+
+                    btnCancelarRestaurar.Visible = true;
+                    btnCancelarRestaurar.Enabled = true;
                 }
                 else // EXISTE Y NO ESTA ELIMINADO
                 {
@@ -383,6 +388,52 @@ namespace Vistas
             btnModificarDNI.Enabled = true;
 
             BuscarDNIDuranteModificacion();
+        }
+
+        protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+            int dni = Convert.ToInt32(txtDNI.Text);
+
+            bool resultado = negocioMedico.RestaurarMedicoEliminado(dni);
+
+            lblInicio.Text = "Medico restaurado.";
+
+            txtDNI.Visible = true;
+            txtDNI.Enabled = false;
+
+            pnlDatosMedico.Visible = false;
+            pnlDatosMedico.Enabled = false;
+
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
+
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
+        }
+
+        protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
+        {
+            txtDNI.Text = string.Empty;
+            lblInicio.Text = string.Empty;
+
+            txtDNI.Visible = true;
+            txtDNI.Enabled = true;
+
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
+
+            BtnBuscarDNI.Visible = true;
+            BtnBuscarDNI.Enabled = true;
+
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
         }
     }
 }
