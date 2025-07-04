@@ -80,6 +80,12 @@ namespace Clinica
             return daoMedico.ListadoMedicosPorEspecialidad(idEspecialidad);
         }
 
+        public DataTable ListadoDiasDeAtencionPorLegajo(string legajo)
+        {
+            DAOMedicos daoMedico = new DAOMedicos();
+
+            return daoMedico.ListadoDiasDeAtencionPorLegajo(legajo);
+        }
 
         public Medico ObtenerMedicoPorLegajo(string legajo)
         {

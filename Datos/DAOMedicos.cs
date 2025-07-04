@@ -98,12 +98,27 @@ namespace Datos
         public DataTable ListadoMedicosPorEspecialidad(int idEspecialidad)
         {
             AccesoDatos datos = new AccesoDatos();
-            string consulta = "SELECT Legajo, Nombre + ' ' + Apellido AS Descripcion FROM Medicos WHERE IdEspecialidad = @IDESPECIALIDAD AND Legajo <> '0000'";
+            string consulta = "SELECT Legajo, Nombre + ' ' + Apellido AS Descripcion " +
+                              "FROM Medicos " +
+                              "WHERE (IdEspecialidad = @IDESPECIALIDAD) AND (Legajo <> '0000')";
             SqlCommand sqlcmd = new SqlCommand(consulta);
 
             sqlcmd.Parameters.AddWithValue("@IDESPECIALIDAD", idEspecialidad.ToString());
 
             return datos.ObtenerTabla(sqlcmd, "Especialidades");
+        }
+
+        public DataTable ListadoDiasDeAtencionPorLegajo(string legajo)
+        {
+            string consulta = "SELECT HM.IdDia, D.Descripcion " +
+                              "FROM HorariosMedicos HM " +
+                              "JOIN Dias D ON HM.IdDia = D.Id " +
+                              "WHERE (HM.Eliminado = 0) AND (Legajo = @LEGAJO)";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
+
+            sqlcmd.Parameters.AddWithValue("@LEGAJO", legajo);
+
+            return datos.ObtenerTabla(sqlcmd, "HorariosMedicos");
         }
 
         public int ChequearEliminado(string legajo)

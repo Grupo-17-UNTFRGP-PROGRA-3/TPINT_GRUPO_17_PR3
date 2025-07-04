@@ -16,8 +16,7 @@
         <!-- Médico -->
         <div class="form-group">
             <asp:Label ID="lblMedico" runat="server" Text="Médico" CssClass="form-label"></asp:Label>
-            <asp:DropDownList ID="ddlMedico" runat="server" CssClass="form-input">
-                <asp:ListItem Text="Seleccione médico" Value="" />
+            <asp:DropDownList ID="ddlMedico" runat="server" CssClass="form-input" AutoPostBack="true" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
             </asp:DropDownList>
         </div>
 
@@ -25,7 +24,6 @@
         <div class="form-group">
             <asp:Label ID="lblDia" runat="server" Text="Día" CssClass="form-label"></asp:Label>
             <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input">
-                <asp:ListItem Text="Seleccione día" Value="" />
             </asp:DropDownList>
         </div>
 

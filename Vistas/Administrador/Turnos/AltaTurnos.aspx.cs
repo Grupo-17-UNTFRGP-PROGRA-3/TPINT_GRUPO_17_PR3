@@ -24,6 +24,19 @@ namespace Vistas.Administrador
             ddlMedico.Items.Insert(0, new ListItem("-- Seleccione Médico --", "0"));
         }
 
+        protected void CargarDias(string legajo) 
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            DataTable TablaDiasDeAtencionPorLegajo = negocioMedico.ListadoDiasDeAtencionPorLegajo(legajo);
+
+            ddlDia.DataSource = TablaDiasDeAtencionPorLegajo;
+            ddlDia.DataTextField = "Descripcion";
+            ddlDia.DataValueField = "IdDia";
+            ddlDia.DataBind();
+            ddlDia.Items.Insert(0, new ListItem("-- Seleccione Dia --", "0"));
+        }
+
         protected void LimpiarCampos()
         {
             ddlEspecialidad.SelectedIndex = 0;
@@ -55,6 +68,13 @@ namespace Vistas.Administrador
             int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
 
             CargarMedicos(idEspecialidad);
+        }
+
+        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string legajo = ddlMedico.SelectedValue;
+
+            CargarDias(legajo);
         }
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)
