@@ -21,11 +21,33 @@ namespace Vistas
         private readonly NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
         private readonly NegocioMedico negocioMedico = new NegocioMedico();
 
+        protected void BuscarDNIDuranteModificacion()
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            bool existe = negocioMedico.ExisteDNI(Convert.ToInt32(txtDNI.Text));
+
+            if (existe)
+            {
+                lblInicio.Text = "El DNI ya se encuentra registrado.";
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = false;
+
+            }
+            else
+            {
+                lblInicio.Text = "";
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = true;
+            }
+        }
+
         public void LimpiarCampos()
         {
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
-            txtDNI.Text = string.Empty;
             rblSexo.ClearSelection();
             ddlNacionalidad.SelectedIndex = 0;
             txtFechaNacimiento.Text = string.Empty;
@@ -304,17 +326,63 @@ namespace Vistas
 
         protected void btnModificarDNI_Click(object sender, EventArgs e)
         {
-            pnlDatosMedico.Visible = false;
-            pnlDatosMedico.Enabled = false;
+            Session["dniPreModificacion"] = txtDNI.Text;
 
             txtDNI.Visible = true;
             txtDNI.Enabled = true;
 
+            pnlDatosMedico.Visible = true;
+            pnlDatosMedico.Enabled = false;
+
             btnModificarDNI.Visible = false;
             btnModificarDNI.Enabled = false;
 
-            BtnBuscarDNI.Visible = true;
-            BtnBuscarDNI.Enabled = true;
+            btnAceptarDNI.Visible = true;
+            btnAceptarDNI.Enabled = true;
+
+            btnCancelarDNI.Visible = true;
+            btnCancelarDNI.Enabled = true;
+        }
+
+        protected void btnAceptarDNI_Click(object sender, EventArgs e)
+        {
+            txtDNI.Visible = true;
+            txtDNI.Enabled = false;
+
+            btnAceptarDNI.Visible = false;
+            btnAceptarDNI.Enabled = false;
+
+            btnCancelarDNI.Visible = false;
+            btnCancelarDNI.Enabled = false;
+
+            btnModificarDNI.Visible = true;
+            btnModificarDNI.Enabled = true;
+
+            BuscarDNIDuranteModificacion();
+        }
+
+        protected void btnCancelarDNI_Click(object sender, EventArgs e)
+        {
+            if (Session["dniPreModificacion"] != null)
+            {
+                txtDNI.Text = Session["dniPreModificacion"].ToString();
+            }
+
+            txtDNI.Enabled = false;
+
+            BtnBuscarDNI.Visible = false;
+            BtnBuscarDNI.Enabled = false;
+
+            btnAceptarDNI.Visible = false;
+            btnAceptarDNI.Enabled = false;
+
+            btnCancelarDNI.Visible = false;
+            btnCancelarDNI.Enabled = false;
+
+            btnModificarDNI.Visible = true;
+            btnModificarDNI.Enabled = true;
+
+            BuscarDNIDuranteModificacion();
         }
     }
 }

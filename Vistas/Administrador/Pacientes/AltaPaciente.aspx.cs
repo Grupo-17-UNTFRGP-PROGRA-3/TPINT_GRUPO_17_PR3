@@ -269,8 +269,10 @@ namespace Vistas
         {
             Session["dniPreModificacion"] = txtDNI.Text;
 
+            txtDNI.Visible = true;
             txtDNI.Enabled = true;
 
+            pnlDatosPaciente.Visible = true;
             pnlDatosPaciente.Enabled = false;
 
             btnModificarDNI.Visible = false;

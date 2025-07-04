@@ -43,6 +43,13 @@ namespace Clinica
             return datos.ExisteLegajo(legajo);
         }
         
+        public bool ExisteDNI(int dni)
+        {
+            DAOMedicos daoMedico = new DAOMedicos();
+
+            return daoMedico.ExisteDNIMedico(dni);
+        }
+
         public bool EliminarMedico(string legajo)
         {
             AccesoDatos datos = new AccesoDatos();
