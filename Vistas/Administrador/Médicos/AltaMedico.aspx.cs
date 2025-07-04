@@ -18,8 +18,38 @@ namespace Vistas
         NegocioProvincia negocioProvincia = new NegocioProvincia();
         NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
         NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+        NegocioHorario negocioHorario = new NegocioHorario();
         private readonly NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
         private readonly NegocioMedico negocioMedico = new NegocioMedico();
+
+        protected void FiltrarYCargarHorariosFin()
+        {
+            int idHoraInicio = Convert.ToInt32(ddlHoraInicio.SelectedValue);
+
+            if (idHoraInicio == 0)
+            {
+                ddlHoraFin.Items.Clear();
+                ddlHoraFin.Items.Insert(0, new ListItem("-- Seleccione Horario --", "0"));
+            }
+
+            DataTable tablaHorariosCompletos = new DataTable();
+            tablaHorariosCompletos = negocioHorario.ObtenerTabla();
+            DataTable tablaHorarioFin = tablaHorariosCompletos.Clone();
+
+            foreach (DataRow fila in tablaHorariosCompletos.Rows)
+            {
+                int idHoraFin = Convert.ToInt32(fila["Id"]);
+
+                if (idHoraFin > idHoraInicio)
+                    tablaHorarioFin.ImportRow(fila);
+            }
+
+            ddlHoraFin.DataSource = tablaHorarioFin;
+            ddlHoraFin.DataTextField = "Horario";
+            ddlHoraFin.DataValueField = "Id";
+            ddlHoraFin.DataBind();
+            ddlHoraFin.Items.Insert(0, new ListItem("-- Seleccione Horario --", "0"));
+        }
 
         protected void BuscarDNIDuranteModificacion()
         {
@@ -111,6 +141,15 @@ namespace Vistas
                 ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccionar--", ""));
 
                 cargarLocalidades();
+
+                DataTable tablaHorariosInicio = negocioHorario.ObtenerTabla();
+                DataTable tablaEditada = tablaHorariosInicio.Copy();
+                tablaEditada.Rows[tablaEditada.Rows.Count - 1].Delete();
+                ddlHoraInicio.DataSource = tablaEditada;
+                ddlHoraInicio.DataTextField = "Horario";
+                ddlHoraInicio.DataValueField = "Id";
+                ddlHoraInicio.DataBind();
+                ddlHoraInicio.Items.Insert(0, new ListItem("-- Seleccione Horario --", "0"));
             }
         }
 
@@ -118,7 +157,12 @@ namespace Vistas
         {
             cargarLocalidades();
         }
-        
+
+        protected void ddlHoraInicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltrarYCargarHorariosFin();
+        }
+
         protected void BtnBuscarDNI_Click(object sender, EventArgs e)
         {
             NegocioMedico negocioMedico = new NegocioMedico();

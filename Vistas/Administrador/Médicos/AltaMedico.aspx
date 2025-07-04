@@ -152,35 +152,9 @@
 
                 <div class="form-group">
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
-                    <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input">
-                        <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
-                        <asp:ListItem Value="07:00:00">07:00</asp:ListItem>
-                        <asp:ListItem Value="08:00:00">08:00</asp:ListItem>
-                        <asp:ListItem Value="09:00:00">09:00</asp:ListItem>
-                        <asp:ListItem Value="10:00:00">10:00</asp:ListItem>
-                        <asp:ListItem Value="11:00:00">11:00</asp:ListItem>
-                        <asp:ListItem Value="12:00:00">12:00</asp:ListItem>
-                        <asp:ListItem Value="13:00:00">13:00</asp:ListItem>
-                        <asp:ListItem Value="14:00:00">14:00</asp:ListItem>
-                        <asp:ListItem Value="15:00:00">15:00</asp:ListItem>
-                        <asp:ListItem Value="16:00:00">16:00</asp:ListItem>
-                        <asp:ListItem Value="17:00:00">17:00</asp:ListItem>
-                        <asp:ListItem Value="18:00:00">18:00</asp:ListItem>
+                    <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input" AutoPostBack="true" OnSelectedIndexChanged="ddlHoraInicio_SelectedIndexChanged">
                     </asp:DropDownList>
                     <asp:DropDownList ID="ddlHoraFin" runat="server" CssClass="form-input">
-                        <asp:ListItem Selected="True">--Seleccione hora--</asp:ListItem>
-                        <asp:ListItem Value="8:00:00">8:00</asp:ListItem>
-                        <asp:ListItem Value="9:00:00">9:00</asp:ListItem>
-                        <asp:ListItem Value="10:00:00">10:00</asp:ListItem>
-                        <asp:ListItem Value="11:00:00">11:00</asp:ListItem>
-                        <asp:ListItem Value="12:00:00">12:00</asp:ListItem>
-                        <asp:ListItem Value="13:00:00">13:00</asp:ListItem>
-                        <asp:ListItem Value="14:00:00">14:00</asp:ListItem>
-                        <asp:ListItem Value="15:00:00">15:00</asp:ListItem>
-                        <asp:ListItem Value="16:00:00">16:00</asp:ListItem>
-                        <asp:ListItem Value="17:00:00">17:00</asp:ListItem>
-                        <asp:ListItem Value="18:00:00">18:00</asp:ListItem>
-                        <asp:ListItem Value="19:00:00">19:00</asp:ListItem>
                     </asp:DropDownList>
                 </div>
 
