@@ -36,7 +36,7 @@ namespace Clinica
             return false;
         }
         
-        public bool ExisteLegajo(string legajo)
+        public bool ExisteLegajo(int legajo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -50,7 +50,7 @@ namespace Clinica
             return daoMedico.ExisteDNIMedico(dni);
         }
 
-        public bool EliminarMedico(string legajo)
+        public bool EliminarMedico(int legajo)
         {
             AccesoDatos datos = new AccesoDatos();
             return dAOMedico.EliminarMedico(legajo);
@@ -84,13 +84,13 @@ namespace Clinica
             return daoMedico.ListadoDiasDeAtencionPorLegajo(legajo);
         }
         
-        public Medico ObtenerMedicoPorLegajo(string legajo)
+        public Medico ObtenerMedicoPorLegajo(int legajo)
         {
             AccesoDatos datos = new AccesoDatos();
             return datos.TraerMedicoPorLegajo(legajo);
         }
         
-        public string ObtenerLegajoPorDNI(string dni)
+        public int ObtenerLegajoPorDNI(int dni)
         {
             AccesoDatos datos = new AccesoDatos();
             return datos.TraerLegajoMedicoPorDNI(dni);

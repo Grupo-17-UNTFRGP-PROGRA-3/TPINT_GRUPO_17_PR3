@@ -37,12 +37,12 @@ namespace Datos
             return datos.EjecutarConsulta(consulta);
         }
 
-        public List<HorarioMedico> TraerListaHorariosMedicosPorLegajo(string legajo)
+        public List<HorarioMedico> TraerListaHorariosMedicosPorLegajo(int legajo)
         {
             return datos.TraerListaHorariosMedicoPorLegajo(legajo);
         }
 
-        public HorarioMedico traerHorarioMedico (string legajo, int dia)
+        public HorarioMedico traerHorarioMedico (int legajo, int dia)
         {
             horariosMedicos = datos.TraerHorarioMedico(legajo, dia);
             return horariosMedicos;

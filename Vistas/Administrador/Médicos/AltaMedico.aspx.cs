@@ -80,7 +80,7 @@ namespace Vistas
                     
                     BtnVolver2.Visible = false;
                     
-                    string legajo = Request.QueryString["legajo"].ToString();
+                    int legajo = Convert.ToInt32(Request.QueryString["legajo"]);
                                                             
                     CargarDatosMedico(legajo);
 
@@ -204,7 +204,7 @@ namespace Vistas
                 _IdLocalidad = int.Parse(ddlLocalidad.SelectedValue),
                 _Eliminado = false,
                 _IdEspecialidad = int.Parse(ddlEspecialidad.SelectedValue),
-                _Legajo = negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text),
+                _Legajo = negocioMedico.ObtenerLegajoPorDNI(Convert.ToInt32(txtDNI.Text)),
             };
 
             if (Request.QueryString["legajo"] == null)
@@ -218,7 +218,7 @@ namespace Vistas
                         HorarioMedico horarioMedico = new HorarioMedico();
 
                         horarioMedico._IdDia = int.Parse(dia.Value);
-                        horarioMedico._Legajo = negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text);
+                        horarioMedico._Legajo = negocioMedico.ObtenerLegajoPorDNI(Convert.ToInt32(txtDNI.Text));
                         horarioMedico._HoraInicio = ddlHoraInicio.SelectedValue;
                         horarioMedico._HoraFin = ddlHoraFin.SelectedValue;
                         horarioMedico._Eliminado = dia.Selected ? false : true; //SI ESTÁ SELECCIONADO, ELIMINADO = FALSE, SINO TRUE
@@ -226,7 +226,7 @@ namespace Vistas
                         negocioHorarioMedico.AgregarHorarioMedico(horarioMedico);
                     }
 
-                    Usuario usuario = new Usuario(negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text.ToString()).ToString() + txtApellido.Text.ToString(), "1234", Convert.ToInt32(negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text)));
+                    Usuario usuario = new Usuario(negocioMedico.ObtenerLegajoPorDNI(Convert.ToInt32(txtDNI.Text)).ToString() + txtApellido.Text, "1234", Convert.ToInt32(negocioMedico.ObtenerLegajoPorDNI(Convert.ToInt32(txtDNI.Text))));
                     
                     NegocioUsuario negocioUsuario = new NegocioUsuario();
                     negocioUsuario.AgregarCuenta(usuario);
@@ -247,7 +247,7 @@ namespace Vistas
                         HorarioMedico horarioMedico = new HorarioMedico();
 
                         horarioMedico._IdDia = int.Parse(dia.Value);
-                        horarioMedico._Legajo = negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text.ToString());
+                        horarioMedico._Legajo = negocioMedico.ObtenerLegajoPorDNI(Convert.ToInt32(txtDNI.Text));
                         horarioMedico._HoraInicio = ddlHoraInicio.SelectedValue;
                         horarioMedico._HoraFin = ddlHoraFin.SelectedValue;
                         horarioMedico._Eliminado = dia.Selected ? false : true; //SI ESTÁ SELECCIONADO, ELIMINADO = FALSE, SINO TRUE
@@ -283,7 +283,7 @@ namespace Vistas
             }
         }
 
-        protected void CargarDatosMedico(string legajo)
+        protected void CargarDatosMedico(int legajo)
         {
             Entidades.Medico medico = negocioMedico.ObtenerMedicoPorLegajo(legajo);
             

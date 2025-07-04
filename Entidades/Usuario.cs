@@ -14,6 +14,7 @@ namespace Entidades
         public int _legajo;
 
         public Usuario() { }
+
         public Usuario(string usuario)
         {
             _usuario = usuario;

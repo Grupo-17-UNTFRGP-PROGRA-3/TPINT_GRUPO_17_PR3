@@ -62,7 +62,7 @@ namespace Datos
             return datos.EjecutarConsultaConParametros(consulta, parametros);
         }
 
-        public bool EliminarMedico(string legajo)
+        public bool EliminarMedico(int legajo)
         {
             string consulta = "UPDATE Medicos SET Eliminado = 1 WHERE Legajo = " + legajo;
             return datos.EjecutarConsulta(consulta) > 0;

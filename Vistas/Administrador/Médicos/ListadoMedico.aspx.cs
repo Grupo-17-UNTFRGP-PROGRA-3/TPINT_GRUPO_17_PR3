@@ -39,7 +39,7 @@ namespace Vistas
         {
             if(e.CommandName == "EliminarMedico")
             {
-                string legajo = e.CommandArgument.ToString();
+                int legajo = Convert.ToInt32(e.CommandArgument);
                 if (_negocioMedico.ExisteLegajo(legajo))
                 {
                     _negocioMedico.EliminarMedico(legajo);

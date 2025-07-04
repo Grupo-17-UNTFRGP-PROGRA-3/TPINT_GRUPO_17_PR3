@@ -163,7 +163,7 @@ namespace Datos
             return cantidad > 0;
         }
 
-        public bool ExisteLegajo(string legajo)
+        public bool ExisteLegajo(int legajo)
         {
             string consulta = "SELECT COUNT(*) FROM Medicos WHERE Legajo = @legajo";
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
@@ -247,9 +247,9 @@ namespace Datos
             return paciente;
         }
         
-        public string TraerLegajoMedicoPorDNI(string dni)
+        public int TraerLegajoMedicoPorDNI(int dni)
         {
-            string legajo = "-1";
+            int legajo = -1;
             string consulta = "SELECT Legajo FROM Medicos WHERE Dni = '" + dni + "'";
 
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
@@ -259,7 +259,7 @@ namespace Datos
 
             if (reader.Read())
             {
-                legajo = reader["Legajo"].ToString();
+                legajo = Convert.ToInt32(reader["Legajo"]);
             }
 
             _conexion.Close();
@@ -267,7 +267,7 @@ namespace Datos
             return legajo;
         }
         
-        public Medico TraerMedicoPorLegajo(string legajo)
+        public Medico TraerMedicoPorLegajo(int legajo)
         {
             Medico medico = null;
             string consulta = "SELECT * FROM Medicos WHERE Legajo = @legajo";
@@ -292,7 +292,7 @@ namespace Datos
                      _Telefono = reader["Telefono"].ToString(),
                      _IdProvincia = Convert.ToInt32(reader["IdProvincia"]),
                      _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
-                     _Legajo = reader["Legajo"].ToString(),
+                     _Legajo = Convert.ToInt32(reader["Legajo"]),
                      _IdEspecialidad = Convert.ToInt32(reader["IdEspecialidad"])
                 };
 
@@ -340,7 +340,7 @@ namespace Datos
             return usuario;
         }
         
-        public List<HorarioMedico> TraerListaHorariosMedicoPorLegajo(string legajo)
+        public List<HorarioMedico> TraerListaHorariosMedicoPorLegajo(int legajo)
         {
             List<HorarioMedico> horariosMedico = new List<HorarioMedico>();
             string consulta = "SELECT * FROM HorariosMedicos WHERE Legajo = " + legajo;
@@ -355,7 +355,7 @@ namespace Datos
                     _IdDia = Convert.ToInt32(reader["IdDia"]),
                     _HoraInicio = reader["HoraInicio"].ToString(),
                     _HoraFin = reader["HoraFin"].ToString(),
-                    _Legajo = legajo,
+                    _Legajo = Convert.ToInt32(legajo),
                     _Eliminado = Convert.ToBoolean(reader["Eliminado"])
                 };
 
@@ -367,7 +367,7 @@ namespace Datos
             return horariosMedico;
         }
 
-        public HorarioMedico TraerHorarioMedico(string legajo, int dia)
+        public HorarioMedico TraerHorarioMedico(int legajo, int dia)
         {
             HorarioMedico horMed = new HorarioMedico();
             string consulta = "SELECT * FROM HorariosMedicos WHERE Legajo = " + legajo.ToString() + " AND IdDia = " + dia.ToString();
@@ -380,7 +380,7 @@ namespace Datos
                 horMed._IdDia = Convert.ToInt32(reader["IdDia"]);
                 horMed._HoraInicio = reader["HoraInicio"].ToString();
                 horMed._HoraFin = reader["HoraFin"].ToString();
-                horMed._Legajo = reader["Legajo"].ToString();
+                horMed._Legajo = Convert.ToInt32(reader["Legajo"]);
                 horMed._Eliminado = Convert.ToBoolean(reader["Eliminado"]);
             }
 
