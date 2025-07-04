@@ -73,7 +73,7 @@ namespace Datos
             SqlCommand consulta = new SqlCommand(consutalSql, _conexion);
             SqlDataReader sqlDR = consulta.ExecuteReader();
             sqlDR.Read();
-            Usuario user = new Usuario(sqlDR["Usuario"].ToString(), sqlDR["Password"].ToString(), sqlDR["Legajo"].ToString());
+            Usuario user = new Usuario(sqlDR["Usuario"].ToString(), sqlDR["Password"].ToString(), int.Parse(sqlDR["Legajo"].ToString()));
             _conexion.Close();
 
             return user;
@@ -246,8 +246,26 @@ namespace Datos
             _conexion.Close();
             return paciente;
         }
+        public int TraerLegajoMedicoPorDNI(string dni)
+        {
+            int legajo = -1;
+            string consulta = "SELECT Legajo FROM Medicos WHERE Dni = '" + dni + "'";
 
-        public Medico TraerMedicoPorLegajo(string legajo)
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+
+            _conexion.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                legajo = Convert.ToInt32(reader["Legajo"]);
+            }
+
+            _conexion.Close();
+
+            return legajo;
+        }
+        public Medico TraerMedicoPorLegajo(int legajo)
         {
             Medico medico = null;
             string consulta = "SELECT * FROM Medicos WHERE Legajo = @legajo";
@@ -272,7 +290,7 @@ namespace Datos
                      _Telefono = reader["Telefono"].ToString(),
                      _IdProvincia = Convert.ToInt32(reader["IdProvincia"]),
                      _IdLocalidad = Convert.ToInt32(reader["IdLocalidad"]),
-                     _Legajo = reader["Legajo"].ToString(),
+                     _Legajo = int.Parse(reader["Legajo"].ToString()),
                      _IdEspecialidad = Convert.ToInt32(reader["IdEspecialidad"])
                 };
 
@@ -310,12 +328,13 @@ namespace Datos
                 {
                     _usuario = reader["Usuario"].ToString(),
                     _pass = reader["Password"].ToString(),
-                    _legajo = reader["Legajo"].ToString()
+                    _legajo = int.Parse(reader["Legajo"].ToString())
                 };
                 
             }
             reader.Close();
             _conexion.Close();
+
             return usuario;
         }
         
@@ -342,13 +361,14 @@ namespace Datos
             }
 
             _conexion.Close();
+
             return horariosMedico;
         }
 
-        public HorarioMedico TraerHorarioMedicoPorLegajo(string legajo)
+        public HorarioMedico TraerHorarioMedico(int legajo, int dia)
         {
             HorarioMedico horMed = new HorarioMedico();
-            string consulta = "SELECT * FROM HorariosMedicos WHERE Eliminado != 1 AND Legajo =" + legajo.ToString();
+            string consulta = "SELECT * FROM HorariosMedicos WHERE Legajo = " + legajo.ToString() + " AND IdDia = " + dia.ToString();
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
             _conexion.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -358,9 +378,11 @@ namespace Datos
                 horMed._IdDia = Convert.ToInt32(reader["IdDia"]);
                 horMed._HoraInicio = reader["HoraInicio"].ToString();
                 horMed._HoraFin = reader["HoraFin"].ToString();
+                horMed._Legajo = Convert.ToInt32(reader["Legajo"]);
+                horMed._Eliminado = Convert.ToBoolean(reader["Eliminado"]);
             }
-            horMed._Legajo = legajo;
-            horMed._Eliminado = false;
+
+            _conexion.Close();
 
             return horMed;
         }

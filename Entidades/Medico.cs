@@ -20,15 +20,13 @@ namespace Entidades
         public int _IdProvincia { get; set; }
         public int _IdLocalidad { get; set; }
         public bool _Eliminado { get; set; }
-        public string _Legajo { get; set; }
+        public int _Legajo { get; set; }
         public int _IdEspecialidad { get; set; }
-        public List<HorarioMedico> _Horarios { get; set; }
 
         public Medico() { }
 
         public Medico (int dni, string nombre, string apellido, bool sexo, int idNacionalidad, DateTime fechaNacimiento,
-                  string direccion, string email, string telefono, int idProvincia, int idLocalidad, bool eliminado,
-                  string legajo, int idEspecialidad)
+                  string direccion, string email, string telefono, int idProvincia, int idLocalidad, bool eliminado, int idEspecialidad)
         {
             _DNI = dni;
             _Nombre = nombre;
@@ -42,7 +40,6 @@ namespace Entidades
             _IdProvincia = idProvincia;
             _IdLocalidad = idLocalidad;
             _Eliminado = eliminado;
-            _Legajo = legajo;
             _IdEspecialidad = idEspecialidad;
         }
     }

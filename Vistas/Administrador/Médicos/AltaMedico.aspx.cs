@@ -21,28 +21,6 @@ namespace Vistas
         private readonly NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
         private readonly NegocioMedico negocioMedico = new NegocioMedico();
 
-        protected void BuscarLegajoDuranteModificacion()
-        {
-            NegocioMedico negocioMedico = new NegocioMedico();
-
-            bool existe = negocioMedico.ExisteLegajo(txtLegajo.Text);
-
-            if (existe)
-            {
-                lblInicio.Text = "El legajo ya se encuentra registrado.";
-
-                pnlDatosMedico.Visible = true;
-                pnlDatosMedico.Enabled = false;
-            }
-            else
-            {
-                lblInicio.Text = "";
-
-                pnlDatosMedico.Visible = true;
-                pnlDatosMedico.Enabled = true;
-            }
-        }
-
         public void LimpiarCampos()
         {
             txtNombre.Text = string.Empty;
@@ -76,15 +54,15 @@ namespace Vistas
                     pnlDatosMedico.Visible = true;
                     pnlDatosMedico.Enabled = true;
 
-                    BtnBuscarLegajo.Visible = false;
+                    BtnBuscarDNI.Visible = false;
                     
                     BtnVolver2.Visible = false;
                     
-                    string legajo = Request.QueryString["legajo"].ToString();
-                    
-                    txtLegajo.Text = legajo.ToString();
-                    
+                    int legajo = int.Parse(Request.QueryString["legajo"].ToString());
+                                                            
                     CargarDatosMedico(legajo);
+
+                    txtDNI.Enabled = false;
                     
                     btnIngresar.Text = "MODIFICAR";
                 }
@@ -119,13 +97,13 @@ namespace Vistas
             cargarLocalidades();
         }
         
-        protected void BtnBuscarLegajo_Click(object sender, EventArgs e)
+        protected void BtnBuscarDNI_Click(object sender, EventArgs e)
         {
             NegocioMedico negocioMedico = new NegocioMedico();
-            string legajo = txtLegajo.Text.ToString();
-            int eliminado = negocioMedico.ChequearEliminado(legajo);
+            string dni = txtDNI.Text.ToString();
+            int eliminado = negocioMedico.ChequearEliminado(dni);
 
-            if (negocioMedico.ExisteLegajo(legajo))
+            if (negocioMedico.ExisteDNIMedico(int.Parse(dni)))
             {
                 if (eliminado == 1) // EXISTE Y ESTA ELIMINADO
                 {
@@ -134,40 +112,28 @@ namespace Vistas
                     pnlDatosMedico.Visible = false;
                     pnlDatosMedico.Enabled = false;
 
-                    BtnBuscarLegajo.Visible = false;
-                    BtnBuscarLegajo.Enabled = false;
+                    BtnBuscarDNI.Visible = false;
+                    BtnBuscarDNI.Enabled = false;
 
                     BtnVolver2.Visible = false;
                     BtnVolver2.Enabled = false;
 
-                    btnConfirmarRestaurar.Visible = true;
-                    btnConfirmarRestaurar.Enabled = true;
-
-                    btnCancelarRestaurar.Visible = true;
-                    btnCancelarRestaurar.Enabled = true;
                 }
                 else // EXISTE Y NO ESTA ELIMINADO
                 {
-                    lblInicio.Text = "El legajo ya se encuentra registrado.";
+                    lblInicio.Text = "El dni ya se encuentra registrado.";
 
                     pnlDatosMedico.Visible = false;
                     pnlDatosMedico.Enabled = false;
 
-                    btnConfirmarRestaurar.Visible = false;
-                    btnConfirmarRestaurar.Enabled = false;
-
-                    btnCancelarRestaurar.Visible = false;
-                    btnCancelarRestaurar.Enabled = false;
                 }
             }
             else // NO EXISTE 
             {
                 lblInicio.Text = string.Empty;
 
-                txtLegajo.Enabled = false;
-
-                BtnBuscarLegajo.Visible = false;
-                BtnBuscarLegajo.Enabled = false;
+                BtnBuscarDNI.Visible = false;
+                BtnBuscarDNI.Enabled = false;
 
                 BtnVolver2.Visible = false;
                 BtnVolver2.Enabled = false;
@@ -175,8 +141,10 @@ namespace Vistas
                 pnlDatosMedico.Visible = true;
                 pnlDatosMedico.Enabled = true;
 
-                btnModificarLegajo.Visible = true;
-                btnModificarLegajo.Enabled = true;
+                txtDNI.Enabled = false;
+
+                btnModificarDNI.Visible = true;
+                btnModificarDNI.Enabled = true;
             }
         }
         
@@ -187,19 +155,12 @@ namespace Vistas
         
         protected void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
-            txtLegajo.Text = string.Empty;
             LimpiarCampos();
         }
         
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario()
-            {
-                _legajo = txtLegajo.Text,
-                _usuario = txtLegajo.Text + txtApellido.Text,
-                _pass = "1234"
-
-            };
+            
             Entidades.Medico medico = new Entidades.Medico()
             {
                 _DNI = int.Parse(txtDNI.Text),
@@ -214,41 +175,58 @@ namespace Vistas
                 _IdProvincia = int.Parse(ddlProvincia.SelectedValue),
                 _IdLocalidad = int.Parse(ddlLocalidad.SelectedValue),
                 _Eliminado = false,
-                _Legajo = txtLegajo.Text,
                 _IdEspecialidad = int.Parse(ddlEspecialidad.SelectedValue),
-                _Horarios = new List<HorarioMedico>()
+                _Legajo = negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text.ToString()),
             };
-
-            foreach (ListItem dia in cblDiasAtencion.Items)
-            {
-                //RECORRE TODOS LOS DÍAS DE LA SEMANA
-                medico._Horarios.Add(new HorarioMedico
-                {
-                    _IdDia = int.Parse(dia.Value),
-                    _Legajo = txtLegajo.Text,
-                    _HoraInicio = ddlHoraInicio.SelectedValue,
-                    _HoraFin = ddlHoraFin.SelectedValue,
-                    _Eliminado = dia.Selected ? false : true //SI ESTÁ SELECCIONADO, ELIMINADO = FALSE, SINO TRUE
-                });
-            }
 
             if (Request.QueryString["legajo"] == null)
             {
                 if (negocioMedico.AgregarMedico(medico))
                 {
+                    NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
+
+                    foreach (ListItem dia in cblDiasAtencion.Items)
+                    {
+                        HorarioMedico horarioMedico = new HorarioMedico();
+
+                        horarioMedico._IdDia = int.Parse(dia.Value);
+                        horarioMedico._Legajo = negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text.ToString());
+                        horarioMedico._HoraInicio = ddlHoraInicio.SelectedValue;
+                        horarioMedico._HoraFin = ddlHoraFin.SelectedValue;
+                        horarioMedico._Eliminado = dia.Selected ? false : true; //SI ESTÁ SELECCIONADO, ELIMINADO = FALSE, SINO TRUE
+
+                        negocioHorarioMedico.AgregarHorarioMedico(horarioMedico);
+                    }
+
+                    Usuario usuario = new Usuario(negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text.ToString()).ToString() + txtApellido.Text.ToString(), "1234", negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text.ToString()));
+                    
                     NegocioUsuario negocioUsuario = new NegocioUsuario();
                     negocioUsuario.AgregarCuenta(usuario);
                     lblMensaje.Text = "El médico y usuario se han agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
 
                     LimpiarCampos();
-                    txtLegajo.Text = string.Empty;
                 }
             }
             else
             {
                 if (negocioMedico.ModificarMedico(medico))
                 {
+                    NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
+
+                    foreach (ListItem dia in cblDiasAtencion.Items)
+                    {
+                        HorarioMedico horarioMedico = new HorarioMedico();
+
+                        horarioMedico._IdDia = int.Parse(dia.Value);
+                        horarioMedico._Legajo = negocioMedico.ObtenerLegajoPorDNI(txtDNI.Text.ToString());
+                        horarioMedico._HoraInicio = ddlHoraInicio.SelectedValue;
+                        horarioMedico._HoraFin = ddlHoraFin.SelectedValue;
+                        horarioMedico._Eliminado = dia.Selected ? false : true; //SI ESTÁ SELECCIONADO, ELIMINADO = FALSE, SINO TRUE
+
+                        negocioHorarioMedico.ModificarHorarioMedico(horarioMedico);
+                    }
+
                     lblMensaje.Text = "Registro médico modificado con éxito";
                     lblMensaje.ForeColor = Color.Green;
                 }
@@ -277,14 +255,12 @@ namespace Vistas
             }
         }
 
-        protected void CargarDatosMedico(string legajo)
+        protected void CargarDatosMedico(int legajo)
         {
             Entidades.Medico medico = negocioMedico.ObtenerMedicoPorLegajo(legajo);
-            List<HorarioMedico> listaHorarios = negocioMedico.ObtenerHorariosMedicoPorLegajo(legajo);
-
+            
             if (medico != null)
             {
-                txtLegajo.Text = legajo.ToString();
                 txtNombre.Text = medico._Nombre;
                 txtApellido.Text = medico._Apellido;
                 if (medico._Sexo)
@@ -305,139 +281,38 @@ namespace Vistas
                 ddlLocalidad.SelectedValue = medico._IdLocalidad.ToString();
                 ddlEspecialidad.SelectedValue = medico._IdEspecialidad.ToString();
 
+                NegocioHorarioMedico negocioHorarioMedico = new NegocioHorarioMedico();
+                HorarioMedico horario = new HorarioMedico();
+
                 foreach (ListItem dia in cblDiasAtencion.Items)
                 {
                     int idDia = int.Parse(dia.Value); //VALUE DEL CHECKBOX (1: Lunes, 2: Martes, etc.)
 
-                    HorarioMedico horario = listaHorarios.FirstOrDefault(h => h._IdDia == idDia); //BUSCAR EL HORARIO DEL MEDICO PARA ESE DÍA
+                    horario = negocioHorarioMedico.ObtenerHorarioMedicoPorLegajoDia(medico._Legajo, idDia);
 
-                    if (horario != null)
+                    if (!horario._Eliminado)
                     {
-                        dia.Selected = horario._Eliminado == false; //SI EL HORARIO NO ESTÁ ELIMINADO, SELECCIONAR EL CHECKBOX
+                        dia.Selected = true;
                     }
                 }
 
-                ddlHoraInicio.SelectedValue = listaHorarios[0]._HoraInicio; //HASTA MANEJAR DISTINTOS HORARIOS POR DÍA, SE ASIGNA EL HORARIO DEL PRIMER DÍA
-                ddlHoraFin.SelectedValue = listaHorarios[0]._HoraFin;
+                ddlHoraInicio.SelectedValue = horario._HoraInicio; //HASTA MANEJAR DISTINTOS HORARIOS POR DÍA, SE ASIGNA EL HORARIO DEL ÚLTIMO DÍA
+                ddlHoraFin.SelectedValue = horario._HoraFin;
             }
         }
-
-        protected void txtDNI_TextChanged(object sender, EventArgs e)
+        protected void btnModificarDNI_Click(object sender, EventArgs e)
         {
-            NegocioMedico negocioMedico = new NegocioMedico();
-
-            if (negocioMedico.ExisteDNIMedico(Convert.ToInt32(txtDNI.Text)))
-            {
-                lblDNIMedico.Text = "El medico ya se encuentra registrado con otro legajo";
-            }
-            else
-            {
-                lblDNIMedico.Text = "";
-            }
-        }
-
-        protected void btnModificarLegajo_Click(object sender, EventArgs e)
-        {
-            Session["legajoPreModificacion"] = txtLegajo.Text;
-
-            txtLegajo.Enabled = true;
-
+            pnlDatosMedico.Visible = false;
             pnlDatosMedico.Enabled = false;
 
-            btnModificarLegajo.Visible = false;
-            btnModificarLegajo.Enabled = false;
+            txtDNI.Visible = true;
+            txtDNI.Enabled = true;
 
-            btnAceptarLegajo.Visible = true;
-            btnAceptarLegajo.Enabled = true;
+            btnModificarDNI.Visible = false;
+            btnModificarDNI.Enabled = false;
 
-            btnCancelarLegajo.Visible = true;
-            btnCancelarLegajo.Enabled = true;
-        }
-
-        protected void btnAceptarLegajo_Click(object sender, EventArgs e)
-        {
-            txtLegajo.Visible = true;
-            txtLegajo.Enabled = false;
-
-            btnAceptarLegajo.Visible = false;
-            btnAceptarLegajo.Enabled = false;
-
-            btnCancelarLegajo.Visible = false;
-            btnCancelarLegajo.Enabled = false;
-
-            btnModificarLegajo.Visible = true;
-            btnModificarLegajo.Enabled = true;
-
-            BuscarLegajoDuranteModificacion();
-        }
-
-        protected void btnCancelarLegajo_Click(object sender, EventArgs e)
-        {
-            if (Session["legajoPreModificacion"] != null)
-            {
-                txtLegajo.Text = Session["legajoPreModificacion"].ToString();
-            }
-
-            txtLegajo.Enabled = false;
-
-            BtnBuscarLegajo.Visible = false;
-            BtnBuscarLegajo.Enabled = false;
-
-            btnAceptarLegajo.Visible = false;
-            btnAceptarLegajo.Enabled = false;
-
-            btnCancelarLegajo.Visible = false;
-            btnCancelarLegajo.Enabled = false;
-
-            btnModificarLegajo.Visible = true;
-            btnModificarLegajo.Enabled = true;
-
-            pnlDatosMedico.Enabled = true;
-
-            BuscarLegajoDuranteModificacion();
-        }
-
-        protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
-        {
-            NegocioMedico negocioMedico = new NegocioMedico();
-
-            string legajo = txtLegajo.Text;
-
-            bool resultado = negocioMedico.RestaurarMedicoEliminado(legajo);
-
-            lblInicio.Text = "Médico restaurado.";
-
-            txtLegajo.Visible = true;
-            txtLegajo.Enabled = false;
-
-            pnlDatosMedico.Visible = false;
-
-            btnConfirmarRestaurar.Visible = false;
-            btnConfirmarRestaurar.Enabled = false;
-
-            btnCancelarRestaurar.Visible = false;
-            btnCancelarRestaurar.Enabled = false;
-
-            BtnVolver2.Visible = true;
-            BtnVolver2.Enabled = true;
-        }
-
-        protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
-        {
-            txtDNI.Text = string.Empty;
-            lblInicio.Text = string.Empty;
-
-            BtnBuscarLegajo.Visible = true;
-            BtnBuscarLegajo.Enabled = true;
-
-            BtnVolver2.Visible = true;
-            BtnVolver2.Enabled = true;
-
-            btnConfirmarRestaurar.Visible = false;
-            btnConfirmarRestaurar.Enabled = false;
-
-            btnCancelarRestaurar.Visible = false;
-            btnCancelarRestaurar.Enabled = false;
+            BtnBuscarDNI.Visible = true;
+            BtnBuscarDNI.Enabled = true;
         }
     }
 }

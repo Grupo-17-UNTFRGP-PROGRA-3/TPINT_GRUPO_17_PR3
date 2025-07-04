@@ -46,7 +46,7 @@ namespace Clinica
         {
             Usuario usuario = _daoU.traerRegistro(_usuario._usuario.ToString());
 
-            if (usuario.getLegajo() == "0000") return true;
+            if (usuario.getLegajo() == 0) return true;
 
             return false;
         }

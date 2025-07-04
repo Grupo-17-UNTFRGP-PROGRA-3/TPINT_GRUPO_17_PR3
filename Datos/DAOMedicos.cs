@@ -16,9 +16,8 @@ namespace Datos
         Medico medico = new Medico();
         public int AgregarMedico(Medico medico)
         {
-            string consulta = "INSERT INTO Medicos(Legajo, DNI, Nombre, Apellido, Sexo, IdNacionalidad, FechaNacimiento, Direccion, Email," +
+            string consulta = "INSERT INTO Medicos(DNI, Nombre, Apellido, Sexo, IdNacionalidad, FechaNacimiento, Direccion, Email," +
                 " Telefono, IdEspecialidad, IdProvincia,IdLocalidad, Eliminado) VALUES('" +
-             medico._Legajo + "', '" +
              medico._DNI + "', '" +
              medico._Nombre + "', '" +
              medico._Apellido + "', '" +
@@ -95,6 +94,7 @@ namespace Datos
             return dt;
         }
     
+        public int ChequearEliminado(string dni)
         public DataTable ListadoMedicosPorEspecialidad(int idEspecialidad)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -123,19 +123,19 @@ namespace Datos
 
         public int ChequearEliminado(string legajo)
         {
-            string consulta = "SELECT COUNT(*) FROM Medicos WHERE (Legajo = @Legajo) AND (Eliminado = 1)";
+            string consulta = "SELECT COUNT(*) FROM Medicos WHERE (Dni = @Dni) AND (Eliminado = 1)";
             SqlCommand sqlcmd = new SqlCommand(consulta);
 
-            sqlcmd.Parameters.AddWithValue("@Legajo", legajo);
+            sqlcmd.Parameters.AddWithValue("@Dni", dni);
             return datos.EjecutarConsultaEscalar(sqlcmd);
         }
 
-        public bool RestaurarMedicoEliminado(string legajo)
+        public bool RestaurarMedicoEliminado(string dni)
         {
-            string consulta = "UPDATE Medicos SET Eliminado = 0 WHERE (Legajo = @LEGAJO)";
+            string consulta = "UPDATE Medicos SET Eliminado = 0 WHERE (Dni = @Dni)";
             SqlCommand sqlcmd = new SqlCommand(consulta);
 
-            sqlcmd.Parameters.AddWithValue("@Legajo", legajo);
+            sqlcmd.Parameters.AddWithValue("@Dni", dni);
             return datos.EjecutarConsulta(sqlcmd) > 0;
         }
     }
