@@ -10,8 +10,7 @@
         <!-- Especialidad -->
         <div class="form-group">
             <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
-            <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input" AutoPostBack="true">
-                <asp:ListItem Text="Seleccione especialidad" Value="" />
+            <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
             </asp:DropDownList>
         </div>
         <!-- Médico -->

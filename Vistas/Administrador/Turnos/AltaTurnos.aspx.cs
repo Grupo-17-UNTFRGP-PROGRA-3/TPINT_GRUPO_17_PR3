@@ -11,6 +11,19 @@ namespace Vistas.Administrador
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected void CargarMedicos(int idEspecialidad)
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            DataTable TablaMedicosPorEspecialidad = negocioMedico.ListadoMedicosPorEspecialidad(idEspecialidad);
+
+            ddlMedico.DataSource = TablaMedicosPorEspecialidad;
+            ddlMedico.DataTextField = "Descripcion";
+            ddlMedico.DataValueField = "Legajo";
+            ddlMedico.DataBind();
+            ddlMedico.Items.Insert(0, new ListItem("-- Seleccione Médico --", "0"));
+        }
+
         protected void LimpiarCampos()
         {
             ddlEspecialidad.SelectedIndex = 0;
@@ -33,8 +46,15 @@ namespace Vistas.Administrador
                 ddlEspecialidad.DataTextField = "Descripcion";
                 ddlEspecialidad.DataValueField = "Id";
                 ddlEspecialidad.DataBind();
-                ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", "0"));
             }
+        }
+
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
+
+            CargarMedicos(idEspecialidad);
         }
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)

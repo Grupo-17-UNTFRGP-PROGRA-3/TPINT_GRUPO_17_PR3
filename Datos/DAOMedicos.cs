@@ -95,6 +95,17 @@ namespace Datos
             return dt;
         }
     
+        public DataTable ListadoMedicosPorEspecialidad(int idEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string consulta = "SELECT Legajo, Nombre + ' ' + Apellido AS Descripcion FROM Medicos WHERE IdEspecialidad = @IDESPECIALIDAD AND Legajo <> '0000'";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
+
+            sqlcmd.Parameters.AddWithValue("@IDESPECIALIDAD", idEspecialidad.ToString());
+
+            return datos.ObtenerTabla(sqlcmd, "Especialidades");
+        }
+
         public int ChequearEliminado(string legajo)
         {
             string consulta = "SELECT COUNT(*) FROM Medicos WHERE (Legajo = @Legajo) AND (Eliminado = 1)";

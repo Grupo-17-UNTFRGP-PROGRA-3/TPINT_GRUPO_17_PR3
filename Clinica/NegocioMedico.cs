@@ -13,6 +13,7 @@ namespace Clinica
     {
         private readonly DAOMedicos dAOMedico = new DAOMedicos();
         private readonly DaoHorarioMedico dAOHorario = new DaoHorarioMedico();
+
         public bool AgregarMedico(Medico medico)
         {
             int cantFilasMedico = 0;
@@ -72,6 +73,14 @@ namespace Clinica
             return dt;
         }
 
+        public DataTable ListadoMedicosPorEspecialidad(int idEspecialidad)
+        {
+            DAOMedicos daoMedico = new DAOMedicos();
+
+            return daoMedico.ListadoMedicosPorEspecialidad(idEspecialidad);
+        }
+
+
         public Medico ObtenerMedicoPorLegajo(string legajo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -102,6 +111,5 @@ namespace Clinica
             DAOMedicos daoMedico = new DAOMedicos();
             return daoMedico.RestaurarMedicoEliminado(legajo);
         }
-
     }
 }
