@@ -18,7 +18,7 @@
                 <asp:Label ID="lblDNI" runat="server" Text="D.N.I." CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" Display="Dynamic" />
-                <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{7,8}$" ErrorMessage="DNI inválido (7-8 dígitos)" ForeColor="Red" Display="Dynamic" />
+                <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{8}$" ErrorMessage="DNI inválido (8 dígitos)" ForeColor="Red" Display="Dynamic" />
                 <asp:Button ID="btnModificarDNI" runat="server" Text="Modificar DNI" Visible = "false" Enabled = "false" CssClass="form-button" CausesValidation="false" OnClick="btnModificarDNI_Click"/>
                 <asp:Button ID="btnAceptarDNI" runat="server" Text="Aceptar" Visible = "false" Enabled = "false" CssClass="form-button" CausesValidation="false" OnClick="btnAceptarDNI_Click"/>
                 <asp:Button ID="btnCancelarDNI" runat="server" Text="Cancelar" Visible = "false" Enabled = "false" CssClass="form-button" CausesValidation="false" OnClick="btnCancelarDNI_Click"/>

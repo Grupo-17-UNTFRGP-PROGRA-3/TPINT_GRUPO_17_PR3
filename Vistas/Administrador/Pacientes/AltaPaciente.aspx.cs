@@ -74,6 +74,7 @@ namespace Vistas
                     pnlDatosPaciente.Visible = true;
                     int dni = int.Parse(Request.QueryString["dni"]);
                     CargarDatosPaciente(dni);
+                    txtDNI.Enabled = false;
                 }
 
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();

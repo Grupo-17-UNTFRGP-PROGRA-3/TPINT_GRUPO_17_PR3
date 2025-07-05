@@ -23,6 +23,10 @@
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="DNI inválido (8 dígitos)" ForeColor="Red" ValidationExpression="^\d{8}$" SetFocusOnError="True"></asp:RegularExpressionValidator>
                 <asp:Button ID="btnModificarDNI" runat="server" Text="Modificar DNI" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnModificarDNI_Click"/>
+                <asp:Button ID="btnAceptarDNI" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnAceptarDNI_Click" Text="Aceptar" Visible="false" />
+                <asp:Button ID="btnCancelarDNI" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnCancelarDNI_Click" Text="Cancelar" Visible="false" />
+                <asp:Button ID="btnConfirmarRestaurar" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnConfirmarRestaurar_Click" Text="Restaurar" Visible="false" />
+                <asp:Button ID="btnCancelarRestaurar" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnCancelarRestaurar_Click" Text="Cancelar" Visible="false" />
             </div>
 
             <asp:Button ID="BtnBuscarDNI" runat="server" Text="Buscar DNI" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarDNI_Click" />

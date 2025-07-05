@@ -87,6 +87,42 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Button btnModificarDNI;
 
         /// <summary>
+        /// Control btnAceptarDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarDNI;
+
+        /// <summary>
+        /// Control btnCancelarDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarDNI;
+
+        /// <summary>
+        /// Control btnConfirmarRestaurar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmarRestaurar;
+
+        /// <summary>
+        /// Control btnCancelarRestaurar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarRestaurar;
+
+        /// <summary>
         /// Control BtnBuscarDNI.
         /// </summary>
         /// <remarks>

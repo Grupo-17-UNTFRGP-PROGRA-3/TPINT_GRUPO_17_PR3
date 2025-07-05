@@ -373,17 +373,132 @@ namespace Vistas
 
         protected void btnModificarDNI_Click(object sender, EventArgs e)
         {
+            Session["dniPreModificacion"] = txtDNI.Text;
+
             txtDNI.Visible = true;
             txtDNI.Enabled = true;
 
-            pnlDatosMedico.Visible = false;
+            pnlDatosMedico.Visible = true;
             pnlDatosMedico.Enabled = false;
 
             btnModificarDNI.Visible = false;
             btnModificarDNI.Enabled = false;
 
+            btnAceptarDNI.Visible = true;
+            btnAceptarDNI.Enabled = true;
+
+            btnCancelarDNI.Visible = true;
+            btnCancelarDNI.Enabled = true;
+        }
+
+        protected void btnAceptarDNI_Click(object sender, EventArgs e)
+        {
+            txtDNI.Visible = true;
+            txtDNI.Enabled = false;
+
+            btnAceptarDNI.Visible = false;
+            btnAceptarDNI.Enabled = false;
+
+            btnCancelarDNI.Visible = false;
+            btnCancelarDNI.Enabled = false;
+
+            btnModificarDNI.Visible = true;
+            btnModificarDNI.Enabled = true;
+
+            BuscarDNIDuranteModificacion();
+        }
+
+        protected void BuscarDNIDuranteModificacion()
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            bool existe = negocioMedico.ExisteDNI(Convert.ToInt32(txtDNI.Text));
+
+            if (existe)
+            {
+                lblInicio.Text = "El DNI ya se encuentra registrado.";
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = false;
+
+            }
+            else
+            {
+                lblInicio.Text = "";
+
+                pnlDatosMedico.Visible = true;
+                pnlDatosMedico.Enabled = true;
+            }
+        }
+
+        protected void btnCancelarDNI_Click(object sender, EventArgs e)
+        {
+            if (Session["dniPreModificacion"] != null)
+            {
+                txtDNI.Text = Session["dniPreModificacion"].ToString();
+            }
+
+            txtDNI.Enabled = false;
+
+            BtnBuscarDNI.Visible = false;
+            BtnBuscarDNI.Enabled = false;
+
+            btnAceptarDNI.Visible = false;
+            btnAceptarDNI.Enabled = false;
+
+            btnCancelarDNI.Visible = false;
+            btnCancelarDNI.Enabled = false;
+
+            btnModificarDNI.Visible = true;
+            btnModificarDNI.Enabled = true;
+
+            BuscarDNIDuranteModificacion();
+        }
+
+        protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+            int dni = int.Parse(txtDNI.Text);
+
+            bool resultado = negocioMedico.RestaurarMedicoEliminado(dni);
+
+            lblInicio.Text = "Medico restaurado.";
+
+            txtDNI.Visible = true;
+            txtDNI.Enabled = false;
+
+            pnlDatosMedico.Visible = false;
+            pnlDatosMedico.Enabled = false;
+
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
+
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
+        }
+
+        protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
+        {
+            txtDNI.Text = string.Empty;
+            lblInicio.Text = string.Empty;
+
+            txtDNI.Visible = true;
+            txtDNI.Enabled = true;
+
+            btnConfirmarRestaurar.Visible = false;
+            btnConfirmarRestaurar.Enabled = false;
+
+            btnCancelarRestaurar.Visible = false;
+            btnCancelarRestaurar.Enabled = false;
+
             BtnBuscarDNI.Visible = true;
             BtnBuscarDNI.Enabled = true;
-        }        
+
+            BtnVolver2.Visible = true;
+            BtnVolver2.Enabled = true;
+        }
     }
 }
