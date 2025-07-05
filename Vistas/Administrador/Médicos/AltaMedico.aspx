@@ -150,8 +150,10 @@
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input" AutoPostBack="true" OnSelectedIndexChanged="ddlHoraInicio_SelectedIndexChanged">
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvHoraInicio" runat="server" ControlToValidate="ddlHoraInicio" ErrorMessage="Debe ingresar una hora de inicio" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
                     <asp:DropDownList ID="ddlHoraFin" runat="server" CssClass="form-input">
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvHoraFin" runat="server" ControlToValidate="ddlHoraFin" ErrorMessage="Debe ingresar una hora de fin" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
                 </div>
 
             </div>

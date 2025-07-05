@@ -483,6 +483,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.DropDownList ddlHoraInicio;
 
         /// <summary>
+        /// Control rfvHoraInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraInicio;
+
+        /// <summary>
         /// Control ddlHoraFin.
         /// </summary>
         /// <remarks>
@@ -490,6 +499,15 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHoraFin;
+
+        /// <summary>
+        /// Control rfvHoraFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraFin;
 
         /// <summary>
         /// Control btnIngresar.
