@@ -125,7 +125,9 @@ namespace Vistas
 
                     txtDNI.Enabled = false;
 
-                    btnIngresar.Text = "MODIFICAR";
+                    btnIngresar.Text = "Modificar";
+
+                    btnLimpiarCampos.Text = "Restaurar datos";
                 }
             }
         }
@@ -199,7 +201,16 @@ namespace Vistas
         
         protected void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            if (Request.QueryString["legajo"] != null)
+            {
+                int legajo = Convert.ToInt32(Request.QueryString["legajo"]);
+
+                CargarDatosMedico(legajo);
+            }
+            else
+            { 
+                LimpiarCampos(); 
+            }
         }
         
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -331,6 +342,7 @@ namespace Vistas
                 txtTelefono.Text = medico._Telefono;
                 ddlNacionalidad.SelectedIndex = medico._IdNacionalidad - 1;
                 ddlProvincia.SelectedValue = medico._IdProvincia.ToString();
+                cargarLocalidades();
                 ddlLocalidad.SelectedValue = medico._IdLocalidad.ToString();
                 ddlEspecialidad.SelectedValue = medico._IdEspecialidad.ToString();
 
