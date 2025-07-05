@@ -352,7 +352,10 @@ namespace Vistas
                 NegocioHorario negocioHorario = new NegocioHorario();
 
                 ddlHoraInicio.SelectedValue = negocioHorario.ObtenerIdHorario(horario._HoraInicio.ToString()).ToString(); //HASTA MANEJAR DISTINTOS HORARIOS POR DÍA, SE ASIGNA EL HORARIO DEL ÚLTIMO DÍA
-                ddlHoraFin.SelectedValue = horario._HoraFin;
+
+                FiltrarYCargarHorariosFin();
+                
+                ddlHoraFin.SelectedValue = negocioHorario.ObtenerIdHorario(horario._HoraFin.ToString()).ToString();
             }
         }
 
