@@ -17,5 +17,17 @@ namespace Clinica
 
             return daoHorarios.ObtenerTabla();
         }
+        public int ObtenerIdHorario(string horario)
+        {
+            DAOHorarios daoHorarios = new DAOHorarios();
+
+            return daoHorarios.ObtenerIdPorHorario(horario);
+        }
+        public string ObtenerHorario(int id)
+        {
+            DAOHorarios daoHorarios = new DAOHorarios();
+
+            return daoHorarios.ObtenerHorarioPorID(id);
+        }
     }
 }

@@ -51,29 +51,6 @@ namespace Vistas
             ddlHoraFin.Items.Insert(0, new ListItem("-- Seleccione Horario --", "0"));
         }
 
-        protected void BuscarDNIDuranteModificacion()
-        {
-            NegocioMedico negocioMedico = new NegocioMedico();
-
-            bool existe = negocioMedico.ExisteDNI(Convert.ToInt32(txtDNI.Text));
-
-            if (existe)
-            {
-                lblInicio.Text = "El DNI ya se encuentra registrado.";
-
-                pnlDatosMedico.Visible = true;
-                pnlDatosMedico.Enabled = false;
-
-            }
-            else
-            {
-                lblInicio.Text = "";
-
-                pnlDatosMedico.Visible = true;
-                pnlDatosMedico.Enabled = true;
-            }
-        }
-
         public void LimpiarCampos()
         {
             txtNombre.Text = string.Empty;
@@ -99,26 +76,6 @@ namespace Vistas
 
             if (!IsPostBack)
             {
-                if (Request.QueryString["legajo"] != null)
-                {
-                    lblTitulo.Text = "Modificar Medico";
-
-                    pnlDatosMedico.Visible = true;
-                    pnlDatosMedico.Enabled = true;
-
-                    BtnBuscarDNI.Visible = false;
-                    
-                    BtnVolver2.Visible = false;
-                    
-                    int legajo = Convert.ToInt32(Request.QueryString["legajo"]);
-                                                            
-                    CargarDatosMedico(legajo);
-
-                    txtDNI.Enabled = false;
-                    
-                    btnIngresar.Text = "MODIFICAR";
-                }
-
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
                 ddlNacionalidad.DataTextField = "Descripcion";
                 ddlNacionalidad.DataValueField = "Id";
@@ -150,6 +107,26 @@ namespace Vistas
                 ddlHoraInicio.DataValueField = "Id";
                 ddlHoraInicio.DataBind();
                 ddlHoraInicio.Items.Insert(0, new ListItem("-- Seleccione Horario --", "0"));
+
+                if (Request.QueryString["legajo"] != null)
+                {
+                    lblTitulo.Text = "Modificar Medico";
+
+                    pnlDatosMedico.Visible = true;
+                    pnlDatosMedico.Enabled = true;
+
+                    BtnBuscarDNI.Visible = false;
+
+                    BtnVolver2.Visible = false;
+
+                    int legajo = Convert.ToInt32(Request.QueryString["legajo"]);
+
+                    CargarDatosMedico(legajo);
+
+                    txtDNI.Enabled = false;
+
+                    btnIngresar.Text = "MODIFICAR";
+                }
             }
         }
 
@@ -184,11 +161,7 @@ namespace Vistas
                     BtnVolver2.Visible = false;
                     BtnVolver2.Enabled = false;
 
-                    btnConfirmarRestaurar.Visible = true;
-                    btnConfirmarRestaurar.Enabled = true;
-
-                    btnCancelarRestaurar.Visible = true;
-                    btnCancelarRestaurar.Enabled = true;
+                    
                 }
                 else // EXISTE Y NO ESTA ELIMINADO
                 {
@@ -261,10 +234,18 @@ namespace Vistas
                     {
                         HorarioMedico horarioMedico = new HorarioMedico();
 
+                        NegocioHorario negocioHorario = new NegocioHorario();
+
+                        DateTime horaInicio;
+                        DateTime.TryParse(negocioHorario.ObtenerHorario(Convert.ToInt32(ddlHoraInicio.SelectedValue)), out horaInicio);
+
+                        DateTime horaFin;
+                        DateTime.TryParse(negocioHorario.ObtenerHorario(Convert.ToInt32(ddlHoraFin.SelectedValue)), out horaFin);
+
                         horarioMedico._IdDia = int.Parse(dia.Value);
                         horarioMedico._Legajo = negocioMedico.ObtenerLegajoPorDNI(Convert.ToInt32(txtDNI.Text));
-                        horarioMedico._HoraInicio = ddlHoraInicio.SelectedValue;
-                        horarioMedico._HoraFin = ddlHoraFin.SelectedValue;
+                        horarioMedico._HoraInicio = horaInicio.ToString("HH:mm");
+                        horarioMedico._HoraFin = horaFin.ToString("HH:mm");
                         horarioMedico._Eliminado = dia.Selected ? false : true; //SI ESTÁ SELECCIONADO, ELIMINADO = FALSE, SINO TRUE
 
                         negocioHorarioMedico.AgregarHorarioMedico(horarioMedico);
@@ -368,116 +349,26 @@ namespace Vistas
                     }
                 }
 
-                ddlHoraInicio.SelectedValue = horario._HoraInicio; //HASTA MANEJAR DISTINTOS HORARIOS POR DÍA, SE ASIGNA EL HORARIO DEL ÚLTIMO DÍA
+                NegocioHorario negocioHorario = new NegocioHorario();
+
+                ddlHoraInicio.SelectedValue = negocioHorario.ObtenerIdHorario(horario._HoraInicio.ToString()).ToString(); //HASTA MANEJAR DISTINTOS HORARIOS POR DÍA, SE ASIGNA EL HORARIO DEL ÚLTIMO DÍA
                 ddlHoraFin.SelectedValue = horario._HoraFin;
             }
         }
 
         protected void btnModificarDNI_Click(object sender, EventArgs e)
         {
-            Session["dniPreModificacion"] = txtDNI.Text;
-
             txtDNI.Visible = true;
             txtDNI.Enabled = true;
 
-            pnlDatosMedico.Visible = true;
+            pnlDatosMedico.Visible = false;
             pnlDatosMedico.Enabled = false;
 
             btnModificarDNI.Visible = false;
             btnModificarDNI.Enabled = false;
 
-            btnAceptarDNI.Visible = true;
-            btnAceptarDNI.Enabled = true;
-
-            btnCancelarDNI.Visible = true;
-            btnCancelarDNI.Enabled = true;
-        }
-
-        protected void btnAceptarDNI_Click(object sender, EventArgs e)
-        {
-            txtDNI.Visible = true;
-            txtDNI.Enabled = false;
-
-            btnAceptarDNI.Visible = false;
-            btnAceptarDNI.Enabled = false;
-
-            btnCancelarDNI.Visible = false;
-            btnCancelarDNI.Enabled = false;
-
-            btnModificarDNI.Visible = true;
-            btnModificarDNI.Enabled = true;
-
-            BuscarDNIDuranteModificacion();
-        }
-
-        protected void btnCancelarDNI_Click(object sender, EventArgs e)
-        {
-            if (Session["dniPreModificacion"] != null)
-            {
-                txtDNI.Text = Session["dniPreModificacion"].ToString();
-            }
-
-            txtDNI.Enabled = false;
-
-            BtnBuscarDNI.Visible = false;
-            BtnBuscarDNI.Enabled = false;
-
-            btnAceptarDNI.Visible = false;
-            btnAceptarDNI.Enabled = false;
-
-            btnCancelarDNI.Visible = false;
-            btnCancelarDNI.Enabled = false;
-
-            btnModificarDNI.Visible = true;
-            btnModificarDNI.Enabled = true;
-
-            BuscarDNIDuranteModificacion();
-        }
-
-        protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
-        {
-            NegocioMedico negocioMedico = new NegocioMedico();
-            int dni = Convert.ToInt32(txtDNI.Text);
-
-            bool resultado = negocioMedico.RestaurarMedicoEliminado(dni);
-
-            lblInicio.Text = "Medico restaurado.";
-
-            txtDNI.Visible = true;
-            txtDNI.Enabled = false;
-
-            pnlDatosMedico.Visible = false;
-            pnlDatosMedico.Enabled = false;
-
-            btnConfirmarRestaurar.Visible = false;
-            btnConfirmarRestaurar.Enabled = false;
-
-            btnCancelarRestaurar.Visible = false;
-            btnCancelarRestaurar.Enabled = false;
-
-            BtnVolver2.Visible = true;
-            BtnVolver2.Enabled = true;
-        }
-
-        protected void btnCancelarRestaurar_Click(object sender, EventArgs e)
-        {
-            txtDNI.Text = string.Empty;
-            lblInicio.Text = string.Empty;
-
-            txtDNI.Visible = true;
-            txtDNI.Enabled = true;
-
-            btnConfirmarRestaurar.Visible = false;
-            btnConfirmarRestaurar.Enabled = false;
-
-            btnCancelarRestaurar.Visible = false;
-            btnCancelarRestaurar.Enabled = false;
-
             BtnBuscarDNI.Visible = true;
             BtnBuscarDNI.Enabled = true;
-
-            BtnVolver2.Visible = true;
-            BtnVolver2.Enabled = true;
-        }
+        }        
     }
 }

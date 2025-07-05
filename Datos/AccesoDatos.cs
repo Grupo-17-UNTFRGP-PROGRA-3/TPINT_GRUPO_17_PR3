@@ -66,11 +66,34 @@ namespace Datos
             _conexion.Close();
             return cmd;
         }
-        
-        public Usuario ConsultaLecturaUsuario(string consutalSql)
+
+        public int ConsultaLecturaHorario(string consultaSQL)
         {
             _conexion.Open();
-            SqlCommand consulta = new SqlCommand(consutalSql, _conexion);
+            SqlCommand consulta = new SqlCommand(consultaSQL, _conexion);
+            SqlDataReader sqlDR = consulta.ExecuteReader();
+            sqlDR.Read();
+            int idHorario = Convert.ToInt32(sqlDR["Id"]);
+            _conexion.Close();
+
+            return idHorario;
+        }
+        public string ConsultaLecturaHorarioId(string consultaSQL)
+        {
+            _conexion.Open();
+            SqlCommand consulta = new SqlCommand(consultaSQL, _conexion);
+            SqlDataReader sqlDR = consulta.ExecuteReader();
+            sqlDR.Read();
+            string Horario = sqlDR["Horario"].ToString();
+            _conexion.Close();
+
+            return Horario;
+        }
+        
+        public Usuario ConsultaLecturaUsuario(string consultalSql)
+        {
+            _conexion.Open();
+            SqlCommand consulta = new SqlCommand(consultalSql, _conexion);
             SqlDataReader sqlDR = consulta.ExecuteReader();
             sqlDR.Read();
             Usuario user = new Usuario(sqlDR["Usuario"].ToString(), sqlDR["Password"].ToString(), int.Parse(sqlDR["Legajo"].ToString()));

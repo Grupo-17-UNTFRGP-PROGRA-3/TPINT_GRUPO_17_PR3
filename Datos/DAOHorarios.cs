@@ -22,5 +22,16 @@ namespace Datos
 
             return datos.ObtenerTabla(sqlcmd, "Horarios");
         }
+        public int ObtenerIdPorHorario(string horario)
+        {
+            string consulta = "SELECT Id FROM Horarios WHERE Horario = '" + horario + "'";
+            return datos.ConsultaLecturaHorario(consulta);
+        }
+        public string ObtenerHorarioPorID(int id)
+        {
+            string consulta = "SELECT Horario FROM Horarios WHERE Id = " + id.ToString();
+
+            return datos.ConsultaLecturaHorarioId(consulta);
+        }
     }
 }
