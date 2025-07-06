@@ -59,6 +59,7 @@ namespace Vistas.Administrador
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
             ddlPaciente.SelectedIndex = 0;
+            txtFechaTurno.Text = string.Empty;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -98,6 +99,7 @@ namespace Vistas.Administrador
                 ddlMedico.Items.Clear();
                 ddlDia.Items.Clear();
                 ddlHorario.Items.Clear();
+                txtFechaTurno.Text = string.Empty;   
             }
 
             int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
@@ -111,6 +113,7 @@ namespace Vistas.Administrador
             {
                 ddlDia.Items.Clear();
                 ddlHorario.Items.Clear();
+                txtFechaTurno.Text = string.Empty;
             }
             string legajo = ddlMedico.SelectedValue;
 
@@ -122,6 +125,7 @@ namespace Vistas.Administrador
             if (ddlHorario.Items.Count != 0)
             {
                 ddlHorario.Items.Clear();
+                txtFechaTurno.Text = string.Empty;
             }
             int Legajo = int.Parse(ddlMedico.SelectedValue);
             int Dia = int.Parse(ddlDia.SelectedValue);
@@ -154,7 +158,7 @@ namespace Vistas.Administrador
             {
                 string[] DiaDeSemana = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
                 lblValidacionFecha.ForeColor = System.Drawing.Color.Red;
-                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1];
+                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1]; 
             }
            
         }
