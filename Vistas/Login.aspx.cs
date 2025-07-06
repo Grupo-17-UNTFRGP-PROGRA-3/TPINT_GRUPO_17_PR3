@@ -42,14 +42,18 @@ namespace Vistas
 			{
 				Session["UsuarioRol"] = "Administrador";
                 Session["Home"] = "Administrador/Home.aspx";
-			}
+                Response.Redirect(Session["Home"].ToString());
+            }
 			else
 			{
 				Session["UsuarioRol"] = "Medico";
                 Session["Home"] = "Medico/HomeMED.aspx";
-			}
+				usuario = log.traerRegistro(usuario._usuario);
+				Session["Usuaario"] = usuario._usuario;
+                Response.Redirect(Session["Home"].ToString());
+            }
 
-			Response.Redirect(Session["Home"].ToString());
+			
         }
     }
 }

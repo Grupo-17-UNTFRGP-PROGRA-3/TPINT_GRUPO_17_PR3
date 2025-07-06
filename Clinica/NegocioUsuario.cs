@@ -15,10 +15,10 @@ namespace Clinica
         Usuario _usuario = new Usuario();
 
         public NegocioUsuario() { }
-        
+
         public NegocioUsuario(Usuario usuario)
         {
-           _usuario = usuario;
+            _usuario = usuario;
         }
         public void setUsuario(Usuario usuario)
         {
@@ -36,7 +36,7 @@ namespace Clinica
             if (!(_daoU.usuarioExiste(_usuario._usuario.ToString()))) return -1; //SI NO EXISTE EL USUARIO, DEVUELVE -1
 
             Usuario usuario = _daoU.traerRegistro(_usuario._usuario.ToString());
-            Usuario usuarioIngresado = new Usuario(_usuario._usuario.ToString(),_usuario._pass.ToString());
+            Usuario usuarioIngresado = new Usuario(_usuario._usuario.ToString(), _usuario._pass.ToString());
 
             if (usuario == usuarioIngresado) return 1; //SI LAS CREDENCIALES SON CORRECTAS, DEVUELVE 1
 
@@ -56,14 +56,14 @@ namespace Clinica
 
             return false;
         }
-        public bool ModificarUsuario(string usuario,string Pass,int legajo)
+        public bool ModificarUsuario(string usuario, string Pass, int legajo)
         {
-            if(_daoU.ModificarUsuario(usuario,Pass,legajo) == 1) return true;
+            if (_daoU.ModificarUsuario(usuario, Pass, legajo) == 1) return true;
             return false;
         }
         public bool existeUsuario(string usuario)
         {
-           return _daoU.usuarioExiste(usuario);
+            return _daoU.usuarioExiste(usuario);
         }
 
         public DataTable ListadoUsuarios()
@@ -73,9 +73,14 @@ namespace Clinica
             return dt;
         }
 
-        public Usuario ObtenerUsuarioPorLegajo(int legajo) { 
+        public Usuario ObtenerUsuarioPorLegajo(int legajo)
+        {
             AccesoDatos datos = new AccesoDatos();
-            return datos.traerUsuarioPorNombreUsuario(legajo);
+            return datos.traerUsuarioPorLegajo(legajo);
+        }
+        public Usuario traerRegistro(string usuario)
+        {
+            return _daoU.traerRegistro(usuario);
         }
     }
 }

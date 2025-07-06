@@ -341,7 +341,7 @@ namespace Datos
             return medico;
         }
         
-        public Usuario traerUsuarioPorNombreUsuario(int legajo)
+        public Usuario traerUsuarioPorLegajo(int legajo)
         {
             Usuario usuario = new Usuario();
             string consulta = "SELECT * FROM Usuarios WHERE Legajo = @legajo";

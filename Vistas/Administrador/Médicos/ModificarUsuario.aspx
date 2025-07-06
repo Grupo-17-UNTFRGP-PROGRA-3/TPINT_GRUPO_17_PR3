@@ -42,7 +42,6 @@
         <div class="form-group">
             <div>
                 <asp:Button ID="btnModificar" runat="server" CssClass="form-button" Text="Modificar" OnClick="btnModificar_Click" />
-                <asp:Button ID="btnLimpiar" runat="server" CssClass="form-button" CausesValidation="false" Text="Limpiar campos" OnClick="btnLimpiar_Click" />
                 <asp:Button ID="btnVolver" runat="server" CausesValidation="false" CssClass="form-button" OnClick="btnVolver_Click" Text="Volver" />
                 <br />
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>

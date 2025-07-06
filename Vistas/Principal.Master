@@ -1,38 +1,51 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.Master.cs" Inherits="Vistas.Site1" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>¨TPI Programacion 3</title>
+    <title>TPI Programacion 3</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="estilos.css" />
 </head>
 <body>
     <form id="form1" runat="server">
         <nav>
             <div class="navbar">
+                <!-- Logo a la izquierda -->
                 <div class="navbar-left">
-                    <asp:Image ID="Image1" runat="server" Height="80px" ImageUrl="~/file_00000000e90c622f83423ce541a897b4 (1).png" />
-                    <asp:HyperLink Style="text-decoration: none;" ID="HyperLink1" runat="server">HOME</asp:HyperLink>
-                    <asp:LinkButton Style="margin-right: 40px;" ID="btnLogout" runat="server" CausesValidation="false" OnClick ="btnLogout_Click" OnDataBinding="btnLogout_Click">Salir</asp:LinkButton>
+                    <asp:Image ID="Image1" runat="server" Height="60px" ImageUrl="~/file_00000000e90c622f83423ce541a897b4 (1).png" CssClass="logo" />
                 </div>
+
+                <!-- Botones de navegación al centro -->
+                <div class="navbar-center">
+                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="nav-link">
+                        <i class="fas fa-home"></i> HOME
+                    </asp:HyperLink>
+                    <asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" OnClick="btnLogout_Click" CssClass="nav-link logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Salir
+                    </asp:LinkButton>
+                </div>
+
+                <!-- Usuario a la derecha -->
                 <div class="navbar-right">
-                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="usuario-label"></asp:Label>
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="usuario-label"></asp:Label>
+                    </div>
                 </div>
             </div>
         </nav>
-
 
         <div class="content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
         </div>
 
-
         <footer>
-            <h2>Programación 3 2025 |  Grupo 17 | TPI </h2>
+            <h2>Programación 3 2025 | Grupo 17 | TPI</h2>
         </footer>
     </form>
 </body>
