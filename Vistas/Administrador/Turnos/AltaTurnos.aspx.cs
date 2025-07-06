@@ -144,5 +144,19 @@ namespace Vistas.Administrador
         {
             Response.Redirect("~/Administrador/Home.aspx");
         }
+
+        protected void txtFechaTurno_TextChanged(object sender, EventArgs e)
+        {
+            lblValidacionFecha.Text = string.Empty;
+            DateTime fecha = Convert.ToDateTime(txtFechaTurno.Text);
+
+            if ((int)fecha.DayOfWeek != Convert.ToInt32(ddlDia.SelectedValue))
+            {
+                string[] DiaDeSemana = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
+                lblValidacionFecha.ForeColor = System.Drawing.Color.Red;
+                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1];
+            }
+           
+        }
     }
 }

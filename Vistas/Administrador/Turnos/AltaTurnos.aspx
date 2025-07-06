@@ -44,7 +44,8 @@
         <!-- Fecha -->
         <div class="form-group">
             <asp:Label ID="lblFecha" runat="server" Text="Fecha" CssClass="form-label"></asp:Label>
-            <asp:Label ID="lblFechaTurno" runat="server" Text="dd/mm/yyyy"></asp:Label>
+            <asp:TextBox ID="txtFechaTurno" runat="server" TextMode="Date" CssClass="form-input" AutoPostBack="True" OnTextChanged="txtFechaTurno_TextChanged"></asp:TextBox>
+            <asp:Label ID="lblValidacionFecha" runat="server"></asp:Label>
         </div>
 
         <!-- Botones -->
