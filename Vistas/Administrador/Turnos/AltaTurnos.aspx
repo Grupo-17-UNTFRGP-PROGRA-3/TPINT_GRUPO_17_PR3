@@ -23,7 +23,7 @@
         <!-- Día -->
         <div class="form-group">
             <asp:Label ID="lblDia" runat="server" Text="Día" CssClass="form-label"></asp:Label>
-            <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged">
+            <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged" AutoPostBack="True">
             </asp:DropDownList>
         </div>
 
@@ -52,6 +52,7 @@
             <asp:Button ID="btnAsignarTurno" runat="server" Text="Asignar Turno" CssClass="form-button" OnClick="btnAsignarTurno_Click1" />
             <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos" CssClass="form-button" OnClick="btnLimpiar_Click" />
             <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click" />
+            <br />
         </div>
     </div>
 </asp:Content>

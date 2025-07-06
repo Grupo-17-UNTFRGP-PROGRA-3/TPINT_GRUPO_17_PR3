@@ -21,7 +21,7 @@ namespace Datos
                     horario._Legajo + "', '" +
                     horario._HoraInicio + "', '" +
                     horario._HoraFin + "', '" +
-                    horario._Eliminado + "'); ";            
+                    horario._Eliminado + "'); ";
 
             return datos.EjecutarConsulta(consulta);
         }
@@ -33,7 +33,7 @@ namespace Datos
                     "HoraFin = '" + horario._HoraFin + "', " +
                     "Eliminado = '" + horario._Eliminado + "' " +
                     "WHERE Legajo = '" + horario._Legajo + "' AND IdDia = '" + horario._IdDia + "'; ";
-            
+
             return datos.EjecutarConsulta(consulta);
         }
 
@@ -42,11 +42,10 @@ namespace Datos
             return datos.TraerListaHorariosMedicoPorLegajo(legajo);
         }
 
-        public HorarioMedico traerHorarioMedico (int legajo, int dia)
+        public HorarioMedico traerHorarioMedico(int legajo, int dia)
         {
             horariosMedicos = datos.TraerHorarioMedico(legajo, dia);
             return horariosMedicos;
         }
     }
-    
 }

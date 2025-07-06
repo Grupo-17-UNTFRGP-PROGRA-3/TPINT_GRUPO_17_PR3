@@ -33,5 +33,9 @@ namespace Datos
 
             return datos.ConsultaLecturaHorarioId(consulta);
         }
+        public DataTable TraerHorasHabilitadas(int legajo, int dia)
+        {
+           return datos.HorasDispXmedicoXdia(legajo, dia);
+        }
     }
 }

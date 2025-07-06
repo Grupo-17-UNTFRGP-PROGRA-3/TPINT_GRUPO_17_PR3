@@ -1,8 +1,11 @@
 ﻿using Clinica;
+using Entidades;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -37,12 +40,24 @@ namespace Vistas.Administrador
             ddlDia.Items.Insert(0, new ListItem("-- Seleccione Dia --", "0"));
         }
 
+        protected void CargarHoras(int legajo, int dia)
+        {
+            NegocioHorario horario = new NegocioHorario();
+
+            DataTable TablaHoras = horario.ObtenerHorasHabilitadas(legajo, dia);
+
+            ddlHorario.DataSource = TablaHoras;
+            ddlHorario.DataTextField = "Horario";
+            ddlHorario.DataValueField = "Id";
+            ddlHorario.DataBind();
+            ddlHorario.Items.Insert(0, new ListItem("-- Seleccione Hora --", "0"));
+        }
         protected void LimpiarCampos()
         {
             ddlEspecialidad.SelectedIndex = 0;
-            ddlMedico.SelectedIndex = 0;
-            ddlDia.SelectedIndex = 0;
-            ddlHorario.SelectedIndex = 0;
+            ddlMedico.Items.Clear();
+            ddlDia.Items.Clear();
+            ddlHorario.Items.Clear();
             ddlPaciente.SelectedIndex = 0;
         }
 
@@ -78,6 +93,13 @@ namespace Vistas.Administrador
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ddlMedico.Items.Count != 0)
+            {
+                ddlMedico.Items.Clear();
+                ddlDia.Items.Clear();
+                ddlHorario.Items.Clear();
+            }
+
             int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
 
             CargarMedicos(idEspecialidad);
@@ -85,6 +107,11 @@ namespace Vistas.Administrador
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ddlDia.Items.Count != 0)
+            {
+                ddlDia.Items.Clear();
+                ddlHorario.Items.Clear();
+            }
             string legajo = ddlMedico.SelectedValue;
 
             CargarDias(legajo);
@@ -92,6 +119,14 @@ namespace Vistas.Administrador
 
         protected void ddlDia_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ddlHorario.Items.Count != 0)
+            {
+                ddlHorario.Items.Clear();
+            }
+            int Legajo = int.Parse(ddlMedico.SelectedValue);
+            int Dia = int.Parse(ddlDia.SelectedValue);
+
+            CargarHoras(Legajo, Dia);
             // logica para cambiar los horarios en funcion del dia
         }
 
