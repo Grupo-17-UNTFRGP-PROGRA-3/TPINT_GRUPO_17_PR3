@@ -63,7 +63,7 @@
                 <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad" CssClass="form-label"></asp:Label>
                 <asp:DropDownList ID="ddlNacionalidad" runat="server" CssClass="form-input">
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="ddlNacionalidad" InitialValue="Seleccione nacionalidad" ErrorMessage="Seleccione una nacionalidad" ForeColor="Red" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="ddlNacionalidad" ErrorMessage="Seleccione una nacionalidad" ForeColor="Red" Display="Dynamic" />
             </div>
 
 
@@ -92,7 +92,7 @@
                 <asp:Label ID="lblProvincia" runat="server" Text="Provincia" CssClass="form-label"></asp:Label>
                 <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" CssClass="form-input" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" InitialValue="Seleccione provincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" Display="Dynamic" />
             </div>
 
             <!--localidad-->
@@ -100,7 +100,7 @@
                 <asp:Label ID="lblLocalidad" runat="server" Text="Localidad" CssClass="form-label"></asp:Label>
                 <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-input">
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" InitialValue="Seleccione localidad" ErrorMessage="Seleccione una localidad" ForeColor="Red" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" ErrorMessage="Seleccione una localidad" ForeColor="Red" Display="Dynamic" />
             </div>
 
             <!--correo electronico-->
