@@ -22,9 +22,9 @@
 
                 <!-- Botones de navegación al centro -->
                 <div class="navbar-center">
-                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="nav-link">
+                    <asp:LinkButton ID="btnHome" runat="server" CssClass="nav-link" CausesValidation="false" OnClick="btnHome_Click">
                         <i class="fas fa-home"></i> HOME
-                    </asp:HyperLink>
+                    </asp:LinkButton>
                     <asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" OnClick="btnLogout_Click" CssClass="nav-link logout-btn">
                         <i class="fas fa-sign-out-alt"></i> Salir
                     </asp:LinkButton>
