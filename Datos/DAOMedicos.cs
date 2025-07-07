@@ -24,7 +24,7 @@ namespace Datos
              medico._Apellido + "', '" +
              medico._Sexo + "', '" +
              medico._IdNacionalidad + "', '" +
-             medico._FechaNacimiento + "', '" +
+             medico._FechaNacimiento.ToString("yyyy-MM-dd") + "', '" +
              medico._Direccion + "', '" +
              medico._Email + "', '" +
              medico._Telefono + "', '" +

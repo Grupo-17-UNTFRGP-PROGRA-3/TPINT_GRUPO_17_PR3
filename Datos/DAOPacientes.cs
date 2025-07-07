@@ -26,7 +26,7 @@ namespace Datos
              paciente._Apellido + "', '" +
              paciente._Sexo + "', '" +
              paciente._IdNacionalidad + "', '" +
-             paciente._FechaNacimiento + "', '" +
+             paciente._FechaNacimiento.ToString("yyyy-MM-dd") + "', '" +
              paciente._Direccion + "', '" +
              paciente._Email + "', '" +
              paciente._Telefono + "', '" +
