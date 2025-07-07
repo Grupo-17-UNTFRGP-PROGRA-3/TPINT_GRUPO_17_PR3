@@ -46,9 +46,7 @@ namespace Vistas
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
             rblSexo.ClearSelection();
-            txtAnio.Text = string.Empty;
-            txtMes.Text = string.Empty;
-            txtDia.Text = string.Empty;
+            txtFechaNacimiento.Text = string.Empty;
             txtDireccion.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtTelefono.Text = string.Empty;
@@ -120,12 +118,7 @@ namespace Vistas
                     rblSexo.SelectedValue = "masculino";
                 }
 
-                string FechaNac = paciente._FechaNacimiento;
-                DateTime fecha;
-                DateTime.TryParse(FechaNac, out fecha);
-                txtAnio.Text = fecha.Year.ToString();
-                txtMes.Text = fecha.Month.ToString();
-                txtDia.Text = fecha.Day.ToString();
+                txtFechaNacimiento.Text = paciente._FechaNacimiento.ToString("yyyy-MM-dd");
                 txtDireccion.Text = paciente._Direccion.ToString();
                 txtEmail.Text = paciente._Email;
                 txtTelefono.Text = paciente._Telefono;
@@ -211,38 +204,41 @@ namespace Vistas
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-                bool sexo = false;
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
 
-                if (rblSexo.SelectedValue == "femenino")
-                {
-                    sexo = true;
-                }
-
-                string fechanac = txtAnio.Text + "/" + txtMes.Text + "/" + txtDia.Text;
-                string direccion = txtDireccion.Text;
-                int idNac = int.Parse(ddlNacionalidad.SelectedValue);
-                int idProv = int.Parse(ddlProvincia.SelectedValue);
-                int idLoc = int.Parse(ddlLocalidad.SelectedValue);
-                NegocioPaciente negocioPaciente = new NegocioPaciente();
-
-            if ((Request.QueryString["dni"] == null))
+            Paciente paciente = new Paciente()
             {
-                if (negocioPaciente.AgregarPaciente(int.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false))
+                _DNI = int.Parse(txtDNI.Text),
+                _Nombre = txtNombre.Text,
+                _Apellido = txtApellido.Text,
+                _Sexo = rblSexo.SelectedValue == "femenino", //SI ESTÁ SELECCIONADO FEMENINO, TRUE, SINO FALSE
+                _IdNacionalidad = int.Parse(ddlNacionalidad.SelectedValue),
+                _FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text),
+                _Direccion = txtDireccion.Text,
+                _Email = txtEmail.Text,
+                _Telefono = txtTelefono.Text,
+                _IdProvincia = int.Parse(ddlProvincia.SelectedValue),
+                _IdLocalidad = int.Parse(ddlLocalidad.SelectedValue),
+                _Eliminado = false,
+            };
+
+            if (Request.QueryString["dni"] == null)
+            {
+                if (negocioPaciente.AgregarPaciente(paciente))
                 {
                     lblMensaje.Text = "El paciente se ha agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
-                    LimpiarCampos();
-                    Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
                 }
             }
             else {
                 int dni = int.Parse(Request.QueryString["dni"]);
-                negocioPaciente.ModificarPaciente(dni, txtNombre.Text, txtApellido.Text, sexo, idNac, fechanac, direccion, txtEmail.Text, txtTelefono.Text, idProv, idLoc, false);
+                paciente._DNI = dni;
+                negocioPaciente.ModificarPaciente(paciente);
                 lblMensaje.Text = "El paciente se ha Modificado con éxito";
                 lblMensaje.ForeColor = Color.Green;
-                LimpiarCampos();
-                Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
             }
+            
+            LimpiarCampos();
         }
 
         protected void cargarLocalidades()

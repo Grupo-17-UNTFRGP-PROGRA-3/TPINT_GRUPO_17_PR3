@@ -70,24 +70,11 @@
             <!--nacimiento-->
             <div class="form-group">
                 <asp:Label ID="lblNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="form-label"></asp:Label>
-
-                <!--año-->
-                <asp:Label ID="lblAnio" runat="server" Text="Año" CssClass="fecha-label"></asp:Label>
-                <asp:TextBox ID="txtAnio" runat="server" CssClass="fecha-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvAnio" runat="server" ControlToValidate="txtAnio" ErrorMessage="El año es obligatorio" ForeColor="Red" CssClass="text-danger" Display="Dynamic" />
-                <asp:RangeValidator ID="rvAnio" runat="server" ControlToValidate="txtAnio" MinimumValue="1900" MaximumValue="2100" Type="Integer" ErrorMessage="Año inválido" ForeColor="Red" CssClass="text-danger" Display="Dynamic" />
-
-                <!--mes-->
-                <asp:Label ID="lblMes" runat="server" Text="Mes" CssClass="fecha-label"></asp:Label>
-                <asp:TextBox ID="txtMes" runat="server" CssClass="fecha-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvMes" runat="server" ControlToValidate="txtMes" ErrorMessage="El mes es obligatorio" ForeColor="Red" CssClass="text-danger" Display="Dynamic" />
-                <asp:RangeValidator ID="rvMes" runat="server" ControlToValidate="txtMes" MinimumValue="1" MaximumValue="12" Type="Integer" ErrorMessage="Mes inválido" ForeColor="Red" CssClass="text-danger" Display="Dynamic" />
-
-                <!--dia-->
-                <asp:Label ID="lblDia" runat="server" Text="Día" CssClass="fecha-label"></asp:Label>
-                <asp:TextBox ID="txtDia" runat="server" CssClass="fecha-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="txtDia" ErrorMessage="El día es obligatorio" ForeColor="Red" CssClass="text-danger" Display="Dynamic" />
-                <asp:RangeValidator ID="rvDia" runat="server" ControlToValidate="txtDia" MinimumValue="1" MaximumValue="31" Type="Integer" ErrorMessage="Día inválido" ForeColor="Red" CssClass="text-danger" Display="Dynamic" />
+                <asp:TextBox TextMode="Date" ID="txtFechaNacimiento" runat="server" CssClass="form-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ControlToValidate="txtFechaNacimiento" Display="Dynamic" ErrorMessage="Seleccione una fecha" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="regExV" ControlToValidate="txtFechaNacimiento" ValidationExpression="\d{4}[-]\d{2}[-]\d{2}"
+                    Display="Dynamic" ForeColor="Red"
+                    ErrorMessage="Fecha inválida" runat="server" />
             </div>
 
             <!--direccion-->

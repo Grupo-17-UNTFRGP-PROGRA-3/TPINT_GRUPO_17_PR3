@@ -37,7 +37,7 @@ namespace Datos
             return datos.EjecutarConsulta(consulta);
         }
 
-        public int ModificarPaciente(int dni, Paciente paciente)
+        public int ModificarPaciente(Paciente paciente)
         {
             string consulta = "UPDATE Pacientes SET " +
             "Nombre = @Nombre, Apellido = @Apellido, Sexo = @Sexo, IdNacionalidad = @IdNacionalidad, " +
@@ -58,7 +58,7 @@ namespace Datos
             new SqlParameter("@Telefono", paciente._Telefono),
             new SqlParameter("@IdProvincia", paciente._IdProvincia),
             new SqlParameter("@IdLocalidad", paciente._IdLocalidad),
-            new SqlParameter("@DNI", dni)
+            new SqlParameter("@DNI", paciente._DNI)
             };
 
             return datos.EjecutarConsultaConParametros(consulta, parametros);

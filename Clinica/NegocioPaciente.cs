@@ -14,61 +14,22 @@ namespace Clinica
     {
         DAOPacientes dAO = new DAOPacientes();
 
-        public bool AgregarPaciente(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, string FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido)
+        public bool AgregarPaciente(Paciente paciente)
         {
             int cantFilas = 0;
-            Paciente paciente = new Paciente();
-            paciente._DNI = DNI;
-            paciente._Nombre = Nombre;
-            paciente._Apellido = Apellido;
-            paciente._Sexo = Sexo;
-            paciente._IdNacionalidad = IDNac;
-            paciente._FechaNacimiento = FechaNac;
-            paciente._Direccion = Direccion;
-            paciente._Email = Email;
-            paciente._Telefono = Telefono;
-            paciente._IdProvincia = IdProv;
-            paciente._IdLocalidad = IdLoc;
-            paciente._Eliminado = Eliminido;
 
             cantFilas = dAO.AgregarPaciente(paciente);
 
-            if (cantFilas == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return cantFilas == 1;
         }
 
-        public bool ModificarPaciente(int DNI, string Nombre, string Apellido, bool Sexo, int IDNac, string FechaNac, string Direccion, string Email, string Telefono, int IdProv, int IdLoc, bool Eliminido)
+        public bool ModificarPaciente(Paciente paciente)
         {
             int cantFilas = 0;
-            Paciente paciente = new Paciente();
-            paciente._Nombre = Nombre;
-            paciente._Apellido = Apellido;
-            paciente._Sexo = Sexo;
-            paciente._IdNacionalidad = IDNac;
-            paciente._FechaNacimiento = FechaNac;
-            paciente._Direccion = Direccion;
-            paciente._Email = Email;
-            paciente._Telefono = Telefono;
-            paciente._IdProvincia = IdProv;
-            paciente._IdLocalidad = IdLoc;
-            paciente._Eliminado = Eliminido;
 
-            cantFilas = dAO.ModificarPaciente(DNI,paciente);
+            cantFilas = dAO.ModificarPaciente(paciente);
 
-            if (cantFilas == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return cantFilas == 1;
         }
 
         public bool EliminarPaciente(int dni)
