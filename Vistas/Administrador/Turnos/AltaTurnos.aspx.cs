@@ -144,7 +144,7 @@ namespace Vistas.Administrador
 
             if (turnoExiste)
             {
-                lblMensaje.Text = "Error al asignar el turno: ya hay un turno con ese medico, paciente, fecha y horario";
+                lblMensaje.Text = "Error: ya hay un turno para ese medico en esa fecha y horario";
             }
             else
             {

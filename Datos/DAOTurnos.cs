@@ -68,14 +68,12 @@ namespace Datos
             string consulta = "SELECT COUNT (*) " +
                               "FROM Turnos " +
                               "WHERE (LegajoMedico = @LEGAJO) AND " +
-                              "(DniPaciente = @DNI) AND " +
                               "(Fecha = @FECHA) AND " +
                               "(IdHorario = @IDHORARIO) AND " +
                               "(Eliminado = 0)";
             SqlCommand sqlcmd = new SqlCommand(consulta);
 
             sqlcmd.Parameters.AddWithValue("@LEGAJO", turno._LegajoMedico);
-            sqlcmd.Parameters.AddWithValue("@DNI", Convert.ToInt32(turno._DniPaciente));
             sqlcmd.Parameters.AddWithValue("@FECHA", turno._Fecha.Date);
             sqlcmd.Parameters.AddWithValue("@IDHORARIO", turno._IdHorario);
 
