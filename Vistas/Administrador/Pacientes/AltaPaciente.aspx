@@ -9,7 +9,9 @@
 
         <!--Titulo de pagina-->
         <div>
-            <h1> Pacientes</h1>
+            <h1>
+                <asp:Label ID="lblTitulo" runat="server" Text="Alta de Paciente"></asp:Label>
+            </h1>
         </div>
 
         <!--dni-->

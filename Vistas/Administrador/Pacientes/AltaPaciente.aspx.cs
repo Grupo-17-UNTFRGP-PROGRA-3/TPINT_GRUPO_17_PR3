@@ -67,14 +67,21 @@ namespace Vistas
 
                 if (Request.QueryString["dni"] != null)
                 {
+                    lblTitulo.Text = "Modificar Paciente";
+
                     BtnBuscarDni.Visible = false;
+
                     BtnVolver2.Visible = false;
+
                     pnlDatosPaciente.Visible = true;
+
                     int dni = int.Parse(Request.QueryString["dni"]);
                     CargarDatosPaciente(dni);
+
                     txtDNI.Enabled = false;
-                    btnLimpiarCampos.Visible = false;
-                    btnLimpiarCampos.Enabled = false;
+
+                    btnIngresar.Text = "Modificar";
+                    btnLimpiarCampos.Text = "Restaurar datos";
                 }
 
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
@@ -201,7 +208,16 @@ namespace Vistas
 
         protected void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            if (Request.QueryString["dni"] != null)
+            {
+                int dni = Convert.ToInt32(Request.QueryString["dni"]);
+
+                CargarDatosPaciente(dni);
+            }
+            else
+            {
+                LimpiarCampos();
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)

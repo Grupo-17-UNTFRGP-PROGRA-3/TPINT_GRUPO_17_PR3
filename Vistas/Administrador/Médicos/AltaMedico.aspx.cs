@@ -120,13 +120,11 @@ namespace Vistas
                     BtnVolver2.Visible = false;
 
                     int legajo = Convert.ToInt32(Request.QueryString["legajo"]);
-
                     CargarDatosMedico(legajo);
 
                     txtDNI.Enabled = false;
 
                     btnIngresar.Text = "Modificar";
-
                     btnLimpiarCampos.Text = "Restaurar datos";
                 }
             }
