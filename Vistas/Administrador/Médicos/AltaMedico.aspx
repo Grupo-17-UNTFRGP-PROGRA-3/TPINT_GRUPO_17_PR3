@@ -169,12 +169,9 @@
                 <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
                 <br />
                 <br />
-                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                <br />
-                <br />
-                <br />
-                <br />
             </div>
         </asp:Panel>
+
+        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
     </div>
 </asp:Content>

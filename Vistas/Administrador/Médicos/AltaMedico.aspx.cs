@@ -187,6 +187,9 @@ namespace Vistas
                 pnlDatosMedico.Visible = true;
                 pnlDatosMedico.Enabled = true;
 
+                btnIngresar.Visible = true;
+                btnIngresar.Enabled = true;
+
                 txtDNI.Enabled = false;
 
                 btnModificarDNI.Visible = true;
@@ -268,6 +271,25 @@ namespace Vistas
                     negocioUsuario.AgregarCuenta(usuario);
                     lblMensaje.Text = "El médico y usuario se han agregado con éxito";
                     lblMensaje.ForeColor = Color.Green;
+
+                    pnlDatosMedico.Visible = false;
+                    pnlDatosMedico.Enabled = false;
+
+                    btnModificarDNI.Visible = false;
+                    btnModificarDNI.Enabled = false;
+
+                    btnIngresar.Visible = false;
+                    btnIngresar.Enabled = false;
+
+                    txtDNI.Visible = true;
+                    txtDNI.Enabled = true;
+                    txtDNI.Text = string.Empty;
+
+                    BtnBuscarDNI.Visible = true;
+                    BtnBuscarDNI.Enabled = true;
+
+                    btnVolver.Visible = true;
+                    btnVolver.Enabled = true;
 
                     LimpiarCampos();
                 }

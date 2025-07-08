@@ -73,6 +73,8 @@ namespace Vistas
                     int dni = int.Parse(Request.QueryString["dni"]);
                     CargarDatosPaciente(dni);
                     txtDNI.Enabled = false;
+                    btnLimpiarCampos.Visible = false;
+                    btnLimpiarCampos.Enabled = false;
                 }
 
                 DataTable tablaNacionalidades = negocioNacionalidad.GetTable();
@@ -237,7 +239,26 @@ namespace Vistas
                 lblMensaje.Text = "El paciente se ha Modificado con éxito";
                 lblMensaje.ForeColor = Color.Green;
             }
-            
+
+            pnlDatosPaciente.Visible = false;
+            pnlDatosPaciente.Enabled = false;
+
+            btnModificarDNI.Visible = false;
+            btnModificarDNI.Enabled = false;
+
+            btnIngresar.Visible = false;
+            btnIngresar.Enabled = false;
+
+            txtDNI.Visible = true;
+            txtDNI.Enabled = true;
+            txtDNI.Text = string.Empty;
+
+            BtnBuscarDni.Visible = true;
+            BtnBuscarDni.Enabled = true;
+
+            btnVolver.Visible = true;
+            btnVolver.Enabled = true;
+
             LimpiarCampos();
         }
 

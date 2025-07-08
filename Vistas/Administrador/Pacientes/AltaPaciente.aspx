@@ -126,11 +126,11 @@
                 <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
                 <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
                 <br />
-                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 <br />
             </div>
         </div>
             </asp:Panel>
+        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
     </div>
 
 </asp:Content>
