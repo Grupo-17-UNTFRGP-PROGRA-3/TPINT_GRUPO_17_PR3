@@ -20,16 +20,19 @@ namespace Clinica
         {
             _usuario = usuario;
         }
+        
         public void setUsuario(Usuario usuario)
         {
             _usuario = usuario;
         }
+        
         public bool ExisteCuenta(string legajo)
         {
             if (_daoU.cuentaExiste(legajo)) return true;
 
             return false;
         }
+        
         public int EsLoginValido()
         {
 
@@ -42,6 +45,7 @@ namespace Clinica
 
             return 0; //SI LAS CREDENCIALES SON INCORRECTAS, DEVUELVE 0
         }
+        
         public bool EsAdmin()
         {
             Usuario usuario = _daoU.traerRegistro(_usuario._usuario.ToString());
@@ -50,17 +54,20 @@ namespace Clinica
 
             return false;
         }
+        
         public bool AgregarCuenta(Usuario usuario)
         {
             if (_daoU.agregarCuenta(usuario) == 1) return true;
 
             return false;
         }
+        
         public bool ModificarUsuario(string usuario, string Pass, int legajo)
         {
             if (_daoU.ModificarUsuario(usuario, Pass, legajo) == 1) return true;
             return false;
         }
+        
         public bool existeUsuario(string usuario)
         {
             return _daoU.usuarioExiste(usuario);
@@ -78,6 +85,14 @@ namespace Clinica
             AccesoDatos datos = new AccesoDatos();
             return datos.traerUsuarioPorLegajo(legajo);
         }
+        
+        public Usuario ObtenerUsuarioPorNombre(string nombre)
+        {
+            DaoUsuarios daoUsuario = new DaoUsuarios();
+
+            return daoUsuario.TraerUsuarioPorNombre(nombre);
+        }
+
         public Usuario traerRegistro(string usuario)
         {
             return _daoU.traerRegistro(usuario);

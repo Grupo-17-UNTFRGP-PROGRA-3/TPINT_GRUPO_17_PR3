@@ -13,18 +13,6 @@ namespace Vistas.Administrador.Médicos
 {
     public partial class CreacionLogin : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-
-            int legajo = int.Parse(Request.QueryString["legajo"]);
-
-            if (!IsPostBack)
-            {
-                cargarUsuario(legajo);
-            }
-        }
-
         public void cargarUsuario(int legajo)
         {
             NegocioUsuario negocioUsuario = new NegocioUsuario();
@@ -36,14 +24,36 @@ namespace Vistas.Administrador.Médicos
             txtPass2.Text = Nuevousuario.getPass();
         }
 
-        public void LimpiarCampos()
+        public void cargarUsuario(string nombre)
         {
-            txtUsuario.Text = string.Empty;
-            txtPass1.Text = string.Empty;
-            txtPass2.Text = string.Empty;
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+
+            Usuario Nuevousuario = negocioUsuario.ObtenerUsuarioPorNombre(nombre);
+
+            txtUsuario.Text = Nuevousuario.getUsuario();
+            txtPass1.Text = Nuevousuario.getPass();
+            txtPass2.Text = Nuevousuario.getPass();
         }
 
-      
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
+            int legajo = int.Parse(Request.QueryString["legajo"]);
+            string usuario = Request.QueryString["usuario"];
+
+            if (!IsPostBack)
+            {
+                if (usuario == null)
+                {
+                    cargarUsuario(legajo);
+                }
+                else
+                {
+                    cargarUsuario(usuario);
+                }
+            }
+        }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {

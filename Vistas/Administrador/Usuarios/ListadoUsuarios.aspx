@@ -13,6 +13,7 @@
             <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
 
             <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
+                DataKeyNames="Usuario"
                 CellPadding="4" ForeColor="#333333" GridLines="None"
                 AllowPaging="True" OnPageIndexChanging="gvUsuarios_PageIndexChanging" Width="436px" OnRowCommand="gvUsuarios_RowCommand">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Clinica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Clinica;
 
 namespace Vistas.Administrador.Usuarios
 {
@@ -35,8 +36,19 @@ namespace Vistas.Administrador.Usuarios
         {
             if (e.CommandName == "ModificarUsuario")
             {
-                int legajo = int.Parse( e.CommandArgument.ToString());
-                Response.Redirect($"~/Administrador/Médicos/ModificarUsuario.aspx?legajo={legajo}");
+                int legajo = int.Parse(e.CommandArgument.ToString());
+
+                if (legajo != 0000) // si es medico, envia el legajo
+                {
+                    Response.Redirect($"~/Administrador/Médicos/ModificarUsuario.aspx?legajo={legajo}");
+                }
+                else // si es admin, envia legajo y nombre de usuario
+                {
+                    int gvIndice = ((GridViewRow)((Control)e.CommandSource).NamingContainer).RowIndex;
+                    string usuario = gvUsuarios.DataKeys[gvIndice].Value.ToString();
+
+                    Response.Redirect($"~/Administrador/Médicos/ModificarUsuario.aspx?legajo={legajo}&usuario={usuario}");
+                }
             }
         }
 

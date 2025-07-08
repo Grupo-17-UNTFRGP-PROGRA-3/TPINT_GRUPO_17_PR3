@@ -52,6 +52,7 @@ namespace Vistas.Administrador
             ddlHorario.DataBind();
             ddlHorario.Items.Insert(0, new ListItem("-- Seleccione Hora --", "0"));
         }
+
         protected void LimpiarCampos()
         {
             ddlEspecialidad.SelectedIndex = 0;
@@ -82,8 +83,6 @@ namespace Vistas.Administrador
                 ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", "0"));
             }
         }
-
-
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -150,7 +149,6 @@ namespace Vistas.Administrador
                 lblInicio.Text = "Error al asignar el turno.";
             }
         }
-
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {

@@ -21,8 +21,8 @@ namespace Datos
             {
                 string usuarioTraer = $"select * from Usuarios where Usuario = '{usuario}'";
                 _usuario = _datos.ConsultaLecturaUsuario(usuarioTraer);
-                
             }
+
             return _usuario;
         }
 
@@ -33,6 +33,7 @@ namespace Datos
 
             return false;
         }
+        
         public bool cuentaExiste(string legajo)
         {
 
@@ -40,6 +41,7 @@ namespace Datos
 
             return false;
         }
+        
         public int agregarCuenta(Usuario usuario)
         {
             string consulta = "INSERT INTO Usuarios(Usuario, Password, Legajo, Eliminado) VALUES ('" +
@@ -49,6 +51,7 @@ namespace Datos
 
             return _datos.EjecutarConsulta(consulta);
         }
+        
         public int ModificarUsuario(string usuario, string Pass, int legajo)
         {
             string consulta = "UPDATE Usuarios SET " +
@@ -67,6 +70,13 @@ namespace Datos
             DataTable dt = new DataTable();
             dt = _datos.ObtenerTabla(consulta, "Usuarios");
             return dt;
+        }
+
+        public Usuario TraerUsuarioPorNombre(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            return datos.TraerUsuarioPorNombre(nombre);
         }
     }
 }

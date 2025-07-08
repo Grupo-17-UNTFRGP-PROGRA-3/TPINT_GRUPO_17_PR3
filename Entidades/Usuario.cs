@@ -19,23 +19,31 @@ namespace Entidades
         {
             _usuario = usuario;
         }
+        
         public Usuario(string usuario, string pass, int legajo)
         {
             setLegajo(legajo);
             setUsuario(usuario);
             setPass(pass);
         }
+        
         public Usuario(string usuario, string pass)
         {
             setUsuario(usuario);
             setPass(pass);
         }
+        
         public void setLegajo(int leg) { _legajo = leg; }
+        
         public int getLegajo()
         {  return _legajo; }
+        
         private void setUsuario(string usuario) { _usuario = usuario; }
+        
         private void setPass(string pass) { _pass = pass; }
+        
         public string getUsuario() { return _usuario; }
+        
         public string getPass() { return _pass; }
 
         public static bool operator ==(Usuario a, Usuario b)

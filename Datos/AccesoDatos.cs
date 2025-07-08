@@ -80,6 +80,7 @@ namespace Datos
 
             return idHorario;
         }
+        
         public string ConsultaLecturaHorarioId(string consultaSQL)
         {
             _conexion.Open();
@@ -365,6 +366,29 @@ namespace Datos
             return usuario;
         }
         
+        public Usuario TraerUsuarioPorNombre(string nombre)
+        {
+            Usuario usuario = new Usuario();
+            string consulta = "SELECT * FROM Usuarios WHERE Usuario = @NOMBRE";
+            SqlCommand sqlcmd = new SqlCommand(consulta, _conexion);
+            sqlcmd.Parameters.AddWithValue("@NOMBRE", nombre);
+
+            _conexion.Open();
+
+            SqlDataReader reader = sqlcmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                usuario._usuario = reader["Usuario"].ToString();
+                usuario._pass = reader["Password"].ToString();
+                usuario._legajo = Convert.ToInt32(reader["Legajo"]);
+            }
+
+           _conexion.Close();
+
+            return usuario;
+        }
+
         public List<HorarioMedico> TraerListaHorariosMedicoPorLegajo(int legajo)
         {
             List<HorarioMedico> horariosMedico = new List<HorarioMedico>();
