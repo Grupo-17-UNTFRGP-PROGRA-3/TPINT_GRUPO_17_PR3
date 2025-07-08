@@ -227,6 +227,20 @@ namespace Datos
             return existe;
         }
 
+        public bool ExisteTurno(SqlCommand sqlcmd)
+        {
+            int filasEncontradas = EjecutarConsultaEscalar(sqlcmd);
+
+            if (filasEncontradas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Paciente TraerPacientePorDNI(int dni)
         {
             Paciente paciente = null;

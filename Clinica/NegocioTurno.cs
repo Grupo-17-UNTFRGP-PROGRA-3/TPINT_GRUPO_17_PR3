@@ -12,6 +12,7 @@ namespace Clinica
     public class NegocioTurno
     {
         DAOTurnos dao = new DAOTurnos();
+
         public bool agregarTurno(Turno turno)
         {
             return dao.AgregarTurno(turno) > 0;
@@ -25,6 +26,13 @@ namespace Clinica
         public DataTable filtrarTurnos(string filtro)
         {
             return dao.FiltrarTurnos(filtro);
+        }
+    
+        public bool existeTurno(Turno turno)
+        {
+            DAOTurnos daoTurnos = new DAOTurnos();
+
+            return daoTurnos.ExisteTurno(turno);
         }
     }
 }

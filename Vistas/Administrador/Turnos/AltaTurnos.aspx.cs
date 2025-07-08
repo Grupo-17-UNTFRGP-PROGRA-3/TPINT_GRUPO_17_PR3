@@ -128,7 +128,6 @@ namespace Vistas.Administrador
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)
         {
-          
             Turno nuevoTurno = new Turno
             {
                 _LegajoMedico = int.Parse(ddlMedico.SelectedValue),
@@ -140,13 +139,37 @@ namespace Vistas.Administrador
             };
 
             NegocioTurno negocioTurno = new NegocioTurno();
-            if (negocioTurno.agregarTurno(nuevoTurno))
+
+            bool turnoExiste = negocioTurno.existeTurno(nuevoTurno);
+
+            if (turnoExiste)
             {
-                Response.Redirect("ListaTurnos.aspx");
+                lblMensaje.Text = "Error al asignar el turno: ya hay un turno con ese medico, paciente, fecha y horario";
             }
             else
             {
-                lblInicio.Text = "Error al asignar el turno.";
+                if (negocioTurno.agregarTurno(nuevoTurno))
+                {
+                    lblMensaje.Text = "Turno agregado con éxito.";
+
+                    pnlDatosMedico.Visible = false;
+                    pnlDatosMedico.Enabled = false;
+
+                    btnAsignarTurno.Visible = false;
+                    btnAsignarTurno.Enabled = false;
+
+                    btnLimpiar.Visible = false;
+                    btnLimpiar.Enabled = false;
+
+                    txtDNI.Text = string.Empty;
+                    txtNombrePaciente.Text = string.Empty;
+
+                    LimpiarCampos();
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al asignar el turno. Contacte a su programador más cercano.";
+                }
             }
         }
 

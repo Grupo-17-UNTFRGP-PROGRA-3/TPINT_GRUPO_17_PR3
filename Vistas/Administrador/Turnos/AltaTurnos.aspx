@@ -19,6 +19,7 @@
       <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
               &nbsp;<asp:Button ID="btnAgregarPaciente" runat="server" CssClass="form-button" OnClick="btnAgregarPaciente_Click" Text="Agregar Paciente" />
   </asp:Panel>
+  <asp:Panel ID="pnlDatosMedico" runat="server">
         <!-- Especialidad -->
         <div class="form-group">
             <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
@@ -53,6 +54,7 @@
             <asp:TextBox ID="txtFechaTurno" runat="server" TextMode="Date" CssClass="form-input" AutoPostBack="True" OnTextChanged="txtFechaTurno_TextChanged"></asp:TextBox>
             <asp:Label ID="lblValidacionFecha" runat="server"></asp:Label>
         </div>
+    </asp:Panel>
 
         <!-- Botones -->
         <div>
@@ -60,6 +62,10 @@
             <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos" CssClass="form-button" OnClick="btnLimpiar_Click" />
             <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click" />
             <br />
+        </div>
+        <br />
+        <div>
+            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
         </div>
     </div>
 </asp:Content>

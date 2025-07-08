@@ -25,9 +25,9 @@ namespace Datos
             cmd.Parameters.AddWithValue("@IdHorario", turno._IdHorario);
             cmd.Parameters.AddWithValue("@Estado", turno._Estado);
             cmd.Parameters.AddWithValue("@Observacion", turno._Observacion ?? "");
+
             return _datos.EjecutarConsulta(cmd);
         }
-
 
         public DataTable ListadoTurnos()
         {
@@ -61,11 +61,25 @@ namespace Datos
                                 E.Descripcion LIKE '%{filtro}%')";
             return _datos.ObtenerTabla(consulta, "Turnos");
         }
+    
+        public bool ExisteTurno(Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string consulta = "SELECT COUNT (*) " +
+                              "FROM Turnos " +
+                              "WHERE (LegajoMedico = @LEGAJO) AND " +
+                              "(DniPaciente = @DNI) AND " +
+                              "(Fecha = @FECHA) AND " +
+                              "(IdHorario = @IDHORARIO) AND " +
+                              "(Eliminado = 0)";
+            SqlCommand sqlcmd = new SqlCommand(consulta);
 
+            sqlcmd.Parameters.AddWithValue("@LEGAJO", turno._LegajoMedico);
+            sqlcmd.Parameters.AddWithValue("@DNI", Convert.ToInt32(turno._DniPaciente));
+            sqlcmd.Parameters.AddWithValue("@FECHA", turno._Fecha.Date);
+            sqlcmd.Parameters.AddWithValue("@IDHORARIO", turno._IdHorario);
 
-
-
-
-
+            return datos.ExisteTurno(sqlcmd);
+        }
     }
 }
