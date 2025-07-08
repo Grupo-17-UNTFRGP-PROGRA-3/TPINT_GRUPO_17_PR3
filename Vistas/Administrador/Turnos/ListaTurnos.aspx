@@ -11,11 +11,11 @@
     <div style="text-align: left;">
         <asp:Label ID="lblBuscar" runat="server" Text="Buscar turnos:" CssClass="form-label"></asp:Label>
          <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-input"></asp:TextBox>
-         <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" CssClass="form-button" />
+         <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" CssClass="form-button" OnClick="btnBuscar_Click" />
     </div>
 
     <div>
-        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging1">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
@@ -42,6 +42,8 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
     </div>
+
+    <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
 
     <div>
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno" CssClass="form-button" OnClick="btnAgregar_Click1"/>

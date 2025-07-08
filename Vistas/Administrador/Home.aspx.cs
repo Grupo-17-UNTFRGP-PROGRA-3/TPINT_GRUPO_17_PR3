@@ -7,10 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace Vistas
 {
-	public partial class Home : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class Home : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
             if (Session["Usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -70,6 +70,30 @@ namespace Vistas
         protected void lkbMP_ListadoMedicos_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Médicos/ListadoMedico.aspx");
+        }
+
+        protected void lkbTurnos_Click(object sender, EventArgs e)
+        {
+            if (!lkbMP_AltaTurnos.Visible == true)
+            {
+                lkbMP_AltaTurnos.Visible = true;
+                lkbMP_ListadoTurnos.Visible = true;
+            }
+            else
+            {
+                lkbMP_AltaTurnos.Visible = false;
+                lkbMP_ListadoTurnos.Visible = false;
+            }
+        }
+        protected void lkbMP_AltaTurnos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Turnos/AltaTurnos.aspx");
+
+        }
+
+        protected void lkbMP_ListadoTurnos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Administrador/Turnos/ListaTurnos.aspx");
         }
     }
 }

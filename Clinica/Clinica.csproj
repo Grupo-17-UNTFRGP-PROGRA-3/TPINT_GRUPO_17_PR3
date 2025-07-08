@@ -49,6 +49,7 @@
     <Compile Include="NegocioLocalidad.cs" />
     <Compile Include="NegocioPaciente.cs" />
     <Compile Include="NegocioProvincia.cs" />
+    <Compile Include="NegocioTurno.cs" />
     <Compile Include="NegocioUsuario.cs" />
     <Compile Include="NegocioNacionalidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

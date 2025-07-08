@@ -77,6 +77,14 @@ namespace Datos
             return datos.ExisteDNIPaciente(dni);
         }
 
+        public Paciente traerPaciente(int dni)
+        {
+           
+            AccesoDatos datos = new AccesoDatos();
+            Paciente paciente = datos.TraerPacientePorDNI(dni);
+            return paciente;
+        }
+
         public DataTable ListadoPacientes()
         {
             string consulta = "SELECT * FROM Pacientes WHERE Eliminado = 0";

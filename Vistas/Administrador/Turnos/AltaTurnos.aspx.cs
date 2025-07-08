@@ -27,7 +27,7 @@ namespace Vistas.Administrador
             ddlMedico.Items.Insert(0, new ListItem("-- Seleccione Médico --", "0"));
         }
 
-        protected void CargarDias(string legajo) 
+        protected void CargarDias(string legajo)
         {
             NegocioMedico negocioMedico = new NegocioMedico();
 
@@ -58,7 +58,6 @@ namespace Vistas.Administrador
             ddlMedico.Items.Clear();
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
-            ddlPaciente.SelectedIndex = 0;
             txtFechaTurno.Text = string.Empty;
         }
 
@@ -66,6 +65,10 @@ namespace Vistas.Administrador
         {
             if (!IsPostBack)
             {
+                txtNombrePaciente.Visible = false;
+                btnAgregarPaciente.Visible = false;
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+                Page.MaintainScrollPositionOnPostBack = true;
                 // CARGA ESPECIALIDADES
                 NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
                 DataTable tablaEspecialidades = new DataTable();
@@ -77,20 +80,10 @@ namespace Vistas.Administrador
                 ddlEspecialidad.DataValueField = "Id";
                 ddlEspecialidad.DataBind();
                 ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", "0"));
-
-                // CARGA PACIENTES
-                NegocioPaciente negocioPaciente = new NegocioPaciente();
-                DataTable tablaPacientes = new DataTable();
-
-                tablaPacientes = negocioPaciente.ListadoPacientesNombreConDNI();
-
-                ddlPaciente.DataSource = tablaPacientes;
-                ddlPaciente.DataTextField = "Descripcion";
-                ddlPaciente.DataValueField = "Dni";
-                ddlPaciente.DataBind();
-                ddlPaciente.Items.Insert(0, new ListItem("-- Seleccione Paciente --", "0"));
             }
         }
+
+
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -99,7 +92,7 @@ namespace Vistas.Administrador
                 ddlMedico.Items.Clear();
                 ddlDia.Items.Clear();
                 ddlHorario.Items.Clear();
-                txtFechaTurno.Text = string.Empty;   
+                txtFechaTurno.Text = string.Empty;
             }
 
             int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
@@ -136,8 +129,28 @@ namespace Vistas.Administrador
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("ListaTurnos.aspx");
+          
+            Turno nuevoTurno = new Turno
+            {
+                _LegajoMedico = int.Parse(ddlMedico.SelectedValue),
+                _DniPaciente = txtDNI.Text,
+                _Fecha = DateTime.Parse(txtFechaTurno.Text),
+                _IdHorario = int.Parse(ddlHorario.SelectedValue),
+                _Estado = "Pendiente",
+                _Observacion = ""
+            };
+
+            NegocioTurno negocioTurno = new NegocioTurno();
+            if (negocioTurno.agregarTurno(nuevoTurno))
+            {
+                Response.Redirect("ListaTurnos.aspx");
+            }
+            else
+            {
+                lblInicio.Text = "Error al asignar el turno.";
+            }
         }
+
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -158,9 +171,34 @@ namespace Vistas.Administrador
             {
                 string[] DiaDeSemana = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
                 lblValidacionFecha.ForeColor = System.Drawing.Color.Red;
-                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1]; 
+                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1];
             }
-           
+
+        }
+
+        protected void BtnBuscarDni_Click(object sender, EventArgs e)
+        {
+            int dni = int.Parse(txtDNI.Text);
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            Paciente paciente = negocioPaciente.traerPaciente(dni);
+
+            if (negocioPaciente.ExisteDNI(dni))
+            {
+                lblDNI.Text = "PACIENTE:";
+                txtDNI.Visible = false;
+                txtNombrePaciente.Visible = true;
+                txtNombrePaciente.Text = paciente._Nombre + " " + paciente._Apellido;
+            }
+            else
+            {
+                lblInicio.Text = "paciente no encontrado";
+                btnAgregarPaciente.Visible = true;
+            }
+        }
+
+        protected void btnAgregarPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Administrador/Pacientes/AltaPaciente.aspx");
         }
     }
 }

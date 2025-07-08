@@ -44,7 +44,13 @@ namespace Clinica
 
             return daoPacientes.ExisteDNI(dni);
         }
-
+        public Paciente traerPaciente(int dni)
+        {
+            Paciente paciente= new Paciente();
+            DAOPacientes daoPacientes = new DAOPacientes();
+            paciente = daoPacientes.traerPaciente(dni);
+            return paciente;
+        }
         public DataTable ListadoPacientes()
         {
             DataTable dt = new DataTable();

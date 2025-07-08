@@ -7,6 +7,18 @@
         <div>
             <h1>Asignacion de Turnos</h1>
         </div>
+          <asp:Panel ID="pnlDNI" runat="server">
+      <div class="form-group">
+          <asp:Label ID="lblDNI" runat="server" Text="DNI Paciente" CssClass="form-label"></asp:Label>
+          <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input" Height="21px" Width="162px"></asp:TextBox>
+          <asp:TextBox ID="txtNombrePaciente" runat="server" CssClass="form-input"></asp:TextBox>
+          <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" Display="Dynamic" />
+          <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{8}$" ErrorMessage="DNI inválido (8 dígitos)" ForeColor="Red" Display="Dynamic" />
+          <asp:Button ID="BtnBuscarDni" runat="server" Text="Buscar paciente" CssClass="form-button" OnClick="BtnBuscarDni_Click" />
+       </div>
+      <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
+              &nbsp;<asp:Button ID="btnAgregarPaciente" runat="server" CssClass="form-button" OnClick="btnAgregarPaciente_Click" Text="Agregar Paciente" />
+  </asp:Panel>
         <!-- Especialidad -->
         <div class="form-group">
             <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
@@ -35,12 +47,6 @@
         </div>
 
         <!-- Paciente -->
-        <div class="form-group">
-            <asp:Label ID="lblPaciente" runat="server" Text="Paciente" CssClass="form-label"></asp:Label>
-            <asp:DropDownList ID="ddlPaciente" runat="server" CssClass="form-input">
-                <asp:ListItem Text="Seleccione paciente" Value="" />
-            </asp:DropDownList>
-        </div>
         <!-- Fecha -->
         <div class="form-group">
             <asp:Label ID="lblFecha" runat="server" Text="Fecha" CssClass="form-label"></asp:Label>

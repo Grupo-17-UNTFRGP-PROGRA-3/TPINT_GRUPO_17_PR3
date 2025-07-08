@@ -1,49 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Clinica;
 
 namespace Vistas.Administrador
 {
 	public partial class ListaTurnos : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
+        NegocioTurno negocioTurno = new NegocioTurno();
+        protected void Page_Load(object sender, EventArgs e)
 
         {
             if (!IsPostBack)
             {
-                gvTurnos.DataSource = ObtenerTurnosPrueba();
-                gvTurnos.DataBind();
+                CargarTurnos();
             }
         }
 
-        private List<Turno> ObtenerTurnosPrueba()
+        private void CargarTurnos()
         {
-            return new List<Turno>
-             {
-                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "09:00", Especialidad = "Cardiología", Medico = "Dr. Juan Pérez", Paciente = "Ana García", Estado = "Confirmado" },
-                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "10:00", Especialidad = "Dermatología", Medico = "Dra. María López", Paciente = "Carlos Sánchez", Estado = "Pendiente" },
-                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "11:00", Especialidad = "Neurología", Medico = "Dr. Pedro Gómez", Paciente = "Laura Martínez", Estado = "Confirmado" },
-                new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "09:00", Especialidad = "Pediatría", Medico = "Dra. Ana Torres", Paciente = "Miguel Fernández", Estado = "Cancelado" },
-                new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "10:00", Especialidad = "Ginecología", Medico = "Dra. Laura Ruiz", Paciente = "Sofía Díaz", Estado = "Confirmado" }
-             };
-        }
-
-        public class Turno
-        {
-            public DateTime Fecha { get; set; }
-            public string Hora { get; set; }
-            public string Especialidad { get; set; }
-            public string Medico { get; set; }
-            public string Paciente { get; set; }
-            public string Estado { get; set; }
+            gvTurnos.DataSource = negocioTurno.listaTurnos();
+            gvTurnos.DataBind();
         }
 
         protected void btnAgregar_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("AltaTurnos.aspx");
+            Response.Redirect("~/Administrador/Turnos/AltaTurnos.aspx");
+        }
+
+        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTurnos.PageIndex = e.NewPageIndex;
+            CargarTurnos();
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string filtro = txtBuscar.Text.Trim();
+            if (string.IsNullOrEmpty(filtro))
+            {
+                lblMensaje.Text = "Debe ingresar un dato para buscar.";
+                return;
+            }
+
+            DataTable resultado = negocioTurno.filtrarTurnos(filtro);
+            if (resultado.Rows.Count == 0)
+            {
+                lblMensaje.Text = "No se encontraron turnos con ese criterio.";
+            }
+            else
+            {
+                gvTurnos.DataSource = resultado;
+                gvTurnos.DataBind();
+                lblMensaje.Text = string.Empty;
+            }
+        }
+
+        protected void gvTurnos_PageIndexChanging1(object sender, GridViewPageEventArgs e)
+        {
+            gvTurnos.PageIndex = e.NewPageIndex;
+            CargarTurnos();
         }
     }
 }
+
