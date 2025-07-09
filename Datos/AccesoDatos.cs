@@ -260,7 +260,8 @@ namespace Datos
                     _Nombre = reader["Nombre"].ToString(),
                     _Apellido = reader["Apellido"].ToString(),
                     _IdNacionalidad = Convert.ToInt32(reader["IdNacionalidad"]),
-                    _FechaNacimiento = DateTime.Parse(reader["FechaNacimiento"].ToString()),
+                    //_FechaNacimiento = DateTime.Parse(reader["FechaNacimiento"].ToString()),
+                    _FechaNacimiento = reader["FechaNacimiento"].ToString(),
                     _Direccion = reader["Direccion"].ToString(),
                     _Email = reader["Email"].ToString(),
                     _Telefono = reader["Telefono"].ToString(),
@@ -463,6 +464,23 @@ namespace Datos
             _conexion.Open();
             SqlDataAdapter sqlDA = new SqlDataAdapter(cmd);
             
+            sqlDA.Fill(horasHabilitadas);
+
+            return horasHabilitadas;
+        }
+        public DataTable HorasDispXmedicoXdia(int Legajo, int Dia, string f)
+        {
+            DataTable horasHabilitadas = new DataTable();
+            string consulta = "select h.Id, h.Horario from Horarios h " +
+                              "inner join HorariosMedicos hm ON hm.IdDia = " + Dia.ToString() + " and hm.Legajo = " + Legajo.ToString() +
+                              "where hm.Eliminado = 0 and h.Horario between hm.HoraInicio and DATEADD(HOUR, -1, hm.HoraFin) " +
+                              "AND h.Id NOT IN (SELECT IdHorario FROM Turnos WHERE LegajoMedico = " + Legajo.ToString()+ 
+                              " AND Fecha = '"+ f +"')";
+
+            SqlCommand cmd = new SqlCommand(consulta, _conexion);
+            _conexion.Open();
+            SqlDataAdapter sqlDA = new SqlDataAdapter(cmd);
+
             sqlDA.Fill(horasHabilitadas);
 
             return horasHabilitadas;

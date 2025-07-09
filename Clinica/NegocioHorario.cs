@@ -35,5 +35,12 @@ namespace Clinica
 
             return dAOHorarios.TraerHorasHabilitadas(legajo, dia);
         }
+
+        public DataTable ObtenerHorasHabilitadas(int legajo, int dia, string f)
+        {
+            DAOHorarios dAOHorarios = new DAOHorarios();
+
+            return dAOHorarios.TraerHorasHabilitadas(legajo, dia, f);
+        }
     }
 }

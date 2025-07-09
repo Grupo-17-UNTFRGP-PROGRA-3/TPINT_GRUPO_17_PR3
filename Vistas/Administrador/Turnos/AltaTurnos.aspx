@@ -39,6 +39,12 @@
             <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-input" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged" AutoPostBack="True">
             </asp:DropDownList>
         </div>
+        <!-- Fecha -->
+        <div class="form-group">
+            <asp:Label ID="lblFecha" runat="server" Text="Fecha" CssClass="form-label"></asp:Label>
+            <asp:TextBox ID="txtFechaTurno" runat="server" TextMode="Date" CssClass="form-input" AutoPostBack="True" OnTextChanged="txtFechaTurno_TextChanged" Wrap="False"></asp:TextBox>
+            <asp:Label ID="lblValidacionFecha" runat="server"></asp:Label>
+        </div>
 
         <!-- Horario -->
         <div class="form-group">
@@ -48,12 +54,6 @@
         </div>
 
         <!-- Paciente -->
-        <!-- Fecha -->
-        <div class="form-group">
-            <asp:Label ID="lblFecha" runat="server" Text="Fecha" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtFechaTurno" runat="server" TextMode="Date" CssClass="form-input" AutoPostBack="True" OnTextChanged="txtFechaTurno_TextChanged"></asp:TextBox>
-            <asp:Label ID="lblValidacionFecha" runat="server"></asp:Label>
-        </div>
     </asp:Panel>
 
         <!-- Botones -->

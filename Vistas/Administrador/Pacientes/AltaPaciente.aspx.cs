@@ -127,7 +127,8 @@ namespace Vistas
                     rblSexo.SelectedValue = "masculino";
                 }
 
-                txtFechaNacimiento.Text = paciente._FechaNacimiento.ToString("yyyy-MM-dd");
+                //txtFechaNacimiento.Text = paciente._FechaNacimiento.ToString("yyyy-MM-dd");
+                txtFechaNacimiento.Text = "YYYY-MM-DD";
                 txtDireccion.Text = paciente._Direccion.ToString();
                 txtEmail.Text = paciente._Email;
                 txtTelefono.Text = paciente._Telefono;
@@ -231,7 +232,8 @@ namespace Vistas
                 _Apellido = txtApellido.Text,
                 _Sexo = rblSexo.SelectedValue == "femenino", //SI ESTÁ SELECCIONADO FEMENINO, TRUE, SINO FALSE
                 _IdNacionalidad = int.Parse(ddlNacionalidad.SelectedValue),
-                _FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text),
+                //_FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text),
+                _FechaNacimiento = txtFechaNacimiento.Text,
                 _Direccion = txtDireccion.Text,
                 _Email = txtEmail.Text,
                 _Telefono = txtTelefono.Text,

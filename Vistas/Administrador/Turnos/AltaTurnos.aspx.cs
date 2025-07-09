@@ -40,11 +40,11 @@ namespace Vistas.Administrador
             ddlDia.Items.Insert(0, new ListItem("-- Seleccione Dia --", "0"));
         }
 
-        protected void CargarHoras(int legajo, int dia)
+        protected void CargarHoras(int legajo, int dia, string fecha)
         {
             NegocioHorario horario = new NegocioHorario();
 
-            DataTable TablaHoras = horario.ObtenerHorasHabilitadas(legajo, dia);
+            DataTable TablaHoras = horario.ObtenerHorasHabilitadas(legajo, dia, fecha);
 
             ddlHorario.DataSource = TablaHoras;
             ddlHorario.DataTextField = "Horario";
@@ -60,6 +60,20 @@ namespace Vistas.Administrador
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
             txtFechaTurno.Text = string.Empty;
+        }
+        protected bool ValidarFechaConDia()
+        {
+            lblValidacionFecha.Text = string.Empty;
+            DateTime fecha = Convert.ToDateTime(txtFechaTurno.Text);
+
+            if ((int)fecha.DayOfWeek != Convert.ToInt32(ddlDia.SelectedValue))
+            {
+                string[] DiaDeSemana = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
+                lblValidacionFecha.ForeColor = System.Drawing.Color.Red;
+                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1];
+                return false;
+            }
+            else { return true; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -114,16 +128,7 @@ namespace Vistas.Administrador
 
         protected void ddlDia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlHorario.Items.Count != 0)
-            {
-                ddlHorario.Items.Clear();
-                txtFechaTurno.Text = string.Empty;
-            }
-            int Legajo = int.Parse(ddlMedico.SelectedValue);
-            int Dia = int.Parse(ddlDia.SelectedValue);
-
-            CargarHoras(Legajo, Dia);
-            // logica para cambiar los horarios en funcion del dia
+            txtFechaTurno.Text = string.Empty;
         }
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)
@@ -162,8 +167,9 @@ namespace Vistas.Administrador
                     btnLimpiar.Enabled = false;
 
                     txtDNI.Text = string.Empty;
+                    txtDNI.Visible = true;
                     txtNombrePaciente.Text = string.Empty;
-
+                    txtNombrePaciente.Visible = false ;
                     LimpiarCampos();
                 }
                 else
@@ -185,16 +191,14 @@ namespace Vistas.Administrador
 
         protected void txtFechaTurno_TextChanged(object sender, EventArgs e)
         {
-            lblValidacionFecha.Text = string.Empty;
-            DateTime fecha = Convert.ToDateTime(txtFechaTurno.Text);
+            if (txtFechaTurno.Text != string.Empty) { ValidarFechaConDia();}
 
-            if ((int)fecha.DayOfWeek != Convert.ToInt32(ddlDia.SelectedValue))
-            {
-                string[] DiaDeSemana = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
-                lblValidacionFecha.ForeColor = System.Drawing.Color.Red;
-                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1];
-            }
+            int Legajo = int.Parse(ddlMedico.SelectedValue);
+            int Dia = int.Parse(ddlDia.SelectedValue);
+            string Fecha = txtFechaTurno.Text;
 
+            if (ValidarFechaConDia()){ CargarHoras(Legajo, Dia, Fecha); }
+            else { ddlHorario.Items.Clear();  }
         }
 
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
@@ -209,6 +213,8 @@ namespace Vistas.Administrador
                 txtDNI.Visible = false;
                 txtNombrePaciente.Visible = true;
                 txtNombrePaciente.Text = paciente._Nombre + " " + paciente._Apellido;
+                lblInicio.Text = string.Empty;
+                btnAgregarPaciente.Visible = false;
             }
             else
             {

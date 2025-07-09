@@ -37,5 +37,10 @@ namespace Datos
         {
            return datos.HorasDispXmedicoXdia(legajo, dia);
         }
+
+        public DataTable TraerHorasHabilitadas(int legajo, int dia, string f)
+        {
+            return datos.HorasDispXmedicoXdia(legajo, dia, f);
+        }
     }
 }
