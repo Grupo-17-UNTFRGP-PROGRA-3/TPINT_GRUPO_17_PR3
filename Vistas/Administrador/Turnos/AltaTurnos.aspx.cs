@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
@@ -14,6 +15,36 @@ namespace Vistas.Administrador
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        //CARGA PRINICIPAL
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                txtNombrePaciente.Visible = false;
+                btnAgregarPaciente.Visible = false;
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+                Page.MaintainScrollPositionOnPostBack = true;
+                // CARGA ESPECIALIDADES
+                NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+                DataTable tablaEspecialidades = new DataTable();
+
+                tablaEspecialidades = negocioEspecialidad.GetTable();
+
+                ddlEspecialidad.DataSource = tablaEspecialidades;
+                ddlEspecialidad.DataTextField = "Descripcion";
+                ddlEspecialidad.DataValueField = "Id";
+                ddlEspecialidad.DataBind();
+                ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", "0"));
+
+                if (Session["MensajeExito"] != null)
+                {
+                    lblMensaje.ForeColor = Color.Green;
+                    lblMensaje.Text = Session["MensajeExito"].ToString();
+                }
+            }
+        }
+
+        //CARGAS DATOS =======================
         protected void CargarMedicos(int idEspecialidad)
         {
             NegocioMedico negocioMedico = new NegocioMedico();
@@ -60,6 +91,7 @@ namespace Vistas.Administrador
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
             txtFechaTurno.Text = string.Empty;
+            lblMensaje.Text = string.Empty;
         }
         protected bool ValidarFechaConDia()
         {
@@ -76,28 +108,7 @@ namespace Vistas.Administrador
             else { return true; }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                txtNombrePaciente.Visible = false;
-                btnAgregarPaciente.Visible = false;
-                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-                Page.MaintainScrollPositionOnPostBack = true;
-                // CARGA ESPECIALIDADES
-                NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-                DataTable tablaEspecialidades = new DataTable();
-
-                tablaEspecialidades = negocioEspecialidad.GetTable();
-
-                ddlEspecialidad.DataSource = tablaEspecialidades;
-                ddlEspecialidad.DataTextField = "Descripcion";
-                ddlEspecialidad.DataValueField = "Id";
-                ddlEspecialidad.DataBind();
-                ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", "0"));
-            }
-        }
-
+        //REACCIONES A LOS CAMBIOS ======================
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlMedico.Items.Count != 0)
@@ -106,6 +117,7 @@ namespace Vistas.Administrador
                 ddlDia.Items.Clear();
                 ddlHorario.Items.Clear();
                 txtFechaTurno.Text = string.Empty;
+                lblMensaje.Text = string.Empty;
             }
 
             int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
@@ -120,6 +132,8 @@ namespace Vistas.Administrador
                 ddlDia.Items.Clear();
                 ddlHorario.Items.Clear();
                 txtFechaTurno.Text = string.Empty;
+                lblMensaje.Text = string.Empty;
+
             }
             string legajo = ddlMedico.SelectedValue;
 
@@ -129,6 +143,8 @@ namespace Vistas.Administrador
         protected void ddlDia_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtFechaTurno.Text = string.Empty;
+            lblMensaje.Text = string.Empty;
+
         }
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)
@@ -155,22 +171,22 @@ namespace Vistas.Administrador
             {
                 if (negocioTurno.agregarTurno(nuevoTurno))
                 {
-                    lblMensaje.Text = "Turno agregado con éxito.";
+                    Session["MensajeExito"] = "Turno agregado con éxito.";
+                    Response.Redirect("~/Administrador/Turnos/AltaTurnos.aspx");
+                                        
+                    //pnlDatosMedico.Visible = false;
+                    //pnlDatosMedico.Enabled = false;
 
-                    pnlDatosMedico.Visible = false;
-                    pnlDatosMedico.Enabled = false;
+                    //btnAsignarTurno.Visible = false;
+                    //btnAsignarTurno.Enabled = false;
 
-                    btnAsignarTurno.Visible = false;
-                    btnAsignarTurno.Enabled = false;
+                    //btnLimpiar.Visible = false;
+                    //btnLimpiar.Enabled = false;
 
-                    btnLimpiar.Visible = false;
-                    btnLimpiar.Enabled = false;
-
-                    txtDNI.Text = string.Empty;
-                    txtDNI.Visible = true;
-                    txtNombrePaciente.Text = string.Empty;
-                    txtNombrePaciente.Visible = false ;
-                    LimpiarCampos();
+                    //txtDNI.Text = string.Empty;
+                    //txtDNI.Visible = true;
+                    //txtNombrePaciente.Text = string.Empty;
+                    //txtNombrePaciente.Visible = false ;
                 }
                 else
                 {
@@ -203,6 +219,7 @@ namespace Vistas.Administrador
 
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
         {
+            lblMensaje.Text = string.Empty;
             int dni = int.Parse(txtDNI.Text);
             NegocioPaciente negocioPaciente = new NegocioPaciente();
             Paciente paciente = negocioPaciente.traerPaciente(dni);
