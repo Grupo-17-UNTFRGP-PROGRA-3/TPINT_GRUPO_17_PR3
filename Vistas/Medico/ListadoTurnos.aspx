@@ -85,5 +85,6 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
     <div>
+        <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/Medico/HomeMed.aspx" Text="Volver " />
     </div>
 </asp:Content>

@@ -47,7 +47,7 @@
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle ForeColor="#333333" />
+            <PagerStyle ForeColor="White" BackColor="#5D7B9D" HorizontalAlign="Center" VerticalAlign="Middle" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
             <SortedAscendingCellStyle BackColor="#E9E7E2" />
             <SortedAscendingHeaderStyle BackColor="#506C8C" />
@@ -60,6 +60,7 @@
 
     <div>
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno" CssClass="form-button" OnClick="btnAgregar_Click1"/>
-    </div>
+    <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnAgregar_Click1" PostBackUrl="~/Administrador/Home.aspx"/>
+    </div>
 
 </asp:Content>
