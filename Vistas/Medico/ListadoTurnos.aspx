@@ -23,6 +23,10 @@
                 <asp:ListItem>Ausente</asp:ListItem>
                 <asp:ListItem>Presente</asp:ListItem>
             </asp:DropDownList>
+        </div>
+    </div>
+    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" Style="margin-bottom: 10px;" OnClick="btnFiltrar_Click" />
+    <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar campos" Style="margin-bottom: 10px;" OnClick="btnLimpiar_Click" />
         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
@@ -72,7 +76,7 @@
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#5D7B9D" Font-Bold="True" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#5D7B9D" Font-Bold="True" HorizontalAlign="Center" ForeColor="White" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
             <SortedAscendingCellStyle BackColor="#E9E7E2" />
@@ -80,10 +84,6 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        </div>
-    </div>
-    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" Style="margin-bottom: 10px;" OnClick="btnFiltrar_Click" />
-    <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar campos" Style="margin-bottom: 10px;" OnClick="btnLimpiar_Click" />
     <div>
     </div>
 </asp:Content>
