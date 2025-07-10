@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="ListadoTurnos.aspx.cs" Inherits="Vistas.Medico.ListadoTurnos" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,7 +12,8 @@
             <asp:TextBox runat="server" ID="txtFiltroPaciente"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label>Fecha: </label>&nbsp;<asp:TextBox ID="txtFechaFiltro" runat="server" TextMode="Date"></asp:TextBox>
+            <label>Fecha: </label>
+            &nbsp;<asp:TextBox ID="txtFechaFiltro" runat="server" TextMode="Date"></asp:TextBox>
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
         <div class="form-group">
@@ -21,12 +23,7 @@
                 <asp:ListItem>Ausente</asp:ListItem>
                 <asp:ListItem>Presente</asp:ListItem>
             </asp:DropDownList>
-        </div>
-    </div>
-    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" style="margin-bottom: 10px;" OnClick="btnFiltrar_Click"/>
-    <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar campos" style="margin-bottom: 10px;" OnClick="btnLimpiar_Click"/>
-    <div>
-        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:TemplateField HeaderText="Fecha">
@@ -34,7 +31,7 @@
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Fecha") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="lblFecha" runat="server" Text='<%# Eval ("Fecha","{0:dd/MM/yyyy}") %>' DataFormatString ="{0:dd/MM/yyyy}"></asp:Label>
+                        <asp:Label ID="lblFecha" runat="server" Text='<%# Eval ("Fecha","{0:dd/MM/yyyy}") %>' DataFormatString="{0:dd/MM/yyyy}"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Hora">
@@ -75,7 +72,7 @@
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#5D7B9D" Font-Bold="True" HorizontalAlign="Center" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
             <SortedAscendingCellStyle BackColor="#E9E7E2" />
@@ -83,5 +80,10 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
+        </div>
+    </div>
+    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" Style="margin-bottom: 10px;" OnClick="btnFiltrar_Click" />
+    <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar campos" Style="margin-bottom: 10px;" OnClick="btnLimpiar_Click" />
+    <div>
     </div>
 </asp:Content>
