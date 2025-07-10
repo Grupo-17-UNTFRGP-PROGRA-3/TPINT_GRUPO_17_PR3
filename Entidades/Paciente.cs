@@ -13,8 +13,8 @@ namespace Entidades
         public string _Apellido { get; set; }
         public bool _Sexo { get; set; }
         public int _IdNacionalidad { get; set; }
-        //public DateTime _FechaNacimiento { get; set; } 
-        public string _FechaNacimiento { get; set; } 
+        public DateTime _FechaNacimiento { get; set; } 
+        //public string _FechaNacimiento { get; set; } 
         public string _Direccion { get; set; } 
         public string _Email { get; set; }
         public string _Telefono { get; set; }
