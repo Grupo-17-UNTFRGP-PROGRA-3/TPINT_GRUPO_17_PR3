@@ -24,6 +24,15 @@ namespace Vistas.Medico
         protected global::System.Web.UI.WebControls.TextBox txtFiltroPaciente;
 
         /// <summary>
+        /// Control Label1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// Control txtFechaFiltro.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,13 @@ namespace Vistas.Medico
         protected global::System.Web.UI.WebControls.TextBox txtFechaFiltro;
 
         /// <summary>
-        /// Control Label1.
+        /// Control lblMensajeFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblMensajeFecha;
 
         /// <summary>
         /// Control ddlFiltroEstado.

@@ -30,8 +30,13 @@ namespace Vistas.Medico
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         { 
+            lblMensajeFecha.Text = string.Empty;   
             gvTurnos.DataSource = negocioTurno.filtrarTurnos(legajo, txtFiltroPaciente.Text, txtFechaFiltro.Text, ddlFiltroEstado.Text);
             gvTurnos.DataBind();
+            if (gvTurnos.Rows.Count == 0)
+            {
+                lblMensajeFecha.Text = "No hay turnos para esa fecha";
+            }
         }
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {

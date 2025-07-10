@@ -8,26 +8,25 @@
     </div>
     <div>
         <div class="form-group">
-            <label>Paciente: </label>
-            <asp:TextBox runat="server" ID="txtFiltroPaciente"></asp:TextBox>
+            <label>Paciente:</label><asp:TextBox runat="server" ID="txtFiltroPaciente" CssClass="form-input"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" CssClass="login-label" Text="Ingrese todo o parte del nombre, apellido o DNI del paciente"></asp:Label>
         </div>
         <div class="form-group">
-            <label>Fecha: </label>
-            &nbsp;<asp:TextBox ID="txtFechaFiltro" runat="server" TextMode="Date"></asp:TextBox>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <label>Fecha:</label><asp:TextBox ID="txtFechaFiltro" runat="server" TextMode="Date" CssClass="form-input"></asp:TextBox>
+            <asp:Label ID="lblMensajeFecha" runat="server" CssClass="login-label" ForeColor="#FF3300"></asp:Label>
         </div>
         <div class="form-group">
-            <label>Estado: </label>
-            <asp:DropDownList ID="ddlFiltroEstado" runat="server">
+            <label>Estado:</label><asp:DropDownList ID="ddlFiltroEstado" runat="server" CssClass="form-input">
                 <asp:ListItem Text="--Seleccione Estado--" Value=""></asp:ListItem>
                 <asp:ListItem>Ausente</asp:ListItem>
                 <asp:ListItem>Presente</asp:ListItem>
             </asp:DropDownList>
         </div>
     </div>
-    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" Style="margin-bottom: 10px;" OnClick="btnFiltrar_Click" />
-    <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar campos" Style="margin-bottom: 10px;" OnClick="btnLimpiar_Click" />
-        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True">
+    <div>   
+        <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" style="margin-bottom: 10px;" OnClick="btnFiltrar_Click" CssClass="linkbutton"/>
+        <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar campos" style="margin-bottom: 10px;" OnClick="btnLimpiar_Click" CssClass="linkbutton"/>
+        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:TemplateField HeaderText="Fecha">
