@@ -50,6 +50,7 @@ namespace Vistas
                 Session["Home"] = "~/Medico/HomeMED.aspx";
 				usuario = log.traerRegistro(usuario._usuario);
 				Session["Usuario"] = usuario._usuario;
+				Session["Legajo"] = usuario._legajo;
                 Response.Redirect(ResolveUrl(Session["Home"].ToString()));
             }
 

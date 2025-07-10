@@ -4,38 +4,34 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Clinica;
 
 namespace Vistas.Medico
 {
     public partial class ListadoTurnos : System.Web.UI.Page
     {
+        NegocioTurno negocioTurno = new NegocioTurno();
+        int legajo;
         protected void Page_Load(object sender, EventArgs e)
         {
+           legajo = Convert.ToInt32(Session["Legajo"]);
+
             if (!IsPostBack)
             {
-                gvTurnos.DataSource = ObtenerTurnosPrueba();
-                gvTurnos.DataBind();
+                CargarListado();
             }
         }
 
-        private List<Turno> ObtenerTurnosPrueba()
+        protected void CargarListado()
         {
-            return new List<Turno>
-             {
-                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "09:00", Paciente = "Ana García", Estado = "Presente" },
-                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "10:00", Paciente = "Carlos Sánchez", Estado = "Pendiente" },
-                new Turno { Fecha = new DateTime(2025, 6, 12), Hora = "11:00", Paciente = "Laura Martínez", Estado = "Pendiente" },
-                new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "09:00", Paciente = "Miguel Fernández", Estado = "Ausente" },
-                new Turno { Fecha = new DateTime(2025, 6, 13), Hora = "10:00", Paciente = "Sofía Díaz", Estado = "Presente" }
-             };
+            gvTurnos.DataSource = negocioTurno.listaTurnos(legajo);
+            gvTurnos.DataBind();
         }
 
-        public class Turno
-        {
-            public DateTime Fecha { get; set; }
-            public string Hora { get; set; }
-            public string Paciente { get; set; }
-            public string Estado { get; set; }
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        { 
+            gvTurnos.DataSource = negocioTurno.filtrarTurnos(legajo, txtFiltroPaciente.Text, txtFechaFiltro.Text, ddlFiltroEstado.Text);
+            gvTurnos.DataBind();
         }
     }
 }

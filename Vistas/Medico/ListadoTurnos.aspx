@@ -11,25 +11,60 @@
             <asp:TextBox runat="server" ID="txtFiltroPaciente"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label>Fecha: </label>
-            <input type="date" id="txtFiltroFecha" runat="server"/>
+            <label>Fecha: </label>&nbsp;<asp:TextBox ID="txtFechaFiltro" runat="server" TextMode="Date"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
         <div class="form-group">
             <label>Estado: </label>
             <asp:DropDownList ID="ddlFiltroEstado" runat="server">
                 <asp:ListItem Text="--Seleccione Estado--" Value=""></asp:ListItem>
+                <asp:ListItem>Ausente</asp:ListItem>
+                <asp:ListItem>Presente</asp:ListItem>
             </asp:DropDownList>
         </div>
     </div>
-    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" style="margin-bottom: 10px;"/>
+    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" style="margin-bottom: 10px;" OnClick="btnFiltrar_Click"/>
     <div>
         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
-                <asp:BoundField DataField="Hora" HeaderText="Hora" />
-                <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
-                <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                <asp:TemplateField HeaderText="Fecha">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Fecha") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblFecha" runat="server" Text='<%# Eval ("Fecha","{0:dd/MM/yyyy}") %>' DataFormatString ="{0:dd/MM/yyyy}"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Hora">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Hora") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblHora" runat="server" Text='<%# DateTime.Today.Add((TimeSpan)Eval("Hora")).ToString("HH:mm") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Paciente">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Paciente") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblNombreApellido" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="DNI">
+                    <ItemTemplate>
+                        <asp:Label ID="lblDni" runat="server" Text='<%# Eval("Dni") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Estado">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Estado") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblEstado" runat="server" Text='<%# Eval("Estado") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField>
                     <ItemTemplate>
                         <asp:Button ID="btnSeleccionar" runat="server" Text="Ver Detalles" />

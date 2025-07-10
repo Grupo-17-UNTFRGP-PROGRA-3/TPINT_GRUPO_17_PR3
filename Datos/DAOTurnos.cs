@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 using Entidades;
+
 
 namespace Datos
 {
     public class DAOTurnos
     {
-        AccesoDatos _datos =new AccesoDatos();
+        AccesoDatos _datos = new AccesoDatos();
         Turno turno = new Turno();
 
         public int AgregarTurno(Turno turno)
@@ -44,6 +42,20 @@ namespace Datos
             return _datos.ObtenerTabla(consulta, "Turnos");
         }
 
+        public DataTable ListadoTurnos(int legajo)
+        {
+            string consulta = @"SELECT P.Dni, T.Fecha, H.Horario AS Hora,
+                               P.Nombre +' '+ P.Apellido AS Paciente,
+                               T.Estado,
+                               T.Observacion
+                        FROM Turnos T
+                        JOIN Medicos M ON T.LegajoMedico = M.Legajo
+                        JOIN Pacientes P ON T.DniPaciente = P.Dni
+                        JOIN Horarios H ON T.IdHorario = H.Id
+                        WHERE T.Eliminado = 0 AND M.Legajo = " + legajo.ToString();
+            return _datos.ObtenerTabla(consulta, "Turnos");
+        }
+
         public DataTable FiltrarTurnos(string filtro)
         {
             string consulta = $@"SELECT T.Fecha, H.Horario AS Hora, E.Descripcion AS Especialidad,
@@ -61,7 +73,23 @@ namespace Datos
                                 E.Descripcion LIKE '%{filtro}%')";
             return _datos.ObtenerTabla(consulta, "Turnos");
         }
-    
+        public DataTable FiltrarTurnos(int legajo, string paciente, string fecha, string estado)
+        {
+            string consulta = @"SELECT P.Dni, T.Fecha, H.Horario AS Hora,
+                               P.Nombre +' '+ P.Apellido AS Paciente,
+                               T.Estado,
+                               T.Observacion
+                        FROM Turnos T
+                        JOIN Medicos M ON T.LegajoMedico = M.Legajo
+                        JOIN Pacientes P ON T.DniPaciente = P.Dni
+                        JOIN Horarios H ON T.IdHorario = H.Id
+                        WHERE T.Eliminado = 0 AND M.Legajo = "+legajo.ToString()+" " +
+                        "AND (T.Fecha LIKE '%"+fecha+"%')"+
+                        "AND (P.Nombre LIKE '%"+paciente+ "%' OR P.Apellido LIKE '%"+paciente+"%' OR P.Dni LIKE '%" + paciente + "%')" +
+                        "AND T.Estado LIKE '%" + estado + "%' ";
+            return _datos.ObtenerTabla(consulta, "Turnos");
+        }
+
         public bool ExisteTurno(Turno turno)
         {
             AccesoDatos datos = new AccesoDatos();

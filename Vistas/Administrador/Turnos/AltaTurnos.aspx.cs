@@ -173,20 +173,6 @@ namespace Vistas.Administrador
                 {
                     Session["MensajeExito"] = "Turno agregado con éxito.";
                     Response.Redirect("~/Administrador/Turnos/AltaTurnos.aspx");
-                                        
-                    //pnlDatosMedico.Visible = false;
-                    //pnlDatosMedico.Enabled = false;
-
-                    //btnAsignarTurno.Visible = false;
-                    //btnAsignarTurno.Enabled = false;
-
-                    //btnLimpiar.Visible = false;
-                    //btnLimpiar.Enabled = false;
-
-                    //txtDNI.Text = string.Empty;
-                    //txtDNI.Visible = true;
-                    //txtNombrePaciente.Text = string.Empty;
-                    //txtNombrePaciente.Visible = false ;
                 }
                 else
                 {
