@@ -85,10 +85,11 @@ namespace Datos
 
         public DataTable ListadoMedicosJoined()
         {
-            string consulta = "SELECT M.Legajo, M.Dni, M.Nombre, M.Apellido, E.Descripcion AS 'Especialidad', M.FechaNacimiento, " +
+            string consulta = "SELECT M.Legajo, M.Dni, M.Nombre, M.Apellido, E.Descripcion AS 'Especialidad', M.FechaNacimiento, P.Descripcion AS 'Provincia', " +
                 "CASE WHEN Sexo = 0 THEN 'Masculino' ELSE 'Femenino' END AS 'Sexo' " +
                 "FROM Medicos M " +
                 "INNER JOIN Especialidades E ON M.IdEspecialidad = E.Id " +
+                "INNER JOIN Provincias P ON M.IdProvincia = P.Id " +
                 "WHERE M.Eliminado = 0 AND M.Legajo != '0000'";
             DataTable dt = new DataTable();
             dt = datos.ObtenerTabla(consulta, "Medicos");

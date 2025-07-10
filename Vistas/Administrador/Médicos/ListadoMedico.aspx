@@ -5,10 +5,28 @@
     <div>
         <h1>Listado de Médicos</h1>
     </div>
-    <div style="text-align: left;">
-        <label>Buscar médicos: </label>
-        <asp:TextBox runat="server" ID="txtBuscar"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" />
+    <div style="text-align: left; margin-bottom: 10px;">
+        <label>Nombre: </label>
+        <asp:TextBox runat="server" ID="txtNombre" />
+
+        <label style="margin-left: 10px;">Especialidad: </label>
+        <asp:DropDownList ID="ddlEspecialidad" runat="server" AppendDataBoundItems="true">
+            <asp:ListItem Text="-- Todas --" Value="" />
+        </asp:DropDownList>
+
+        <label style="margin-left: 10px;">Sexo: </label>
+        <asp:DropDownList ID="ddlSexo" runat="server">
+            <asp:ListItem Text="-- Todos --" Value="" />
+            <asp:ListItem Text="Masculino" Value="Masculino" />
+            <asp:ListItem Text="Femenino" Value="Femenino" />
+        </asp:DropDownList>
+
+        <label style="margin-left: 10px;">Provincia: </label>
+        <asp:DropDownList ID="ddlProvincia" runat="server" AppendDataBoundItems="true">
+            <asp:ListItem Text="-- Todas --" Value="" />
+        </asp:DropDownList>
+
+        <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" />
     </div>
     <div>
     <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None"
