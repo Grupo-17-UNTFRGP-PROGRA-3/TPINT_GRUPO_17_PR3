@@ -27,14 +27,14 @@
        <asp:Panel ID="pnlUsuarioMedico" runat="server">
         <div class="form-group">
             <asp:Label ID="lblPass1" runat="server" Text="Contraseña" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtPass1" runat="server" CssClass="form-input"></asp:TextBox>
+            <asp:TextBox ID="txtPass1" runat="server" CssClass="form-input" TextMode="Password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvPass1" runat="server" ControlToValidate="txtPass1" Display="Dynamic" ErrorMessage="Debe ingresar una contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="revPass1" runat="server" ControlToValidate="txtPass1" Display="Dynamic" ErrorMessage="Contraseña invalida (mínimo 4 caracteres alfanuméricos requeridos)" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9]{4,}$"></asp:RegularExpressionValidator>
             <br />
         </div>
         <div class="form-group">
             <asp:Label ID="lblPass2" runat="server" Text="Repetir contraseña" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtPass2" runat="server" CssClass="form-input"></asp:TextBox>
+            <asp:TextBox ID="txtPass2" runat="server" CssClass="form-input" TextMode="Password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvPass2" runat="server" ControlToValidate="txtPass2" Display="Dynamic" ErrorMessage="Debe reingresar la contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:CompareValidator ID="cvPass2" runat="server" ControlToCompare="txtPass1" ControlToValidate="txtPass2" ErrorMessage="La contraseña no es la misma" ForeColor="Red"></asp:CompareValidator>
             <br />

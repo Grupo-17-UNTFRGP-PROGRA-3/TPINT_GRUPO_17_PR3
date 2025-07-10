@@ -13,21 +13,15 @@ namespace Vistas
 		{
             if (!IsPostBack)
             {
-                if (Session["Usuario"] == null)
+               if (Session["Usuario"] != null)
                 {
-                    Response.Redirect(ResolveUrl("~/Login.aspx"));
+                    lblUsuario.Text = Session["Usuario"].ToString();
+                }
+                else
+                {
+                    lblUsuario.Text = "Nadie esta logueado";
                 }
             }
-            //if (Session["Usuario"] != null && Session["Home"] != null)
-            //{
-            //	lblUsuario.Text = Session["Usuario"].ToString();
-            //	HyperLink1.NavigateUrl = Session["Home"].ToString();
-            //}
-            //else
-            //{
-            //	lblUsuario.Text = "Nadie esta logueado";
-            //	HyperLink1.NavigateUrl = "";
-            //}
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)

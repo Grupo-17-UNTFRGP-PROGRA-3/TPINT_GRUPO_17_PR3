@@ -24,6 +24,7 @@
         </div>
     </div>
     <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" style="margin-bottom: 10px;" OnClick="btnFiltrar_Click"/>
+    <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar campos" style="margin-bottom: 10px;" OnClick="btnLimpiar_Click"/>
     <div>
         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />

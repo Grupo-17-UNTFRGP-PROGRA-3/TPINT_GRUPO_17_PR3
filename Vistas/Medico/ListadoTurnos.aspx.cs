@@ -33,5 +33,12 @@ namespace Vistas.Medico
             gvTurnos.DataSource = negocioTurno.filtrarTurnos(legajo, txtFiltroPaciente.Text, txtFechaFiltro.Text, ddlFiltroEstado.Text);
             gvTurnos.DataBind();
         }
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtFiltroPaciente.Text = string.Empty;
+            txtFechaFiltro.Text = string.Empty;
+            ddlFiltroEstado.SelectedIndex = 0;
+            CargarListado();
+        }
     }
 }
