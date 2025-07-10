@@ -5,12 +5,27 @@
     <div>
         <h1>Listado de Pacientes</h1>
     </div>
+    <div style="text-align: left; margin-bottom: 10px;">
+        <label>Nombre: </label>
+        <asp:TextBox runat="server" ID="txtNombre" />
 
-    <div style="text-align: left;">
-        <label>Buscar pacientes por DNI: </label>
-        <asp:TextBox runat="server" ID="txtBuscar"></asp:TextBox>
+        <label>DNI: </label>
+        <asp:TextBox runat="server" ID="txtDni"></asp:TextBox>
+
+        <label style="margin-left: 10px;">Sexo: </label>
+        <asp:DropDownList ID="ddlSexo" runat="server">
+            <asp:ListItem Text="-- Todos --" Value="" />
+            <asp:ListItem Text="Masculino" Value="Masculino" />
+            <asp:ListItem Text="Femenino" Value="Femenino" />
+        </asp:DropDownList>
+
+        <label style="margin-left: 10px;">Provincia: </label>
+        <asp:DropDownList ID="ddlProvincia" runat="server" AppendDataBoundItems="true">
+            <asp:ListItem Text="-- Todas --" Value="" />
+        </asp:DropDownList>
+
         <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" />
-        <asp:Button ID="btnEliminarFiltro" runat="server" Text="Eliminar filtro" Visible="False" Enabled="false" OnClick="btnEliminarFiltro_Click" />
+        <asp:Button ID="btnRestablecer" runat="server" Text="Eliminar filtro" OnClick="btnEliminarFiltro_Click" />
     </div>
 
     <div>

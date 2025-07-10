@@ -104,10 +104,11 @@ namespace Datos
 
         public DataTable ListadoPacientesJoined()
         {
-            string consulta = "SELECT P.Dni, P.Nombre, P.Apellido, N.Descripcion AS 'Nacionalidad', P.FechaNacimiento, " +
+            string consulta = "SELECT P.Dni, P.Nombre, P.Apellido, N.Descripcion AS 'Nacionalidad', P.FechaNacimiento, Prov.Descripcion AS 'Provincia', " +
                 "CASE WHEN Sexo = 0 THEN 'Masculino' ELSE 'Femenino' END AS 'Sexo' " +
                 "FROM Pacientes P " +
                 "INNER JOIN Nacionalidades N ON P.IdNacionalidad = N.Id " +
+                "INNER JOIN Provincias Prov ON P.IdProvincia = Prov.Id " +
                 "WHERE P.Eliminado = 0";
             DataTable dt = new DataTable();
             dt = datos.ObtenerTabla(consulta, "Pacientes");

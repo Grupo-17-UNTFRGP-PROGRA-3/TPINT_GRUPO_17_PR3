@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,11 +12,13 @@ namespace Vistas.Pacientes
     public partial class WebForm1 : System.Web.UI.Page
     {
         private NegocioPaciente _negocioPaciente = new NegocioPaciente();
+        private NegocioProvincia _negocioProvincia = new NegocioProvincia();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CargarPacientes();
+                CargarProvincias();
             }
         }
 
@@ -23,6 +26,16 @@ namespace Vistas.Pacientes
         {
             gvPacientes.DataSource = _negocioPaciente.ListadoPacientesJoined();
             gvPacientes.DataBind();
+        }
+
+        private void CargarProvincias()
+        {
+            DataTable dtProvincias = _negocioProvincia.GetTable();
+
+            ddlProvincia.DataSource = dtProvincias;
+            ddlProvincia.DataTextField = "Descripcion";
+            ddlProvincia.DataValueField = "Descripcion";
+            ddlProvincia.DataBind();
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -63,32 +76,41 @@ namespace Vistas.Pacientes
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            NegocioPaciente negocioPaciente = new NegocioPaciente();
-            int dniABuscar = Convert.ToInt32(txtBuscar.Text);
+            string nombre = txtNombre.Text.Trim();
+            string dni = txtDni.Text;
+            string sexo = ddlSexo.SelectedValue;
+            string provincia = ddlProvincia.SelectedValue;
 
-            if (!negocioPaciente.ExisteDNI(dniABuscar))
-            {
-                lblMensaje.Text = "El DNI ingresado no existe.";
-            }
-            else if (txtBuscar.Text.ToString() == "")
-            {
-                lblMensaje.Text = "Debe ingresar un DNI para buscar.";
-            }
-            else
-            {
-                gvPacientes.DataSource = negocioPaciente.PacienteFiltradoPorDNI(dniABuscar);
-                gvPacientes.DataBind();
+            DataTable dt = _negocioPaciente.ListadoPacientesJoined();
+            if (dt == null) return;
 
-                lblMensaje.Text = string.Empty;
-                btnEliminarFiltro.Visible = true;
-                btnEliminarFiltro.Enabled = true;
-            }
+            DataView dv = dt.DefaultView;
+            List<string> filtros = new List<string>();
+
+            if (!string.IsNullOrEmpty(nombre))
+                filtros.Add($"Nombre LIKE '%{nombre}%'");
+
+            if (!string.IsNullOrEmpty(dni))
+                filtros.Add($"DNI LIKE '%{dni}%'");
+
+            if (!string.IsNullOrEmpty(sexo))
+                filtros.Add($"Sexo = '{sexo}'");
+
+            if (!string.IsNullOrEmpty(provincia))
+                filtros.Add($"Provincia = '{provincia}'");
+
+            dv.RowFilter = string.Join(" AND ", filtros);
+
+            gvPacientes.DataSource = dv;
+            gvPacientes.DataBind();
         }
 
         protected void btnEliminarFiltro_Click(object sender, EventArgs e)
         {
-            txtBuscar.Text = string.Empty;
-            lblMensaje.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtDni.Text = string.Empty;
+            ddlSexo.SelectedIndex = 0;
+            ddlProvincia.SelectedIndex = 0;
 
             CargarPacientes();
         }
