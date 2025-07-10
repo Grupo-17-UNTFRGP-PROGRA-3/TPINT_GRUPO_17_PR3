@@ -360,7 +360,7 @@ namespace Vistas
                 txtDireccion.Text = medico._Direccion.ToString();
                 txtEmail.Text = medico._Email;
                 txtTelefono.Text = medico._Telefono;
-                ddlNacionalidad.SelectedIndex = medico._IdNacionalidad - 1;
+                ddlNacionalidad.SelectedIndex = medico._IdNacionalidad;
                 ddlProvincia.SelectedValue = medico._IdProvincia.ToString();
                 cargarLocalidades();
                 ddlLocalidad.SelectedValue = medico._IdLocalidad.ToString();
