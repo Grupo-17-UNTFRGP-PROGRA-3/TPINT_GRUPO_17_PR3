@@ -18,18 +18,31 @@
         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging1">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
-                <asp:BoundField DataField="Hora" HeaderText="Hora" />
-                <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
-                <asp:BoundField DataField="Medico" HeaderText="Médico" />
-                <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
-                <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" >
+                <ItemStyle HorizontalAlign="Left" Width="100px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Hora" HeaderText="Hora" >
+                <ItemStyle HorizontalAlign="Left" Width="90px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" >
+                <ItemStyle HorizontalAlign="Left" Width="150px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Medico" HeaderText="Médico" >
+                <ItemStyle HorizontalAlign="Left" Width="150px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Paciente" HeaderText="Paciente" >
+                <ItemStyle HorizontalAlign="Left" Width="150px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Estado" HeaderText="Estado" >
+                <ItemStyle HorizontalAlign="Left" Width="100px" />
+                </asp:BoundField>
                 <asp:TemplateField>
                     <ItemTemplate>
                         <asp:Button ID="btnVer" runat="server" Text="Ver" />
                         <asp:Button ID="btnAsistencia" runat="server" Text="Asistencia" />
                     </ItemTemplate>
-                </asp:TemplateField>
+               <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                </asp:TemplateField>
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

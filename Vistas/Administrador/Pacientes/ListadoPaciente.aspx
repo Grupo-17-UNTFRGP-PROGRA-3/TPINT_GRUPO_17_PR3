@@ -30,6 +30,7 @@
                 <EditItemTemplate>
                     <asp:TextBox ID="txtDNI" runat="server" Text='<%# Bind("DNI") %>' />
                 </EditItemTemplate>
+                <ItemStyle HorizontalAlign="Left" Width="90px" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Nombre">
                 <ItemTemplate>
@@ -39,6 +40,7 @@
                 <EditItemTemplate>
                     <asp:TextBox ID="txtNombre" runat="server" Text='<%# Bind("Nombre") %>' />
                 </EditItemTemplate>
+                <ItemStyle HorizontalAlign="Left" Width="90px" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Apellido">
                 <ItemTemplate>
@@ -48,6 +50,7 @@
                 <EditItemTemplate>
                     <asp:TextBox ID="txtApellido" runat="server" Text='<%# Bind("Apellido") %>' />
                 </EditItemTemplate>
+                <ItemStyle HorizontalAlign="Left" Width="90px" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Sexo">
                 <ItemTemplate>
@@ -57,6 +60,7 @@
                 <EditItemTemplate>
                     <asp:TextBox ID="txtSexo" runat="server" Text='<%# Bind("Sexo") %>' />
                 </EditItemTemplate>
+                <ItemStyle HorizontalAlign="Left" Width="90px" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Nacionalidad">
                 <ItemTemplate>
@@ -66,6 +70,7 @@
                 <EditItemTemplate>
                     <asp:TextBox ID="txtNacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>' />
                 </EditItemTemplate>
+                <ItemStyle HorizontalAlign="Left" Width="90px" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Fecha de Nacimiento">
                 <ItemTemplate>
@@ -75,6 +80,7 @@
                 <EditItemTemplate>
                     <asp:TextBox ID="txtFechaNacimiento" runat="server" Text='<%# Bind("FechaNacimiento", "{0:yyyy-MM-dd}") %>' />
                 </EditItemTemplate>
+                <ItemStyle HorizontalAlign="Center" Width="180px" />
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
