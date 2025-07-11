@@ -53,6 +53,19 @@ namespace Vistas.Administrador.Turnos
 
         }
 
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            if (Session["UsuarioRol"].ToString() == "Administrador")
+            {
+                Response.Redirect("~/Administrador/Home.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Medico/HomeMed.aspx");
+            }
+        }
+
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
             actualizarTurno();

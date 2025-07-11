@@ -4,34 +4,39 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  
-    <asp:Label ID="Label1" runat="server" CssClass="form-labelV" Text="Codigo:" Font-Size="Large" Font-Bold="True"></asp:Label> 
-    <asp:Label ID="lblCodigo" runat="server"></asp:Label>
-    <br />
-    Fecha:
-    <asp:Label ID="lblFecha" runat="server"></asp:Label>
-    <br />
-    Hora:&nbsp;
-    <asp:Label ID="lblHora" runat="server"></asp:Label>
-    <br />
-    Paciente:&nbsp;
-    <asp:Label ID="lblPaciente" runat="server"></asp:Label>
-    <br />
-    DNI:&nbsp;
-    <asp:Label ID="lblDNI" runat="server"></asp:Label>
-    <br />
-    Estado:
-    <asp:DropDownList ID="ddlFiltroEstado" runat="server" CssClass="form-input">
-        <asp:ListItem Text="--Seleccione Estado--" Value=""></asp:ListItem>
-        <asp:ListItem>Ausente</asp:ListItem>
-        <asp:ListItem>Presente</asp:ListItem>
-    </asp:DropDownList>
-    <br />
-    Observaciones:<br />
-    <asp:TextBox ID="txtOb" runat="server" BorderColor="Black" BorderStyle="Solid" Height="111px" TextMode="MultiLine" Width="392px"></asp:TextBox>
-    <br />
+    <asp:Panel ID="Panel" runat="server" Style="border: 2px solid lightblue; padding: 10px; border-radius: 5px;">
+        <asp:Label ID="Label1" runat="server" CssClass="form-labelV" Text="Codigo:" Font-Size="Large" Font-Bold="True"></asp:Label>
+        &nbsp;<asp:Label ID="lblCodigo" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label2" runat="server" CssClass="form-labelV" Text="Fecha:" Font-Size="Large" Font-Bold="True"></asp:Label>
+        &nbsp;<asp:Label ID="lblFecha" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label3" runat="server" CssClass="form-labelV" Text="Hora:" Font-Size="Large" Font-Bold="True"></asp:Label>
+        &nbsp;<asp:Label ID="lblHora" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label4" runat="server" CssClass="form-labelV" Text="Paciente:" Font-Size="Large" Font-Bold="True"></asp:Label>
+        &nbsp;<asp:Label ID="lblPaciente" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label5" runat="server" CssClass="form-labelV" Text="DNI:" Font-Size="Large" Font-Bold="True"></asp:Label>
+        &nbsp;<asp:Label ID="lblDNI" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label6" runat="server" CssClass="form-labelV" Text="Estado:" Font-Size="Large" Font-Bold="True"></asp:Label>
+        &nbsp;<asp:DropDownList ID="ddlFiltroEstado" runat="server" CssClass="form-input">
+            <asp:ListItem Text="--Seleccione Estado--" Value=""></asp:ListItem>
+            <asp:ListItem>Ausente</asp:ListItem>
+            <asp:ListItem>Presente</asp:ListItem>
+        </asp:DropDownList>
+        <br />
+        <asp:Label ID="Label7" runat="server" CssClass="form-labelV" Text="Observaciones" Font-Size="Large" Font-Bold="True"></asp:Label>
+        &nbsp;<br />
+        <asp:TextBox ID="txtOb" runat="server" BorderColor="Black" BorderStyle="Solid" Height="111px" TextMode="MultiLine" Width="392px" Font-Names="Calibri" Font-Size="Medium"></asp:TextBox>
+        <br />
+        <br />
+    </asp:Panel>
     <div>
         <asp:Button ID="btnActualizar" CssClass="linkbutton" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnVolver" CssClass="linkbutton" runat="server" Text="Volver" OnClick="btnVolver_Click" />
     </div>
     <br />
     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
