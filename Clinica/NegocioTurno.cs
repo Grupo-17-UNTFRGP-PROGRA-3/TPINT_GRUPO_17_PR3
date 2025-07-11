@@ -49,6 +49,11 @@ namespace Clinica
         {
            return dao.ActualizarTurno(id,estado,observacion);
         }
+
+        public int EliminarTurno(int id)
+        {
+            return dao.EliminarTurno(id);
+        }
     }
     
 }

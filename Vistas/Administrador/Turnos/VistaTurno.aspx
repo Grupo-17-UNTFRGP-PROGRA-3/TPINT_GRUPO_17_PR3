@@ -27,6 +27,12 @@
             <asp:ListItem>Presente</asp:ListItem>
         </asp:DropDownList>
         <br />
+        <asp:Label ID="lblMed" runat="server" CssClass="form-labelV" Font-Bold="True" Font-Size="Large" Text="Medico:" Visible="False"></asp:Label>
+        &nbsp;<asp:Label ID="lblMedico" runat="server" Visible="False"></asp:Label>
+        <br />
+        <asp:Label ID="lblEsp" runat="server" CssClass="form-labelV" Font-Bold="True" Font-Size="Large" Text="Especialidad:" Visible="False"></asp:Label>
+        &nbsp;<asp:Label ID="lblEspecialidad" runat="server" Visible="False"></asp:Label>
+        <br />
         <asp:Label ID="Label7" runat="server" CssClass="form-labelV" Text="Observaciones" Font-Size="Large" Font-Bold="True"></asp:Label>
         &nbsp;<br />
         <asp:TextBox ID="txtOb" runat="server" BorderColor="Black" BorderStyle="Solid" Height="111px" TextMode="MultiLine" Width="392px" Font-Names="Calibri" Font-Size="Medium"></asp:TextBox>

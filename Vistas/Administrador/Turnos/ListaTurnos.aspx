@@ -16,37 +16,78 @@
     </div>
 
     <div>
-        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging1">
+        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging1" OnRowCommand="gvTurnos_RowCommand">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
 
-                <asp:BoundField DataField="id" HeaderText="Codigo">
-                    <ItemStyle HorizontalAlign="Left" Width="50px" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}">
-                    <ItemStyle HorizontalAlign="Left" Width="100px" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Hora" HeaderText="Hora">
-                    <ItemStyle HorizontalAlign="Left" Width="90px" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Especialidad" HeaderText="Especialidad">
-                    <ItemStyle HorizontalAlign="Left" Width="150px" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Medico" HeaderText="Médico">
-                    <ItemStyle HorizontalAlign="Left" Width="150px" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Paciente" HeaderText="Paciente">
-                    <ItemStyle HorizontalAlign="Left" Width="150px" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Estado" HeaderText="Estado">
-                    <ItemStyle HorizontalAlign="Left" Width="100px" />
-                </asp:BoundField>
-                <asp:TemplateField>
+                <asp:TemplateField HeaderText="Codigo">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("id") %>'></asp:TextBox>
+                    </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Button ID="btnVer" runat="server" Text="Ver" />
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+                        <asp:Label ID="lblCodigo" runat="server" Text='<%# Eval("id") %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Left" Width="50px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Fecha">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Fecha") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblFecha" runat="server" Text='<%# Eval("Fecha", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="100px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Hora">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Hora") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblHora" runat="server" Text='<%# Eval("Hora") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="90px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Especialidad">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Especialidad") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblEspecialidad" runat="server" Text='<%# Eval("Especialidad") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="150px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Médico">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Medico") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblMedico" runat="server" Text='<%# Eval("Medico") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="150px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Paciente">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Paciente") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblPaciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="150px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Estado">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Estado") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblEstado" runat="server" Text='<%# Eval("Estado") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="100px" />
+                </asp:TemplateField>
+                <asp:TemplateField ShowHeader="False">
+                    <ItemTemplate>
+                        <asp:Button ID="btnVer" runat="server" CausesValidation="false" CommandArgument='<%# Eval("id") %>' CommandName="VerTurno" Text="Ver" />
+                        <asp:Button ID="btnEliminar" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="EliminarTurno" OnClientClick="¿Seguro desea eliminar este turno?" Text="Eliminar" />
+                    </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
             <EditRowStyle BackColor="#999999" />

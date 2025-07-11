@@ -18,12 +18,21 @@ namespace Vistas.Administrador.Turnos
         {
             if (!IsPostBack)
             {
-                
-              if(Request.QueryString["id"] != null)
+                if (Session["UsuarioRol"].ToString() == "Administrador")
+                { 
+                    btnActualizar.Visible = false;
+                    txtOb.Enabled = false;
+                    lblMed.Visible = true;
+                    lblEsp.Visible = true;
+                    lblMedico.Visible = true;
+                    lblEspecialidad.Visible = true;
+                    ddlFiltroEstado.Enabled = false;
+                }
+                if (Request.QueryString["id"] != null)
                 {
                     DataTable dt = new DataTable();
                     int id = Convert.ToInt32(Request.QueryString["id"]);
-                    dt= negocioTurno.listaPorID(id);
+                    dt = negocioTurno.listaPorID(id);
                     lblCodigo.Text = dt.Rows[0]["id"].ToString();
                     lblFecha.Text = dt.Rows[0]["Fecha"].ToString();
                     lblHora.Text = dt.Rows[0]["Hora"].ToString();
@@ -31,6 +40,8 @@ namespace Vistas.Administrador.Turnos
                     lblDNI.Text = dt.Rows[0]["DNI"].ToString();
                     ddlFiltroEstado.Text = dt.Rows[0]["Estado"].ToString();
                     txtOb.Text = dt.Rows[0]["Observacion"].ToString();
+                    lblEspecialidad.Text = dt.Rows[0]["Especialidad"].ToString();
+                    lblMedico.Text = dt.Rows[0]["Medico"].ToString();
                 }
             }
         }
@@ -58,11 +69,11 @@ namespace Vistas.Administrador.Turnos
         {
             if (Session["UsuarioRol"].ToString() == "Administrador")
             {
-                Response.Redirect("~/Administrador/Home.aspx");
+                Response.Redirect("~/Administrador/Turnos/ListaTurnos.aspx");
             }
             else
             {
-                Response.Redirect("~/Medico/HomeMed.aspx");
+                Response.Redirect("~/Medico/ListadoTurnos.aspx");
             }
         }
 

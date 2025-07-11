@@ -59,10 +59,13 @@ namespace Datos
         {
             string consulta = @"SELECT T.id,P.Dni, T.Fecha, H.Horario AS Hora,
                                P.Nombre +' '+ P.Apellido AS Paciente,
+                               M.Nombre +' '+ M.Apellido AS Medico,
+                               E.Descripcion AS Especialidad,
                                T.Estado,
                                T.Observacion
                         FROM Turnos T
                         JOIN Medicos M ON T.LegajoMedico = M.Legajo
+                        JOIN Especialidades E ON M.IdEspecialidad = E.Id
                         JOIN Pacientes P ON T.DniPaciente = P.Dni
                         JOIN Horarios H ON T.IdHorario = H.Id
                         WHERE T.Eliminado = 0 AND T.id = " + id.ToString();
@@ -125,6 +128,12 @@ namespace Datos
         {
 
             string consulta = "UPDATE Turnos SET Estado = '" + estado + "' , Observacion = '"  + observacion + "' WHERE Id = " + id.ToString();
+            return _datos.EjecutarConsulta(consulta);
+        }
+
+        public int EliminarTurno (int id)
+        {
+            string consulta = "UPDATE Turnos SET Eliminado = 1 WHERE Id = "+ id.ToString();
             return _datos.EjecutarConsulta(consulta);
         }
     }
