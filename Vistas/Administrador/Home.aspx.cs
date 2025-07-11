@@ -17,7 +17,7 @@ namespace Vistas
             }
         }
 
-        /*revela botones alta/gestion paciente*/
+        // Botones Alta y Gestion Paciente
         protected void lkbPaciente_Click(object sender, EventArgs e)
         {
             if (!lkbMP_AltaPaciente.Visible == true)
@@ -32,19 +32,19 @@ namespace Vistas
             }
         }
 
-        /*redireccion a Alta Paciente*/
+        // Redireccion a Alta Paciente
         protected void lkbMP_AltaPaciente_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Pacientes/AltaPaciente.aspx");
         }
 
-        /*redireccion a Listado Paciente*/
+        // Redireccion a Listado Paciente
         protected void lkbMP_ListadoPaciente_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Pacientes/ListadoPaciente.aspx");
         }
 
-        /*revela botones alta/gestion medico*/
+        // Botones Alta y Gestion Medico
         protected void lkbMedico_Click(object sender, EventArgs e)
         {
             if (!lkbMP_AltaMedicos.Visible == true)
@@ -59,19 +59,20 @@ namespace Vistas
             }
         }
 
-        /*redireccion a Alta Medicos*/
+        // Redireccion a Alta Medicos
         protected void lkbMP_AltaMedicos_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Médicos/AltaMedico.aspx");
 
         }
 
-        /*redireccion a Listado Medicos*/
+        // Redireccion a Listado Medicos
         protected void lkbMP_ListadoMedicos_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Médicos/ListadoMedico.aspx");
         }
 
+        // Botones Alta y Listado Turnos
         protected void lkbTurnos_Click(object sender, EventArgs e)
         {
             if (!lkbMP_AltaTurnos.Visible == true)
@@ -85,12 +86,15 @@ namespace Vistas
                 lkbMP_ListadoTurnos.Visible = false;
             }
         }
+
+        // Redireccion a Alta Turnos
         protected void lkbMP_AltaTurnos_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Turnos/AltaTurnos.aspx");
 
         }
 
+        // Redireccion a Listado Turnos
         protected void lkbMP_ListadoTurnos_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administrador/Turnos/ListaTurnos.aspx");

@@ -286,8 +286,8 @@ namespace Vistas
                     BtnBuscarDNI.Visible = true;
                     BtnBuscarDNI.Enabled = true;
 
-                    btnVolver.Visible = true;
-                    btnVolver.Enabled = true;
+                    BtnVolver2.Visible = true;
+                    BtnVolver2.Enabled = true;
 
                     LimpiarCampos();
                 }

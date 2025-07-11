@@ -60,7 +60,7 @@
         <div>
             <asp:Button ID="btnAsignarTurno" runat="server" Text="Asignar Turno" CssClass="form-button" OnClick="btnAsignarTurno_Click1" />
             <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos" CssClass="form-button" OnClick="btnLimpiar_Click" />
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
             <br />
         </div>
         <br />
