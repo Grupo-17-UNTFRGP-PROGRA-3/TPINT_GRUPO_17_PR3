@@ -15,12 +15,13 @@ namespace Vistas.Administrador
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        //CARGA PRINICIPAL
+        //CARGA PRINCIPAL
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                txtNombrePaciente.Visible = false;
+                pnlDatosPaciente.Visible = false;
+                pnlDatosPaciente.Enabled = false;
                 btnAgregarPaciente.Visible = false;
                 ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
                 Page.MaintainScrollPositionOnPostBack = true;
@@ -86,6 +87,13 @@ namespace Vistas.Administrador
 
         protected void LimpiarCampos()
         {
+            pnlDatosPaciente.Visible = false;
+            pnlDatosPaciente.Enabled = false;
+            lblNombrePacienteDato.Text = string.Empty;
+            lblApellidoPacienteDato.Text = string.Empty;
+            lblDNIPacienteDato.Text = string.Empty;
+            lblTelefonoPacienteDato.Text = string.Empty;
+            lblCorreoPacienteDato.Text = string.Empty;
             ddlEspecialidad.SelectedIndex = 0;
             ddlMedico.Items.Clear();
             ddlDia.Items.Clear();
@@ -93,6 +101,7 @@ namespace Vistas.Administrador
             txtFechaTurno.Text = string.Empty;
             lblMensaje.Text = string.Empty;
         }
+        
         protected bool ValidarFechaConDia()
         {
             lblValidacionFecha.Text = string.Empty;
@@ -152,7 +161,7 @@ namespace Vistas.Administrador
             Turno nuevoTurno = new Turno
             {
                 _LegajoMedico = int.Parse(ddlMedico.SelectedValue),
-                _DniPaciente = txtDNI.Text,
+                _DniPaciente = lblDNIPacienteDato.Text,
                 _Fecha = DateTime.Parse(txtFechaTurno.Text),
                 _IdHorario = int.Parse(ddlHorario.SelectedValue),
                 _Estado = "Pendiente",
@@ -206,18 +215,24 @@ namespace Vistas.Administrador
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
         {
             lblMensaje.Text = string.Empty;
+            LimpiarCampos();
             int dni = int.Parse(txtDNI.Text);
+
             NegocioPaciente negocioPaciente = new NegocioPaciente();
             Paciente paciente = negocioPaciente.traerPaciente(dni);
 
             if (negocioPaciente.ExisteDNI(dni))
             {
-                lblDNI.Text = "PACIENTE:";
-                txtDNI.Visible = false;
-                txtNombrePaciente.Visible = true;
-                txtNombrePaciente.Text = paciente._Nombre + " " + paciente._Apellido;
+                txtDNI.Text = string.Empty;
                 lblInicio.Text = string.Empty;
                 btnAgregarPaciente.Visible = false;
+                pnlDatosPaciente.Visible = true;
+                pnlDatosPaciente.Enabled = true;
+                lblNombrePacienteDato.Text = paciente._Nombre;
+                lblApellidoPacienteDato.Text = paciente._Apellido;
+                lblDNIPacienteDato.Text = paciente._DNI.ToString();
+                lblTelefonoPacienteDato.Text = paciente._Telefono;
+                lblCorreoPacienteDato.Text = paciente._Email;
             }
             else
             {
