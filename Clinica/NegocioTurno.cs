@@ -22,6 +22,10 @@ namespace Clinica
         {
             return dao.ListadoTurnos();
         }
+        public DataTable listaPorID(int id)
+        {
+            return dao.ListadoTurnosPorID(id);
+        }
         public DataTable listaTurnos(int legajo)
         {
             return dao.ListadoTurnos(legajo);
@@ -41,5 +45,10 @@ namespace Clinica
 
             return daoTurnos.ExisteTurno(turno);
         }
+        public int actualizarTurno(int id, string estado,string observacion)
+        {
+           return dao.ActualizarTurno(id,estado,observacion);
+        }
     }
+    
 }

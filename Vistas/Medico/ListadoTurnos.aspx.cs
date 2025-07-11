@@ -45,5 +45,14 @@ namespace Vistas.Medico
             ddlFiltroEstado.SelectedIndex = 0;
             CargarListado();
         }
+
+        protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if(e.CommandName == "verTurno") {
+                int fila = Convert.ToInt32(e.CommandArgument);
+                string id =((Label) gvTurnos.Rows[fila].FindControl("lblID")).Text;
+                Response.Redirect($"~/Administrador/Turnos/VistaTurno.aspx?id={id}");
+            }
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Datos
 
         public DataTable ListadoTurnos()
         {
-            string consulta = @"SELECT T.Fecha, H.Horario AS Hora, E.Descripcion AS Especialidad,
+            string consulta = @"SELECT T.id,T.Fecha, H.Horario AS Hora, E.Descripcion AS Especialidad,
                                M.Nombre + ' ' + M.Apellido AS Medico,
                                P.Nombre + ' ' + P.Apellido AS Paciente,
                                T.Estado
@@ -44,7 +44,7 @@ namespace Datos
 
         public DataTable ListadoTurnos(int legajo)
         {
-            string consulta = @"SELECT P.Dni, T.Fecha, H.Horario AS Hora,
+            string consulta = @"SELECT T.id,P.Dni, T.Fecha, H.Horario AS Hora,
                                P.Nombre +' '+ P.Apellido AS Paciente,
                                T.Estado,
                                T.Observacion
@@ -55,10 +55,23 @@ namespace Datos
                         WHERE T.Eliminado = 0 AND M.Legajo = " + legajo.ToString();
             return _datos.ObtenerTabla(consulta, "Turnos");
         }
+        public DataTable ListadoTurnosPorID(int id)
+        {
+            string consulta = @"SELECT T.id,P.Dni, T.Fecha, H.Horario AS Hora,
+                               P.Nombre +' '+ P.Apellido AS Paciente,
+                               T.Estado,
+                               T.Observacion
+                        FROM Turnos T
+                        JOIN Medicos M ON T.LegajoMedico = M.Legajo
+                        JOIN Pacientes P ON T.DniPaciente = P.Dni
+                        JOIN Horarios H ON T.IdHorario = H.Id
+                        WHERE T.Eliminado = 0 AND T.id = " + id.ToString();
+            return _datos.ObtenerTabla(consulta, "Turnos");
+        }
 
         public DataTable FiltrarTurnos(string filtro)
         {
-            string consulta = $@"SELECT T.Fecha, H.Horario AS Hora, E.Descripcion AS Especialidad,
+            string consulta = $@"SELECT T.id,T.Fecha, H.Horario AS Hora, E.Descripcion AS Especialidad,
                                 M.Nombre + ' ' + M.Apellido AS Medico,
                                 P.Nombre + ' ' + P.Apellido AS Paciente,
                                 T.Estado
@@ -75,7 +88,7 @@ namespace Datos
         }
         public DataTable FiltrarTurnos(int legajo, string paciente, string fecha, string estado)
         {
-            string consulta = @"SELECT P.Dni, T.Fecha, H.Horario AS Hora,
+            string consulta = @"SELECT T.id,P.Dni, T.Fecha, H.Horario AS Hora,
                                P.Nombre +' '+ P.Apellido AS Paciente,
                                T.Estado,
                                T.Observacion
@@ -83,9 +96,9 @@ namespace Datos
                         JOIN Medicos M ON T.LegajoMedico = M.Legajo
                         JOIN Pacientes P ON T.DniPaciente = P.Dni
                         JOIN Horarios H ON T.IdHorario = H.Id
-                        WHERE T.Eliminado = 0 AND M.Legajo = "+legajo.ToString()+" " +
-                        "AND (T.Fecha LIKE '%"+fecha+"%')"+
-                        "AND (P.Nombre LIKE '%"+paciente+ "%' OR P.Apellido LIKE '%"+paciente+"%' OR P.Dni LIKE '%" + paciente + "%')" +
+                        WHERE T.Eliminado = 0 AND M.Legajo = " + legajo.ToString() + " " +
+                        "AND (T.Fecha LIKE '%" + fecha + "%')" +
+                        "AND (P.Nombre LIKE '%" + paciente + "%' OR P.Apellido LIKE '%" + paciente + "%' OR P.Dni LIKE '%" + paciente + "%')" +
                         "AND T.Estado LIKE '%" + estado + "%' ";
             return _datos.ObtenerTabla(consulta, "Turnos");
         }
@@ -106,6 +119,13 @@ namespace Datos
             sqlcmd.Parameters.AddWithValue("@IDHORARIO", turno._IdHorario);
 
             return datos.ExisteTurno(sqlcmd);
+        }
+
+        public int ActualizarTurno(int id, string estado, string observacion)
+        {
+
+            string consulta = "UPDATE Turnos SET Estado = '" + estado + "' , Observacion = '"  + observacion + "' WHERE Id = " + id.ToString();
+            return _datos.EjecutarConsulta(consulta);
         }
     }
 }
