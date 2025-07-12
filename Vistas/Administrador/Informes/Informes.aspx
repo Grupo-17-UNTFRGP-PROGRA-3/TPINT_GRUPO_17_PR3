@@ -41,6 +41,9 @@
             <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
     </div>
+    <div>
+        <asp:linkButton ID="btnVolver" runat="server" Text="Volver" PostBackUrl ="~/Administrador/Home.aspx"/>
+    </div>
 
 
 </asp:Content>
