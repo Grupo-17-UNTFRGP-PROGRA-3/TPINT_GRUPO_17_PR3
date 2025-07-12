@@ -149,6 +149,11 @@ nav {
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.2s ease;
     }
+    .content Panel {
+        border: 2px solid lightblue;
+        padding: 10px;
+        border-radius: 5px
+    }
     .content label {
         font-weight: bold;
         margin-bottom: 0.3rem;

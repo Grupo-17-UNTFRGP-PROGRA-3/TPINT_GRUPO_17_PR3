@@ -8,40 +8,40 @@
             <h1>Asignacion de Turnos</h1>
         </div>
         <asp:Panel ID="pnlDNI" runat="server">
-            <div class="form-group">
-                <asp:Label ID="lblDNI" runat="server" Text="DNI Paciente" CssClass="form-label"></asp:Label>
-                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input" Height="21px" Width="162px"></asp:TextBox>
+            <div >
+                <asp:Label ID="lblDNI" runat="server" Text="DNI Paciente" ></asp:Label>
+                <asp:TextBox ID="txtDNI" runat="server" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" Display="Dynamic" />
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{8}$" ErrorMessage="DNI inválido (8 dígitos)" ForeColor="Red" Display="Dynamic" />
                 <asp:Button ID="BtnBuscarDni" runat="server" Text="Buscar paciente"  OnClick="BtnBuscarDni_Click" />
             </div>
             <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
-            &nbsp;<asp:Button ID="btnAgregarPaciente" runat="server"  OnClick="btnAgregarPaciente_Click" Text="Agregar Paciente" />
+            <asp:Button ID="btnAgregarPaciente" runat="server"  OnClick="btnAgregarPaciente_Click" Text="Agregar Paciente" />
         </asp:Panel>
 
-        <asp:Panel ID="pnlDatosPaciente" runat="server" Style="border: 2px solid lightblue; padding: 10px; border-radius: 5px;">
+        <asp:Panel ID="pnlDatosPaciente" runat="server" >
             <div>
-                <asp:Label ID="lblDatosPaciente" runat="server" Text="Datos" Style="display:block; text-align:center; font-weight:bold" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblDatosPaciente" runat="server" Text="Datos"></asp:Label>
             </div>
             <div>
-                <asp:Label ID="lblNombrePaciente" runat="server" Text="Nombre: " CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblNombrePaciente" runat="server" Text="Nombre: "></asp:Label>
                 <asp:Label ID="lblNombrePacienteDato" runat="server"></asp:Label>
                 <br />
-                <asp:Label ID="lblApellidoPaciente" runat="server" Text="Apellido: " CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblApellidoPaciente" runat="server" Text="Apellido: "></asp:Label>
                 <asp:Label ID="lblApellidoPacienteDato" runat="server"></asp:Label>
                 <br />
-                <asp:Label ID="lblDNIPaciente" runat="server" Text="DNI: " CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblDNIPaciente" runat="server" Text="DNI: "></asp:Label>
                 <asp:Label ID="lblDNIPacienteDato" runat="server"></asp:Label>
                 <br />
-                <asp:Label ID="lblTelefonoPaciente" runat="server" Text="Teléfono" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblTelefonoPaciente" runat="server" Text="Teléfono"></asp:Label>
                 <asp:Label ID="lblTelefonoPacienteDato" runat="server"></asp:Label>
                 <br />
-                <asp:Label ID="lblCorreoPaciente" runat="server" Text="Correo Electrónico: " CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblCorreoPaciente" runat="server" Text="Correo Electrónico: "></asp:Label>
                 <asp:Label ID="lblCorreoPacienteDato" runat="server"></asp:Label>
                 <br />
             </div>
-    </div>
-    </asp:Panel>
+        </div>
+        </asp:Panel>
 
         <asp:Panel ID="pnlDatosMedico" runat="server">
             <!-- Especialidad -->
