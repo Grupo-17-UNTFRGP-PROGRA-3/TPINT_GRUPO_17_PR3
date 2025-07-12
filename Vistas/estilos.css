@@ -128,7 +128,143 @@ nav {
     width: 100%;
     margin-bottom: 60px;
 }
+    .content button,
+    .content input[type="submit"],
+    .content input[type="button"],
+    .content .asp-button,
+    .content select,
+    .content option,
+    .content .asp-linkbutton,
+    .content .asp-gridview,
+    .content a {
+        background-color: #1c3b64;
+        color: #ffffff;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .content label {
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+    }
+    .content table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #1f2d3d; /* texto gris-azulado elegante */
+    }
 
+    .content th {
+        background-color: #dbe9f4;
+        color: #1c3b64;
+        font-weight: 600;
+        padding: 12px;
+        border-bottom: 2px solid #b6d0e5;
+        text-align: left;
+    }
+
+    .content  td {
+        background-color: #ffffff;
+        padding: 10px;
+        border-bottom: 1px solid #e0edf7;
+        transition: background-color 0.3s ease;
+    }
+
+    .content  tr:hover td {
+        background-color: #eaf2fb;
+    }
+
+    .content .highlight {
+        background-color: #c9e3f8;
+        font-weight: bold;
+    }
+  
+.content button:hover,
+.content input[type="submit"]:hover,
+.content input[type="button"]:hover,
+.content .asp-button:hover,
+.content .asp-linkbutton:hover,
+.content a:hover {
+    background-color: #295386;
+    transform: scale(1.03);
+}
+    
+
+
+    .content .button {
+        border: 1px solid black;
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        align-self: start;
+    }
+    .content .linkbutton {
+    border: 1px solid black;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    align-self: start;
+    }
+    .content .linkbutton-submenu {
+        text-decoration: none;
+        text-align: right;
+        color: black;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        font-weight: 100;
+        padding: 2px 5px;
+        font-size: 16px;
+    }
+    .content input[type="text"] {
+        border: 1px solid #b6d0e5;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        background-color: #f2f6fa;
+        color: #1c3b64;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .content .asp-textbox {
+        border: 1px solid #b6d0e5;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        background-color: #f2f6fa;
+        color: #1c3b64;
+        width: 100%;
+        box-sizing: unset;
+    }
+
+.linkbutton-submenu {
+    text-decoration: none;
+    text-align: right;
+    color: black;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    font-weight: 100;
+    padding: 2px 5px;
+    font-size: 16px;
+}
 /* Footer */
 footer {
     background: #2c3e50;
@@ -159,30 +295,7 @@ footer h2 {
 }
 
 
-.linkbutton {
-    border: 1px solid black;
-    text-decoration: none;
-    color: white;
-    background-color: #007bff;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    align-self: start;
-}
 
-.linkbutton-submenu {
-    text-decoration: none;
-    text-align: right;
-    color: black;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    font-weight: 100;
-    padding: 2px 5px;
-    font-size: 16px;
-}
 
 h1 {
     text-align: center;
@@ -372,3 +485,15 @@ a {
         padding: 10px;
     }
 }
+.gridview-container {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2f6fa; /* fondo general muy claro */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 40, 80, 0.08);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+   
+
+

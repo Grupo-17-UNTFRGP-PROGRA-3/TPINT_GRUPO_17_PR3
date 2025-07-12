@@ -66,9 +66,9 @@
 
     <!-- Botones -->
     <div>
-        <asp:Button ID="btnAsignarTurno" runat="server" Text="Guardar Turno" CssClass="form-button" />
-        <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos" CssClass="form-button" />
-        <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" />
+        <asp:Button ID="btnAsignarTurno" runat="server" Text="Guardar Turno"  />
+        <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos"  />
+        <asp:Button ID="btnVolver" runat="server" Text="Volver"  />
     </div>
 </div>
 </asp:Content>

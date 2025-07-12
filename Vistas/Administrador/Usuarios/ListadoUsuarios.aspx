@@ -70,7 +70,7 @@
             </asp:GridView>
             <br />
             <div>
-                <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnVolver_Click"/>
+                <asp:Button ID="btnVolver" runat="server" Text="Volver"  OnClick="btnVolver_Click"/>
             </div>
         </div>
     </div>

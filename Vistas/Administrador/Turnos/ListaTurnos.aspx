@@ -12,7 +12,7 @@
     <div style="text-align: left;">
         <asp:Label ID="lblBuscar" runat="server" Text="Buscar turnos:" CssClass="form-label"></asp:Label>
         <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-input"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" CssClass="form-button" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" />
     </div>
 
     <div>
@@ -105,8 +105,8 @@
     <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
 
     <div>
-        <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno" CssClass="form-button" OnClick="btnAgregar_Click1" />
-        <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" OnClick="btnAgregar_Click1" PostBackUrl="~/Administrador/Home.aspx" />
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno"  OnClick="btnAgregar_Click1" />
+        <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnAgregar_Click1" PostBackUrl="~/Administrador/Home.aspx" />
     </div>
 
 </asp:Content>

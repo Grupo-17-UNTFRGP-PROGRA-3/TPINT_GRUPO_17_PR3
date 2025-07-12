@@ -7,8 +7,8 @@
 
     <h1>MENU MEDICOS</h1>
     <div class="form-group">
-        <asp:LinkButton ID="lkbPerfil" runat="server" CssClass="linkbutton" OnClick="lkbPerfil_Click">Perfil</asp:LinkButton>
+        <asp:LinkButton ID="lkbPerfil" runat="server" OnClick="lkbPerfil_Click">Perfil</asp:LinkButton>
         <br />
-        <asp:LinkButton ID="lkbListaTurnos" runat="server" CssClass="linkbutton" PostBackUrl="~/Medico/ListadoTurnos.aspx">Listado de Turnos</asp:LinkButton>
+        <asp:LinkButton ID="lkbListaTurnos" runat="server" PostBackUrl="~/Medico/ListadoTurnos.aspx">Listado de Turnos</asp:LinkButton>
     </div>
 </asp:Content>

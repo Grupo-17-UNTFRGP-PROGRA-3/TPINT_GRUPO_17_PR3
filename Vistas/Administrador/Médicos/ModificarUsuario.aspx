@@ -21,7 +21,7 @@
             <br />
             <asp:Label ID="LabelUsuario" runat="server"></asp:Label>
             <br />
-            <asp:Button ID="BtnBuscarUsuario" runat="server"  CssClass="form-button" OnClick="BtnBuscarUsuario_Click" Text="Buscar Usuario" />
+            <asp:Button ID="BtnBuscarUsuario" runat="server"   OnClick="BtnBuscarUsuario_Click" Text="Buscar Usuario" />
             <br />
         </div>
        <asp:Panel ID="pnlUsuarioMedico" runat="server">
@@ -41,8 +41,8 @@
         </div>
         <div class="form-group">
             <div>
-                <asp:Button ID="btnModificar" runat="server" CssClass="form-button" Text="Modificar" OnClick="btnModificar_Click" />
-                <asp:Button ID="btnVolver" runat="server" CausesValidation="false" CssClass="form-button" OnClick="btnVolver_Click" Text="Volver" />
+                <asp:Button ID="btnModificar" runat="server"  Text="Modificar" OnClick="btnModificar_Click" />
+                <asp:Button ID="btnVolver" runat="server" CausesValidation="false"  OnClick="btnVolver_Click" Text="Volver" />
                 <br />
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
 

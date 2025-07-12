@@ -22,15 +22,15 @@
                 <asp:TextBox ID="txtDNI" runat="server" CssClass="form-input" TextMode="Number"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="DNI inválido (8 dígitos)" ForeColor="Red" ValidationExpression="^\d{8}$" SetFocusOnError="True"></asp:RegularExpressionValidator>
-                <asp:Button ID="btnModificarDNI" runat="server" Text="Modificar DNI" Visible="false" Enabled="false" CssClass="form-button" CausesValidation="false" OnClick="btnModificarDNI_Click"/>
-                <asp:Button ID="btnAceptarDNI" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnAceptarDNI_Click" Text="Aceptar" Visible="false" />
-                <asp:Button ID="btnCancelarDNI" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnCancelarDNI_Click" Text="Cancelar" Visible="false" />
-                <asp:Button ID="btnConfirmarRestaurar" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnConfirmarRestaurar_Click" Text="Restaurar" Visible="false" />
-                <asp:Button ID="btnCancelarRestaurar" runat="server" CausesValidation="false" CssClass="form-button" Enabled="false" OnClick="btnCancelarRestaurar_Click" Text="Cancelar" Visible="false" />
+                <asp:Button ID="btnModificarDNI" runat="server" Text="Modificar DNI" Visible="false" Enabled="false"  CausesValidation="false" OnClick="btnModificarDNI_Click"/>
+                <asp:Button ID="btnAceptarDNI" runat="server" CausesValidation="false"  Enabled="false" OnClick="btnAceptarDNI_Click" Text="Aceptar" Visible="false" />
+                <asp:Button ID="btnCancelarDNI" runat="server" CausesValidation="false"  Enabled="false" OnClick="btnCancelarDNI_Click" Text="Cancelar" Visible="false" />
+                <asp:Button ID="btnConfirmarRestaurar" runat="server" CausesValidation="false"  Enabled="false" OnClick="btnConfirmarRestaurar_Click" Text="Restaurar" Visible="false" />
+                <asp:Button ID="btnCancelarRestaurar" runat="server" CausesValidation="false"  Enabled="false" OnClick="btnCancelarRestaurar_Click" Text="Cancelar" Visible="false" />
             </div>
 
-            <asp:Button ID="BtnBuscarDNI" runat="server" Text="Buscar DNI" CssClass="form-button" CausesValidation="true" OnClick="BtnBuscarDNI_Click" />
-            <asp:Button ID="BtnVolver2" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
+            <asp:Button ID="BtnBuscarDNI" runat="server" Text="Buscar DNI"  CausesValidation="true" OnClick="BtnBuscarDNI_Click" />
+            <asp:Button ID="BtnVolver2" runat="server" Text="Volver"  CausesValidation="false" OnClick="btnVolver_Click" />
             <br />
             <br />
             <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
@@ -164,9 +164,9 @@
 
             <!--botones-->
             <div>
-                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true" CssClass="form-button" OnClick="btnIngresar_Click" />
-                <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos" CssClass="form-button" CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
-                <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="form-button" CausesValidation="false" OnClick="btnVolver_Click" />
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true"  OnClick="btnIngresar_Click" />
+                <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos"  CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
+                <asp:Button ID="btnVolver" runat="server" Text="Volver"  CausesValidation="false" OnClick="btnVolver_Click" />
                 <br />
                 <br />
             </div>
