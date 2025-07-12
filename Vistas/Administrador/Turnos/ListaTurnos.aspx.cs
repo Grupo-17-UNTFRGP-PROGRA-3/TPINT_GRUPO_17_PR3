@@ -15,7 +15,6 @@ namespace Vistas.Administrador
 	{
         NegocioTurno negocioTurno = new NegocioTurno();
         protected void Page_Load(object sender, EventArgs e)
-
         {
             if (!IsPostBack)
             {
@@ -75,10 +74,12 @@ namespace Vistas.Administrador
                 string id = e.CommandArgument.ToString();
                 Response.Redirect($"~/Administrador/Turnos/VistaTurno.aspx?id={id}");
             }
+
             if (e.CommandName == "EliminarTurno")
             {
                 int id = Convert.ToInt32(e.CommandArgument);
                 negocioTurno.EliminarTurno(id);
+
                 if (negocioTurno.EliminarTurno(id) == 1)
                 {
                     lblMensaje.ForeColor = Color.Red;

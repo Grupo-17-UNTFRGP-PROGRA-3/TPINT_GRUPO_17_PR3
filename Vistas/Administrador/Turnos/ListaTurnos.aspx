@@ -86,7 +86,7 @@
                 <asp:TemplateField ShowHeader="False">
                     <ItemTemplate>
                         <asp:Button ID="btnVer" runat="server" CausesValidation="false" CommandArgument='<%# Eval("id") %>' CommandName="VerTurno" Text="Ver" />
-                        <asp:Button ID="btnEliminar" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="EliminarTurno" OnClientClick="¿Seguro desea eliminar este turno?" Text="Eliminar" />
+                        <asp:Button ID="btnEliminar" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="EliminarTurno" Text="Eliminar" OnClientClick="return confirm('¿Está seguro de que desea eliminar este turno?');"/>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

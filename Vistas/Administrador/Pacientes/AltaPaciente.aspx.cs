@@ -17,7 +17,7 @@ namespace Vistas
         NegocioNacionalidad negocioNacionalidad = new NegocioNacionalidad();
         NegocioProvincia negocioProvincia = new NegocioProvincia();
         NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
-        
+
         protected void BuscarDNIDuranteModificacion()
         {
             NegocioPaciente negocioPaciente = new NegocioPaciente();
@@ -54,7 +54,7 @@ namespace Vistas
             ddlProvincia.SelectedIndex = 0;
             ddlLocalidad.SelectedIndex = 0;
         }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -132,7 +132,7 @@ namespace Vistas
                 txtDireccion.Text = paciente._Direccion.ToString();
                 txtEmail.Text = paciente._Email;
                 txtTelefono.Text = paciente._Telefono;
-                ddlNacionalidad.SelectedIndex = paciente._IdNacionalidad-1;
+                ddlNacionalidad.SelectedIndex = paciente._IdNacionalidad - 1;
                 ddlProvincia.SelectedValue = paciente._IdProvincia.ToString();
                 ddlLocalidad.SelectedValue = paciente._IdLocalidad.ToString();
 
@@ -141,7 +141,7 @@ namespace Vistas
 
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
         {
-             
+
             NegocioPaciente negocioPaciente = new NegocioPaciente();
             bool existe = negocioPaciente.ExisteDNI(Convert.ToInt32(txtDNI.Text));
             int eliminado = negocioPaciente.ChequearEliminado(Convert.ToInt32(txtDNI.Text));
@@ -233,7 +233,6 @@ namespace Vistas
                 _Sexo = rblSexo.SelectedValue == "femenino", //SI ESTÁ SELECCIONADO FEMENINO, TRUE, SINO FALSE
                 _IdNacionalidad = int.Parse(ddlNacionalidad.SelectedValue),
                 _FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text),
-                //_FechaNacimiento = txtFechaNacimiento.Text,
                 _Direccion = txtDireccion.Text,
                 _Email = txtEmail.Text,
                 _Telefono = txtTelefono.Text,
@@ -250,7 +249,8 @@ namespace Vistas
                     lblMensaje.ForeColor = Color.Green;
                 }
             }
-            else {
+            else
+            {
                 int dni = int.Parse(Request.QueryString["dni"]);
                 paciente._DNI = dni;
                 negocioPaciente.ModificarPaciente(paciente);

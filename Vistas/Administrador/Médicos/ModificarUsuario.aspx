@@ -21,7 +21,7 @@
             <br />
             <asp:Label ID="LabelUsuario" runat="server"></asp:Label>
             <br />
-            <asp:Button ID="BtnBuscarUsuario" runat="server"   OnClick="BtnBuscarUsuario_Click" Text="Buscar Usuario" />
+            <asp:Button ID="BtnBuscarUsuario" runat="server" OnClick="BtnBuscarUsuario_Click" Text="Chequear disponibilidad" />
             <br />
         </div>
        <asp:Panel ID="pnlUsuarioMedico" runat="server">

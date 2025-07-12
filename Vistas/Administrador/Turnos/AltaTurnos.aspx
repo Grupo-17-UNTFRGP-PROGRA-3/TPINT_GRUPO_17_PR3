@@ -13,7 +13,7 @@
                 <asp:TextBox ID="txtDNI" runat="server" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="Debe ingresar un DNI" ForeColor="Red" Display="Dynamic" />
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{8}$" ErrorMessage="DNI inválido (8 dígitos)" ForeColor="Red" Display="Dynamic" />
-                <asp:Button ID="BtnBuscarDni" runat="server" Text="Buscar paciente"  OnClick="BtnBuscarDni_Click" />
+                <asp:Button ID="BtnBuscarDni" runat="server" Text="Buscar paciente" OnClick="BtnBuscarDni_Click" />
             </div>
             <asp:Label ID="lblInicio" runat="server" ForeColor="Red"></asp:Label>
             <asp:Button ID="btnAgregarPaciente" runat="server"  OnClick="btnAgregarPaciente_Click" Text="Agregar Paciente" />
@@ -82,7 +82,7 @@
 
     <!-- Botones -->
     <div>
-        <asp:Button ID="btnAsignarTurno" runat="server" Text="Asignar Turno"  OnClick="btnAsignarTurno_Click1" />
+        <asp:Button ID="btnAsignarTurno" runat="server" Text="Asignar Turno" CausesValidation="false" OnClick="btnAsignarTurno_Click1" />
         <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Campos" CausesValidation="false"  OnClick="btnLimpiar_Click" />
         <asp:Button ID="btnVolver" runat="server" Text="Volver"  CausesValidation="false" OnClick="btnVolver_Click" />
         <br />
