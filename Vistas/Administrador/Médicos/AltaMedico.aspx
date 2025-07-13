@@ -89,7 +89,8 @@
             <!--direccion-->
             <div>
                 <div class="form-group">
-                    Direccion<asp:TextBox ID="txtDireccion" runat="server" CssClass="form-input"></asp:TextBox>
+                     <asp:Label ID="lblDirecion" runat="server" Text="Dirección" CssClass="form-label"></asp:Label>
+                    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-input"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtDireccion" Display="Dynamic" ErrorMessage="Debe ingresar una direccion" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
             </div>
@@ -117,7 +118,7 @@
 
             <!--correo electronico-->
             <div class="form-group">
-                <asp:Label ID="lblEmail" runat="server" Text="Correo Electronico" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblEmail" runat="server" Text="Correo Electrónico" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Debe ingresar un correo electronico" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Correo electronico invalido" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"></asp:RegularExpressionValidator>
@@ -125,7 +126,7 @@
 
             <!--telefono-->
             <div class="form-group">
-                <asp:Label ID="lblTelefono" runat="server" Text="Telefono" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblTelefono" runat="server" Text="Teléfono" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Debe ingresar un telefono" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Telefono invalido" ForeColor="Red" ValidationExpression="^\d{6,15}$"></asp:RegularExpressionValidator>
@@ -140,7 +141,7 @@
 
             <!--horarios de atencion-->
             <div class="form-group">
-                <asp:Label ID="lblHorarios" runat="server" Text="Dias de atencion" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblHorarios" runat="server" Text="Días de atención" CssClass="form-label"></asp:Label>
                 <asp:CheckBoxList ID="cblDiasAtencion" runat="server" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">Lunes</asp:ListItem>
                     <asp:ListItem Value="2">Martes</asp:ListItem>
@@ -152,12 +153,14 @@
 
                 <div class="form-group">
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
+                    <asp:Label ID="lblHorarioDesde" runat="server" Text="Desde: " CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input" AutoPostBack="true" OnSelectedIndexChanged="ddlHoraInicio_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvHoraInicio" runat="server" ControlToValidate="ddlHoraInicio" ErrorMessage="Debe ingresar una hora de inicio" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvHoraInicio" runat="server" ControlToValidate="ddlHoraInicio" ErrorMessage="Debe ingresar una hora de inicio" ForeColor="Red" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:Label ID="lblHorarioHasta" runat="server" Text="Hasta: " CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraFin" runat="server" CssClass="form-input">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvHoraFin" runat="server" ControlToValidate="ddlHoraFin" ErrorMessage="Debe ingresar una hora de fin" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvHoraFin" runat="server" ControlToValidate="ddlHoraFin" ErrorMessage="Debe ingresar una hora de fin" ForeColor="Red" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
 
             </div>
