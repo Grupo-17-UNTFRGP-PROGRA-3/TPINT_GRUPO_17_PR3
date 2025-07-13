@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -30,9 +31,9 @@ namespace Vistas
                     else
                     {
                         string nombre = Session["Usuario"].ToString();
-                        char c = nombre.Where(char.IsUpper).ToList()[1];
-                        string[] nombreCompleto = nombre.Split(c );
-                        lblUsuario.Text = nombreCompleto[0] + " " +c+ nombreCompleto[1];
+                        string[] partes = Regex.Split(nombre, @"(?=[A-Z])");
+                        try {lblUsuario.Text = partes[1] +" "+ partes[2];}
+                        catch {lblUsuario.Text = nombre;}
                     }
                 }
                 else

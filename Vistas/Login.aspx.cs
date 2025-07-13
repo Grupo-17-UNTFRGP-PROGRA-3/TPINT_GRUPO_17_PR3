@@ -27,6 +27,7 @@ namespace Vistas
 			if(resultado == -1)
 			{
 				lblMensaje.Text = "El usuario no existe.";
+				txtUsuario.Text = string.Empty;
 				return;
             }
 

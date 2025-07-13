@@ -210,7 +210,7 @@ namespace Datos
         
         public bool ExisteUsuario(string Nusuario)
         {
-            string consulta = "SELECT COUNT(*) FROM Usuarios WHERE usuario = @usuario";
+            string consulta = "SELECT COUNT(*) FROM Usuarios WHERE Eliminado = 0 and usuario = @usuario";
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
             cmd.Parameters.AddWithValue("@usuario", Nusuario);
             _conexion.Open();
