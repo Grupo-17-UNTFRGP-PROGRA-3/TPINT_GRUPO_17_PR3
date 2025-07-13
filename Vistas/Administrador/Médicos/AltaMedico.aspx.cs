@@ -72,6 +72,20 @@ namespace Vistas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //VALIDAR USUARIO LOGEADO
+            if (Session["UsuarioRol"] == null)
+            {
+                Response.Redirect(ResolveUrl("~/Login.aspx"));
+                return;
+            }
+
+            //VALIDAR ROL
+            if (Session["UsuarioRol"].ToString() == "Medico")
+            {
+                Response.Redirect(ResolveUrl(Session["Home"].ToString()));
+                return;
+            }
+
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             lblMensaje.Text = string.Empty;
 

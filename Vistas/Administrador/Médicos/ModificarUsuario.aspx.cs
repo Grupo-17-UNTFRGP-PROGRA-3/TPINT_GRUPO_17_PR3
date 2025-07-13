@@ -45,6 +45,20 @@ namespace Vistas.Administrador.Médicos
 
             if (!IsPostBack)
             {
+                //VALIDAR USUARIO LOGEADO
+                if (Session["UsuarioRol"] == null)
+                {
+                    Response.Redirect(ResolveUrl("~/Login.aspx"));
+                    return;
+                }
+
+                //VALIDAR ROL
+                if (Session["UsuarioRol"].ToString() == "Medico")
+                {
+                    Response.Redirect(ResolveUrl(Session["Home"].ToString()));
+                    return;
+                }
+
                 if (usuario == null)
                 {
                     cargarUsuario(legajo);

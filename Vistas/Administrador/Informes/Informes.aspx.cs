@@ -18,6 +18,23 @@ namespace Vistas.Administrador.Informes
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             gvResultados.Visible = false;
+
+            if (!IsPostBack)
+            {
+                //VALIDAR USUARIO LOGEADO
+                if (Session["UsuarioRol"] == null)
+                {
+                    Response.Redirect(ResolveUrl("~/Login.aspx"));
+                    return;
+                }
+
+                //VALIDAR ROL
+                if (Session["UsuarioRol"].ToString() == "Medico")
+                {
+                    Response.Redirect(ResolveUrl(Session["Home"].ToString()));
+                    return;
+                }
+            }
         }
 
         public void btnPacXMed_Click(object sender, EventArgs e)

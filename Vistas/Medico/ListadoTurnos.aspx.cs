@@ -18,6 +18,20 @@ namespace Vistas.Medico
 
             if (!IsPostBack)
             {
+                //VALIDAR USUARIO LOGEADO
+                if (Session["UsuarioRol"] == null)
+                {
+                    Response.Redirect(ResolveUrl("~/Login.aspx"));
+                    return;
+                }
+
+                //VALIDAR ROL
+                if (Session["UsuarioRol"].ToString() != "Medico")
+                {
+                    Response.Redirect(ResolveUrl(Session["Home"].ToString()));
+                    return;
+                }
+
                 CargarListado();
             }
         }
@@ -51,7 +65,7 @@ namespace Vistas.Medico
             if(e.CommandName == "verTurno") {
                 int fila = Convert.ToInt32(e.CommandArgument);
                 string id =((Label) gvTurnos.Rows[fila].FindControl("lblID")).Text;
-                Response.Redirect($"~/Administrador/Turnos/VistaTurno.aspx?id={id}");
+                Response.Redirect(ResolveUrl($"~/Medico/VistaTurno.aspx?id={id}"));
             }
         }
     }

@@ -13,7 +13,22 @@ namespace Vistas.Medico
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-          
+            if (!IsPostBack)
+            {
+                //VALIDAR USUARIO LOGEADO
+                if (Session["UsuarioRol"] == null)
+                {
+                    Response.Redirect(ResolveUrl("~/Login.aspx"));
+                    return;
+                }
+
+                //VALIDAR ROL
+                if (Session["UsuarioRol"].ToString() != "Medico")
+                {
+                    Response.Redirect(ResolveUrl(Session["Home"].ToString()));
+                    return;
+                }
+            }
         }
 
         public void lkbPerfil_Click(object sender, EventArgs e)

@@ -1,21 +1,21 @@
-﻿using System;
+﻿using Clinica;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Clinica;
 
-namespace Vistas.Administrador.Turnos
+namespace Vistas.Medico
 {
     public partial class VistaTurno : System.Web.UI.Page
     {
-        NegocioTurno negocioTurno= new NegocioTurno();
+        NegocioTurno negocioTurno = new NegocioTurno();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 //VALIDAR USUARIO LOGEADO
@@ -26,22 +26,12 @@ namespace Vistas.Administrador.Turnos
                 }
 
                 //VALIDAR ROL
-                if (Session["UsuarioRol"].ToString() == "Medico")
+                if (Session["UsuarioRol"].ToString() != "Medico")
                 {
                     Response.Redirect(ResolveUrl(Session["Home"].ToString()));
                     return;
                 }
 
-                if (Session["UsuarioRol"].ToString() == "Administrador")
-                { 
-                    btnActualizar.Visible = false;
-                    txtOb.Enabled = false;
-                    lblMed.Visible = true;
-                    lblEsp.Visible = true;
-                    lblMedico.Visible = true;
-                    lblEspecialidad.Visible = true;
-                    ddlFiltroEstado.Enabled = false;
-                }
                 if (Request.QueryString["id"] != null)
                 {
                     DataTable dt = new DataTable();
@@ -59,13 +49,14 @@ namespace Vistas.Administrador.Turnos
                 }
             }
         }
+
         public void actualizarTurno()
         {
             int id = Convert.ToInt32(Request.QueryString["id"]);
             string estado = ddlFiltroEstado.Text;
             string observacion = txtOb.Text;
 
-            if(negocioTurno.actualizarTurno(id, estado, observacion) == 1)
+            if (negocioTurno.actualizarTurno(id, estado, observacion) == 1)
             {
                 lblMensaje.Text = "Se agregaron los datos con exito";
                 lblMensaje.ForeColor = Color.Green;
@@ -75,20 +66,12 @@ namespace Vistas.Administrador.Turnos
                 lblMensaje.Text = "No se pudo actualizar los datos";
                 lblMensaje.ForeColor = Color.Red;
             }
-
         }
-
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            if (Session["UsuarioRol"].ToString() == "Administrador")
-            {
-                Response.Redirect("~/Administrador/Turnos/ListaTurnos.aspx");
-            }
-            else
-            {
-                Response.Redirect("~/Medico/ListadoTurnos.aspx");
-            }
+            Response.Redirect(ResolveUrl("~/Medico/ListadoTurnos.aspx"));
+            return;
         }
 
         protected void btnActualizar_Click(object sender, EventArgs e)
