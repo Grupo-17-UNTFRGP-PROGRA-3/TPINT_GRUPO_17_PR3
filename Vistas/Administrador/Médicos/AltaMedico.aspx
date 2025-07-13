@@ -150,6 +150,7 @@
                     <asp:ListItem Value="5">Viernes</asp:ListItem>
                     <asp:ListItem Value="6">Sábado</asp:ListItem>
                 </asp:CheckBoxList>
+                <asp:Label ID="lblErrorDiasSeleccionados" runat="server" ForeColor="Red"></asp:Label>
                 <div class="form-group">
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
                     <asp:Label ID="lblHorarioDesde" runat="server" Text="Desde: " CssClass="form-label"></asp:Label>

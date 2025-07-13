@@ -222,6 +222,10 @@ namespace Vistas
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             NegocioMedico negocioMedico = new NegocioMedico();
+            if (!ValidarDiasSeleccionados())
+            {
+                return;
+            }
 
             Entidades.Medico medico = new Entidades.Medico()
             {
@@ -524,6 +528,19 @@ namespace Vistas
 
             BtnVolver2.Visible = true;
             BtnVolver2.Enabled = true;
+        }
+        protected bool ValidarDiasSeleccionados()
+        {
+            if (cblDiasAtencion.SelectedIndex < 0)
+            {
+                lblErrorDiasSeleccionados.Text = "Seleccione al menos un dia";
+                return false;
+            }
+            else
+            {
+                lblErrorDiasSeleccionados.Text = string.Empty;
+                return true;
+            }
         }
     }
 }
