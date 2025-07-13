@@ -27,15 +27,7 @@
                             <asp:TextBox ID="txtUsuario" runat="server" Text='<%# Bind("Usuario") %>' />
                         </EditItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Password">
-                        <ItemTemplate>
-                            <%# Eval("Password") %>
-                            <asp:Label ID="lblPassword" runat="server"></asp:Label>
-                        </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtPassword" runat="server" Text='<%# Bind("Password") %>' />
-                        </EditItemTemplate>
-                    </asp:TemplateField>
+                   
                     <asp:TemplateField HeaderText="Legajo">
                         <ItemTemplate>
                             <%# Eval("Legajo") %>
@@ -70,7 +62,7 @@
             </asp:GridView>
             <br />
             <div>
-                <asp:Button ID="btnVolver" runat="server" Text="Volver"  OnClick="btnVolver_Click"/>
+                <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" />
             </div>
         </div>
     </div>

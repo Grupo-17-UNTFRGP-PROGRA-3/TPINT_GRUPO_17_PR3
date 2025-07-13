@@ -92,11 +92,15 @@ namespace Vistas.Administrador.Médicos
 
             if (neg.existeUsuario(txtUsuario.Text) && txtUsuario.Text != usuario._usuario)
             {
+                btnModificar.Enabled = false;
                 LabelUsuario.Text = "Usuario no disponible, elija otro";
             }
             else
-            {
+            {   
+                btnModificar.Enabled = true;
                 pnlUsuarioMedico.Visible = true;
+                LabelUsuario.Text = "Nombre de usuario disponible";
+                LabelUsuario.ForeColor = Color.Green;
             }
         }
 
