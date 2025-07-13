@@ -67,6 +67,7 @@ namespace Vistas
             cblDiasAtencion.ClearSelection();
             ddlHoraInicio.SelectedIndex = 0;
             ddlHoraFin.SelectedIndex = 0;
+            lblErrorDiasSeleccionados.Text = string.Empty;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -210,7 +211,7 @@ namespace Vistas
             if (Request.QueryString["legajo"] != null)
             {
                 int legajo = Convert.ToInt32(Request.QueryString["legajo"]);
-
+                lblErrorDiasSeleccionados.Text = string.Empty;
                 CargarDatosMedico(legajo);
             }
             else
