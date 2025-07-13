@@ -43,6 +43,7 @@ namespace Vistas
 
         protected void LimpiarCampos()
         {
+            lblErrorFecha.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
             rblSexo.ClearSelection();
@@ -249,7 +250,7 @@ namespace Vistas
 
             if (fechaNacimiento > DateTime.Today)
             {
-                lblMensaje.Text = "La fecha de nacimiento no puede ser posterior a la fecha actual.";
+                lblErrorFecha.Text = "La fecha de nacimiento no puede ser posterior a la fecha actual.";
                 lblMensaje.ForeColor = Color.Red;
                 return;
             }

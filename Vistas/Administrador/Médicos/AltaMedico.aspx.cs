@@ -53,6 +53,7 @@ namespace Vistas
 
         public void LimpiarCampos()
         {
+            lblErrorFecha.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
             rblSexo.ClearSelection();
@@ -245,8 +246,8 @@ namespace Vistas
             DateTime fechaNacimiento;
             if (!DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento))
             {
-                lblMensaje.Text = "Fecha de nacimiento inválida.";
-                lblMensaje.ForeColor = Color.Red;
+                lblErrorFecha.Text = "Fecha de nacimiento inválida.";
+                lblErrorFecha.ForeColor = Color.Red;
                 return;
             }
 
@@ -255,8 +256,8 @@ namespace Vistas
 
             if (edad < 24)
             {
-                lblMensaje.Text = "El médico debe tener al menos 24 años.";
-                lblMensaje.ForeColor = Color.Red;
+                lblErrorFecha.Text = "El médico debe tener al menos 24 años.";
+                lblErrorFecha.ForeColor = Color.Red;
                 return;
             }
 
@@ -519,12 +520,18 @@ namespace Vistas
 
         protected void btnConfirmarRestaurar_Click(object sender, EventArgs e)
         {
+            NegocioUsuario negUs = new NegocioUsuario();
             NegocioMedico negocioMedico = new NegocioMedico();
-            int dni = int.Parse(txtDNI.Text);
+            Usuario usuario = new Usuario();
 
+            int dni = int.Parse(txtDNI.Text);
+            usuario= negUs.ObtenerUsuarioPorLegajo(negocioMedico.ObtenerLegajoPorDNI(dni));
+
+            negUs.RestaurarUsuario(usuario);
             bool resultado = negocioMedico.RestaurarMedicoEliminado(dni);
+
             lblInicio.ForeColor = Color.Green;
-            lblInicio.Text = "Medico restaurado.";
+            lblInicio.Text = "Medico y usuario restaurados.";
 
             txtDNI.Visible = true;
             txtDNI.Enabled = false;

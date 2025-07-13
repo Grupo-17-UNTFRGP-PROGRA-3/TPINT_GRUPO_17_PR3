@@ -66,7 +66,7 @@ namespace Datos
 
         public DataTable ListadoUsuarios()
         {
-            string consulta = "SELECT Usuario,Password,Legajo FROM Usuarios WHERE Eliminado = 0";
+            string consulta = "SELECT Usuario ,Password ,Legajo FROM Usuarios WHERE Eliminado = 0 AND Legajo >0";
             DataTable dt = new DataTable();
             dt = _datos.ObtenerTabla(consulta, "Usuarios");
             return dt;
@@ -77,6 +77,27 @@ namespace Datos
             AccesoDatos datos = new AccesoDatos();
 
             return datos.TraerUsuarioPorNombre(nombre);
+        }
+
+        public int EliminarUsuario(string usuario)
+        {
+            string consulta = "UPDATE Usuarios SET Eliminado = 1 Where Usuario = @usuario ";
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+            new SqlParameter("@usuario", usuario)
+            };
+           
+            return _datos.EjecutarConsultaConParametros(consulta, parametros);
+        }
+
+        public int RestaurarUsuario(string usuario)
+        {
+            string consulta = "UPDATE Usuarios SET Eliminado = 0 Where Usuario = @usuario ";
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+            new SqlParameter("@usuario", usuario)
+            };
+            return _datos.EjecutarConsultaConParametros(consulta, parametros);
         }
     }
 }

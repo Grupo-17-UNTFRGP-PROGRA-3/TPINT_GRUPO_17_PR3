@@ -97,5 +97,17 @@ namespace Clinica
         {
             return _daoU.traerRegistro(usuario);
         }
+
+        public int EliminarUsuario(Usuario usuario)
+        {
+            return _daoU.EliminarUsuario(usuario._usuario);
+        }
+
+        public int RestaurarUsuario (Usuario usuario)
+        {
+            return _daoU.RestaurarUsuario(usuario._usuario);
+        }
+
+
     }
 }

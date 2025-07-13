@@ -44,10 +44,12 @@
             <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtApellido" ErrorMessage="Debe ingresar un nombre" ForeColor="Red" Display="Dynamic" />
 
             <!--apellido-->
+            <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" Display="Dynamic" ErrorMessage="Solo se debe ingresar letras" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$"></asp:RegularExpressionValidator>
             <div class="form-group">
-                <asp:Label ID="lblApellido" runat="server" Text="Apellido" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblApellido" runat="server" CssClass="form-label" Text="Apellido"></asp:Label>
                 <asp:TextBox ID="txtApellido" runat="server" CssClass="form-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ErrorMessage="Debe ingresar un apellido" ForeColor="Red" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Debe ingresar un apellido" ForeColor="Red" />
+                <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Solo se debe ingresar letras" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$"></asp:RegularExpressionValidator>
             </div>
 
             <!--sexo-->
@@ -77,6 +79,7 @@
                 <asp:RegularExpressionValidator ID="regExV" ControlToValidate="txtFechaNacimiento" ValidationExpression="\d{4}[-]\d{2}[-]\d{2}"
                     Display="Dynamic" ForeColor="Red"
                     ErrorMessage="Fecha inválida" runat="server" />
+                <asp:Label ID="lblErrorFecha" runat="server" ForeColor="Red"></asp:Label>
             </div>
 
             <!--direccion-->

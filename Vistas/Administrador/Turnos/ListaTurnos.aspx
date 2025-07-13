@@ -28,10 +28,9 @@
         <label class="form-label">Estado:: </label>
         <asp:DropDownList ID="ddlEstado" runat="server" AppendDataBoundItems="true" CssClass="form-input">
             <asp:ListItem Text="-- Todos --" Value="" />
-            <asp:ListItem Text="Confirmado" Value="Confirmado" />
             <asp:ListItem Text="Pendiente" Value="Pendiente" />
             <asp:ListItem Text="Ausente" Value="Ausente" />
-            <asp:ListItem Text="Cancelado" Value="Cancelado" />
+            <asp:ListItem >Presente</asp:ListItem>
         </asp:DropDownList>
 
         <asp:Label ID="lblFechaDesde" runat="server" Text="Desde: " CssClass="form-label"></asp:Label>

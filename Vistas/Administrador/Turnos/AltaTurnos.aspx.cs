@@ -20,6 +20,7 @@ namespace Vistas.Administrador
         {
             if (!IsPostBack)
             {
+
                 //VALIDAR USUARIO LOGEADO
                 if (Session["UsuarioRol"] == null)
                 {
@@ -33,7 +34,7 @@ namespace Vistas.Administrador
                     Response.Redirect(ResolveUrl(Session["Home"].ToString()));
                     return;
                 }
-
+                txtFechaTurno.Enabled = false;  
                 pnlDatosPaciente.Visible = false;
                 pnlDatosPaciente.Enabled = false;
                 btnAgregarPaciente.Visible = false;
@@ -111,24 +112,34 @@ namespace Vistas.Administrador
             ddlEspecialidad.SelectedIndex = 0;
             ddlMedico.Items.Clear();
             ddlDia.Items.Clear();
+            txtFechaTurno.Enabled = false;
             ddlHorario.Items.Clear();
             txtFechaTurno.Text = string.Empty;
             lblMensaje.Text = string.Empty;
+            lblValidacionFecha.Text = string.Empty;
         }
         
         protected bool ValidarFechaConDia()
         {
-            lblValidacionFecha.Text = string.Empty;
-            DateTime fecha = Convert.ToDateTime(txtFechaTurno.Text);
-
-            if ((int)fecha.DayOfWeek != Convert.ToInt32(ddlDia.SelectedValue))
+            if (ddlDia.SelectedValue != null && ddlDia.SelectedValue != "0" )
             {
-                string[] DiaDeSemana = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
-                lblValidacionFecha.ForeColor = System.Drawing.Color.Red;
-                lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1];
+                lblValidacionFecha.Text = string.Empty;
+                DateTime fecha = Convert.ToDateTime(txtFechaTurno.Text);
+
+                if ((int)fecha.DayOfWeek != Convert.ToInt32(ddlDia.SelectedValue))
+                {
+                    string[] DiaDeSemana = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
+                    lblValidacionFecha.ForeColor = System.Drawing.Color.Red;
+                    lblValidacionFecha.Text = "Esta eligiendo dias de turno " + DiaDeSemana[Convert.ToInt32(ddlDia.SelectedValue) - 1];
+                    return false;
+                }
+                else { return true; }
+            }
+            else
+            {
+                lblValidacionFecha.Text = "Debe seleccionar un dia primero";
                 return false;
             }
-            else { return true; }
         }
 
         //REACCIONES A LOS CAMBIOS ======================
@@ -138,6 +149,8 @@ namespace Vistas.Administrador
             {
                 ddlMedico.Items.Clear();
                 ddlDia.Items.Clear();
+                txtFechaTurno.Enabled = false;
+                lblValidacionFecha.Text = string.Empty;
                 ddlHorario.Items.Clear();
                 txtFechaTurno.Text = string.Empty;
                 lblMensaje.Text = string.Empty;
@@ -153,7 +166,9 @@ namespace Vistas.Administrador
             if (ddlDia.Items.Count != 0)
             {
                 ddlDia.Items.Clear();
+                txtFechaTurno.Enabled = false;
                 ddlHorario.Items.Clear();
+                lblValidacionFecha.Text = string.Empty;
                 txtFechaTurno.Text = string.Empty;
                 lblMensaje.Text = string.Empty;
 
@@ -167,7 +182,8 @@ namespace Vistas.Administrador
         {
             txtFechaTurno.Text = string.Empty;
             lblMensaje.Text = string.Empty;
-
+            txtFechaTurno.Enabled = true;
+            lblValidacionFecha.Text = string.Empty;
         }
 
         protected void btnAsignarTurno_Click1(object sender, EventArgs e)
@@ -227,7 +243,7 @@ namespace Vistas.Administrador
         }
 
         protected void BtnBuscarDni_Click(object sender, EventArgs e)
-        {
+        { 
             lblMensaje.Text = string.Empty;
             LimpiarCampos();
             int dni = int.Parse(txtDNI.Text);

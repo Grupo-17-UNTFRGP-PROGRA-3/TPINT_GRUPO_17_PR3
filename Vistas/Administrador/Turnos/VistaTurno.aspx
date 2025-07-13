@@ -35,7 +35,7 @@
         <br />
         <asp:Label ID="Label7" runat="server" CssClass="form-labelV" Text="Observaciones" Font-Size="Large" Font-Bold="True"></asp:Label>
         &nbsp;<br />
-        <asp:TextBox ID="txtOb" runat="server" BorderColor="Black" BorderStyle="Solid" Height="111px" TextMode="MultiLine" Width="392px" Font-Names="Calibri" Font-Size="Medium"></asp:TextBox>
+        <asp:TextBox Style="resize: none; overflow: auto" ID="txtOb" runat="server" BorderColor="Black" BorderStyle="Solid" Height="111px" TextMode="MultiLine" Width="392px" Font-Names="Calibri" Font-Size="Medium"></asp:TextBox>
         <br />
         <br />
     </asp:Panel>

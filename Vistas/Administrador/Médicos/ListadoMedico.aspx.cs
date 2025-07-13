@@ -1,4 +1,5 @@
 ﻿using Clinica;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -79,9 +80,13 @@ namespace Vistas
         {
             if(e.CommandName == "EliminarMedico")
             {
+                Usuario usuario = new Usuario();
+                NegocioUsuario negocioUsuario = new NegocioUsuario();
                 int legajo = Convert.ToInt32(e.CommandArgument);
+                usuario = negocioUsuario.ObtenerUsuarioPorLegajo(legajo);
                 if (_negocioMedico.ExisteLegajo(legajo))
                 {
+                    negocioUsuario.EliminarUsuario(usuario);
                     _negocioMedico.EliminarMedico(legajo);
                 }
 
