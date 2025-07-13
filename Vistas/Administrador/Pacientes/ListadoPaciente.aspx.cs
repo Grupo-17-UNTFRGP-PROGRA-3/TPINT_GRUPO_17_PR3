@@ -86,7 +86,18 @@ namespace Vistas.Pacientes
         protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPacientes.PageIndex = e.NewPageIndex;
-            CargarPacientes();
+
+            if (Session["PacientesFiltrados"] != null)
+            {
+                gvPacientes.DataSource = Session["PacientesFiltrados"];
+            }
+            else
+            {
+                CargarPacientes();
+                return;
+            }
+
+            gvPacientes.DataBind();
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -115,6 +126,7 @@ namespace Vistas.Pacientes
                 filtros.Add($"Provincia = '{provincia}'");
 
             dv.RowFilter = string.Join(" AND ", filtros);
+            Session["PacientesFiltrados"] = dv.ToTable();
 
             gvPacientes.DataSource = dv;
             gvPacientes.DataBind();
@@ -127,6 +139,8 @@ namespace Vistas.Pacientes
             txtDni.Text = string.Empty;
             ddlSexo.SelectedIndex = 0;
             ddlProvincia.SelectedIndex = 0;
+
+            Session["PacientesFiltrados"] = null;
 
             CargarPacientes();
         }

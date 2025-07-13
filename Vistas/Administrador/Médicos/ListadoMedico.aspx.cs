@@ -98,7 +98,18 @@ namespace Vistas
         protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvMedicos.PageIndex = e.NewPageIndex;
-            CargarMedicos();
+
+            if (Session["MedicosFiltrados"] != null)
+            {
+                gvMedicos.DataSource = Session["MedicosFiltrados"];
+            }
+            else
+            {
+                CargarMedicos();
+                return;
+            }
+
+            gvMedicos.DataBind();
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -127,6 +138,7 @@ namespace Vistas
                 filtros.Add($"Provincia = '{provincia}'");
 
             dv.RowFilter = string.Join(" AND ", filtros);
+            Session["MedicosFiltrados"] = dv.ToTable();
 
             gvMedicos.DataSource = dv;
             gvMedicos.DataBind();
@@ -139,6 +151,8 @@ namespace Vistas
             ddlEspecialidad.SelectedIndex = 0;
             ddlSexo.SelectedIndex = 0;
             ddlProvincia.SelectedIndex = 0;
+
+            Session["MedicosFiltrados"] = null;
 
             CargarMedicos();
         }

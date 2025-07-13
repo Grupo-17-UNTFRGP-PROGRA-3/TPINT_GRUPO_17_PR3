@@ -62,7 +62,18 @@ namespace Vistas.Administrador
         protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTurnos.PageIndex = e.NewPageIndex;
-            CargarTurnos();
+
+            if (Session["TurnosFiltrados"] != null)
+            {
+                gvTurnos.DataSource = Session["TurnosFiltrados"];
+            }
+            else
+            {
+                CargarTurnos();
+                return;
+            }
+
+            gvTurnos.DataBind();
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -103,16 +114,11 @@ namespace Vistas.Administrador
                 filtros.Add($"Fecha <= '{fechaHasta}'");
 
             dv.RowFilter = string.Join(" AND ", filtros);
+            Session["TurnosFiltrados"] = dv.ToTable();
 
             gvTurnos.DataSource = dv;
             gvTurnos.DataBind();
             lblSinResultados.Visible = gvTurnos.Rows.Count == 0;
-        }
-
-        protected void gvTurnos_PageIndexChanging1(object sender, GridViewPageEventArgs e)
-        {
-            gvTurnos.PageIndex = e.NewPageIndex;
-            CargarTurnos();
         }
 
         protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -147,6 +153,8 @@ namespace Vistas.Administrador
             ddlEstado.SelectedIndex = 0;
             txtFechaDesde.Text = string.Empty;
             txtFechaHasta.Text = string.Empty;
+
+            Session["TurnosFiltrados"] = null;
 
             CargarTurnos();
         }

@@ -47,7 +47,7 @@
     <div>
         <asp:Label ID="lblSinResultados" runat="server" Text="No se hallaron resultados." Visible="false"></asp:Label>
 
-        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging1" OnRowCommand="gvTurnos_RowCommand">
+        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging" OnRowCommand="gvTurnos_RowCommand">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
 
@@ -137,7 +137,7 @@
 
     <div>
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno" OnClick="btnAgregar_Click1" />
-        <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnAgregar_Click1" PostBackUrl="~/Administrador/Home.aspx" />
+        <asp:Button ID="btnVolver" runat="server" Text="Volver" PostBackUrl="~/Administrador/Home.aspx" />
     </div>
 
 </asp:Content>
