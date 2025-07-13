@@ -29,6 +29,7 @@
         <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" />
     </div>
     <div>
+    <asp:Label ID="lblSinResultados" runat="server" Text="No se hallaron resultados." Visible="false" ></asp:Label>
     <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None"
         OnRowCommand="gvMedicos_RowCommand"
         AllowPaging="True" OnPageIndexChanging="gvMedicos_PageIndexChanging">

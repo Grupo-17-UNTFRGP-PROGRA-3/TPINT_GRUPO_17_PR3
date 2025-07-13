@@ -28,6 +28,7 @@ namespace Vistas
         {
             gvMedicos.DataSource = _negocioMedico.ListadoMedicosJoined();
             gvMedicos.DataBind();
+            lblSinResultados.Visible = gvMedicos.Rows.Count == 0;
         }
 
         private void CargarEspecialidades()
@@ -115,6 +116,7 @@ namespace Vistas
 
             gvMedicos.DataSource = dv;
             gvMedicos.DataBind();
+            lblSinResultados.Visible = gvMedicos.Rows.Count == 0;
         }
     }
 }

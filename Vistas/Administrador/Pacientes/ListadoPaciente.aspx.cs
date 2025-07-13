@@ -26,6 +26,7 @@ namespace Vistas.Pacientes
         {
             gvPacientes.DataSource = _negocioPaciente.ListadoPacientesJoined();
             gvPacientes.DataBind();
+            lblSinResultados.Visible = gvPacientes.Rows.Count == 0;
         }
 
         private void CargarProvincias()
@@ -103,6 +104,7 @@ namespace Vistas.Pacientes
 
             gvPacientes.DataSource = dv;
             gvPacientes.DataBind();
+            lblSinResultados.Visible = gvPacientes.Rows.Count == 0;
         }
 
         protected void btnEliminarFiltro_Click(object sender, EventArgs e)
