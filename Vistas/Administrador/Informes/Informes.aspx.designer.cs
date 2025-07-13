@@ -42,6 +42,15 @@ namespace Vistas.Administrador.Informes
         protected global::System.Web.UI.WebControls.TextBox txtFechaInicial;
 
         /// <summary>
+        /// Control rfvFechaInicial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaInicial;
+
+        /// <summary>
         /// Control lblFechaFin.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace Vistas.Administrador.Informes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaFinal;
+
+        /// <summary>
+        /// Control rfvFechaFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaFinal;
 
         /// <summary>
         /// Control btnPacXMed.
@@ -87,13 +105,13 @@ namespace Vistas.Administrador.Informes
         protected global::System.Web.UI.WebControls.Button btnHorasPico;
 
         /// <summary>
-        /// Control btnPorcentajeAusencias.
+        /// Control lblInforme.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPorcentajeAusencias;
+        protected global::System.Web.UI.WebControls.Label lblInforme;
 
         /// <summary>
         /// Control gvResultados.

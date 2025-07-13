@@ -9,10 +9,12 @@
         <br />
         <asp:Label CssClass="form-label" ID="lblFechaInicio" runat="server" Text="Fecha inicial"></asp:Label>
         <asp:TextBox  CssClass="form-input" ID="txtFechaInicial" runat="server" TextMode="Date"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvFechaInicial" runat="server" ControlToValidate="txtFechaInicial" Display="Dynamic" ErrorMessage="No hay fechas seleccionadas" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
         <asp:Label CssClass="form-label" ID="lblFechaFin" runat="server" Text="Fecha final"></asp:Label>
         <asp:TextBox CssClass="form-input" ID="txtFechaFinal" runat="server" TextMode="Date"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvFechaFinal" runat="server" ControlToValidate="txtFechaFinal" Display="Dynamic" ErrorMessage="No hay fechas seleccionadas" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
         <asp:Button CssClass="linkbutton" ID="btnPacXMed" runat="server" Text="Pacientes / Medico" OnClick="btnPacXMed_Click" />
@@ -23,9 +25,8 @@
         <br/>
         <asp:Button CssClass="linkbutton" ID="btnHorasPico" runat="server" Text="Horas Pico" OnClick="btnHorasPico_Click" />
         <br />
-        <br/>
-        <asp:Button CssClass="linkbutton" ID="btnPorcentajeAusencias" runat="server" Text="Porcentaje de ausencias" />
         <br />
+        <asp:Label ID="lblInforme" runat="server" Text="Seleccione un informe"></asp:Label>
         <br />
         <asp:GridView ID="gvResultados" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
             <RowStyle HorizontalAlign="Center" />
