@@ -73,7 +73,7 @@ namespace Vistas.Administrador.Médicos
             NegocioUsuario neg = new NegocioUsuario();
             LabelUsuario.Text = string.Empty;
             Usuario usuario = neg.ObtenerUsuarioPorLegajo(int.Parse(Request.QueryString["legajo"]));
-            
+
             if (neg.existeUsuario(txtUsuario.Text) && txtUsuario.Text != usuario._usuario)
             {
                 LabelUsuario.Text = "Usuario no disponible, elija otro";
@@ -92,9 +92,16 @@ namespace Vistas.Administrador.Médicos
             {
                 NegocioUsuario log = new NegocioUsuario();
 
-                log.ModificarUsuario(txtUsuario.Text, txtPass1.Text, legajo);
-
-                lblMensaje.Text = "EXITO";
+                if (log.ModificarUsuario(txtUsuario.Text, txtPass1.Text, legajo))
+                {
+                    lblMensaje.ForeColor = Color.Green;
+                    lblMensaje.Text = "El usuario ha sido modificado exitosamente";
+                }
+                else
+                {
+                    lblMensaje.ForeColor = Color.Red;
+                    lblMensaje.Text = "Error el usuario no se pudo modificar";
+                }
             }
         }
     }
