@@ -37,14 +37,10 @@ namespace Vistas.Administrador.Médicos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-
-            int legajo = int.Parse(Request.QueryString["legajo"]);
-            string usuario = Request.QueryString["usuario"];
-
-
             if (!IsPostBack)
             {
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
                 //VALIDAR USUARIO LOGEADO
                 if (Session["UsuarioRol"] == null)
                 {
@@ -52,11 +48,17 @@ namespace Vistas.Administrador.Médicos
                     return;
                 }
 
+                int legajo = int.Parse(Request.QueryString["legajo"]);
+                string usuario = Request.QueryString["usuario"];
+
                 //VALIDAR ROL
                 if (Session["UsuarioRol"].ToString() == "Medico")
                 {
-                    Response.Redirect(ResolveUrl(Session["Home"].ToString()));
-                    return;
+                    if (legajo.ToString() != Session["Legajo"].ToString())
+                    {
+                        Response.Redirect(ResolveUrl(Session["Home"].ToString()));
+                        return;
+                    }
                 }
 
                 if (usuario == null)
