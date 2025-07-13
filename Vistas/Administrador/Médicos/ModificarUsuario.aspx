@@ -15,11 +15,11 @@
     
         <div class="form-group">
             <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtUsuario" runat="server" Width="145px" CssClass="form-input"></asp:TextBox>
+            <asp:TextBox ID="txtUsuario" runat="server" Width="145px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" Display="Dynamic" ErrorMessage="Debe ingresar un nombre de usuario" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="revUsuario" runat="server" ControlToValidate="txtUsuario" Display="Dynamic" ErrorMessage="Usuario inválido (mínimo 5 caracteres alfanuméricos requeridos)" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9]{5,}$"></asp:RegularExpressionValidator>
             <br />
-            <asp:Label ID="LabelUsuario" runat="server"></asp:Label>
+            <asp:Label ID="LabelUsuario" runat="server" ForeColor="Red"></asp:Label>
             <br />
             <asp:Button ID="BtnBuscarUsuario" runat="server" OnClick="BtnBuscarUsuario_Click" Text="Chequear disponibilidad" />
             <br />
@@ -27,14 +27,14 @@
        <asp:Panel ID="pnlUsuarioMedico" runat="server">
         <div class="form-group">
             <asp:Label ID="lblPass1" runat="server" Text="Contraseña" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtPass1" runat="server" CssClass="form-input" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtPass1" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvPass1" runat="server" ControlToValidate="txtPass1" Display="Dynamic" ErrorMessage="Debe ingresar una contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="revPass1" runat="server" ControlToValidate="txtPass1" Display="Dynamic" ErrorMessage="Contraseña invalida (mínimo 4 caracteres alfanuméricos requeridos)" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9]{4,}$"></asp:RegularExpressionValidator>
             <br />
         </div>
         <div class="form-group">
             <asp:Label ID="lblPass2" runat="server" Text="Repetir contraseña" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtPass2" runat="server" CssClass="form-input" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtPass2" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvPass2" runat="server" ControlToValidate="txtPass2" Display="Dynamic" ErrorMessage="Debe reingresar la contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:CompareValidator ID="cvPass2" runat="server" ControlToCompare="txtPass1" ControlToValidate="txtPass2" ErrorMessage="La contraseña no es la misma" ForeColor="Red"></asp:CompareValidator>
             <br />

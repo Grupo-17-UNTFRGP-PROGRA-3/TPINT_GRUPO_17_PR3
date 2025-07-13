@@ -42,6 +42,7 @@ namespace Vistas.Administrador.Médicos
             int legajo = int.Parse(Request.QueryString["legajo"]);
             string usuario = Request.QueryString["usuario"];
 
+
             if (!IsPostBack)
             {
                 if (usuario == null)
@@ -70,8 +71,10 @@ namespace Vistas.Administrador.Médicos
         protected void BtnBuscarUsuario_Click(object sender, EventArgs e)
         {
             NegocioUsuario neg = new NegocioUsuario();
-
-            if (neg.existeUsuario(txtUsuario.Text))
+            LabelUsuario.Text = string.Empty;
+            Usuario usuario = neg.ObtenerUsuarioPorLegajo(int.Parse(Request.QueryString["legajo"]));
+            
+            if (neg.existeUsuario(txtUsuario.Text) && txtUsuario.Text != usuario._usuario)
             {
                 LabelUsuario.Text = "Usuario no disponible, elija otro";
             }
