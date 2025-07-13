@@ -47,7 +47,7 @@ namespace Vistas
 
         private void CargarEspecialidades()
         {
-            DataTable dtEspecialidades = _negocioEspecialidad.GetTable(); // Este método lo debés tener o crear
+            DataTable dtEspecialidades = _negocioEspecialidad.GetTable();
 
             ddlEspecialidad.DataSource = dtEspecialidades;
             ddlEspecialidad.DataTextField = "Descripcion";
@@ -131,6 +131,16 @@ namespace Vistas
             gvMedicos.DataSource = dv;
             gvMedicos.DataBind();
             lblSinResultados.Visible = gvMedicos.Rows.Count == 0;
+        }
+
+        protected void btnEliminarFiltro_Click(object sender, EventArgs e)
+        {
+            txtNombre.Text = string.Empty;
+            ddlEspecialidad.SelectedIndex = 0;
+            ddlSexo.SelectedIndex = 0;
+            ddlProvincia.SelectedIndex = 0;
+
+            CargarMedicos();
         }
     }
 }

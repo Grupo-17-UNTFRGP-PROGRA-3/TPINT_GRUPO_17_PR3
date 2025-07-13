@@ -4,18 +4,49 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
     <div>
         <h1>Listado de Turnos</h1>
     </div>
 
-    <div style="text-align: left;">
-        <asp:Label ID="lblBuscar" runat="server" Text="Buscar turnos:" CssClass="form-label"></asp:Label>
-        <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-input"></asp:TextBox>
+    <div style="text-align: left; margin-bottom: 10px;">
+        <div>
+            <label class="form-label">Código: </label>
+            <asp:TextBox ID="txtCodigo" TextMode="Number" runat="server" CssClass="form-input"></asp:TextBox>
+        </div>
+
+        <label class="form-label">Médico: </label>
+        <asp:TextBox runat="server" ID="txtMedico" CssClass="form-input"/>
+
+        <label class="form-label">Paciente: </label>
+        <asp:TextBox runat="server" ID="txtPaciente" CssClass="form-input"/>
+
+        <label class="form-label">Especialidad: </label>
+        <asp:DropDownList ID="ddlEspecialidad" runat="server" AppendDataBoundItems="true" CssClass="form-input">
+            <asp:ListItem Text="-- Todas --" Value="" />
+        </asp:DropDownList>
+
+        <label class="form-label">Estado:: </label>
+        <asp:DropDownList ID="ddlEstado" runat="server" AppendDataBoundItems="true" CssClass="form-input">
+            <asp:ListItem Text="-- Todos --" Value="" />
+            <asp:ListItem Text="Confirmado" Value="Confirmado" />
+            <asp:ListItem Text="Pendiente" Value="Pendiente" />
+            <asp:ListItem Text="Ausente" Value="Ausente" />
+            <asp:ListItem Text="Cancelado" Value="Cancelado" />
+        </asp:DropDownList>
+
+        <asp:Label ID="lblFechaDesde" runat="server" Text="Desde: " CssClass="form-label"></asp:Label>
+        <asp:TextBox ID="txtFechaDesde" runat="server" TextMode="Date" CssClass="form-input"></asp:TextBox>
+        
+        <asp:Label ID="lblFechaHasta" runat="server" Text="Hasta: " CssClass="form-label"></asp:Label>
+        <asp:TextBox ID="txtFechaHasta" runat="server" TextMode="Date" CssClass="form-input"></asp:TextBox>
+
         <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnRestablecer" runat="server" Text="Eliminar filtro" OnClick="btnEliminarFiltro_Click" />
     </div>
 
     <div>
+        <asp:Label ID="lblSinResultados" runat="server" Text="No se hallaron resultados." Visible="false"></asp:Label>
+
         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging1" OnRowCommand="gvTurnos_RowCommand">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
@@ -86,7 +117,7 @@
                 <asp:TemplateField ShowHeader="False">
                     <ItemTemplate>
                         <asp:Button ID="btnVer" runat="server" CausesValidation="false" CommandArgument='<%# Eval("id") %>' CommandName="VerTurno" Text="Ver" />
-                        <asp:Button ID="btnEliminar" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="EliminarTurno" Text="Eliminar" OnClientClick="return confirm('¿Está seguro de que desea eliminar este turno?');"/>
+                        <asp:Button ID="btnEliminar" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="EliminarTurno" Text="Eliminar" OnClientClick="return confirm('¿Está seguro de que desea eliminar este turno?');" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
@@ -105,7 +136,7 @@
     <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
 
     <div>
-        <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno"  OnClick="btnAgregar_Click1" />
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno" OnClick="btnAgregar_Click1" />
         <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnAgregar_Click1" PostBackUrl="~/Administrador/Home.aspx" />
     </div>
 

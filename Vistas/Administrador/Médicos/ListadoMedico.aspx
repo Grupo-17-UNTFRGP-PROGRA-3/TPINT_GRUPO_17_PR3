@@ -6,7 +6,7 @@
         <h1>Listado de Médicos</h1>
     </div>
     <div style="text-align: left; margin-bottom: 10px;">
-        <label>Nombre: </label>
+        <label style="margin-left: 10px;">Nombre: </label>
         <asp:TextBox runat="server" ID="txtNombre" />
 
         <label style="margin-left: 10px;">Especialidad: </label>
@@ -27,6 +27,7 @@
         </asp:DropDownList>
 
         <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnRestablecer" runat="server" Text="Eliminar filtro" OnClick="btnEliminarFiltro_Click" />
     </div>
     <div>
     <asp:Label ID="lblSinResultados" runat="server" Text="No se hallaron resultados." Visible="false" ></asp:Label>

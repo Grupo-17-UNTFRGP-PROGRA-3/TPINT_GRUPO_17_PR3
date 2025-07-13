@@ -14,6 +14,7 @@ namespace Vistas.Administrador
 	public partial class ListaTurnos : System.Web.UI.Page
 	{
         NegocioTurno negocioTurno = new NegocioTurno();
+        NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,6 +34,7 @@ namespace Vistas.Administrador
                 }
 
                 CargarTurnos();
+                CargarEspecialidades();
             }
         }
 
@@ -40,6 +42,16 @@ namespace Vistas.Administrador
         {
             gvTurnos.DataSource = negocioTurno.listaTurnos();
             gvTurnos.DataBind();
+        }
+
+        private void CargarEspecialidades()
+        {
+            DataTable dtEspecialidades = negocioEspecialidad.GetTable();
+
+            ddlEspecialidad.DataSource = dtEspecialidades;
+            ddlEspecialidad.DataTextField = "Descripcion";
+            ddlEspecialidad.DataValueField = "Descripcion";
+            ddlEspecialidad.DataBind();
         }
 
         protected void btnAgregar_Click1(object sender, EventArgs e)
@@ -55,24 +67,46 @@ namespace Vistas.Administrador
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            string filtro = txtBuscar.Text.Trim();
-            if (string.IsNullOrEmpty(filtro))
-            {
-                lblMensaje.Text = "Debe ingresar un dato para buscar.";
-                return;
-            }
+            string codigo = txtCodigo.Text.Trim();
+            string medico = txtMedico.Text.Trim();
+            string paciente = txtPaciente.Text.Trim();
+            string especialidad = ddlEspecialidad.SelectedValue;
+            string estado = ddlEstado.SelectedValue;
+            string fechaDesde = txtFechaDesde.Text.Trim();
+            string fechaHasta = txtFechaHasta.Text.Trim();
 
-            DataTable resultado = negocioTurno.filtrarTurnos(filtro);
-            if (resultado.Rows.Count == 0)
-            {
-                lblMensaje.Text = "No se encontraron turnos con ese criterio.";
-            }
-            else
-            {
-                gvTurnos.DataSource = resultado;
-                gvTurnos.DataBind();
-                lblMensaje.Text = string.Empty;
-            }
+            DataTable dt = negocioTurno.listaTurnos();
+            if (dt == null) return;
+
+            DataView dv = dt.DefaultView;
+            List<string> filtros = new List<string>();
+
+            if (!string.IsNullOrEmpty(codigo))
+                filtros.Add($"Id = {codigo}");
+
+            if (!string.IsNullOrEmpty(medico))
+                filtros.Add($"Medico LIKE '%{medico}%'");
+
+            if (!string.IsNullOrEmpty(paciente))
+                filtros.Add($"Paciente LIKE '%{paciente}%'");
+
+            if (!string.IsNullOrEmpty(especialidad))
+                filtros.Add($"Especialidad = '{especialidad}'");
+
+            if (!string.IsNullOrEmpty(estado))
+                filtros.Add($"Estado = '{estado}'");
+
+            if (!string.IsNullOrEmpty(fechaDesde))
+                filtros.Add($"Fecha >= '{fechaDesde}'");
+
+            if (!string.IsNullOrEmpty(fechaHasta))
+                filtros.Add($"Fecha <= '{fechaHasta}'");
+
+            dv.RowFilter = string.Join(" AND ", filtros);
+
+            gvTurnos.DataSource = dv;
+            gvTurnos.DataBind();
+            lblSinResultados.Visible = gvTurnos.Rows.Count == 0;
         }
 
         protected void gvTurnos_PageIndexChanging1(object sender, GridViewPageEventArgs e)
@@ -102,6 +136,19 @@ namespace Vistas.Administrador
                 }
 
             }
+        }
+
+        protected void btnEliminarFiltro_Click(object sender, EventArgs e)
+        {
+            txtCodigo.Text = string.Empty;
+            txtMedico.Text = string.Empty;
+            txtPaciente.Text = string.Empty;
+            ddlEspecialidad.SelectedIndex = 0;
+            ddlEstado.SelectedIndex = 0;
+            txtFechaDesde.Text = string.Empty;
+            txtFechaHasta.Text = string.Empty;
+
+            CargarTurnos();
         }
     }
 }
