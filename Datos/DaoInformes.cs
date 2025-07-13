@@ -25,7 +25,7 @@ namespace Datos
                 "Inner Join Especialidades e ON m.IdEspecialidad = e.Id " +
                 "WHERE LegajoMedico in (SELECT DISTINCT LegajoMedico) " +
                 "AND Fecha between '" + fechaInicio + "' and '" + fechaFin + "' " +
-                "group by LegajoMedico, m.Nombre, m.Apellido, e.Descripcion Order by LegajoMedico;";
+                "group by LegajoMedico, m.Nombre, m.Apellido, e.Descripcion Order by Turnos DESC";
             string tabla = "Turnos";
            dt = _datos.ObtenerTabla(consulta, tabla);
             return dt;
@@ -41,7 +41,7 @@ namespace Datos
                 "INNER JOIN Especialidades e ON m.IdEspecialidad = e.Id " +
                 "Where t.Fecha between '"+ fechaInicio +"' and '"+ fechaFin +"' "+
                 "GROUP BY e.Descripcion "+
-                "ORDER BY Pacientes DESC;";
+                "ORDER BY Pacientes DESC";
             string tabla = "Turnos";
             dt = _datos.ObtenerTabla(consulta, tabla);
             return dt;
@@ -56,11 +56,10 @@ namespace Datos
                 "  Inner join Horarios h ON t.IdHorario = h.Id"+
                 "  WHERE Fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin +"'"+
                 "  group by h.Id, h.Descripcion" +
-                "  Order By h.Id;";
+                "  Order By h.Id";
             string tabla = "Turnos";
             dt = _datos.ObtenerTabla(consulta, tabla);
             return dt;
         }
-
     }
 }

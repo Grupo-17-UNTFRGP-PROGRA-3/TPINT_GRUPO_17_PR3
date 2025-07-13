@@ -23,6 +23,7 @@ namespace Clinica
                 case 1:
                 {
                     _inf._dt= _DaoInf.PacientesPorMedico(fechaInicio, fechaFin);
+                   
                 }
                     break;
                 case 2:
@@ -42,8 +43,5 @@ namespace Clinica
             }
             return _inf._dt; 
         }
-
-
-
     }
 }

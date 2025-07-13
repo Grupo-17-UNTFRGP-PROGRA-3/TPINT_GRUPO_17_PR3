@@ -22,25 +22,36 @@ namespace Vistas.Administrador.Informes
 
         public void btnPacXMed_Click(object sender, EventArgs e)
         {
+            lblInforme.Text = string.Empty;
             btnVolver.Focus();
             gvResultados.Visible=true;
-            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 1);
+            inf._dt = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 1);
+            gvResultados.DataSource = inf._dt;
+            inf.CargarDatosDescripcion("Apellido", "medicos mas solicitados");
+            lblInforme.Text = inf._descripcion[3].ToString();
             gvResultados.DataBind();
         }
 
         protected void btnPacXEsp_Click(object sender, EventArgs e)
         {
+            lblInforme.Text = string.Empty;
             btnVolver.Focus();
             gvResultados.Visible = true;
-            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 2);
+            inf._dt = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 2);
+            gvResultados.DataSource = inf._dt;
+            inf.CargarDatosDescripcion("Descripcion", "especialidades mas necesitadas");
+            lblInforme.Text = inf._descripcion[3].ToString();
             gvResultados.DataBind();
         }
 
         protected void btnHorasPico_Click(object sender, EventArgs e)
         {
+            lblInforme.Text = string.Empty;
             btnVolver.Focus();
             gvResultados.Visible = true;
-            gvResultados.DataSource = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 3);
+            inf._dt = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 3);
+            gvResultados.DataSource = inf._dt;
+            lblInforme.Text = "Las muestra la concurrencia en la tabla por hora";
             gvResultados.DataBind();
         }
     }

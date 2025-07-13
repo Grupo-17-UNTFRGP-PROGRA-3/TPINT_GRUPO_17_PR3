@@ -26,7 +26,7 @@
         <asp:Button CssClass="linkbutton" ID="btnHorasPico" runat="server" Text="Horas Pico" OnClick="btnHorasPico_Click" />
         <br />
         <br />
-        <asp:Label ID="lblInforme" runat="server" Text="Seleccione un informe"></asp:Label>
+        <asp:Label ID="lblInforme" runat="server" Font-Bold="True" Font-Italic="True" Font-Size="Medium"></asp:Label>
         <br />
         <asp:GridView ID="gvResultados" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
             <RowStyle HorizontalAlign="Center" />
