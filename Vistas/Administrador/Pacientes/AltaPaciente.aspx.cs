@@ -225,6 +225,21 @@ namespace Vistas
         {
             NegocioPaciente negocioPaciente = new NegocioPaciente();
 
+            DateTime fechaNacimiento;
+            if (!DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento))
+            {
+                lblMensaje.Text = "Fecha de nacimiento inválida.";
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+
+            if (fechaNacimiento > DateTime.Today)
+            {
+                lblMensaje.Text = "La fecha de nacimiento no puede ser posterior a la fecha actual.";
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+
             Paciente paciente = new Paciente()
             {
                 _DNI = int.Parse(txtDNI.Text),

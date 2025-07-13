@@ -228,6 +228,24 @@ namespace Vistas
                 return;
             }
 
+            DateTime fechaNacimiento;
+            if (!DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento))
+            {
+                lblMensaje.Text = "Fecha de nacimiento inválida.";
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+
+            int edad = DateTime.Now.Year - fechaNacimiento.Year;
+            if (fechaNacimiento > DateTime.Now.AddYears(-edad)) edad--;
+
+            if (edad < 24)
+            {
+                lblMensaje.Text = "El médico debe tener al menos 24 años.";
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+
             Entidades.Medico medico = new Entidades.Medico()
             {
                 _DNI = int.Parse(txtDNI.Text),

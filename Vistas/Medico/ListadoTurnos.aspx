@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <label>Estado:</label><asp:DropDownList ID="ddlFiltroEstado" runat="server" CssClass="form-input">
-                <asp:ListItem Text="--Seleccione Estado--" Value=""></asp:ListItem>
+                <asp:ListItem Text="Pendiente" Value=""></asp:ListItem>
                 <asp:ListItem>Ausente</asp:ListItem>
                 <asp:ListItem>Presente</asp:ListItem>
             </asp:DropDownList>
