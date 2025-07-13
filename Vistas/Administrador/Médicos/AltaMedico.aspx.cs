@@ -161,7 +161,12 @@ namespace Vistas
                     BtnVolver2.Visible = false;
                     BtnVolver2.Enabled = false;
 
-                    
+                    btnConfirmarRestaurar.Visible = true;
+                    btnConfirmarRestaurar.Enabled = true;
+
+                    btnCancelarRestaurar.Visible = true;
+                    btnCancelarRestaurar.Enabled = true;
+
                 }
                 else // EXISTE Y NO ESTA ELIMINADO
                 {
@@ -481,7 +486,7 @@ namespace Vistas
             int dni = int.Parse(txtDNI.Text);
 
             bool resultado = negocioMedico.RestaurarMedicoEliminado(dni);
-
+            lblInicio.ForeColor = Color.Green;
             lblInicio.Text = "Medico restaurado.";
 
             txtDNI.Visible = true;

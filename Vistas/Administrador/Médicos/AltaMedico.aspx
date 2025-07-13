@@ -43,14 +43,14 @@
             <div class="form-group">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" Display="Dynamic" ErrorMessage="Debe ingresar un nombre" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" Display="Dynamic" ErrorMessage="Debe ingresar un nombre" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
             </div>
 
             <!--apellido-->
             <div class="form-group">
                 <asp:Label ID="lblApellido" runat="server" Text="Apellido" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtApellido" runat="server" CssClass="form-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Debe ingresar un apellido" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Debe ingresar un apellido" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
             </div>
 
             <!--sexo-->
@@ -60,7 +60,7 @@
                     <asp:ListItem Value="masculino">Masculino</asp:ListItem>
                     <asp:ListItem Value="femenino">Femenino</asp:ListItem>
                 </asp:RadioButtonList>
-                <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="rblSexo" Display="Dynamic" ErrorMessage="Debe seleccionar un sexo" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="rblSexo" Display="Dynamic" ErrorMessage="Debe seleccionar un sexo" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
             </div>
 
             <!--nacionalidad-->
@@ -72,17 +72,17 @@
                     <asp:ListItem>Nacionalidad2</asp:ListItem>
                     <asp:ListItem>etc</asp:ListItem>
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="ddlNacionalidad" Display="Dynamic" ErrorMessage="Debe seleccionar una nacionalidad" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="ddlNacionalidad" Display="Dynamic" ErrorMessage="Debe seleccionar una nacionalidad" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
             </div>
 
             <!--nacimiento-->
             <div class="form-group">
                 <asp:Label ID="lblNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="form-label"></asp:Label>
                 <asp:TextBox TextMode="Date" ID="txtFechaNacimiento" runat="server" CssClass="form-input" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ControlToValidate="txtFechaNacimiento" Display="Dynamic" ErrorMessage="Seleccione una fecha" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ControlToValidate="txtFechaNacimiento" Display="Dynamic" ErrorMessage="Seleccione una fecha" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator id="regExV"  ControlToValidate="txtFechaNacimiento" ValidationExpression="\d{4}[-]\d{2}[-]\d{2}"  
                     Display="Dynamic" ForeColor="Red"
-                    ErrorMessage="Fecha inválida" runat="server"/>
+                    ErrorMessage="Fecha inválida" runat="server" ValidationGroup="g1"/>
             </div>
 
 
@@ -91,7 +91,7 @@
                 <div class="form-group">
                      <asp:Label ID="lblDirecion" runat="server" Text="Dirección" CssClass="form-label"></asp:Label>
                     <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-input"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtDireccion" Display="Dynamic" ErrorMessage="Debe ingresar una direccion" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtDireccion" Display="Dynamic" ErrorMessage="Debe ingresar una direccion" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -102,14 +102,14 @@
                         <asp:Label ID="lblProvincia" runat="server" Text="Provincia" CssClass="form-label"></asp:Label>
                         <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" CssClass="form-input" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" Display="Dynamic" />
+                        <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" Display="Dynamic" ValidationGroup="g1" />
                     </div>
                     <!--localidad-->
                     <div class="form-group">
                         <asp:Label ID="lblLocalidad" runat="server" Text="Localidad" CssClass="form-label"></asp:Label>
                         <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-input">
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" ErrorMessage="Seleccione una localidad" ForeColor="Red" Display="Dynamic" />
+                        <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" ErrorMessage="Seleccione una localidad" ForeColor="Red" Display="Dynamic" ValidationGroup="g1" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -120,29 +120,29 @@
             <div class="form-group">
                 <asp:Label ID="lblEmail" runat="server" Text="Correo Electrónico" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Debe ingresar un correo electronico" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Correo electronico invalido" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Debe ingresar un correo electronico" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Correo electronico invalido" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ValidationGroup="g1"></asp:RegularExpressionValidator>
             </div>
 
             <!--telefono-->
             <div class="form-group">
                 <asp:Label ID="lblTelefono" runat="server" Text="Teléfono" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Debe ingresar un telefono" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Telefono invalido" ForeColor="Red" ValidationExpression="^\d{6,15}$"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Debe ingresar un telefono" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Telefono invalido" ForeColor="Red" ValidationExpression="^\d{6,15}$" ValidationGroup="g1"></asp:RegularExpressionValidator>
             </div>
             <!--Especialidad-->
             <div class="form-group">
                 <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" CssClass="form-label"></asp:Label>
                 <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-input">
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidad" Display="Dynamic" ErrorMessage="Seleccione una especialidad" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidad" Display="Dynamic" ErrorMessage="Seleccione una especialidad" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
             </div>
 
             <!--horarios de atencion-->
             <div class="form-group">
                 <asp:Label ID="lblHorarios" runat="server" Text="Días de atención" CssClass="form-label"></asp:Label>
-                <asp:CheckBoxList ID="cblDiasAtencion" runat="server" RepeatDirection="Horizontal">
+                <asp:CheckBoxList ID="cblDiasAtencion" runat="server" RepeatDirection="Horizontal" ControlToValidate="cblDiasAtencion">
                     <asp:ListItem Value="1">Lunes</asp:ListItem>
                     <asp:ListItem Value="2">Martes</asp:ListItem>
                     <asp:ListItem Value="3">Miercoles</asp:ListItem>
@@ -150,24 +150,23 @@
                     <asp:ListItem Value="5">Viernes</asp:ListItem>
                     <asp:ListItem Value="6">Sábado</asp:ListItem>
                 </asp:CheckBoxList>
-
                 <div class="form-group">
                     <asp:Label ID="lblRangoHorario" runat="server" Text="Rango de horarios" CssClass="form-label"></asp:Label>
                     <asp:Label ID="lblHorarioDesde" runat="server" Text="Desde: " CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraInicio" runat="server" CssClass="form-input" AutoPostBack="true" OnSelectedIndexChanged="ddlHoraInicio_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvHoraInicio" runat="server" ControlToValidate="ddlHoraInicio" ErrorMessage="Debe ingresar una hora de inicio" ForeColor="Red" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvHoraInicio" runat="server" ControlToValidate="ddlHoraInicio" ErrorMessage="Debe ingresar una hora de inicio" ForeColor="Red" InitialValue="0" Display="Dynamic" ValidationGroup="g1"></asp:RequiredFieldValidator>
                     <asp:Label ID="lblHorarioHasta" runat="server" Text="Hasta: " CssClass="form-label"></asp:Label>
                     <asp:DropDownList ID="ddlHoraFin" runat="server" CssClass="form-input">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvHoraFin" runat="server" ControlToValidate="ddlHoraFin" ErrorMessage="Debe ingresar una hora de fin" ForeColor="Red" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvHoraFin" runat="server" ControlToValidate="ddlHoraFin" ErrorMessage="Debe ingresar una hora de fin" ForeColor="Red" InitialValue="0" Display="Dynamic" ValidationGroup="g1"></asp:RequiredFieldValidator>
                 </div>
 
             </div>
 
             <!--botones-->
             <div>
-                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true"  OnClick="btnIngresar_Click" />
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar medico" CausesValidation="true"  OnClick="btnIngresar_Click" ValidationGroup="g1" />
                 <asp:Button ID="btnLimpiarCampos" runat="server" Text="Limpiar campos"  CausesValidation="false" OnClick="btnLimpiarCampos_Click" />
                 <asp:Button ID="btnVolver" runat="server" Text="Volver"  CausesValidation="false" OnClick="btnVolver_Click" />
                 <br />
