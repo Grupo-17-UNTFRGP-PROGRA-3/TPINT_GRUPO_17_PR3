@@ -54,8 +54,6 @@ namespace Vistas
 				Session["Legajo"] = usuario._legajo;
                 Response.Redirect(ResolveUrl(Session["Home"].ToString()));
             }
-
-			
         }
     }
 }
