@@ -65,5 +65,8 @@
     <Content Include="Scripts\ClinicaDB_Estructura_con_Datos.sql" />
     <Content Include="Scripts\DBB TPI CLINICA.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\DataOnly Script.ipynb" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
