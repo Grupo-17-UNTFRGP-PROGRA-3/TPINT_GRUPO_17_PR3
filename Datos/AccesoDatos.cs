@@ -474,7 +474,7 @@ namespace Datos
             string consulta = "select h.Id, h.Horario from Horarios h " +
                               "inner join HorariosMedicos hm ON hm.IdDia = " + Dia.ToString() + " and hm.Legajo = " + Legajo.ToString() +
                               "where hm.Eliminado = 0 and h.Horario between hm.HoraInicio and DATEADD(HOUR, -1, hm.HoraFin) " +
-                              "AND h.Id NOT IN (SELECT IdHorario FROM Turnos WHERE LegajoMedico = " + Legajo.ToString()+ 
+                              "AND h.Id NOT IN (SELECT IdHorario FROM Turnos WHERE Eliminado = 0 AND LegajoMedico = " + Legajo.ToString()+ 
                               " AND Fecha = '"+ f +"')";
 
             SqlCommand cmd = new SqlCommand(consulta, _conexion);
