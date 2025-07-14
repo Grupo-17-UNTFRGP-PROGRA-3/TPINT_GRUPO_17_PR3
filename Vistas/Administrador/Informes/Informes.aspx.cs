@@ -68,7 +68,7 @@ namespace Vistas.Administrador.Informes
             gvResultados.Visible = true;
             inf._dt = negInf.TraerInforme(txtFechaInicial.Text, txtFechaFinal.Text, 3);
             gvResultados.DataSource = inf._dt;
-            lblInforme.Text = "Las muestra la concurrencia en la tabla por hora";
+            lblInforme.Text = "En la tabla se muestra la concurrencia por hora";
             gvResultados.DataBind();
         }
     }
