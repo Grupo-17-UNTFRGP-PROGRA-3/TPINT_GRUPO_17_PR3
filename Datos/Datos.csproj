@@ -64,6 +64,7 @@
   <ItemGroup>
     <Content Include="Scripts\ClinicaDB_Estructura_con_Datos.sql" />
     <Content Include="Scripts\DBB TPI CLINICA.sql" />
+    <Content Include="Scripts\script_final.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DataOnly Script.ipynb" />
