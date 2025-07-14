@@ -30,7 +30,7 @@
             <asp:ListItem Text="-- Todos --" Value="" />
             <asp:ListItem Text="Pendiente" Value="Pendiente" />
             <asp:ListItem Text="Ausente" Value="Ausente" />
-            <asp:ListItem >Presente</asp:ListItem>
+            <asp:ListItem Text="Presente" Value="Presente" />
         </asp:DropDownList>
 
         <asp:Label ID="lblFechaDesde" runat="server" Text="Desde: " CssClass="form-label"></asp:Label>
